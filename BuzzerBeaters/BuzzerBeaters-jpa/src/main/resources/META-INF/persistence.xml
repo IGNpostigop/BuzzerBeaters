@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+	<persistence-unit name="BuzzerBeaters" transaction-type="RESOURCE_LOCAL">
+		<class>es.uma.BuzzerBeaters.Autorizacion</class>
+		<class>es.uma.BuzzerBeaters.Cliente</class>
+		<class>es.uma.BuzzerBeaters.Cuenta</class>
+		<class>es.uma.BuzzerBeaters.Cuenta_referencia</class>
+		<class>es.uma.BuzzerBeaters.Divisa</class>
+		<class>es.uma.BuzzerBeaters.Empresa</class>
+		<class>es.uma.BuzzerBeaters.Individual</class>
+		<class>es.uma.BuzzerBeaters.Persona_autorizada</class>
+		<class>es.uma.BuzzerBeaters.Transaccion</class>
+		<class>es.uma.BuzzerBeaters.AutorizacionID</class>
+		<class>es.uma.BuzzerBeaters.Segregada</class>
+		<class>es.uma.BuzzerBeaters.pooled_account</class>
+		<class>es.uma.BuzzerBeaters.Depositada_en</class>
+		<class>es.uma.BuzzerBeaters.Cuenta_fintech</class>
+		<class>es.uma.BuzzerBeaters.AdministrativoEbury</class>
+		<properties>
+			<property name="javax.persistence.jdbc.url" value="jdbc:h2:mem:test"/>
+			<property name="javax.persistence.jdbc.user" value="siiuser"/>
+			<property name="javax.persistence.jdbc.password" value="siipassword"/>
+			<property name="javax.persistence.jdbc.driver" value="org.h2.Driver"/>
+			<property name="javax.persistence.schema-generation.scripts.action" value="create"/>
+			<property name="javax.persistence.schema-generation.scripts.create-target" value="esquema.ddl"/>
+			<property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>
+		</properties>
+	</persistence-unit>
+</persistence>
