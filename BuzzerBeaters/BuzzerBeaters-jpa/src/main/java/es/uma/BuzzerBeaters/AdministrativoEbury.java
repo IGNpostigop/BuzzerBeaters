@@ -10,8 +10,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-public class AdministrativoEbury 
-{
+public class AdministrativoEbury extends usuario{
 	@Id
 	private String dni;
 	@Column (nullable = false)
@@ -20,10 +19,15 @@ public class AdministrativoEbury
 	private String apellidos;
 	@Temporal(TemporalType.DATE)
 	private Date fecha_antiguedad;
-	@Column (nullable = false)
-	private String user;
-	@Column (nullable = false)
-	private String password;
+//	@Column (nullable = false)
+//	private String user;
+//	@Column (nullable = false)
+//	private String password;
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(apellidos, dni, fecha_antiguedad, nombre);
+	}
 	public String getDni() {
 		return dni;
 	}
@@ -48,22 +52,6 @@ public class AdministrativoEbury
 	public void setFecha_antiguedad(Date fecha_antiguedad) {
 		this.fecha_antiguedad = fecha_antiguedad;
 	}
-	public String getUser() {
-		return user;
-	}
-	public void setUser(String user) {
-		this.user = user;
-	}
-	public String getPassword() {
-		return password;
-	}
-	public void setPassword(String password) {
-		this.password = password;
-	}
-	@Override
-	public int hashCode() {
-		return Objects.hash(apellidos, dni, fecha_antiguedad, nombre, password, user);
-	}
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -74,15 +62,14 @@ public class AdministrativoEbury
 			return false;
 		AdministrativoEbury other = (AdministrativoEbury) obj;
 		return Objects.equals(apellidos, other.apellidos) && Objects.equals(dni, other.dni)
-				&& Objects.equals(fecha_antiguedad, other.fecha_antiguedad) && Objects.equals(nombre, other.nombre)
-				&& Objects.equals(password, other.password) && Objects.equals(user, other.user);
+				&& Objects.equals(fecha_antiguedad, other.fecha_antiguedad) && Objects.equals(nombre, other.nombre);
 	}
 	@Override
 	public String toString() {
 		return "AdministrativoEbury [dni=" + dni + ", nombre=" + nombre + ", apellidos=" + apellidos
-				+ ", fecha_antiguedad=" + fecha_antiguedad + ", user=" + user + ", password=" + password + "]";
+				+ ", fecha_antiguedad=" + fecha_antiguedad + "]";
 	}
-	
+
 	
 	
 	

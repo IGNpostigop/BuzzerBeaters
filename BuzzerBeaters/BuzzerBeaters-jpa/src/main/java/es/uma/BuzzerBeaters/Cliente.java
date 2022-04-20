@@ -19,10 +19,10 @@ import javax.persistence.TemporalType;
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 
-public class Cliente {
+public class Cliente extends usuario {
 	
-	@Id@GeneratedValue
-	private Long id;
+//	@Id@GeneratedValue
+//	private Long id;
 	@Column(nullable = false, unique = true)
 	private String identification;
 	@Column(nullable = false)
@@ -40,16 +40,10 @@ public class Cliente {
 	private Integer codigopostal;
 	@Column(name="Pais",nullable = false)
 	private String pais;
-	@Column (nullable = false)
-	private String user;
-	@Column (nullable = false)
-	private String password;
-	public Long getId() {
-		return id;
-	}
-	public void setId(Long id) {
-		this.id = id;
-	}
+//	@Column (nullable = false)
+//	private String user;
+//	@Column (nullable = false)
+//	private String password;
 	public String getIdentification() {
 		return identification;
 	}
@@ -98,22 +92,9 @@ public class Cliente {
 	public void setPais(String pais) {
 		this.pais = pais;
 	}
-	public String getUser() {
-		return user;
-	}
-	public void setUser(String user) {
-		this.user = user;
-	}
-	public String getPassword() {
-		return password;
-	}
-	public void setPassword(String password) {
-		this.password = password;
-	}
 	@Override
 	public int hashCode() {
-		return Objects.hash(ciudad, codigopostal, direccion, estado, fechaAlta, fechaBaja, id, identification, pais,
-				password, user);
+		return Objects.hash(ciudad, codigopostal, direccion, estado, fechaAlta, fechaBaja, identification, pais);
 	}
 	@Override
 	public boolean equals(Object obj) {
@@ -127,20 +108,16 @@ public class Cliente {
 		return Objects.equals(ciudad, other.ciudad) && Objects.equals(codigopostal, other.codigopostal)
 				&& Objects.equals(direccion, other.direccion) && Objects.equals(estado, other.estado)
 				&& Objects.equals(fechaAlta, other.fechaAlta) && Objects.equals(fechaBaja, other.fechaBaja)
-				&& Objects.equals(id, other.id) && Objects.equals(identification, other.identification)
-				&& Objects.equals(pais, other.pais) && Objects.equals(password, other.password)
-				&& Objects.equals(user, other.user);
+				&& Objects.equals(identification, other.identification) && Objects.equals(pais, other.pais);
 	}
 	@Override
 	public String toString() {
-		return "Cliente [id=" + id + ", identification=" + identification + ", estado=" + estado + ", fechaAlta="
-				+ fechaAlta + ", fechaBaja=" + fechaBaja + ", direccion=" + direccion + ", ciudad=" + ciudad
-				+ ", codigopostal=" + codigopostal + ", pais=" + pais + ", user=" + user + ", password=" + password
-				+ "]";
+		return "Cliente [identification=" + identification + ", estado=" + estado + ", fechaAlta=" + fechaAlta
+				+ ", fechaBaja=" + fechaBaja + ", direccion=" + direccion + ", ciudad=" + ciudad + ", codigopostal="
+				+ codigopostal + ", pais=" + pais + "]";
 	}
-	
-	
-	
+
+
 	
 	
 }

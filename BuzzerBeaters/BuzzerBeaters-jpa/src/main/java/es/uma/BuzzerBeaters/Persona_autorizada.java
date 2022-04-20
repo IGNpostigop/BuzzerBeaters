@@ -15,11 +15,11 @@ import javax.persistence.TemporalType;
 
 @Entity
 
-public class Persona_autorizada implements Serializable {
+public class Persona_autorizada extends usuario implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
-	@Id @GeneratedValue
-	private Long id;
+//	@Id @GeneratedValue
+//	private Long id;
 	@Column(nullable = false, unique = true)
 	private String identification;
 	@Column(nullable = false)
@@ -38,18 +38,12 @@ public class Persona_autorizada implements Serializable {
 	@Temporal(TemporalType.DATE)
 	@Column(name="FechaFin")
 	private Date fechaFin;
-	@Column (nullable = false)
-	private String user;
-	@Column (nullable = false)
-	private String password;
+//	@Column (nullable = false)
+//	private String user;
+//	@Column (nullable = false)
+//	private String password;
 	@OneToMany
 	private AutorizacionID autorizaciones;
-	public Long getId() {
-		return id;
-	}
-	public void setId(Long id) {
-		this.id = id;
-	}
 	public String getIdentification() {
 		return identification;
 	}
@@ -98,18 +92,6 @@ public class Persona_autorizada implements Serializable {
 	public void setFechaFin(Date fechaFin) {
 		this.fechaFin = fechaFin;
 	}
-	public String getUser() {
-		return user;
-	}
-	public void setUser(String user) {
-		this.user = user;
-	}
-	public String getPassword() {
-		return password;
-	}
-	public void setPassword(String password) {
-		this.password = password;
-	}
 	public AutorizacionID getAutorizaciones() {
 		return autorizaciones;
 	}
@@ -121,14 +103,17 @@ public class Persona_autorizada implements Serializable {
 	}
 	@Override
 	public int hashCode() {
-		return Objects.hash(apellidos, autorizaciones, direccion, estado, fechaFin, fechaInicio, fecha_nacimiento, id,
-				identification, nombre, password, user);
+		final int prime = 31;
+		int result = super.hashCode();
+		result = prime * result + Objects.hash(apellidos, autorizaciones, direccion, estado, fechaFin, fechaInicio,
+				fecha_nacimiento, identification, nombre);
+		return result;
 	}
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
-		if (obj == null)
+		if (!super.equals(obj))
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
@@ -136,18 +121,17 @@ public class Persona_autorizada implements Serializable {
 		return Objects.equals(apellidos, other.apellidos) && Objects.equals(autorizaciones, other.autorizaciones)
 				&& Objects.equals(direccion, other.direccion) && Objects.equals(estado, other.estado)
 				&& Objects.equals(fechaFin, other.fechaFin) && Objects.equals(fechaInicio, other.fechaInicio)
-				&& Objects.equals(fecha_nacimiento, other.fecha_nacimiento) && Objects.equals(id, other.id)
-				&& Objects.equals(identification, other.identification) && Objects.equals(nombre, other.nombre)
-				&& Objects.equals(password, other.password) && Objects.equals(user, other.user);
+				&& Objects.equals(fecha_nacimiento, other.fecha_nacimiento)
+				&& Objects.equals(identification, other.identification) && Objects.equals(nombre, other.nombre);
 	}
 	@Override
 	public String toString() {
-		return "Persona_autorizada [id=" + id + ", identification=" + identification + ", nombre=" + nombre
-				+ ", apellidos=" + apellidos + ", direccion=" + direccion + ", fecha_nacimiento=" + fecha_nacimiento
-				+ ", estado=" + estado + ", fechaInicio=" + fechaInicio + ", fechaFin=" + fechaFin + ", user=" + user
-				+ ", password=" + password + ", autorizaciones=" + autorizaciones + "]";
+		return "Persona_autorizada [identification=" + identification + ", nombre=" + nombre + ", apellidos="
+				+ apellidos + ", direccion=" + direccion + ", fecha_nacimiento=" + fecha_nacimiento + ", estado="
+				+ estado + ", fechaInicio=" + fechaInicio + ", fechaFin=" + fechaFin + ", autorizaciones="
+				+ autorizaciones + "]";
 	}
-	
+
 	
 	
 	
