@@ -8,23 +8,26 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.OneToOne;
 
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 
-public class usuario {
-	@Id@GeneratedValue
-	private Long id;
-	@Column (nullable = false)
+public class Usuario {
+	
+	@Id
 	private String user;
 	@Column (nullable = false)
 	private String password;
-	public Long getId() {
-		return id;
-	}
-	public void setId(Long id) {
-		this.id = id;
-	}
+	@Column (nullable = false)
+	private boolean administrador;
+	
+	@OneToOne
+	private Cliente cliente;
+	@OneToOne
+	private PersonaAutorizada personaAutorizada;
+	
+	
 	public String getUser() {
 		return user;
 	}
@@ -37,9 +40,15 @@ public class usuario {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	public boolean isAdministrador() {
+		return administrador;
+	}
+	public void setAdministrador(boolean administrador) {
+		this.administrador = administrador;
+	}
 	@Override
 	public int hashCode() {
-		return Objects.hash(id, password, user);
+		return Objects.hash(administrador, password, user);
 	}
 	@Override
 	public boolean equals(Object obj) {
@@ -49,13 +58,13 @@ public class usuario {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		usuario other = (usuario) obj;
-		return Objects.equals(id, other.id) && Objects.equals(password, other.password)
+		Usuario other = (Usuario) obj;
+		return administrador == other.administrador && Objects.equals(password, other.password)
 				&& Objects.equals(user, other.user);
 	}
 	@Override
 	public String toString() {
-		return "usuario [id=" + id + ", user=" + user + ", password=" + password + "]";
+		return "usuario [user=" + user + ", password=" + password + ", administrador=" + administrador + "]";
 	}
 	
 	

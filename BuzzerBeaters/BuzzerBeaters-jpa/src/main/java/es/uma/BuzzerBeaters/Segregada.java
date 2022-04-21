@@ -9,24 +9,24 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
 @Entity
-public class Segregada extends Cuenta_fintech implements Serializable {
+public class Segregada extends CuentaFintech implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	@Id
 	private String comision;
 	@OneToOne
 	@JoinColumn(nullable = false)
-	private Cuenta_referencia cuenta_referencia;
+	private CuentaReferencia cuenta_referencia;
 	public String getComision() {
 		return comision;
 	}
 	public void setComision(String comision) {
 		this.comision = comision;
 	}
-	public Cuenta_referencia getCuenta_referencia() {
+	public CuentaReferencia getCuenta_referencia() {
 		return cuenta_referencia;
 	}
-	public void setCuenta_referencia(Cuenta_referencia cuenta_referencia) {
+	public void setCuenta_referencia(CuentaReferencia cuenta_referencia) {
 		this.cuenta_referencia = cuenta_referencia;
 	}
 	public static long getSerialversionuid() {

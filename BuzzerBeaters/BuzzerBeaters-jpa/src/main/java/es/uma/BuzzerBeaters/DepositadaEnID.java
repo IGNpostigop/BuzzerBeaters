@@ -5,7 +5,7 @@ import java.util.Objects;
 import javax.persistence.Embeddable;
 
 @Embeddable
-public class Depositada_EnID 
+public class DepositadaEnID 
 {
 	private String IBANreferenciada;
 	private String IBANpooled;
@@ -33,7 +33,7 @@ public class Depositada_EnID
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Depositada_EnID other = (Depositada_EnID) obj;
+		DepositadaEnID other = (DepositadaEnID) obj;
 		return Objects.equals(IBANpooled, other.IBANpooled) && Objects.equals(IBANreferenciada, other.IBANreferenciada);
 	}
 	@Override

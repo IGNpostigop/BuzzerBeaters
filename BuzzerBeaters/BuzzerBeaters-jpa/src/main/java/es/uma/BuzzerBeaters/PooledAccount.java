@@ -11,15 +11,15 @@ import javax.persistence.OneToMany;
 
 @Entity
 
-public class pooled_account extends Cuenta_fintech implements Serializable {
+public class PooledAccount extends CuentaFintech implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	@OneToMany
-	private Depositada_EnID pooledDepositada_En;
-	public Depositada_EnID getPooledDepositada_En() {
+	private DepositadaEnID pooledDepositada_En;
+	public DepositadaEnID getPooledDepositada_En() {
 		return pooledDepositada_En;
 	}
-	public void setPooledDepositada_En(Depositada_EnID pooledDepositada_En) {
+	public void setPooledDepositada_En(DepositadaEnID pooledDepositada_En) {
 		this.pooledDepositada_En = pooledDepositada_En;
 	}
 	public static long getSerialversionuid() {
@@ -40,7 +40,7 @@ public class pooled_account extends Cuenta_fintech implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		pooled_account other = (pooled_account) obj;
+		PooledAccount other = (PooledAccount) obj;
 		return Objects.equals(pooledDepositada_En, other.pooledDepositada_En);
 	}
 	@Override

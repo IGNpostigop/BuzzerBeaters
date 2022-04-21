@@ -1,5 +1,7 @@
 package es.uma.BuzzerBeaters;
 import javax.persistence.InheritanceType;
+
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -8,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.MappedSuperclass;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 
@@ -52,5 +55,8 @@ public class Cuenta {
 		return "Cuenta [iban=" + iban + ", swift=" + swift + "]";
 	}
 	
+
+	
+
 
 }

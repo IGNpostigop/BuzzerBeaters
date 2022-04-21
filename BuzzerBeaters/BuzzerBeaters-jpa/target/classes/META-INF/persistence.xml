@@ -4,19 +4,18 @@
 		<class>es.uma.BuzzerBeaters.Autorizacion</class>
 		<class>es.uma.BuzzerBeaters.Cliente</class>
 		<class>es.uma.BuzzerBeaters.Cuenta</class>
-		<class>es.uma.BuzzerBeaters.Cuenta_referencia</class>
+		<class>es.uma.BuzzerBeaters.CuentaReferencia</class>
 		<class>es.uma.BuzzerBeaters.Divisa</class>
 		<class>es.uma.BuzzerBeaters.Empresa</class>
 		<class>es.uma.BuzzerBeaters.Individual</class>
-		<class>es.uma.BuzzerBeaters.Persona_autorizada</class>
 		<class>es.uma.BuzzerBeaters.Transaccion</class>
 		<class>es.uma.BuzzerBeaters.AutorizacionID</class>
 		<class>es.uma.BuzzerBeaters.Segregada</class>
-		<class>es.uma.BuzzerBeaters.pooled_account</class>
-		<class>es.uma.BuzzerBeaters.Depositada_en</class>
-		<class>es.uma.BuzzerBeaters.Cuenta_fintech</class>
-		<class>es.uma.BuzzerBeaters.AdministrativoEbury</class>
-		<class>es.uma.BuzzerBeaters.usuario</class>
+		<class>es.uma.BuzzerBeaters.PooledAccount</class>
+		<class>es.uma.BuzzerBeaters.DepositadaEn</class>
+		<class>es.uma.BuzzerBeaters.CuentaFintech</class>
+		<class>es.uma.BuzzerBeaters.Usuario</class>
+		<class>es.uma.BuzzerBeaters.PersonaAutorizada</class>
 		<properties>
 			<property name="javax.persistence.jdbc.url" value="jdbc:h2:mem:test"/>
 			<property name="javax.persistence.jdbc.user" value="siiuser"/>
@@ -25,6 +24,7 @@
 			<property name="javax.persistence.schema-generation.scripts.action" value="create"/>
 			<property name="javax.persistence.schema-generation.scripts.create-target" value="esquema.ddl"/>
 			<property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>
+			<property name="eclipselink.ddl-generation" value="drop-and-create-tables"/>
 		</properties>
 	</persistence-unit>
 </persistence>

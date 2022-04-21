@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -19,10 +20,10 @@ import javax.persistence.TemporalType;
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 
-public class Cliente extends usuario {
+public class Cliente{
 	
-//	@Id@GeneratedValue
-//	private Long id;
+	@Id @GeneratedValue
+	private Long id;
 	@Column(nullable = false, unique = true)
 	private String identification;
 	@Column(nullable = false)
@@ -40,62 +41,119 @@ public class Cliente extends usuario {
 	private Integer codigopostal;
 	@Column(name="Pais",nullable = false)
 	private String pais;
-//	@Column (nullable = false)
-//	private String user;
-//	@Column (nullable = false)
-//	private String password;
+	
+	
+	@OneToOne
+	private Usuario usuarioCliente;
+
+
+	public Long getId() {
+		return id;
+	}
+
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+
 	public String getIdentification() {
 		return identification;
 	}
+
+
 	public void setIdentification(String identification) {
 		this.identification = identification;
 	}
+
+
 	public Boolean getEstado() {
 		return estado;
 	}
+
+
 	public void setEstado(Boolean estado) {
 		this.estado = estado;
 	}
+
+
 	public Date getFechaAlta() {
 		return fechaAlta;
 	}
+
+
 	public void setFechaAlta(Date fechaAlta) {
 		this.fechaAlta = fechaAlta;
 	}
+
+
 	public Date getFechaBaja() {
 		return fechaBaja;
 	}
+
+
 	public void setFechaBaja(Date fechaBaja) {
 		this.fechaBaja = fechaBaja;
 	}
+
+
 	public String getDireccion() {
 		return direccion;
 	}
+
+
 	public void setDireccion(String direccion) {
 		this.direccion = direccion;
 	}
+
+
 	public String getCiudad() {
 		return ciudad;
 	}
+
+
 	public void setCiudad(String ciudad) {
 		this.ciudad = ciudad;
 	}
+
+
 	public Integer getCodigopostal() {
 		return codigopostal;
 	}
+
+
 	public void setCodigopostal(Integer codigopostal) {
 		this.codigopostal = codigopostal;
 	}
+
+
 	public String getPais() {
 		return pais;
 	}
+
+
 	public void setPais(String pais) {
 		this.pais = pais;
 	}
+
+
+	public Usuario getUsuarioCliente() {
+		return usuarioCliente;
+	}
+
+
+	public void setUsuarioCliente(Usuario usuarioCliente) {
+		this.usuarioCliente = usuarioCliente;
+	}
+
+
 	@Override
 	public int hashCode() {
-		return Objects.hash(ciudad, codigopostal, direccion, estado, fechaAlta, fechaBaja, identification, pais);
+		return Objects.hash(ciudad, codigopostal, direccion, estado, fechaAlta, fechaBaja, id, identification, pais,
+				usuarioCliente);
 	}
+
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -108,15 +166,18 @@ public class Cliente extends usuario {
 		return Objects.equals(ciudad, other.ciudad) && Objects.equals(codigopostal, other.codigopostal)
 				&& Objects.equals(direccion, other.direccion) && Objects.equals(estado, other.estado)
 				&& Objects.equals(fechaAlta, other.fechaAlta) && Objects.equals(fechaBaja, other.fechaBaja)
-				&& Objects.equals(identification, other.identification) && Objects.equals(pais, other.pais);
-	}
-	@Override
-	public String toString() {
-		return "Cliente [identification=" + identification + ", estado=" + estado + ", fechaAlta=" + fechaAlta
-				+ ", fechaBaja=" + fechaBaja + ", direccion=" + direccion + ", ciudad=" + ciudad + ", codigopostal="
-				+ codigopostal + ", pais=" + pais + "]";
+				&& Objects.equals(id, other.id) && Objects.equals(identification, other.identification)
+				&& Objects.equals(pais, other.pais) && Objects.equals(usuarioCliente, other.usuarioCliente);
 	}
 
+
+	@Override
+	public String toString() {
+		return "Cliente [id=" + id + ", identification=" + identification + ", estado=" + estado + ", fechaAlta="
+				+ fechaAlta + ", fechaBaja=" + fechaBaja + ", direccion=" + direccion + ", ciudad=" + ciudad
+				+ ", codigopostal=" + codigopostal + ", pais=" + pais + ", usuarioCliente=" + usuarioCliente + "]";
+	}
+	
 
 	
 	

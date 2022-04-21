@@ -12,25 +12,33 @@ import javax.persistence.ManyToOne;
 
 @Entity
 
-public class Depositada_en implements Serializable{
+public class DepositadaEn implements Serializable{
 	/**
 	 * 
 	 */
 	@EmbeddedId
-	private Depositada_EnID id;
+	private DepositadaEnID id;
 	private static final long serialVersionUID = 1L;
 	
 	private Double saldo;
+	
+	/////////////////////////////////////////////////////////////////////////////////////////////
 	@ManyToOne
 	@JoinColumn(name = "idCliente", nullable = false)
-	private pooled_account cuentas_pooled;
+	private PooledAccount cuentas_pooled;
+	/////////////////////////////////////////////////////////////////////////////////////////////
+	
+	/////////////////////////////////////////////////////////////////////////////////////////////
 	@ManyToOne
 	@JoinColumn(name = "idPersonaAutorizada", nullable = false)
-	private Cuenta_referencia cuenta_banco;
-	public Depositada_EnID getId() {
+	private CuentaReferencia cuenta_banco;
+	/////////////////////////////////////////////////////////////////////////////////////////////
+	
+	
+	public DepositadaEnID getId() {
 		return id;
 	}
-	public void setId(Depositada_EnID id) {
+	public void setId(DepositadaEnID id) {
 		this.id = id;
 	}
 	public Double getSaldo() {
@@ -39,16 +47,16 @@ public class Depositada_en implements Serializable{
 	public void setSaldo(Double saldo) {
 		this.saldo = saldo;
 	}
-	public pooled_account getCuentas_pooled() {
+	public PooledAccount getCuentas_pooled() {
 		return cuentas_pooled;
 	}
-	public void setCuentas_pooled(pooled_account cuentas_pooled) {
+	public void setCuentas_pooled(PooledAccount cuentas_pooled) {
 		this.cuentas_pooled = cuentas_pooled;
 	}
-	public Cuenta_referencia getCuenta_banco() {
+	public CuentaReferencia getCuenta_banco() {
 		return cuenta_banco;
 	}
-	public void setCuenta_banco(Cuenta_referencia cuenta_banco) {
+	public void setCuenta_banco(CuentaReferencia cuenta_banco) {
 		this.cuenta_banco = cuenta_banco;
 	}
 	public static long getSerialversionuid() {
@@ -66,7 +74,7 @@ public class Depositada_en implements Serializable{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Depositada_en other = (Depositada_en) obj;
+		DepositadaEn other = (DepositadaEn) obj;
 		return Objects.equals(cuenta_banco, other.cuenta_banco) && Objects.equals(cuentas_pooled, other.cuentas_pooled)
 				&& Objects.equals(id, other.id) && Objects.equals(saldo, other.saldo);
 	}

@@ -29,6 +29,7 @@ public class Transaccion  {
 	private String tipo;
 	private double comision;
 	private Boolean internacional;
+	
 	@ManyToOne
 	@JoinColumn(nullable = false)
 	private Cuenta cuenta_origen;
@@ -39,7 +40,6 @@ public class Transaccion  {
 	@ManyToOne
 	@JoinColumn(nullable = false)
 	private Divisa Divisa_receptor;
-	
 	@ManyToOne
 	@JoinColumn(nullable = false)
 	private Divisa Divisa_origen;
