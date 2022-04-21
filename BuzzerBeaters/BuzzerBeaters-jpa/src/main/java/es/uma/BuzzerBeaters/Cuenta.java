@@ -18,11 +18,18 @@ import javax.persistence.Table;
 @Table(name="Cuenta")
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class Cuenta {
-	@Id
-	@Column (name = "IBAN")
+	
+	@Id @Column (name = "IBAN")
 	private String iban;
+	
 	@Column (name = "SWIFT")
 	private String swift;
+
+	@OneToMany (mappedBy="cuenta_origen")
+	private List<Transaccion> transaccionesOrigen;
+	@OneToMany (mappedBy="cuenta_destino")
+	private List<Transaccion> transaccionesDestino;
+	
 	public String getIban() {
 		return iban;
 	}
@@ -35,9 +42,21 @@ public class Cuenta {
 	public void setSwift(String swift) {
 		this.swift = swift;
 	}
+	public List<Transaccion> getTransaccionesOrigen() {
+		return transaccionesOrigen;
+	}
+	public void setTransaccionesOrigen(List<Transaccion> transaccionesOrigen) {
+		this.transaccionesOrigen = transaccionesOrigen;
+	}
+	public List<Transaccion> getTransaccionesDestino() {
+		return transaccionesDestino;
+	}
+	public void setTransaccionesDestino(List<Transaccion> transaccionesDestino) {
+		this.transaccionesDestino = transaccionesDestino;
+	}
 	@Override
 	public int hashCode() {
-		return Objects.hash(iban, swift);
+		return Objects.hash(iban, swift, transaccionesDestino, transaccionesOrigen);
 	}
 	@Override
 	public boolean equals(Object obj) {
@@ -48,14 +67,15 @@ public class Cuenta {
 		if (getClass() != obj.getClass())
 			return false;
 		Cuenta other = (Cuenta) obj;
-		return Objects.equals(iban, other.iban) && Objects.equals(swift, other.swift);
+		return Objects.equals(iban, other.iban) && Objects.equals(swift, other.swift)
+				&& Objects.equals(transaccionesDestino, other.transaccionesDestino)
+				&& Objects.equals(transaccionesOrigen, other.transaccionesOrigen);
 	}
 	@Override
 	public String toString() {
-		return "Cuenta [iban=" + iban + ", swift=" + swift + "]";
+		return "Cuenta [iban=" + iban + ", swift=" + swift + ", transaccionesOrigen=" + transaccionesOrigen
+				+ ", transaccionesDestino=" + transaccionesDestino + "]";
 	}
-	
-
 	
 
 
