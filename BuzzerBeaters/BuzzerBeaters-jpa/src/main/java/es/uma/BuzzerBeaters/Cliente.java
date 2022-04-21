@@ -46,7 +46,9 @@ public class Cliente{
 	@OneToOne
 	private Usuario usuarioCliente;
 
-
+	@OneToMany(mappedBy="id")
+	private AutorizacionID autorizacionID;
+	
 	public Long getId() {
 		return id;
 	}

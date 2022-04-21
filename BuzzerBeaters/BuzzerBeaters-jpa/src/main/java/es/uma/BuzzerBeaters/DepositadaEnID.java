@@ -9,6 +9,7 @@ public class DepositadaEnID
 {
 	private String IBANreferenciada;
 	private String IBANpooled;
+	
 	public String getIBANreferenciada() {
 		return IBANreferenciada;
 	}

@@ -41,8 +41,8 @@ public class PersonaAutorizada {
 	@Column(name="FechaFin")
 	private Date fechaFin;
 
-	@OneToMany
-	private AutorizacionID autorizaciones;
+	@OneToMany(mappedBy="id")
+	private AutorizacionID autorizacionID;
 	
 	@OneToOne
 	private Usuario usuarioPA;
@@ -119,12 +119,12 @@ public class PersonaAutorizada {
 		this.fechaFin = fechaFin;
 	}
 
-	public AutorizacionID getAutorizaciones() {
-		return autorizaciones;
+	public AutorizacionID getAutorizacionID() {
+		return autorizacionID;
 	}
 
-	public void setAutorizaciones(AutorizacionID autorizaciones) {
-		this.autorizaciones = autorizaciones;
+	public void setAutorizacionID(AutorizacionID autorizacionID) {
+		this.autorizacionID = autorizacionID;
 	}
 
 	public Usuario getUsuarioPA() {
@@ -135,26 +135,22 @@ public class PersonaAutorizada {
 		this.usuarioPA = usuarioPA;
 	}
 
-
 	@Override
 	public int hashCode() {
-		final int prime = 31;
-		int result = super.hashCode();
-		result = prime * result + Objects.hash(apellidos, autorizaciones, direccion, estado, fechaFin, fechaInicio,
-				fecha_nacimiento, id, identification, nombre, usuarioPA);
-		return result;
+		return Objects.hash(apellidos, autorizacionID, direccion, estado, fechaFin, fechaInicio, fecha_nacimiento, id,
+				identification, nombre, usuarioPA);
 	}
 
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
-		if (!super.equals(obj))
+		if (obj == null)
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
 		PersonaAutorizada other = (PersonaAutorizada) obj;
-		return Objects.equals(apellidos, other.apellidos) && Objects.equals(autorizaciones, other.autorizaciones)
+		return Objects.equals(apellidos, other.apellidos) && Objects.equals(autorizacionID, other.autorizacionID)
 				&& Objects.equals(direccion, other.direccion) && Objects.equals(estado, other.estado)
 				&& Objects.equals(fechaFin, other.fechaFin) && Objects.equals(fechaInicio, other.fechaInicio)
 				&& Objects.equals(fecha_nacimiento, other.fecha_nacimiento) && Objects.equals(id, other.id)
@@ -166,9 +162,9 @@ public class PersonaAutorizada {
 	public String toString() {
 		return "PersonaAutorizada [id=" + id + ", identification=" + identification + ", nombre=" + nombre
 				+ ", apellidos=" + apellidos + ", direccion=" + direccion + ", fecha_nacimiento=" + fecha_nacimiento
-				+ ", estado=" + estado + ", fechaInicio=" + fechaInicio + ", fechaFin=" + fechaFin + ", autorizaciones="
-				+ autorizaciones + ", usuarioPA=" + usuarioPA + "]";
+				+ ", estado=" + estado + ", fechaInicio=" + fechaInicio + ", fechaFin=" + fechaFin + ", autorizacionID="
+				+ autorizacionID + ", usuarioPA=" + usuarioPA + "]";
 	}
-	
 
+	
 }
