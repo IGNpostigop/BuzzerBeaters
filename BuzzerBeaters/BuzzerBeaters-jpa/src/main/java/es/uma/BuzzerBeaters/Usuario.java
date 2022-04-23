@@ -22,9 +22,9 @@ public class Usuario {
 	@Column (nullable = false)
 	private boolean administrador;
 	
-	@OneToOne
+	@OneToOne(mappedBy="usuarioCliente")
 	private Cliente cliente;
-	@OneToOne
+	@OneToOne(mappedBy="usuarioPA")
 	private PersonaAutorizada personaAutorizada;
 	
 	

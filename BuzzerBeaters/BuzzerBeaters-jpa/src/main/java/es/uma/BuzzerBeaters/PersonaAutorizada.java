@@ -47,5 +47,125 @@ public class PersonaAutorizada {
 	@OneToOne
 	private Usuario usuarioPA;
 
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getIdentification() {
+		return identification;
+	}
+
+	public void setIdentification(String identification) {
+		this.identification = identification;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public String getApellidos() {
+		return apellidos;
+	}
+
+	public void setApellidos(String apellidos) {
+		this.apellidos = apellidos;
+	}
+
+	public String getDireccion() {
+		return direccion;
+	}
+
+	public void setDireccion(String direccion) {
+		this.direccion = direccion;
+	}
+
+	public Date getFecha_nacimiento() {
+		return fecha_nacimiento;
+	}
+
+	public void setFecha_nacimiento(Date fecha_nacimiento) {
+		this.fecha_nacimiento = fecha_nacimiento;
+	}
+
+	public Boolean getEstado() {
+		return estado;
+	}
+
+	public void setEstado(Boolean estado) {
+		this.estado = estado;
+	}
+
+	public Date getFechaInicio() {
+		return fechaInicio;
+	}
+
+	public void setFechaInicio(Date fechaInicio) {
+		this.fechaInicio = fechaInicio;
+	}
+
+	public Date getFechaFin() {
+		return fechaFin;
+	}
+
+	public void setFechaFin(Date fechaFin) {
+		this.fechaFin = fechaFin;
+	}
+
+	public List<Autorizacion> getAutorizacion() {
+		return autorizacion;
+	}
+
+	public void setAutorizacion(List<Autorizacion> autorizacion) {
+		this.autorizacion = autorizacion;
+	}
+
+	public Usuario getUsuarioPA() {
+		return usuarioPA;
+	}
+
+	public void setUsuarioPA(Usuario usuarioPA) {
+		this.usuarioPA = usuarioPA;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(apellidos, autorizacion, direccion, estado, fechaFin, fechaInicio, fecha_nacimiento, id,
+				identification, nombre, usuarioPA);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		PersonaAutorizada other = (PersonaAutorizada) obj;
+		return Objects.equals(apellidos, other.apellidos) && Objects.equals(autorizacion, other.autorizacion)
+				&& Objects.equals(direccion, other.direccion) && Objects.equals(estado, other.estado)
+				&& Objects.equals(fechaFin, other.fechaFin) && Objects.equals(fechaInicio, other.fechaInicio)
+				&& Objects.equals(fecha_nacimiento, other.fecha_nacimiento) && Objects.equals(id, other.id)
+				&& Objects.equals(identification, other.identification) && Objects.equals(nombre, other.nombre)
+				&& Objects.equals(usuarioPA, other.usuarioPA);
+	}
+
+	@Override
+	public String toString() {
+		return "PersonaAutorizada [id=" + id + ", identification=" + identification + ", nombre=" + nombre
+				+ ", apellidos=" + apellidos + ", direccion=" + direccion + ", fecha_nacimiento=" + fecha_nacimiento
+				+ ", estado=" + estado + ", fechaInicio=" + fechaInicio + ", fechaFin=" + fechaFin + ", autorizacion="
+				+ autorizacion + ", usuarioPA=" + usuarioPA + "]";
+	}
+
+	
 	
 }
