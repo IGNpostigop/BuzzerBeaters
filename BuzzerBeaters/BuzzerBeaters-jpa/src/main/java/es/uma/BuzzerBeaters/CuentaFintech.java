@@ -32,6 +32,7 @@ public class CuentaFintech extends Cuenta implements Serializable{
     private Date fecha_apertura;
     @Temporal(TemporalType.DATE)
     private Date fecha_cierre;
+    
     @ManyToOne
     private Cliente cliente;
 

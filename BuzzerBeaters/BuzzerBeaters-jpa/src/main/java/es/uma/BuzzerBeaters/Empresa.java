@@ -1,6 +1,7 @@
 package es.uma.BuzzerBeaters;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -17,8 +18,8 @@ public class Empresa extends Cliente implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	
-	@OneToMany
-	private AutorizacionID autorizaciones;
+	@OneToMany(mappedBy="empresa")
+	private List<Autorizacion> autorizacion;
 
 
 	public String getRazon_social() {
@@ -31,13 +32,13 @@ public class Empresa extends Cliente implements Serializable {
 	}
 
 
-	public AutorizacionID getAutorizaciones() {
-		return autorizaciones;
+	public List<Autorizacion> getAutorizacion() {
+		return autorizacion;
 	}
 
 
-	public void setAutorizaciones(AutorizacionID autorizaciones) {
-		this.autorizaciones = autorizaciones;
+	public void setAutorizacion(List<Autorizacion> autorizacion) {
+		this.autorizacion = autorizacion;
 	}
 
 
@@ -50,7 +51,7 @@ public class Empresa extends Cliente implements Serializable {
 	public int hashCode() {
 		final int prime = 31;
 		int result = super.hashCode();
-		result = prime * result + Objects.hash(autorizaciones, razon_social);
+		result = prime * result + Objects.hash(autorizacion, razon_social);
 		return result;
 	}
 
@@ -64,14 +65,15 @@ public class Empresa extends Cliente implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Empresa other = (Empresa) obj;
-		return Objects.equals(autorizaciones, other.autorizaciones) && Objects.equals(razon_social, other.razon_social);
+		return Objects.equals(autorizacion, other.autorizacion) && Objects.equals(razon_social, other.razon_social);
 	}
 
 
 	@Override
 	public String toString() {
-		return "Empresa [razon_social=" + razon_social + ", autorizaciones=" + autorizaciones + "]";
+		return "Empresa [razon_social=" + razon_social + ", autorizacion=" + autorizacion + "]";
 	}
-	
-	
+
+
+
 }

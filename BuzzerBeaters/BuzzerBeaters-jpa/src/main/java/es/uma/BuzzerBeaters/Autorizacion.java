@@ -31,8 +31,8 @@ public class Autorizacion {
 	/////////////////////////////////////////////////////////////////////////////////////////////
 	@ManyToOne
 	@MapsId("idCliente")
-	@JoinColumn(name = "idCliente", nullable = false)
-	private Cliente cliente;
+	@JoinColumn(name = "idEmpresa", nullable = false)
+	private Empresa empresa;
 	/////////////////////////////////////////////////////////////////////////////////////////////
 
 	public AutorizacionID getId() {
@@ -59,17 +59,17 @@ public class Autorizacion {
 		this.personaAutorizada = personaAutorizada;
 	}
 
-	public Cliente getCliente() {
-		return cliente;
+	public Empresa getEmpresa() {
+		return empresa;
 	}
 
-	public void setCliente(Cliente cliente) {
-		this.cliente = cliente;
+	public void setEmpresa(Empresa empresa) {
+		this.empresa = empresa;
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(cliente, id, personaAutorizada, tipo);
+		return Objects.hash(empresa, id, personaAutorizada, tipo);
 	}
 
 	@Override
@@ -81,17 +81,17 @@ public class Autorizacion {
 		if (getClass() != obj.getClass())
 			return false;
 		Autorizacion other = (Autorizacion) obj;
-		return Objects.equals(cliente, other.cliente) && Objects.equals(id, other.id)
+		return Objects.equals(empresa, other.empresa) && Objects.equals(id, other.id)
 				&& Objects.equals(personaAutorizada, other.personaAutorizada) && Objects.equals(tipo, other.tipo);
 	}
 
 	@Override
 	public String toString() {
-		return "Autorizacion [id=" + id + ", tipo=" + tipo + ", personaAutorizada=" + personaAutorizada + ", cliente="
-				+ cliente + "]";
+		return "Autorizacion [id=" + id + ", tipo=" + tipo + ", personaAutorizada=" + personaAutorizada + ", empresa="
+				+ empresa + "]";
 	}
 
-	
+
 	
 	
 }

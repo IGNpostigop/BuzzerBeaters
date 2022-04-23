@@ -46,115 +46,102 @@ public class Cliente{
 	@OneToOne
 	private Usuario usuarioCliente;
 
-	@OneToMany(mappedBy="id")
-	private AutorizacionID autorizacionID;
-	
+	@OneToMany(mappedBy="cliente")
+	private List<CuentaFintech> cuentasFintech;
+
 	public Long getId() {
 		return id;
 	}
-
 
 	public void setId(Long id) {
 		this.id = id;
 	}
 
-
 	public String getIdentification() {
 		return identification;
 	}
-
 
 	public void setIdentification(String identification) {
 		this.identification = identification;
 	}
 
-
 	public Boolean getEstado() {
 		return estado;
 	}
-
 
 	public void setEstado(Boolean estado) {
 		this.estado = estado;
 	}
 
-
 	public Date getFechaAlta() {
 		return fechaAlta;
 	}
-
 
 	public void setFechaAlta(Date fechaAlta) {
 		this.fechaAlta = fechaAlta;
 	}
 
-
 	public Date getFechaBaja() {
 		return fechaBaja;
 	}
-
 
 	public void setFechaBaja(Date fechaBaja) {
 		this.fechaBaja = fechaBaja;
 	}
 
-
 	public String getDireccion() {
 		return direccion;
 	}
-
 
 	public void setDireccion(String direccion) {
 		this.direccion = direccion;
 	}
 
-
 	public String getCiudad() {
 		return ciudad;
 	}
-
 
 	public void setCiudad(String ciudad) {
 		this.ciudad = ciudad;
 	}
 
-
 	public Integer getCodigopostal() {
 		return codigopostal;
 	}
-
 
 	public void setCodigopostal(Integer codigopostal) {
 		this.codigopostal = codigopostal;
 	}
 
-
 	public String getPais() {
 		return pais;
 	}
-
 
 	public void setPais(String pais) {
 		this.pais = pais;
 	}
 
-
 	public Usuario getUsuarioCliente() {
 		return usuarioCliente;
 	}
-
 
 	public void setUsuarioCliente(Usuario usuarioCliente) {
 		this.usuarioCliente = usuarioCliente;
 	}
 
+	public List<CuentaFintech> getCuentasFintech() {
+		return cuentasFintech;
+	}
+
+	public void setCuentasFintech(List<CuentaFintech> cuentasFintech) {
+		this.cuentasFintech = cuentasFintech;
+	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(ciudad, codigopostal, direccion, estado, fechaAlta, fechaBaja, id, identification, pais,
-				usuarioCliente);
+		return Objects.hash(ciudad, codigopostal, cuentasFintech, direccion, estado, fechaAlta, fechaBaja, id,
+				identification, pais, usuarioCliente);
 	}
-
 
 	@Override
 	public boolean equals(Object obj) {
@@ -166,21 +153,20 @@ public class Cliente{
 			return false;
 		Cliente other = (Cliente) obj;
 		return Objects.equals(ciudad, other.ciudad) && Objects.equals(codigopostal, other.codigopostal)
-				&& Objects.equals(direccion, other.direccion) && Objects.equals(estado, other.estado)
-				&& Objects.equals(fechaAlta, other.fechaAlta) && Objects.equals(fechaBaja, other.fechaBaja)
-				&& Objects.equals(id, other.id) && Objects.equals(identification, other.identification)
-				&& Objects.equals(pais, other.pais) && Objects.equals(usuarioCliente, other.usuarioCliente);
+				&& Objects.equals(cuentasFintech, other.cuentasFintech) && Objects.equals(direccion, other.direccion)
+				&& Objects.equals(estado, other.estado) && Objects.equals(fechaAlta, other.fechaAlta)
+				&& Objects.equals(fechaBaja, other.fechaBaja) && Objects.equals(id, other.id)
+				&& Objects.equals(identification, other.identification) && Objects.equals(pais, other.pais)
+				&& Objects.equals(usuarioCliente, other.usuarioCliente);
 	}
-
 
 	@Override
 	public String toString() {
 		return "Cliente [id=" + id + ", identification=" + identification + ", estado=" + estado + ", fechaAlta="
 				+ fechaAlta + ", fechaBaja=" + fechaBaja + ", direccion=" + direccion + ", ciudad=" + ciudad
-				+ ", codigopostal=" + codigopostal + ", pais=" + pais + ", usuarioCliente=" + usuarioCliente + "]";
+				+ ", codigopostal=" + codigopostal + ", pais=" + pais + ", usuarioCliente=" + usuarioCliente
+				+ ", cuentasFintech=" + cuentasFintech + "]";
 	}
-	
 
-	
-	
+
 }
