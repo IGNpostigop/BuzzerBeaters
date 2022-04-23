@@ -31,17 +31,13 @@ public class Transaccion  {
 	private Boolean internacional;
 	
 	@ManyToOne
-	@JoinColumn(nullable = false)
 	private Cuenta cuenta_origen;
 	@ManyToOne
-	@JoinColumn(nullable = false)
 	private Cuenta cuenta_destino;
 	
 	@ManyToOne
-	@JoinColumn(nullable = false)
 	private Divisa divisa_destino;
 	@ManyToOne
-	@JoinColumn(nullable = false)
 	private Divisa divisa_origen;
 	public Long getId() {
 		return id;
@@ -140,6 +136,6 @@ public class Transaccion  {
 				+ ", internacional=" + internacional + ", cuenta_origen=" + cuenta_origen + ", cuenta_destino="
 				+ cuenta_destino + ", divisa_destino=" + divisa_destino + ", divisa_origen=" + divisa_origen + "]";
 	}
-
+	
 
 }
