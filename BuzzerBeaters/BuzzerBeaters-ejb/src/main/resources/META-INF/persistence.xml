@@ -5,9 +5,7 @@
 	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd">
   <persistence-unit name="BuzzerBeaters" transaction-type="JTA">
     <jta-data-source>jdbc/sii</jta-data-source>
-    <class>es.uma.informatica.sii.ejb.practica.entidades.Ingrediente</class>
-    <class>es.uma.informatica.sii.ejb.practica.entidades.Lote</class>
-    <class>es.uma.informatica.sii.ejb.practica.entidades.Producto</class>
+
     <shared-cache-mode>NONE</shared-cache-mode>
     <properties>
     	<property name="javax.persistence.schema-generation.database.action" value="create"/>
