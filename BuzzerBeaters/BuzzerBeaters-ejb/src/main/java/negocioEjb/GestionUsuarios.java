@@ -1,5 +1,7 @@
 package negocioEjb;
 
+import java.sql.Date;
+
 import javax.ejb.Local;
 
 @Local
@@ -28,5 +30,8 @@ public interface GestionUsuarios {
 	 * pertinente
 	 */
 	public void resetUserPassword(String user, String password);
+	
+
+
 
 }
