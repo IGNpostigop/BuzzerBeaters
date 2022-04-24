@@ -16,6 +16,8 @@ public class PooledAccount extends CuentaFintech implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@OneToMany(mappedBy="cuentas_pooled")
 	private List<DepositadaEn> pooledDepositadaEn;
+	
+	
 	public List<DepositadaEn> getPooledDepositadaEn() {
 		return pooledDepositadaEn;
 	}

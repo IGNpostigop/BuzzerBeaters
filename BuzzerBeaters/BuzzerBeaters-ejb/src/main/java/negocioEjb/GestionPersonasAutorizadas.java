@@ -2,6 +2,9 @@ package negocioEjb;
 
 import java.sql.Date;
 
+import es.uma.BuzzerBeaters.Empresa;
+import es.uma.BuzzerBeaters.Usuario;
+
 public interface GestionPersonasAutorizadas {
 	
 	/**
@@ -12,9 +15,10 @@ public interface GestionPersonasAutorizadas {
 	 * user, password y administrador no pueden ser nulos.
 	 **/
 	
-	public void insertarPersonaAutorizada (String user, String password, boolean administrador, String identificacion, String nombre, String apellidos,
-			Boolean estado, Date fechaNacimiento, Date fechaInicio, Date fechaFin, String empresa);
+
+
+	void insertarPersonaAutorizada(Usuario user, String identificacion, String nombre, String apellidos, Boolean estado,
+			Date fechaNacimiento, Date fechaInicio, Date fechaFin, Empresa empresa);
 	
-		
 
 }
