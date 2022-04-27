@@ -28,6 +28,7 @@ public class Cliente{
 	private String identification;
 	@Column(nullable = false)
 	private Boolean estado;
+	@Temporal(TemporalType.DATE)
 	@Column(name="Fecha_Alta")
 	private Date fechaAlta;
 	@Temporal(TemporalType.DATE)

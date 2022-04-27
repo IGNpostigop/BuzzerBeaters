@@ -12,6 +12,9 @@ import negocioEJBexcepcion.UsuarioException;
 public class ClientesEJB implements GestionClientes {
 	private static final Logger LOG = Logger.getLogger(UsuariosEJB.class.getCanonicalName());
 	
+	
+	
+	
 	@PersistenceContext(name="BuzzerBeaters")
 	private EntityManager em;
 

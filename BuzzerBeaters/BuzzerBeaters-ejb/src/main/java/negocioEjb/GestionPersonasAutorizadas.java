@@ -23,7 +23,7 @@ public interface GestionPersonasAutorizadas {
 
 
 	void insertarPersonaAutorizada(Cliente cliente, String identificacion, String nombre, String apellidos, Boolean estado,
-			Date fechaNacimiento, Date fechaInicio, Date fechaFin, Empresa empresa) throws UsuarioException;
+			 Empresa empresa) throws UsuarioException;
 	
 	/**
 	 * Este metodo permitira modificar los datos de una persona autorizada
@@ -38,6 +38,7 @@ public interface GestionPersonasAutorizadas {
 	 * Este metodo permitira la eliminacion de autorizados de una cuenta.
 	 */
 	
-	void eliminarAutorizadoEmpresa(PersonaAutorizada persAut, Autorizacion autorizacion)throws UsuarioException;;
+	void eliminarAutorizadoEmpresa(PersonaAutorizada persAut, Autorizacion autorizacion)throws UsuarioException;
 
+	boolean consultarPersonaAutorizada(PersonaAutorizada aut)throws UsuarioException;
 }

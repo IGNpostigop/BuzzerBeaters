@@ -1,17 +1,10 @@
 es\uma\BuzzerBeaters\Autorizacion.class
-es\uma\BuzzerBeaters\Persona_autorizada.class
 es\uma\BuzzerBeaters\Individual.class
-es\uma\BuzzerBeaters\Cuenta_referencia.class
-es\uma\BuzzerBeaters\Depositada_EnID.class
 es\uma\BuzzerBeaters\Segregada.class
 es\uma\BuzzerBeaters\Transaccion.class
-es\uma\BuzzerBeaters\Depositada_en.class
 es\uma\BuzzerBeaters\AutorizacionID.class
 es\uma\BuzzerBeaters\Divisa.class
 es\uma\BuzzerBeaters\Cuenta.class
 es\uma\BuzzerBeaters\Main.class
-es\uma\BuzzerBeaters\AdministrativoEbury.class
 es\uma\BuzzerBeaters\Cliente.class
 es\uma\BuzzerBeaters\Empresa.class
-es\uma\BuzzerBeaters\pooled_account.class
-es\uma\BuzzerBeaters\Cuenta_fintech.class

@@ -13,7 +13,5 @@ public class BaseDatos {
 		EntityManager em = emf.createEntityManager();
 		
 		em.getTransaction().begin();
-		
-		Usuario user1 = 
-
+	}	
 }

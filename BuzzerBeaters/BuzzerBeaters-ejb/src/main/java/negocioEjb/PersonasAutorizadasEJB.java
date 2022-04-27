@@ -1,11 +1,14 @@
 package negocioEjb;
 
+import java.io.Closeable;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
 
 import es.uma.BuzzerBeaters.Autorizacion;
@@ -15,25 +18,34 @@ import es.uma.BuzzerBeaters.PersonaAutorizada;
 import es.uma.BuzzerBeaters.Usuario;
 import negocioEJBexcepcion.UsuarioException;
 
-public class PersonasAutorizadasEJB implements GestionPersonasAutorizadas{
+public class PersonasAutorizadasEJB implements GestionPersonasAutorizadas,Closeable{
 	
 	private static final Logger LOG = Logger.getLogger(UsuariosEJB.class.getCanonicalName());
 	
 	@PersistenceContext(name="BuzzerBeaters")
+	private EntityManagerFactory emf;
 	private EntityManager em;
-
-
+	
+	public PersonasAutorizadasEJB() {
+		emf = Persistence.createEntityManagerFactory("BuzzerBeaters");
+		em = emf.createEntityManager();
+	}
+	
+	@Override
+	public void close() {
+		em.close();
+		emf.close();
+	}
+	
 	@Override
 	public void insertarPersonaAutorizada(Cliente cliente, String identificacion, String nombre, String apellidos,
-		Boolean estado, Date fechaNacimiento, Date fechaInicio, Date fechaFin, Empresa empresa) throws UsuarioException {		
+		Boolean estado, Empresa empresa) throws UsuarioException {
+		
 		PersonaAutorizada personaAutorizada = new PersonaAutorizada();
 		personaAutorizada.setApellidos(apellidos);
-		personaAutorizada.setFecha_nacimiento(fechaNacimiento);
 		personaAutorizada.setNombre(nombre);
 		personaAutorizada.setIdentification(identificacion);
 		personaAutorizada.setEstado(estado);
-		personaAutorizada.setFechaInicio(fechaInicio);
-		personaAutorizada.setFechaFin(fechaFin);
 		Autorizacion aut = new Autorizacion();
 		
 		aut.setEmpresa(empresa);
@@ -94,6 +106,17 @@ public class PersonasAutorizadasEJB implements GestionPersonasAutorizadas{
 		
 		// TODO Auto-generated method stub
 		
+	}
+
+
+	@Override
+	public boolean consultarPersonaAutorizada(PersonaAutorizada aut) throws UsuarioException {
+		PersonaAutorizada PerAutEntity = em.find(PersonaAutorizada.class, aut);
+		boolean bol=true;
+		if(PerAutEntity == null) {
+			bol = false;
+		}
+		return bol;
 	}
 
 }
