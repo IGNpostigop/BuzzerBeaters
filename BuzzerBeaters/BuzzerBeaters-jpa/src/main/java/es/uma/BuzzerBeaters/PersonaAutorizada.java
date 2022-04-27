@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -44,8 +45,31 @@ public class PersonaAutorizada {
 	@OneToMany(mappedBy="personaAutorizada")
 	private List<Autorizacion> autorizacion;
 	
-	@OneToOne
+	@OneToOne(cascade = {CascadeType.PERSIST})
 	private Usuario usuarioPA;
+
+	
+	public PersonaAutorizada() 
+	{
+	}
+	
+	
+	public PersonaAutorizada(Long id, String identification, String nombre, String apellidos, String direccion,
+			Date fecha_nacimiento, Boolean estado, Date fechaInicio, Date fechaFin, List<Autorizacion> autorizacion,
+			Usuario usuarioPA) {
+		super();
+		this.id = id;
+		this.identification = identification;
+		this.nombre = nombre;
+		this.apellidos = apellidos;
+		this.direccion = direccion;
+		this.fecha_nacimiento = fecha_nacimiento;
+		this.estado = estado;
+		this.fechaInicio = fechaInicio;
+		this.fechaFin = fechaFin;
+		this.autorizacion = autorizacion;
+		this.usuarioPA = usuarioPA;
+	}
 
 	public Long getId() {
 		return id;

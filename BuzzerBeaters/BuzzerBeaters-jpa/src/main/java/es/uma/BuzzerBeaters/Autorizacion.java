@@ -35,9 +35,23 @@ public class Autorizacion {
 	private Empresa empresa;
 	/////////////////////////////////////////////////////////////////////////////////////////////
 
+	
+	public Autorizacion(AutorizacionID id, String tipo, PersonaAutorizada personaAutorizada, Empresa empresa) {
+		super();
+		this.id = id;
+		this.tipo = tipo;
+		this.personaAutorizada = personaAutorizada;
+		this.empresa = empresa;
+	}
+	public Autorizacion() {
+	
+	}
+	
+	
 	public AutorizacionID getId() {
 		return id;
 	}
+
 
 	public void setId(AutorizacionID id) {
 		this.id = id;

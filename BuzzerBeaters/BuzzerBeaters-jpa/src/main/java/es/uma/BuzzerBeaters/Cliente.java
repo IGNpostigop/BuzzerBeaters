@@ -50,6 +50,9 @@ public class Cliente{
 	@OneToMany(mappedBy="cliente")
 	private List<CuentaFintech> cuentasFintech;
 
+	
+	
+	
 	public Long getId() {
 		return id;
 	}

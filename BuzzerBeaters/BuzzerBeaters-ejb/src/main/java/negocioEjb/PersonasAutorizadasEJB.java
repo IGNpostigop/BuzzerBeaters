@@ -8,8 +8,10 @@ import java.util.logging.Logger;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 import es.uma.BuzzerBeaters.Autorizacion;
 import es.uma.BuzzerBeaters.Cliente;
@@ -37,17 +39,44 @@ public class PersonasAutorizadasEJB implements GestionPersonasAutorizadas,Closea
 		emf.close();
 	}
 	
+	
+	public void crearPersonaAutorizada(PersonaAutorizada pAutorizada) {
+		// TODO
+		EntityTransaction tx = em.getTransaction();
+		
+		tx.begin();
+		em.persist(pAutorizada);
+		tx.commit();
+	}
+	
+	public List<PersonaAutorizada> getPersonasAutorizadas() 
+	{
+		// TODO
+		Query query = em.createQuery("SELECT p FROM PersonaAutorizada p");
+		List<PersonaAutorizada> personasAutorizadas = query.getResultList();
+		return personasAutorizadas;
+	}
+	
+	
 	@Override
 	public void insertarPersonaAutorizada(Cliente cliente, String identificacion, String nombre, String apellidos,
 		Boolean estado, Empresa empresa) throws UsuarioException {
+		
+		EntityTransaction tx = em.getTransaction();
+		
+		tx.begin();
 		
 		PersonaAutorizada personaAutorizada = new PersonaAutorizada();
 		personaAutorizada.setApellidos(apellidos);
 		personaAutorizada.setNombre(nombre);
 		personaAutorizada.setIdentification(identificacion);
 		personaAutorizada.setEstado(estado);
-		Autorizacion aut = new Autorizacion();
 		
+		tx.commit();
+//---------------------------------------------
+		tx.begin();
+		
+		Autorizacion aut = new Autorizacion();
 		aut.setEmpresa(empresa);
 		aut.setPersonaAutorizada(personaAutorizada);
 
@@ -70,6 +99,7 @@ public class PersonasAutorizadasEJB implements GestionPersonasAutorizadas,Closea
 
 		}
 		
+		tx.commit();
 	}
 
 

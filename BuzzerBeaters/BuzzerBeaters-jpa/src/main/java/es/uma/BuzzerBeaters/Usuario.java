@@ -2,6 +2,7 @@ package es.uma.BuzzerBeaters;
 
 import java.util.Objects;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -24,10 +25,19 @@ public class Usuario {
 	
 	@OneToOne(mappedBy="usuarioCliente")
 	private Cliente cliente;
-	@OneToOne(mappedBy="usuarioPA")
+	@OneToOne(mappedBy="usuarioPA", cascade = {CascadeType.PERSIST})
 	private PersonaAutorizada personaAutorizada;
 	
 	
+	public Usuario() {
+	}
+	
+	public Usuario(String user, String password, boolean administrador) {
+		super();
+		this.user = user;
+		this.password = password;
+		this.administrador = administrador;
+	}
 	public String getUser() {
 		return user;
 	}

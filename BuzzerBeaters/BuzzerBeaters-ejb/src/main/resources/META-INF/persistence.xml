@@ -8,7 +8,14 @@
 
     <shared-cache-mode>NONE</shared-cache-mode>
     <properties>
-    	<property name="javax.persistence.schema-generation.database.action" value="create"/>
+    		<property name="javax.persistence.jdbc.url" value="jdbc:h2:mem:test"/>
+			<property name="javax.persistence.jdbc.user" value="siiuser"/>
+			<property name="javax.persistence.jdbc.password" value="siipassword"/>
+			<property name="javax.persistence.jdbc.driver" value="org.h2.Driver"/>
+			<property name="javax.persistence.schema-generation.scripts.action" value="create"/>
+			<property name="javax.persistence.schema-generation.scripts.create-target" value="esquema.ddl"/>
+			<property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>
+			<property name="eclipselink.ddl-generation" value="drop-and-create-tables"/>
     </properties>
   </persistence-unit>
 </persistence>
