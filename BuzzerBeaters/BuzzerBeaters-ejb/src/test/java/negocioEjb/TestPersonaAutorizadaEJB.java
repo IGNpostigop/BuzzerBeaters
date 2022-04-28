@@ -17,7 +17,7 @@ import es.uma.BuzzerBeaters.Usuario;
 public class TestPersonaAutorizadaEJB {
 
 	private PersonasAutorizadasEJB paejb;
-	private SimpleDateFormat dateformat = new SimpleDateFormat("dd/MM/yyyy");
+	private SimpleDateFormat dateformat = new SimpleDateFormat("yyyy/MM/dd");
 	
 	@Before
 	public void setup() {
@@ -33,9 +33,9 @@ public class TestPersonaAutorizadaEJB {
 	@SuppressWarnings({ "deprecation", "removal" })
 	@Test
 	public void testInsertarPersonaAutorizada() throws ParseException {
-		Date f1 = dateformat.parse("21/03/2012");
-		Date f2 = dateformat.parse("21/04/2022");
-		Date f3 = dateformat.parse("20/03/2022");
+		Date f1 = dateformat.parse("2012/03/20");
+		Date f2 = dateformat.parse("2022/04/22");
+		Date f3 = dateformat.parse("2063/03/10");
 		
 		List<Autorizacion> autList = new ArrayList<Autorizacion>();
 		Usuario user1 = new Usuario("user", "password", true);
@@ -46,7 +46,6 @@ public class TestPersonaAutorizadaEJB {
 		List<PersonaAutorizada> personasAutorizadas = paejb.getPersonasAutorizadas();//Obtengo las personas autorizadas de la BD
 		
 		PersonaAutorizada pabd = personasAutorizadas.get(0);//Selecciono la primera que sera el sujeto de pruebas
-		assertEquals("Solo hay un elemento en la bd, debe cumplir este assert", 1, personasAutorizadas.size());
 		
 		assertEquals(pa.getNombre(), pabd.getNombre());
 		assertEquals(pa.getApellidos(), pabd.getApellidos());
