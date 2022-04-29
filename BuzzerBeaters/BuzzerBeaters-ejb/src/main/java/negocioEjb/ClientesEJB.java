@@ -1,44 +1,61 @@
 package negocioEjb;
 
+import java.io.Closeable;
+import java.util.List;
 import java.util.logging.Logger;
 
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
+import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 import es.uma.BuzzerBeaters.Cliente;
+import es.uma.BuzzerBeaters.PersonaAutorizada;
 import es.uma.BuzzerBeaters.Usuario;
 import negocioEJBexcepcion.UsuarioException;
 
-public class ClientesEJB implements GestionClientes {
+public class ClientesEJB implements GestionClientes, Closeable {
 	private static final Logger LOG = Logger.getLogger(UsuariosEJB.class.getCanonicalName());
 	
-	
-	
-	
 	@PersistenceContext(name="BuzzerBeaters")
+	private EntityManagerFactory emf;
 	private EntityManager em;
+	
+	public ClientesEJB() {
+		emf = Persistence.createEntityManagerFactory("BuzzerBeaters");
+		em = emf.createEntityManager();
+	}
+	
+	@Override
+	public void close() {
+		em.close();
+		emf.close();
+	}
+	
 
 	@Override
-	public void insertarCliente(Usuario user, String identificacion, Boolean estado, String direccion, 
-			String ciudad, Integer codigoPostal, String pais) throws UsuarioException {
-		Cliente cliente = new Cliente();
-		cliente.setUsuarioCliente(user);
-		cliente.setIdentification(identificacion);
-		cliente.setEstado(estado);
-		cliente.setDireccion(direccion);
-		cliente.setCiudad(ciudad);
-		cliente.setCodigopostal(codigoPostal);
-		cliente.setPais(pais);
-		
+	public void crearCliente(Cliente cliente) throws UsuarioException {
+		EntityTransaction tx = em.getTransaction();
+		tx.begin();
 		Cliente clienteEntity = em.find(Cliente.class, cliente);
 		if(clienteEntity != null) {
 			throw new UsuarioException("El cliente ya existe\n");
 		}else {	
 			em.persist(cliente);
-		// TODO Auto-generated method stub
 		}
 		
 	}
+	
+	public List<Cliente> getClientes() 
+	{
+		// TODO
+		Query query = em.createQuery("SELECT c FROM Cliente c");
+		List<Cliente> clientes = query.getResultList();
+		return clientes;
+	}
+	
 	@Override
 	public void bajaCliente(Cliente cliente) throws UsuarioException {
 		// TODO Auto-generated method stub
@@ -52,7 +69,7 @@ public class ClientesEJB implements GestionClientes {
 	}
 	
 	@Override
-	public void modificarCliente(Cliente cliente, String identificacion, Boolean estado, String direccion, 
+	public Cliente modificarCliente(Cliente cliente, String identificacion, Boolean estado, String direccion, 
 			String ciudad, Integer codigoPostal, String pais) throws UsuarioException {
 		Cliente clienteEntity = em.find(Cliente.class, cliente);
 		if(clienteEntity == null) {
@@ -64,9 +81,11 @@ public class ClientesEJB implements GestionClientes {
 		clienteEntity.setCiudad(ciudad);
 		clienteEntity.setCodigopostal(codigoPostal);
 		clienteEntity.setPais(pais);
-			em.persist(cliente);
+		
 		// TODO Auto-generated method stub
 		}
+		return clienteEntity;
+	}
 
 
 //	@Override

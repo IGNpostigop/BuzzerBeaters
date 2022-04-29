@@ -14,8 +14,7 @@ public interface GestionClientes {
 	 * @throws UsuarioException 
 	 **/
 
-	public void insertarCliente(Usuario user, String identificacion, Boolean estado, String direccion, String ciudad,
-			Integer codigoPostal, String pais) throws UsuarioException;
+	public void crearCliente(Cliente cliente) throws UsuarioException;
 	
 //	/**
 //	 * Este método debe permitir modificar la identificación de un cliente
@@ -44,7 +43,7 @@ public interface GestionClientes {
 	 * Este método debe permitir modificar los atributos de un cliente
 	 */
 
-	void modificarCliente(Cliente cliente, String identificacion, Boolean estado, String direccion, String ciudad,
+	public Cliente modificarCliente(Cliente cliente, String identificacion, Boolean estado, String direccion, String ciudad,
 			Integer codigoPostal, String pais) throws UsuarioException;
 
 }
