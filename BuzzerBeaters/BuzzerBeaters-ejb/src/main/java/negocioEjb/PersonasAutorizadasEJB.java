@@ -1,7 +1,7 @@
 package negocioEjb;
 
 import java.io.Closeable;
-import java.sql.Date;
+import java.util.Date;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
@@ -56,68 +56,27 @@ public class PersonasAutorizadasEJB implements GestionPersonasAutorizadas,Closea
 		List<PersonaAutorizada> personasAutorizadas = query.getResultList();
 		return personasAutorizadas;
 	}
-	
-	
-	@Override
-	public void insertarPersonaAutorizada(Cliente cliente, String identificacion, String nombre, String apellidos,
-		Boolean estado, Empresa empresa) throws UsuarioException {
-		
-		EntityTransaction tx = em.getTransaction();
-		
-		tx.begin();
-		
-		PersonaAutorizada personaAutorizada = new PersonaAutorizada();
-		personaAutorizada.setApellidos(apellidos);
-		personaAutorizada.setNombre(nombre);
-		personaAutorizada.setIdentification(identificacion);
-		personaAutorizada.setEstado(estado);
-		
-		tx.commit();
-//---------------------------------------------
-		tx.begin();
-		
-		Autorizacion aut = new Autorizacion();
-		aut.setEmpresa(empresa);
-		aut.setPersonaAutorizada(personaAutorizada);
-
-		
-		PersonaAutorizada PerAutEntity = em.find(PersonaAutorizada.class, personaAutorizada);
-		if(PerAutEntity != null) {
-			List <Autorizacion> autorizaciones = PerAutEntity.getAutorizacion();
-			if(!autorizaciones.contains(aut)) {
-				autorizaciones.add(aut);
-				em.persist(PerAutEntity);
-			}else {
-				throw new UsuarioException("El cliente ya tiene la autorizacion que se intenta añadir\n");
-			}
-			
-		}else {
-			List <Autorizacion> autorizaciones = new ArrayList <>();
-			autorizaciones.add(aut);
-			personaAutorizada.setAutorizacion(autorizaciones);
-			em.persist(personaAutorizada);
-
-		}
-		
-		tx.commit();
-	}
 
 
 	@Override
-	public void modificarPersonaAutorizada(PersonaAutorizada persAut, String identificacion, String nombre, String apellidos,
+	public PersonaAutorizada modificarPersonaAutorizada(PersonaAutorizada persAut, String identificacion, String nombre, String apellidos,
 			Boolean estado, Date fechaNacimiento, Date fechaInicio, Date fechaFin) throws UsuarioException {
 		// TODO Auto-generated method stub
-		PersonaAutorizada PerAutEntity = em.find(PersonaAutorizada.class, persAut);
-		if(persAut == null) {
+		
+		PersonaAutorizada PerAutEntity = em.find(PersonaAutorizada.class, persAut.getId());
+		if(PerAutEntity == null) {
 			throw new UsuarioException("La persona autorizada no existe en la base de datos");
 		}else {
-			persAut.setApellidos(apellidos);
-			persAut.setEstado(estado);
-			persAut.setFecha_nacimiento(fechaNacimiento);
-			persAut.setFechaFin(fechaFin);
-			persAut.setFechaInicio(fechaInicio);
+			PerAutEntity.setIdentification(identificacion);
+			PerAutEntity.setNombre(nombre);
+			PerAutEntity.setApellidos(apellidos);
+			PerAutEntity.setEstado(estado);
+			PerAutEntity.setFecha_nacimiento(fechaNacimiento);
+			PerAutEntity.setFechaFin(fechaFin);
+			PerAutEntity.setFechaInicio(fechaInicio);
 		}
 		
+		return PerAutEntity;
 	}
 	
 
@@ -148,5 +107,6 @@ public class PersonasAutorizadasEJB implements GestionPersonasAutorizadas,Closea
 		}
 		return bol;
 	}
+	
 
 }

@@ -1,6 +1,6 @@
 package negocioEjb;
 
-import java.sql.Date;
+import java.util.Date;
 
 import es.uma.BuzzerBeaters.Autorizacion;
 import es.uma.BuzzerBeaters.Cliente;
@@ -22,15 +22,14 @@ public interface GestionPersonasAutorizadas {
 	
 
 
-	void insertarPersonaAutorizada(Cliente cliente, String identificacion, String nombre, String apellidos, Boolean estado,
-			 Empresa empresa) throws UsuarioException;
+	void crearPersonaAutorizada(PersonaAutorizada pa) throws UsuarioException;
 	
 	/**
 	 * Este metodo permitira modificar los datos de una persona autorizada
 	 * @throws UsuarioException 
 	 */
 	
-	void modificarPersonaAutorizada(PersonaAutorizada persAut, String identificacion, String nombre, String apellidos, Boolean estado,
+	PersonaAutorizada modificarPersonaAutorizada(PersonaAutorizada persAut, String identificacion, String nombre, String apellidos, Boolean estado,
 			Date fechaNacimiento, Date fechaInicio, Date fechaFin) throws UsuarioException;
 	
 	
