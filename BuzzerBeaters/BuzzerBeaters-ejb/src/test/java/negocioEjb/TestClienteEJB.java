@@ -3,6 +3,7 @@ package negocioEjb;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.fail;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -101,9 +102,22 @@ public class TestClienteEJB {
 			assertNotEquals(cli, modificado);
 		
 		} catch (UsuarioException e) {
-			e.printStackTrace();
+			fail("No debe lanzar excepcion");
 		}
 		
+	}
+	@Requisitos({"RF3"}) //ELIMINAR CLIENTE
+	@Test
+	public void testEliminarCliente() throws ParseException{
+		try {
+			Cliente cli = clienteEjemplo();
+			cli.setEstado(false);
+			cliejb.crearCliente(cli);
+			assertEquals(cli.getEstado(), false);		
+		}
+		catch (UsuarioException e) {
+			fail ("No debe lanzar excepción");
+		}
 	}
 	
 
