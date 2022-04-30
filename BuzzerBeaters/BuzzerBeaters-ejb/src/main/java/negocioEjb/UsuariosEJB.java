@@ -1,10 +1,13 @@
 package negocioEjb;
 
+import java.util.List;
 import java.util.logging.Logger;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
+import es.uma.BuzzerBeaters.PersonaAutorizada;
 import es.uma.BuzzerBeaters.Usuario;
 import negocioEJBexcepcion.UsuarioException;
 
@@ -52,6 +55,15 @@ public class UsuariosEJB implements GestionUsuarios{
 		}
 		// TODO Auto-generated method stub
 		
+	}
+	
+	@Override
+	public List<Usuario> getUsuarios() 
+	{
+		// TODO
+		Query query = em.createQuery("SELECT u FROM Usuarios u");
+		List<Usuario> Usuarios = query.getResultList();
+		return Usuarios;
 	}
 
 }

@@ -1,6 +1,6 @@
 package negocioEjb;
 
-import java.sql.Date;
+import java.util.List;
 
 import javax.ejb.Local;
 
@@ -36,6 +36,8 @@ public interface GestionUsuarios {
 	 * @throws UsuarioException 
 	 */
 	public void resetUserPassword(Usuario user, String password) throws UsuarioException;
+
+	public List<Usuario> getUsuarios();
 	
 
 }

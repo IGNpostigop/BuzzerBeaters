@@ -31,6 +31,7 @@ public class Usuario {
 	
 	public Usuario() {
 	}
+
 	
 	public Usuario(String user, String password, boolean administrador) {
 		super();

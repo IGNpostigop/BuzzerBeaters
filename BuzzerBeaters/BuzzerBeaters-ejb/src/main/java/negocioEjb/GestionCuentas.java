@@ -1,6 +1,8 @@
 package negocioEjb;
 
-import com.sun.tools.javac.util.List;
+
+
+import java.util.List;
 
 import es.uma.BuzzerBeaters.Cliente;
 import es.uma.BuzzerBeaters.Cuenta;

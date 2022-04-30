@@ -8,6 +8,19 @@
     <class>es.uma.BuzzerBeaters.PersonaAutorizada</class>
     <class>es.uma.BuzzerBeaters.Usuario</class>
     <class>es.uma.BuzzerBeaters.Autorizacion</class>
+    <class>es.uma.BuzzerBeaters.AutorizacionID</class>
+    <class>es.uma.BuzzerBeaters.Cliente</class>
+    <class>es.uma.BuzzerBeaters.Cuenta</class>
+    <class>es.uma.BuzzerBeaters.CuentaFintech</class>
+    <class>es.uma.BuzzerBeaters.CuentaReferencia</class>
+    <class>es.uma.BuzzerBeaters.DepositadaEn</class>
+    <class>es.uma.BuzzerBeaters.DepositadaEnID</class>
+    <class>es.uma.BuzzerBeaters.Divisa</class>
+    <class>es.uma.BuzzerBeaters.Empresa</class>
+    <class>es.uma.BuzzerBeaters.Individual</class>
+    <class>es.uma.BuzzerBeaters.PooledAccount</class>
+    <class>es.uma.BuzzerBeaters.Segregada</class>
+    <class>es.uma.BuzzerBeaters.Transaccion</class>
 
     <shared-cache-mode>NONE</shared-cache-mode>
     <properties>

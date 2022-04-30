@@ -2,20 +2,16 @@ package negocioEjb;
 
 import java.sql.Date;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
+import java.util.List;
 import java.util.logging.Logger;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-
-import com.sun.tools.javac.util.List;
-
 import es.uma.BuzzerBeaters.Cliente;
 import es.uma.BuzzerBeaters.Cuenta;
 import es.uma.BuzzerBeaters.CuentaReferencia;
 import es.uma.BuzzerBeaters.Segregada;
 import negocioEJBexcepcion.CuentaException;
-import oracle.sql.DATE;
 
 public class CuentasEJB implements GestionCuentas {
 	
@@ -49,10 +45,16 @@ public class CuentasEJB implements GestionCuentas {
 
 	}
 
-	@Override
-	public void aperturaCtaPooled(Cliente cliente, String clasificacion, List<Cuenta> cuentas) throws CuentaException{
-		// TODO Auto-generated method stub
 
+
+
+
+
+	@Override
+	public void aperturaCtaPooled(Cliente cliente, String clasificacion, List<Cuenta> cuentas)
+			throws CuentaException {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

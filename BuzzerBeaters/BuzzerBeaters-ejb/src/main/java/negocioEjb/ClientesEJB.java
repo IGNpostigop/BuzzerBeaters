@@ -86,6 +86,7 @@ public class ClientesEJB implements GestionClientes, Closeable {
 		}
 		return clienteEntity;
 	}
+}
 
 
 //	@Override
@@ -109,7 +110,4 @@ public class ClientesEJB implements GestionClientes, Closeable {
 //			clienteEntity.setDireccion(direccion);
 //		}
 //		
-	}
 
-
-}

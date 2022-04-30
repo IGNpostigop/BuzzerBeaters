@@ -7,7 +7,7 @@ import static org.junit.Assert.fail;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.sql.Date;
 import java.util.List;
 
 import org.junit.After;
@@ -37,7 +37,7 @@ public class TestClienteEJB {
 	
 		String identificacion = "11111111F";
 		Boolean estado = false;	
-		Date fechaAlta = dateformat.parse("2012/03/20");	
+		Date fechaAlta = Date.valueOf("2012/03/20");	
 		Date fechaBaja = null;
 		String direccion = "C/ Pito, 23";
 		String ciudad = "Malaga";
