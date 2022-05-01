@@ -15,11 +15,10 @@ import org.junit.Before;
 import org.junit.Test;
 
 import es.uma.BuzzerBeaters.Cliente;
-import es.uma.BuzzerBeaters.PersonaAutorizada;
 import es.uma.informatica.sii.anotaciones.Requisitos;
 import negocioEJBexcepcion.UsuarioException;
 
-public class TestClienteEJB {
+public class ClienteEJB {
 	private ClientesEJB cliejb;
 	private SimpleDateFormat dateformat = new SimpleDateFormat("yyyy/MM/dd");
 	

@@ -16,7 +16,7 @@ import es.uma.BuzzerBeaters.Usuario;
 import es.uma.informatica.sii.anotaciones.Requisitos;
 import negocioEJBexcepcion.UsuarioException;
 
-public class TestPersonaAutorizadaEJB {
+public class PersonaAutorizadaEJB {
 
 	private PersonasAutorizadasEJB paejb;
 	private SimpleDateFormat dateformat = new SimpleDateFormat("yyyy/MM/dd");

@@ -15,7 +15,7 @@ import es.uma.BuzzerBeaters.Usuario;
 import es.uma.informatica.sii.anotaciones.Requisitos;
 import negocioEJBexcepcion.UsuarioException;
 
-public class TestUsuario {
+public class TUsuario {
 	
 	private static final String UNIDAD_PERSITENCIA_PRUEBAS = "BuzzerBeaters";
 	private static final String USUARIOSEJB = "UsuariosEJB";
