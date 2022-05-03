@@ -1,11 +1,12 @@
 package es.uma.BuzzerBeaters;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 import javax.persistence.Embeddable;
 
 @Embeddable
-public class AutorizacionID  {
+public class AutorizacionID implements Serializable{
 	
 	private Long idCliente;
 	private Long idPersonaAutorizada;

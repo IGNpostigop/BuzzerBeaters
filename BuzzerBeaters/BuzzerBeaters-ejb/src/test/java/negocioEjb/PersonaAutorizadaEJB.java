@@ -1,15 +1,19 @@
 package negocioEjb;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import org.junit.After;
+
+import javax.naming.NamingException;
+
 import org.junit.Before;
 import org.junit.Test;
+
 import es.uma.BuzzerBeaters.Autorizacion;
 import es.uma.BuzzerBeaters.PersonaAutorizada;
 import es.uma.BuzzerBeaters.Usuario;
@@ -22,14 +26,17 @@ public class PersonaAutorizadaEJB {
 	private SimpleDateFormat dateformat = new SimpleDateFormat("yyyy/MM/dd");
 	
 	@Before
-	public void setup() {
-		paejb = new PersonasAutorizadasEJB();
+	public void setup() {//lookup
+		try {
+			paejb = (PersonasAutorizadasEJB) SuiteTest.ctx.lookup("java:global/classes/PersonasAutorizadasEJB");
+		} catch (NamingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		//gestionProductos = (GestionProductos) SuiteTest.ctx.lookup(PRODUCTOS_EJB);
+		//paejb = new PersonasAutorizadasEJB();
 	}
 	
-	@After
-	public void teardown() {
-		paejb.close();
-	}
 	
 	
 	private PersonaAutorizada personaEjemplo() throws ParseException 

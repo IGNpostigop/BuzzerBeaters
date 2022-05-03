@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
+import javax.ejb.LocalBean;
+import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
@@ -20,24 +22,14 @@ import es.uma.BuzzerBeaters.PersonaAutorizada;
 import es.uma.BuzzerBeaters.Usuario;
 import negocioEJBexcepcion.UsuarioException;
 
-public class PersonasAutorizadasEJB implements GestionPersonasAutorizadas,Closeable{
+@Stateless
+@LocalBean
+public class PersonasAutorizadasEJB implements GestionPersonasAutorizadas{
 	
 	private static final Logger LOG = Logger.getLogger(UsuariosEJB.class.getCanonicalName());
 	
-	@PersistenceContext(name="BuzzerBeaters")
-	private EntityManagerFactory emf;
+	@PersistenceContext(unitName ="BuzzerBeaters_ejb")
 	private EntityManager em;
-	
-	public PersonasAutorizadasEJB() {
-		emf = Persistence.createEntityManagerFactory("BuzzerBeaters");
-		em = emf.createEntityManager();
-	}
-	
-	@Override
-	public void close() {
-		em.close();
-		emf.close();
-	}
 	
 	
 	public void crearPersonaAutorizada(PersonaAutorizada pAutorizada) {

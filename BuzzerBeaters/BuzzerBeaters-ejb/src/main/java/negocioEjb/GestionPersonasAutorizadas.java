@@ -2,6 +2,8 @@ package negocioEjb;
 
 import java.util.Date;
 
+import javax.ejb.Local;
+
 import es.uma.BuzzerBeaters.Autorizacion;
 import es.uma.BuzzerBeaters.Cliente;
 import es.uma.BuzzerBeaters.Empresa;
@@ -9,6 +11,7 @@ import es.uma.BuzzerBeaters.PersonaAutorizada;
 import es.uma.BuzzerBeaters.Usuario;
 import negocioEJBexcepcion.UsuarioException;
 
+@Local
 public interface GestionPersonasAutorizadas {
 	
 	/**
