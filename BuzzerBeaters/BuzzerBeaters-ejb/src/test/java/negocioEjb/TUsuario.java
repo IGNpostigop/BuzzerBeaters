@@ -26,7 +26,7 @@ public class TUsuario {
 	@Before
 	public void setup() throws NamingException {
 		gestionUsuarios = (GestionUsuarios) SuiteTest.ctx.lookup(USUARIOSEJB);
-		BaseDatos.inicializaBaseDatos(UNIDAD_PERSITENCIA_PRUEBAS);	
+		//BaseDatos.inicializaBaseDatos(UNIDAD_PERSITENCIA_PRUEBAS);	
 	}
 	
 	

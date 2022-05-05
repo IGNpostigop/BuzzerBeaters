@@ -21,7 +21,7 @@ import es.uma.informatica.sii.anotaciones.Requisitos;
 import negocioEJBexcepcion.UsuarioException;
 
 public class PersonaAutorizadaEJB {
-
+	private static final String UNIDAD_PERSITENCIA_PRUEBAS = "BuzzerBeaters_ejb";
 	private PersonasAutorizadasEJB paejb;
 	private SimpleDateFormat dateformat = new SimpleDateFormat("yyyy/MM/dd");
 	
@@ -35,6 +35,7 @@ public class PersonaAutorizadaEJB {
 		}
 		//gestionProductos = (GestionProductos) SuiteTest.ctx.lookup(PRODUCTOS_EJB);
 		//paejb = new PersonasAutorizadasEJB();
+		BaseDatos.inicializaBaseDatos(UNIDAD_PERSITENCIA_PRUEBAS);
 	}
 	
 	
