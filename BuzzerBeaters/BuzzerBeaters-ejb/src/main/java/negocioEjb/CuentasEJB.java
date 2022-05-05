@@ -1,10 +1,12 @@
 package negocioEjb;
 
 import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.logging.Logger;
 
+import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import es.uma.BuzzerBeaters.Cliente;
@@ -13,6 +15,7 @@ import es.uma.BuzzerBeaters.CuentaReferencia;
 import es.uma.BuzzerBeaters.Segregada;
 import negocioEJBexcepcion.CuentaException;
 
+@Stateless
 public class CuentasEJB implements GestionCuentas {
 	
 	private static final Logger LOG = Logger.getLogger(UsuariosEJB.class.getCanonicalName());
@@ -24,6 +27,8 @@ public class CuentasEJB implements GestionCuentas {
 	@Override
 	public void aperturaCtaSegregated(Cliente cliente, String clasificacion, CuentaReferencia cuenta, String comision) throws CuentaException {
 		
+		SimpleDateFormat f = new SimpleDateFormat("dd-MMM-yyyy");
+
 		String Iban = cuenta.getIban();
 
 		

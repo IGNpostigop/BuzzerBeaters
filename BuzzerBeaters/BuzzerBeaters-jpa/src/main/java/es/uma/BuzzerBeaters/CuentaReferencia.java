@@ -2,7 +2,7 @@ package es.uma.BuzzerBeaters;
 
 
 import java.io.Serializable;
-import java.util.Date;
+import java.sql.Date;
 import java.util.List;
 import java.util.Objects;
 
@@ -11,8 +11,6 @@ import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 @Entity
 
@@ -28,7 +26,7 @@ public class CuentaReferencia extends Cuenta implements Serializable{
 	private String Pais;
 	@Column (nullable = false)
 	private Double Saldo;
-	@Temporal(TemporalType.DATE)
+
 	private Date fecha_apertura;
 	private Boolean Estado;
 	

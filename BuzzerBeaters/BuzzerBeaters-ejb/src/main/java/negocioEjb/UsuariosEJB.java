@@ -3,6 +3,7 @@ package negocioEjb;
 import java.util.List;
 import java.util.logging.Logger;
 
+import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
@@ -11,7 +12,7 @@ import es.uma.BuzzerBeaters.PersonaAutorizada;
 import es.uma.BuzzerBeaters.Usuario;
 import negocioEJBexcepcion.UsuarioException;
 
-
+@Stateless
 public class UsuariosEJB implements GestionUsuarios{
 
 	private static final Logger LOG = Logger.getLogger(UsuariosEJB.class.getCanonicalName());

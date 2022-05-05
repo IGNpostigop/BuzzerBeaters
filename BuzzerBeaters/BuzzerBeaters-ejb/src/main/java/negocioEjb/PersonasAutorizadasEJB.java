@@ -1,25 +1,17 @@
 package negocioEjb;
 
-import java.io.Closeable;
-import java.util.Date;
-import java.util.ArrayList;
+import java.sql.Date;
 import java.util.List;
 import java.util.logging.Logger;
 
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityTransaction;
-import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import es.uma.BuzzerBeaters.Autorizacion;
-import es.uma.BuzzerBeaters.Cliente;
-import es.uma.BuzzerBeaters.Empresa;
 import es.uma.BuzzerBeaters.PersonaAutorizada;
-import es.uma.BuzzerBeaters.Usuario;
 import negocioEJBexcepcion.UsuarioException;
 
 @Stateless
@@ -31,14 +23,12 @@ public class PersonasAutorizadasEJB implements GestionPersonasAutorizadas{
 	@PersistenceContext(unitName ="BuzzerBeaters_ejb")
 	private EntityManager em;
 	
-	
+	@Override
 	public void crearPersonaAutorizada(PersonaAutorizada pAutorizada) {
 		// TODO
-		EntityTransaction tx = em.getTransaction();
-		
-		tx.begin();
+
 		em.persist(pAutorizada);
-		tx.commit();
+
 	}
 	
 	public List<PersonaAutorizada> getPersonasAutorizadas() 
@@ -99,7 +89,7 @@ public class PersonasAutorizadasEJB implements GestionPersonasAutorizadas{
 		}
 		return bol;
 	}
-	
+
 
 
 }

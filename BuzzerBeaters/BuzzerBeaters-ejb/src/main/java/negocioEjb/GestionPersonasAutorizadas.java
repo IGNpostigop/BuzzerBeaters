@@ -1,6 +1,6 @@
 package negocioEjb;
 
-import java.util.Date;
+import java.sql.Date;
 
 import javax.ejb.Local;
 

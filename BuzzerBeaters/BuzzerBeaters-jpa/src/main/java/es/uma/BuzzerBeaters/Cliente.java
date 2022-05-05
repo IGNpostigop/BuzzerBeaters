@@ -28,8 +28,10 @@ public class Cliente{
 	private String identification;
 	@Column(nullable = false)
 	private Boolean estado;
+
 	@Column(name="Fecha_Alta")
 	private Date fechaAlta;
+
 	@Column(name="Fecha_Baja")
 	private Date fechaBaja;
 	@Column(name = "Direccion",nullable = false)

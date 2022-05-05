@@ -4,6 +4,7 @@ import java.io.Closeable;
 import java.util.List;
 import java.util.logging.Logger;
 
+import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
@@ -16,6 +17,7 @@ import es.uma.BuzzerBeaters.PersonaAutorizada;
 import es.uma.BuzzerBeaters.Usuario;
 import negocioEJBexcepcion.UsuarioException;
 
+@Stateless
 public class ClientesEJB implements GestionClientes, Closeable {
 	private static final Logger LOG = Logger.getLogger(UsuariosEJB.class.getCanonicalName());
 	

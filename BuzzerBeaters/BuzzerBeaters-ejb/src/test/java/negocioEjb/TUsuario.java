@@ -17,8 +17,8 @@ import negocioEJBexcepcion.UsuarioException;
 
 public class TUsuario {
 	
-	private static final String UNIDAD_PERSITENCIA_PRUEBAS = "BuzzerBeaters";
-	private static final String USUARIOSEJB = "UsuariosEJB";
+	private static final String UNIDAD_PERSITENCIA_PRUEBAS = "BuzzerBeaters_ejb";
+	private static final String USUARIOSEJB = "java:global/classes/UsuariosEJB";
 	private GestionUsuarios gestionUsuarios;
 
 

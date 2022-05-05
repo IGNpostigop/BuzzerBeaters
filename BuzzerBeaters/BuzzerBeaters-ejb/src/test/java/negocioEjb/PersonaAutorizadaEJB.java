@@ -6,7 +6,7 @@ import static org.junit.Assert.assertNotEquals;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
+import java.sql.Date;
 import java.util.List;
 
 import javax.naming.NamingException;
@@ -41,12 +41,13 @@ public class PersonaAutorizadaEJB {
 	
 	private PersonaAutorizada personaEjemplo() throws ParseException 
 	{
-		Date f1 = dateformat.parse("2012/03/20");
-		Date f2 = dateformat.parse("2022/04/22");
-		Date f3 = dateformat.parse("2063/03/10");
+		Date d1 = Date.valueOf("2020-03-27");
+		Date d2 = Date.valueOf("2020-03-28");
+		Date d3 = Date.valueOf("2020-03-29");
+
 		List<Autorizacion> autList = new ArrayList<Autorizacion>();
 		Usuario user1 = new Usuario("ELFUL", "ANO", true);
-		PersonaAutorizada pa = new PersonaAutorizada(new Long(1), "12345678A", "FULANITO","DE TAL","CALLE PITO", f1, true, f2, f3, autList,user1);
+		PersonaAutorizada pa = new PersonaAutorizada(Long.valueOf(1),"12345678A", "FULANITO","DE TAL","CALLE PITO", d1, true, d2, d3, autList,user1);
 		
 		return pa;
 	}
@@ -81,7 +82,7 @@ public class PersonaAutorizadaEJB {
 	public void testModificarPersonaAutorizadaERROR() throws ParseException, UsuarioException
 	{
 		PersonaAutorizada pa = personaEjemplo();
-		paejb.modificarPersonaAutorizada(pa,"identif","nombreprueba","apellidosprueba",true,dateformat.parse("1500/11/20"),dateformat.parse("1600/11/20"),dateformat.parse("1601/11/20"));
+		paejb.modificarPersonaAutorizada(pa,"identif","nombreprueba","apellidosprueba",true,Date.valueOf("1500-01-01"),Date.valueOf("1600-01-01"),Date.valueOf("1700-01-01"));
 		
 	}
 
@@ -92,7 +93,8 @@ public class PersonaAutorizadaEJB {
 	{
 		PersonaAutorizada pa = personaEjemplo();
 		paejb.crearPersonaAutorizada(pa);
-		PersonaAutorizada modificada = paejb.modificarPersonaAutorizada(pa,"identif","nombreprueba","apellidosprueba",true,dateformat.parse("1500/11/20"),dateformat.parse("1600/11/20"),dateformat.parse("1601/11/20"));
+		PersonaAutorizada modificada = paejb.modificarPersonaAutorizada(pa,"identif","nombreprueba","apellidosprueba",true,Date.valueOf("1500-01-01"),Date.valueOf("1600-01-01"),Date.valueOf("1700-01-01"));
+		
 		assertEquals(pa, modificada);
 		
 	}
@@ -103,7 +105,8 @@ public class PersonaAutorizadaEJB {
 		
 		PersonaAutorizada pa = personaEjemplo();
 		paejb.crearPersonaAutorizada(pa);
-		PersonaAutorizada modificada = paejb.modificarPersonaAutorizada(pa, "noidentif", "nonombreprueba","noapellidosprueba", true, dateformat.parse("1900/11/20"), dateformat.parse("2000/11/20"),dateformat.parse("2101/11/20"));
+		PersonaAutorizada modificada = paejb.modificarPersonaAutorizada(pa, "noidentif", "nonombreprueba","noapellidosprueba", true, Date.valueOf("1500-01-01"),Date.valueOf("1600-01-01"),Date.valueOf("1700-01-01"));
+		
 		assertNotEquals(personaEjemplo(), modificada);
 
 	}
