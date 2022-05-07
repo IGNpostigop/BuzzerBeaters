@@ -49,7 +49,7 @@ public class ClientesEJB implements GestionClientes {
 	@Override
 	public void bajaCliente(Cliente cliente) throws UsuarioException {
 		// TODO Auto-generated method stub
-		Cliente clienteEntity = em.find(Cliente.class, cliente);
+		Cliente clienteEntity = em.find(Cliente.class, cliente.getId());
 		if(clienteEntity == null) {
 			throw new UsuarioException("El cliente no existe\n");
 		}else {	

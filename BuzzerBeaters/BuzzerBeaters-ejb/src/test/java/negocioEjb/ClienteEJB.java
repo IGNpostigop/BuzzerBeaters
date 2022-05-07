@@ -2,6 +2,8 @@ package negocioEjb;
 
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
+
 import java.text.ParseException;
 import java.sql.Date;
 import java.util.List;
@@ -91,13 +93,21 @@ public class ClienteEJB {
 //	  
 //	  }
 //	  
-//	  @Requisitos({"RF3"}) //ELIMINAR CLIENTE
-//	  
-//	  @Test public void testEliminarCliente() throws ParseException{ try { Cliente
-//	  cli = clienteEjemplo(); cli.setEstado(false);
-//	  gestionClientes.crearCliente(cli); assertEquals(cli.getEstado(), false); }
-//	  catch (UsuarioException e) { fail ("No debe lanzar excepción"); } }
-//	 
+	@Requisitos({"RF3"}) //ELIMINAR CLIENTE
+
+	@Test 
+	public void testEliminarCliente() throws ParseException{ 
+		try { 
+			gestionClientes.crearCliente(clienteEjemplo());
+			Cliente cli = gestionClientes.getClientes().get(0);
+			gestionClientes.bajaCliente(cli);
+			assertEquals(cli.getEstado(), false); 
+			}
+		catch (UsuarioException e) { 
+			fail ("No debe lanzar excepción");
+			}
+		}
+
 	
 
 }
