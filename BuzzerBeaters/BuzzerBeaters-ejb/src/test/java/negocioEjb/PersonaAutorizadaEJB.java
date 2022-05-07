@@ -2,6 +2,7 @@ package negocioEjb;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.assertThrows;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -11,8 +12,10 @@ import java.util.List;
 
 import javax.naming.NamingException;
 
+import org.eclipse.persistence.jpa.jpql.Assert.AssertException;
 import org.junit.Before;
 import org.junit.Test;
+import org.omg.CORBA.UserException;
 
 import es.uma.BuzzerBeaters.Autorizacion;
 import es.uma.BuzzerBeaters.PersonaAutorizada;
@@ -22,20 +25,13 @@ import negocioEJBexcepcion.UsuarioException;
 
 public class PersonaAutorizadaEJB {
 	private static final String UNIDAD_PERSITENCIA_PRUEBAS = "BuzzerBeaters_ejb";
-	private PersonasAutorizadasEJB paejb;
-	private SimpleDateFormat dateformat = new SimpleDateFormat("yyyy/MM/dd");
+	private static final String PERSONASAUTORIZADASEJB = "java:global/classes/PersonasAutorizadasEJB";
+	private GestionPersonasAutorizadas gestionPA;
 	
 	@Before
-	public void setup() {//lookup
-		try {
-			paejb = (PersonasAutorizadasEJB) SuiteTest.ctx.lookup("java:global/classes/PersonasAutorizadasEJB");
-		} catch (NamingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		//gestionProductos = (GestionProductos) SuiteTest.ctx.lookup(PRODUCTOS_EJB);
-		//paejb = new PersonasAutorizadasEJB();
-		BaseDatos.inicializaBaseDatos(UNIDAD_PERSITENCIA_PRUEBAS);
+	public void setup() throws NamingException {//lookup
+		
+		gestionPA = (GestionPersonasAutorizadas) SuiteTest.ctx.lookup(PERSONASAUTORIZADASEJB);
 	}
 	
 	
@@ -55,14 +51,14 @@ public class PersonaAutorizadaEJB {
 	
 	@Requisitos({"RF6"}) 
 	@Test
-	public void testInsertarPersonaAutorizada() throws ParseException {
+	public void testInsertarPersonaAutorizada() throws ParseException, UsuarioException {
 		
 		
 		PersonaAutorizada pa = personaEjemplo();
 		
-		paejb.crearPersonaAutorizada(pa);
+		gestionPA.crearPersonaAutorizada(pa);
 		
-		List<PersonaAutorizada> personasAutorizadas = paejb.getPersonasAutorizadas();//Obtengo las personas autorizadas de la BD
+		List<PersonaAutorizada> personasAutorizadas = gestionPA.getPersonasAutorizadas();//Obtengo las personas autorizadas de la BD
 		
 		PersonaAutorizada pabd = personasAutorizadas.get(0);//Selecciono la primera que sera el sujeto de pruebas
 		
@@ -78,14 +74,19 @@ public class PersonaAutorizadaEJB {
 		assertEquals(pa.getIdentification(), pabd.getIdentification());
 		assertEquals(pa.getUsuarioPA(), pabd.getUsuarioPA());
 	}
-	/*@Requisitos({"RF7"}) 
+	
+	/*
+	@Requisitos({"RF7"}) 
 	@Test(expected = UsuarioException.class)
 	public void testModificarPersonaAutorizadaERROR() throws ParseException, UsuarioException
 	{
-		PersonaAutorizada pa = personaEjemplo();
-		paejb.modificarPersonaAutorizada(pa,"identif","nombreprueba","apellidosprueba",true,Date.valueOf("1500-01-01"),Date.valueOf("1600-01-01"),Date.valueOf("1700-01-01"));
 		
+		PersonaAutorizada pa = personaEjemplo();
+		//pa no existe en la bb.dd. por lo que al intentar modificarla debería saltar la excepción UsuarioException
+		Exception exception = assertThrows(UserException.class,()-> gestionPA.modificarPersonaAutorizada(pa,"identif","nombreprueba","apellidosprueba",true,Date.valueOf("1500-01-01"),Date.valueOf("1600-01-01"),Date.valueOf("1700-01-01")));
+		assertEquals("La persona autorizada no existe en la base de datos", exception.getMessage());
 	}
+
 
 	
 	@Requisitos({"RF7"}) 

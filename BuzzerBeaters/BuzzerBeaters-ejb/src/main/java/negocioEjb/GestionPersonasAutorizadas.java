@@ -1,6 +1,7 @@
 package negocioEjb;
 
 import java.sql.Date;
+import java.util.List;
 
 import javax.ejb.Local;
 
@@ -25,7 +26,7 @@ public interface GestionPersonasAutorizadas {
 	
 
 
-	void crearPersonaAutorizada(PersonaAutorizada pa) throws UsuarioException;
+	public void crearPersonaAutorizada(PersonaAutorizada pa) throws UsuarioException;
 	
 	/**
 	 * Este metodo permitira modificar los datos de una persona autorizada
@@ -40,7 +41,9 @@ public interface GestionPersonasAutorizadas {
 	 * Este metodo permitira la eliminacion de autorizados de una cuenta.
 	 */
 	
-	void eliminarAutorizadoEmpresa(PersonaAutorizada persAut, Autorizacion autorizacion)throws UsuarioException;
+	public void eliminarAutorizadoEmpresa(PersonaAutorizada persAut, Autorizacion autorizacion)throws UsuarioException;
 
-	boolean consultarPersonaAutorizada(PersonaAutorizada aut)throws UsuarioException;
+	public boolean consultarPersonaAutorizada(PersonaAutorizada aut)throws UsuarioException;
+
+	public List<PersonaAutorizada> getPersonasAutorizadas();
 }

@@ -15,7 +15,7 @@ import es.uma.BuzzerBeaters.PersonaAutorizada;
 import negocioEJBexcepcion.UsuarioException;
 
 @Stateless
-@LocalBean
+//@LocalBean
 public class PersonasAutorizadasEJB implements GestionPersonasAutorizadas{
 	
 	private static final Logger LOG = Logger.getLogger(UsuariosEJB.class.getCanonicalName());
@@ -31,6 +31,7 @@ public class PersonasAutorizadasEJB implements GestionPersonasAutorizadas{
 
 	}
 	
+	@Override
 	public List<PersonaAutorizada> getPersonasAutorizadas() 
 	{
 		// TODO

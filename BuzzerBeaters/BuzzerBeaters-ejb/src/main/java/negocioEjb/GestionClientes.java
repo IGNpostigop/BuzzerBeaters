@@ -1,5 +1,7 @@
 package negocioEjb;
 
+import java.util.List;
+
 import es.uma.BuzzerBeaters.Cliente;
 import es.uma.BuzzerBeaters.Usuario;
 import negocioEJBexcepcion.UsuarioException;
@@ -45,5 +47,7 @@ public interface GestionClientes {
 
 	public Cliente modificarCliente(Cliente cliente, String identificacion, Boolean estado, String direccion, String ciudad,
 			Integer codigoPostal, String pais) throws UsuarioException;
+
+	public List<Cliente> getClientes();
 
 }

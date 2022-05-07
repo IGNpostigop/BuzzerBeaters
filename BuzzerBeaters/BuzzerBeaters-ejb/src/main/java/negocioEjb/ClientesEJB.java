@@ -18,30 +18,18 @@ import es.uma.BuzzerBeaters.Usuario;
 import negocioEJBexcepcion.UsuarioException;
 
 @Stateless
-public class ClientesEJB implements GestionClientes, Closeable {
+public class ClientesEJB implements GestionClientes {
+	
 	private static final Logger LOG = Logger.getLogger(UsuariosEJB.class.getCanonicalName());
 	
 	@PersistenceContext(name="BuzzerBeaters")
-	private EntityManagerFactory emf;
 	private EntityManager em;
-	
-	public ClientesEJB() {
-		emf = Persistence.createEntityManagerFactory("BuzzerBeaters");
-		em = emf.createEntityManager();
-	}
-	
-	@Override
-	public void close() {
-		em.close();
-		emf.close();
-	}
-	
+		
 
 	@Override
 	public void crearCliente(Cliente cliente) throws UsuarioException {
-		EntityTransaction tx = em.getTransaction();
-		tx.begin();
-		Cliente clienteEntity = em.find(Cliente.class, cliente);
+
+		Cliente clienteEntity = em.find(Cliente.class, cliente.getId());
 		if(clienteEntity != null) {
 			throw new UsuarioException("El cliente ya existe\n");
 		}else {	
@@ -49,7 +37,7 @@ public class ClientesEJB implements GestionClientes, Closeable {
 		}
 		
 	}
-	
+	@Override
 	public List<Cliente> getClientes() 
 	{
 		// TODO

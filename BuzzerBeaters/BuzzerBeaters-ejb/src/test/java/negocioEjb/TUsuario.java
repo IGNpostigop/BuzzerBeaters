@@ -45,7 +45,7 @@ public class TUsuario {
 			e.printStackTrace();
 		}
 		List<Usuario> usuarios = gestionUsuarios.getUsuarios();
-		Usuario bdUser = usuarios.get(0);
+		Usuario bdUser = usuarios.get(1);
 		assertEquals(nombre, bdUser.getUser());
 		assertEquals(clave, bdUser.getPassword());
 		assertEquals(admin, bdUser.isAdministrador());
