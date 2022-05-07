@@ -42,7 +42,8 @@ public class PersonasAutorizadasEJB implements GestionPersonasAutorizadas{
 
 
 	@Override
-	public PersonaAutorizada modificarPersonaAutorizada(PersonaAutorizada persAut, String identificacion, String nombre, String apellidos,
+	public PersonaAutorizada modificarPersonaAutorizada(PersonaAutorizada persAut, String identificacion, 
+			String nombre, String apellidos,
 			Boolean estado, Date fechaNacimiento, Date fechaInicio, Date fechaFin) throws UsuarioException {
 		// TODO Auto-generated method stub
 		

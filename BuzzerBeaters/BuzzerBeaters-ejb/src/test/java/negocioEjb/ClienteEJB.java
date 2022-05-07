@@ -28,6 +28,7 @@ public class ClienteEJB {
 	@Before
 	public void setup() throws NamingException {
 		gestionClientes = (GestionClientes) SuiteTest.ctx.lookup(CLIENTESEJB);
+		
 	}
 	
 	/*

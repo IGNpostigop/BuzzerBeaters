@@ -35,6 +35,7 @@ public class PersonaAutorizadaEJB {
 		
 		gestionPA = (GestionPersonasAutorizadas) SuiteTest.ctx.lookup(PERSONASAUTORIZADASEJB);
 		gestionUsuarios = (GestionUsuarios) SuiteTest.ctx.lookup(USUARIOSEJB);
+		
 	}
 	
 	
@@ -56,6 +57,7 @@ public class PersonaAutorizadaEJB {
 	@Requisitos({"RF6"}) 
 	@Test
 	public void testInsertarPersonaAutorizada() throws ParseException, UsuarioException {
+		
 		
 		
 		PersonaAutorizada pa = personaEjemplo();
@@ -92,19 +94,22 @@ public class PersonaAutorizadaEJB {
 		assertEquals("La persona autorizada no existe en la base de datos", exception.getMessage());
 	}
 
-	/*
+
 	
 	@Requisitos({"RF7"}) 
 	@Test
 	public void testModificarPersonaAutorizadaIGUAL() throws ParseException, UsuarioException
 	{
-		PersonaAutorizada pa = personaEjemplo();
-		paejb.crearPersonaAutorizada(pa);
-		PersonaAutorizada modificada = paejb.modificarPersonaAutorizada(pa,"identif","nombreprueba","apellidosprueba",true,Date.valueOf("1500-01-01"),Date.valueOf("1600-01-01"),Date.valueOf("1700-01-01"));
 		
-		assertEquals(pa, modificada);
+		BaseDatos.inicializaBaseDatos(UNIDAD_PERSITENCIA_PRUEBAS);
+		PersonaAutorizada paBd=gestionPA.getPersonasAutorizadas().get(0);
+		gestionPA.modificarPersonaAutorizada(paBd, paBd.getIdentification(), "NombreModificado", paBd.getApellidos(),paBd.getEstado(),
+				paBd.getFecha_nacimiento(), paBd.getFechaInicio(), paBd.getFechaFin());
+		
+		assertEquals(paBd.getNombre(), "NombreModificado");
 		
 	}
+	/*
 
 	@Requisitos({ "RF7" })
 	@Test
