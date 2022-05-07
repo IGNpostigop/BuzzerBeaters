@@ -75,24 +75,23 @@ public class ClienteEJB {
 					
 	}
 	
-//	  @Requisitos({"RF3"})
-//	  
-//	  @Test (expected = UsuarioException.class) 
-//	  public void testModificarClienteERROR() throws ParseException, UsuarioException { 
-//		  Cliente cli = clienteEjemplo(); 
-//		  gestionClientes.modificarCliente(cli, "11111111F",false, "C/ Pito, 23", "Malaga", 29000, "España");
-//	  }
 	  
-//	  @Requisitos({"RF3"})
-//	  @Test 
-//	  public void testModificarClienteIgual() throws ParseException{ 
-//		  try {
-//			  Cliente cli = clienteEjemplo(); gestionClientes.crearCliente(cli); Cliente modificado = gestionClientes.modificarCliente(cli, "11111111F", false, "C/ Pito, 23", "Malaga", 29000, "España"); assertEquals(cli, modificado);
-//			  } catch (UsuarioException e) { e.printStackTrace(); }
-//	  }
-//	  
-//	  }
-//	  
+	  @Requisitos({"RF3"})
+	  @Test 
+	  public void testModificarCliente() throws ParseException{ 
+		  try {
+			  //gestionClientes.crearCliente(clienteEjemplo());
+			  Cliente clibd, cli = gestionClientes.getClientes().get(0);
+			  gestionClientes.modificarCliente(cli,"11111111F", false, "C/ Pito, 23", "Sevilla", 41000, "España");
+			  clibd = gestionClientes.getClientes().get(0);
+			  assertEquals(clibd.getCiudad(), "Sevilla");
+			  
+		  }catch (UsuarioException e) { 
+				fail ("No debe lanzar excepción");
+		  }
+	  
+	  }
+	  
 	@Requisitos({"RF3"}) //ELIMINAR CLIENTE
 
 	@Test 

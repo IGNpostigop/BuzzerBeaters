@@ -61,7 +61,7 @@ public class ClientesEJB implements GestionClientes {
 	@Override
 	public Cliente modificarCliente(Cliente cliente, String identificacion, Boolean estado, String direccion, 
 			String ciudad, Integer codigoPostal, String pais) throws UsuarioException {
-		Cliente clienteEntity = em.find(Cliente.class, cliente);
+		Cliente clienteEntity = em.find(Cliente.class, cliente.getId());
 		if(clienteEntity == null) {
 			throw new UsuarioException("El cliente no existe\n");
 		}else {	
