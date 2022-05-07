@@ -26,12 +26,15 @@ import negocioEJBexcepcion.UsuarioException;
 public class PersonaAutorizadaEJB {
 	private static final String UNIDAD_PERSITENCIA_PRUEBAS = "BuzzerBeaters_ejb";
 	private static final String PERSONASAUTORIZADASEJB = "java:global/classes/PersonasAutorizadasEJB";
+	private static final String USUARIOSEJB = "java:global/classes/UsuariosEJB";
+	private GestionUsuarios gestionUsuarios;
 	private GestionPersonasAutorizadas gestionPA;
 	
 	@Before
 	public void setup() throws NamingException {//lookup
 		
 		gestionPA = (GestionPersonasAutorizadas) SuiteTest.ctx.lookup(PERSONASAUTORIZADASEJB);
+		gestionUsuarios = (GestionUsuarios) SuiteTest.ctx.lookup(USUARIOSEJB);
 	}
 	
 	
@@ -44,7 +47,8 @@ public class PersonaAutorizadaEJB {
 
 		List<Autorizacion> autList = new ArrayList<Autorizacion>();
 		Usuario user1 = new Usuario("ELFUL", "ANO", true);
-		PersonaAutorizada pa = new PersonaAutorizada(Long.valueOf(1),"12345678A", "FULANITO","DE TAL","CALLE PITO", d1, true, d2, d3, autList,user1);
+		PersonaAutorizada pa = new PersonaAutorizada(Long.valueOf(1),"12345678A", "FULANITO","DE TAL","CALLE PITO", 
+				d1, true, d2, d3, autList,user1);
 		
 		return pa;
 	}
@@ -75,19 +79,20 @@ public class PersonaAutorizadaEJB {
 		assertEquals(pa.getUsuarioPA(), pabd.getUsuarioPA());
 	}
 	
-	/*
+
 	@Requisitos({"RF7"}) 
 	@Test(expected = UsuarioException.class)
 	public void testModificarPersonaAutorizadaERROR() throws ParseException, UsuarioException
 	{
 		
 		PersonaAutorizada pa = personaEjemplo();
+		gestionPA.modificarPersonaAutorizada(pa, "12345678A", "FULANITO", "DE TAL", true, Date.valueOf("2020-03-27"),Date.valueOf("2020-03-28"),Date.valueOf("2020-03-29"));
 		//pa no existe en la bb.dd. por lo que al intentar modificarla debería saltar la excepción UsuarioException
 		Exception exception = assertThrows(UserException.class,()-> gestionPA.modificarPersonaAutorizada(pa,"identif","nombreprueba","apellidosprueba",true,Date.valueOf("1500-01-01"),Date.valueOf("1600-01-01"),Date.valueOf("1700-01-01")));
 		assertEquals("La persona autorizada no existe en la base de datos", exception.getMessage());
 	}
 
-
+	/*
 	
 	@Requisitos({"RF7"}) 
 	@Test
