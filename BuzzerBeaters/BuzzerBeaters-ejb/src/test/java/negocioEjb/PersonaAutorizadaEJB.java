@@ -78,7 +78,7 @@ public class PersonaAutorizadaEJB {
 		assertEquals(pa.getIdentification(), pabd.getIdentification());
 		assertEquals(pa.getUsuarioPA(), pabd.getUsuarioPA());
 	}
-	@Requisitos({"RF7"}) 
+	/*@Requisitos({"RF7"}) 
 	@Test(expected = UsuarioException.class)
 	public void testModificarPersonaAutorizadaERROR() throws ParseException, UsuarioException
 	{
@@ -111,7 +111,7 @@ public class PersonaAutorizadaEJB {
 		assertNotEquals(personaEjemplo(), modificada);
 
 	}
-
+*/
 	
 	//@Requisitos({"RF8"}) ELIMINAR PERSONA AUTORIZADA DE CUENTA
 	

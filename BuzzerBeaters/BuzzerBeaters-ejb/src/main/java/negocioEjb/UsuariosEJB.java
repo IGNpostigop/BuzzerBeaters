@@ -62,7 +62,7 @@ public class UsuariosEJB implements GestionUsuarios{
 	public List<Usuario> getUsuarios() 
 	{
 		// TODO
-		Query query = em.createQuery("SELECT u FROM Usuarios u");
+		Query query = em.createQuery("SELECT u FROM Usuario u");
 		List<Usuario> Usuarios = query.getResultList();
 		return Usuarios;
 	}
