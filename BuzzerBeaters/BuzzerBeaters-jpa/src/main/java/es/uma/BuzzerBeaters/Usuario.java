@@ -23,8 +23,8 @@ public class Usuario {
 	@Column (nullable = false)
 	private boolean administrador;
 	
-	@OneToOne(mappedBy="usuarioCliente")
-	private Cliente cliente; //cambiar a individual
+	@OneToOne(mappedBy="usuarioIndividual")
+	private Individual individual; //cambiar a individual
 	@OneToOne(mappedBy="usuarioPA", cascade = {CascadeType.PERSIST})
 	private PersonaAutorizada personaAutorizada;
 	

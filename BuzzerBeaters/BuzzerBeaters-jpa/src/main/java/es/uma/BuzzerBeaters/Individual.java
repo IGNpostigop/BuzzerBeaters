@@ -6,6 +6,7 @@ import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -26,6 +27,8 @@ public class Individual extends Cliente implements Serializable {
 	@Column(name="fecha_nacimiento")
 	private Date fecha_nacimiento;
 	
+	@OneToOne
+	private Usuario usuarioIndividual;
 	
 	
 	private static final long serialVersionUID = 1L;

@@ -43,9 +43,7 @@ public class Cliente{
 	@Column(name="Pais",nullable = false)
 	private String pais;
 	
-	
-	@OneToOne
-	private Usuario usuarioCliente;
+
 
 	@OneToMany(mappedBy="cliente")
 	private List<CuentaFintech> cuentasFintech;
