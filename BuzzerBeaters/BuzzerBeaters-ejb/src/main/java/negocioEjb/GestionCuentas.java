@@ -9,6 +9,8 @@ import javax.ejb.Local;
 import es.uma.BuzzerBeaters.Cliente;
 import es.uma.BuzzerBeaters.Cuenta;
 import es.uma.BuzzerBeaters.CuentaReferencia;
+import es.uma.BuzzerBeaters.PooledAccount;
+import es.uma.BuzzerBeaters.Segregada;
 import negocioEJBexcepcion.CuentaException;
 
 @Local
@@ -18,7 +20,7 @@ public interface GestionCuentas {
 	 * Este método debe permitir la apertura de una cuenta segregada.
 	 * @throws CuentaException 
 	 */
-	void aperturaCtaSegregated(Cliente cliente, String clasificacion, CuentaReferencia cuenta, String comision)
+	void aperturaCtaSegregated(Segregada segregada)
 			throws CuentaException;
 
 	
@@ -27,7 +29,11 @@ public interface GestionCuentas {
 	 */
 
 
-	public void aperturaCtaPooled(Cliente cliente, String clasificacion, List<Cuenta> cuentas) throws CuentaException;
+	public void aperturaCtaPooled(PooledAccount pooled) throws CuentaException;
+	
+	public void cerrarCuenteSegregada (Segregada seg) throws CuentaException;
+	
+	public void cerrarCuentaPooled (PooledAccount pooled) throws CuentaException;
 
 
 }

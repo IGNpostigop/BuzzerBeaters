@@ -46,4 +46,6 @@ public interface GestionPersonasAutorizadas {
 	public boolean consultarPersonaAutorizada(PersonaAutorizada aut)throws UsuarioException;
 
 	public List<PersonaAutorizada> getPersonasAutorizadas();
+
+	void addAutorizadoEmpresa(PersonaAutorizada persAut, Autorizacion autorizacion) throws UsuarioException;
 }

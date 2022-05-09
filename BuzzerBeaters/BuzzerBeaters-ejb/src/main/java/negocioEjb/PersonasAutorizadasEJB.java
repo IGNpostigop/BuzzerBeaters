@@ -91,6 +91,24 @@ public class PersonasAutorizadasEJB implements GestionPersonasAutorizadas{
 		}
 		return bol;
 	}
+	
+	@Override
+	public void addAutorizadoEmpresa(PersonaAutorizada persAut, Autorizacion autorizacion) throws UsuarioException {
+		PersonaAutorizada PerAutEntity = em.find(PersonaAutorizada.class, persAut);
+		if(persAut == null) {
+			throw new UsuarioException("La persona autorizada no existe en la base de datos");
+		}else {
+			if(PerAutEntity.getAutorizacion().contains(autorizacion)) {
+				throw new UsuarioException("La autorización ya existe en la base de datos");
+			}else {
+				PerAutEntity.getAutorizacion().add(autorizacion);
+			}
+		}
+		
+		// TODO Auto-generated method stub
+		
+	}
+
 
 
 

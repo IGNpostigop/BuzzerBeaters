@@ -1,17 +1,14 @@
 package negocioEjb;
 
-import java.sql.Date;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.List;
 import java.util.logging.Logger;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import es.uma.BuzzerBeaters.Cliente;
-import es.uma.BuzzerBeaters.Cuenta;
-import es.uma.BuzzerBeaters.CuentaReferencia;
+
+import es.uma.BuzzerBeaters.DepositadaEn;
+import es.uma.BuzzerBeaters.PooledAccount;
 import es.uma.BuzzerBeaters.Segregada;
 import negocioEJBexcepcion.CuentaException;
 
@@ -25,40 +22,60 @@ public class CuentasEJB implements GestionCuentas {
 	
 	
 	@Override
-	public void aperturaCtaSegregated(Cliente cliente, String clasificacion, CuentaReferencia cuenta, String comision) throws CuentaException {
-		
-		SimpleDateFormat f = new SimpleDateFormat("dd-MMM-yyyy");
-
-		String Iban = cuenta.getIban();
-
-		
-		Segregada s = em.find(Segregada.class, Iban);
-		if(s != null) {
-				throw new CuentaException ("La cuenta ya existe");
-		}else {	
-			
-			Segregada newSegregada = new Segregada();
-			newSegregada.setCliente(cliente);
-			newSegregada.setEstado(true);
-			newSegregada.setFecha_apertura(Date.valueOf(LocalDate.now()));
-			newSegregada.setClasificacion(clasificacion);
-			newSegregada.setCuenta_referencia(cuenta);
-			newSegregada.setComision(comision);
-			em.persist(newSegregada);
+	public void aperturaCtaSegregated(Segregada segregada) throws CuentaException {
+		Segregada segBd = em.find(Segregada.class, segregada.getIban());
+		if(segBd != null) {
+			throw new CuentaException("La cuenta ya existe");
+		}else {
+			em.persist(segregada);
 		}
-		
-
 	}
 
-
-
-
-
+	@Override
+	public void aperturaCtaPooled(PooledAccount pooled) throws CuentaException{
+		PooledAccount pooledBd = em.find(PooledAccount.class, pooled.getIban());
+		if(pooledBd != null){
+			throw new CuentaException("La cuenta ya existe"); 
+		}else {
+			em.persist(pooled);
+		}
+	}
 
 	@Override
-	public void aperturaCtaPooled(Cliente cliente, String clasificacion, List<Cuenta> cuentas)
-			throws CuentaException {
-		// TODO Auto-generated method stub
+	public void cerrarCuenteSegregada(Segregada seg) throws CuentaException {
+		Segregada segregadaBd = em.find(Segregada.class, seg.getIban());
+		if(segregadaBd == null) {
+			throw new CuentaException("La cuenta no existe"); 
+		}else {
+			if(segregadaBd.getCuenta_referencia().getSaldo()==0) {
+				segregadaBd.setEstado(false);
+			}else {
+				throw new CuentaException("Cuenta con saldo");
+			}
+		}
+		
+	}
+
+	@Override
+	public void cerrarCuentaPooled(PooledAccount pooled) throws CuentaException {
+		PooledAccount pooledBd = em.find(PooledAccount.class, pooled.getIban());
+		boolean sinsaldo = true;
+		if(pooledBd == null){
+			throw new CuentaException("La cuenta no existe"); 
+		}else {
+			List<DepositadaEn> depositos = pooledBd.getPooledDepositadaEn();
+			for(DepositadaEn deposito:depositos) {
+				if(deposito.getSaldo()!=0) {
+					sinsaldo=false;
+					break;
+				}
+			}
+			if(sinsaldo) {
+				pooledBd.setEstado(false);
+			}else {
+				throw new CuentaException("Algun depósito con saldo");
+		}
+	}
 		
 	}
 
