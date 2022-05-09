@@ -1,4 +1,4 @@
-package negocioEjb;
+package negocioEjb.test;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
@@ -14,10 +14,11 @@ import org.junit.Test;
 import es.uma.BuzzerBeaters.Usuario;
 import es.uma.informatica.sii.anotaciones.Requisitos;
 import negocioEJBexcepcion.UsuarioException;
+import negocioEjb.GestionUsuarios;
 
 public class TUsuario {
 	
-	private static final String UNIDAD_PERSITENCIA_PRUEBAS = "BuzzerBeaters_ejb";
+	private static final String UNIDAD_PERSITENCIA_PRUEBAS = "BuzzerBeatersE2Test";
 	private static final String USUARIOSEJB = "java:global/classes/UsuariosEJB";
 	private GestionUsuarios gestionUsuarios;
 

@@ -1,10 +1,15 @@
-package negocioEjb;
+package negocioEjb.test;
 
 import java.util.logging.Logger;
 
 import javax.naming.NamingException;
 
 import org.junit.Before;
+
+import negocioEjb.GestionClientes;
+import negocioEjb.GestionCuentas;
+import negocioEjb.GestionPersonasAutorizadas;
+import negocioEjb.GestionUsuarios;
 
 
 

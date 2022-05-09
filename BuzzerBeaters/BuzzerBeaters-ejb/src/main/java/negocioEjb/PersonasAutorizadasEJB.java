@@ -41,7 +41,7 @@ public class PersonasAutorizadasEJB implements GestionPersonasAutorizadas{
 	}
 
 
-	@Override
+	@Override//usar merge
 	public PersonaAutorizada modificarPersonaAutorizada(PersonaAutorizada persAut, String identificacion, 
 			String nombre, String apellidos,
 			Boolean estado, Date fechaNacimiento, Date fechaInicio, Date fechaFin) throws UsuarioException {

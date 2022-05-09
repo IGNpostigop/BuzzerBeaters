@@ -4,11 +4,14 @@ package negocioEjb;
 
 import java.util.List;
 
+import javax.ejb.Local;
+
 import es.uma.BuzzerBeaters.Cliente;
 import es.uma.BuzzerBeaters.Cuenta;
 import es.uma.BuzzerBeaters.CuentaReferencia;
 import negocioEJBexcepcion.CuentaException;
 
+@Local
 public interface GestionCuentas {
 	
 	/**

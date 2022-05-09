@@ -2,10 +2,13 @@ package negocioEjb;
 
 import java.util.List;
 
+import javax.ejb.Local;
+
 import es.uma.BuzzerBeaters.Cliente;
 import es.uma.BuzzerBeaters.Usuario;
 import negocioEJBexcepcion.UsuarioException;
 
+@Local
 public interface GestionClientes {
 	/**
 	 * Este método debe insertar un cliente en la base de datos

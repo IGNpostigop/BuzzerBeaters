@@ -1,30 +1,29 @@
-package negocioEjb;
+package negocioEjb.test;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertThrows;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.sql.Date;
+import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.naming.NamingException;
 
-import org.eclipse.persistence.jpa.jpql.Assert.AssertException;
 import org.junit.Before;
 import org.junit.Test;
-import org.omg.CORBA.UserException;
+
 
 import es.uma.BuzzerBeaters.Autorizacion;
 import es.uma.BuzzerBeaters.PersonaAutorizada;
 import es.uma.BuzzerBeaters.Usuario;
 import es.uma.informatica.sii.anotaciones.Requisitos;
 import negocioEJBexcepcion.UsuarioException;
+import negocioEjb.GestionPersonasAutorizadas;
+import negocioEjb.GestionUsuarios;
 
 public class PersonaAutorizadaEJB {
-	private static final String UNIDAD_PERSITENCIA_PRUEBAS = "BuzzerBeaters_ejb";
+	private static final String UNIDAD_PERSITENCIA_PRUEBAS = "BuzzerBeatersE2Test";
 	private static final String PERSONASAUTORIZADASEJB = "java:global/classes/PersonasAutorizadasEJB";
 	private static final String USUARIOSEJB = "java:global/classes/UsuariosEJB";
 	private GestionUsuarios gestionUsuarios;
@@ -32,7 +31,7 @@ public class PersonaAutorizadaEJB {
 	
 	@Before
 	public void setup() throws NamingException {//lookup
-		
+		BaseDatos.inicializaBaseDatos(UNIDAD_PERSITENCIA_PRUEBAS);
 		gestionPA = (GestionPersonasAutorizadas) SuiteTest.ctx.lookup(PERSONASAUTORIZADASEJB);
 		gestionUsuarios = (GestionUsuarios) SuiteTest.ctx.lookup(USUARIOSEJB);
 		
@@ -48,7 +47,7 @@ public class PersonaAutorizadaEJB {
 
 		List<Autorizacion> autList = new ArrayList<Autorizacion>();
 		Usuario user1 = new Usuario("ELFUL", "ANO", true);
-		PersonaAutorizada pa = new PersonaAutorizada(Long.valueOf(1),"12345678A", "FULANITO","DE TAL","CALLE PITO", 
+		PersonaAutorizada pa = new PersonaAutorizada(Long.valueOf(12345),"12345678A", "FULANITO","DE TAL","CALLE PITO", 
 				d1, true, d2, d3, autList,user1);
 		
 		return pa;
@@ -83,14 +82,14 @@ public class PersonaAutorizadaEJB {
 	
 
 	@Requisitos({"RF7"}) 
-	@Test(expected = UsuarioException.class)
+	@Test//(expected = UsuarioException.class)
 	public void testModificarPersonaAutorizadaERROR() throws ParseException, UsuarioException
 	{
 		
 		PersonaAutorizada pa = personaEjemplo();
-		gestionPA.modificarPersonaAutorizada(pa, "12345678A", "FULANITO", "DE TAL", true, Date.valueOf("2020-03-27"),Date.valueOf("2020-03-28"),Date.valueOf("2020-03-29"));
+		//gestionPA.modificarPersonaAutorizada(pa, "12345678A", "FULANITO", "DE TAL", true, Date.valueOf("2020-03-27"),Date.valueOf("2020-03-28"),Date.valueOf("2020-03-29"));
 		//pa no existe en la bb.dd. por lo que al intentar modificarla debería saltar la excepción UsuarioException
-		Exception exception = assertThrows(UserException.class,()-> gestionPA.modificarPersonaAutorizada(pa,"identif","nombreprueba","apellidosprueba",true,Date.valueOf("1500-01-01"),Date.valueOf("1600-01-01"),Date.valueOf("1700-01-01")));
+		UsuarioException exception = assertThrows(UsuarioException.class,()-> gestionPA.modificarPersonaAutorizada(pa,"identif","nombreprueba","apellidosprueba",true,Date.valueOf("1500-01-01"),Date.valueOf("1600-01-01"),Date.valueOf("1700-01-01")));
 		assertEquals("La persona autorizada no existe en la base de datos", exception.getMessage());
 	}
 
@@ -101,12 +100,18 @@ public class PersonaAutorizadaEJB {
 	public void testModificarPersonaAutorizadaIGUAL() throws ParseException, UsuarioException
 	{
 		
-		BaseDatos.inicializaBaseDatos(UNIDAD_PERSITENCIA_PRUEBAS);
+		
 		PersonaAutorizada paBd=gestionPA.getPersonasAutorizadas().get(0);
+		
 		gestionPA.modificarPersonaAutorizada(paBd, paBd.getIdentification(), "NombreModificado", paBd.getApellidos(),paBd.getEstado(),
 				paBd.getFecha_nacimiento(), paBd.getFechaInicio(), paBd.getFechaFin());
+		Long Id;
+		for(PersonaAutorizada pa:gestionPA.getPersonasAutorizadas()) {
+			if(pa.getId().equals(paBd.getId())){
+				assertEquals("NombreModificado", pa.getNombre());
+			}
 		
-		assertEquals(paBd.getNombre(), "NombreModificado");
+		}
 		
 	}
 	/*

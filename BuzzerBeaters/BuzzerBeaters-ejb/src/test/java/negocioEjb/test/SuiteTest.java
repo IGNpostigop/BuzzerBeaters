@@ -1,4 +1,4 @@
-package negocioEjb;
+package negocioEjb.test;
 
 import java.util.Properties;
 import java.util.logging.Logger;

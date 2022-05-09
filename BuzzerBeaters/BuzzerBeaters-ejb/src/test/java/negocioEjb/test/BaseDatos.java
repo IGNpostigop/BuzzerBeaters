@@ -1,4 +1,4 @@
-package negocioEjb;
+package negocioEjb.test;
 
 import java.sql.Date;
 import java.util.ArrayList;
@@ -24,7 +24,7 @@ public class BaseDatos {
 		
 		String identificacion = "11111111F";
 		Boolean estado = false;	
-		Date fechaAlta = Date.valueOf("2012/03/20");	
+		Date fechaAlta = Date.valueOf("2012-03-20");	
 		Date fechaBaja = null;
 		String direccion = "C/ Pito, 23";
 		String ciudad = "Malaga";

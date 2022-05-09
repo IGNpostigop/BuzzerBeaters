@@ -24,7 +24,7 @@ public class Usuario {
 	private boolean administrador;
 	
 	@OneToOne(mappedBy="usuarioCliente")
-	private Cliente cliente;
+	private Cliente cliente; //cambiar a individual
 	@OneToOne(mappedBy="usuarioPA", cascade = {CascadeType.PERSIST})
 	private PersonaAutorizada personaAutorizada;
 	
