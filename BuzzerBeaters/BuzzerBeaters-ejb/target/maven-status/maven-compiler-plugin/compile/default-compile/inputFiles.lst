@@ -1,10 +1,14 @@
 C:\Users\cgper\eclipse-workspace\maven.1651254062461\BuzzerBeaters\BuzzerBeaters-ejb\src\main\java\negocioEjb\GestionClientes.java
+C:\Users\cgper\eclipse-workspace\maven.1651254062461\BuzzerBeaters\BuzzerBeaters-ejb\src\main\java\negocioEjb\GestionEmpresas.java
 C:\Users\cgper\eclipse-workspace\maven.1651254062461\BuzzerBeaters\BuzzerBeaters-ejb\src\main\java\negocioEjb\PersonasAutorizadasEJB.java
-C:\Users\cgper\eclipse-workspace\maven.1651254062461\BuzzerBeaters\BuzzerBeaters-ejb\src\main\java\negocioEjb\GestionPersonasAutorizadas.java
+C:\Users\cgper\eclipse-workspace\maven.1651254062461\BuzzerBeaters\BuzzerBeaters-ejb\src\main\java\negocioEjb\GestionIndividuales.java
 C:\Users\cgper\eclipse-workspace\maven.1651254062461\BuzzerBeaters\BuzzerBeaters-ejb\src\main\java\negocioEjb\CuentasEJB.java
-C:\Users\cgper\eclipse-workspace\maven.1651254062461\BuzzerBeaters\BuzzerBeaters-ejb\src\main\java\negocioEjb\GestionCuentas.java
 C:\Users\cgper\eclipse-workspace\maven.1651254062461\BuzzerBeaters\BuzzerBeaters-ejb\src\main\java\negocioEjb\ClientesEJB.java
-C:\Users\cgper\eclipse-workspace\maven.1651254062461\BuzzerBeaters\BuzzerBeaters-ejb\src\main\java\negocioEjb\UsuariosEJB.java
 C:\Users\cgper\eclipse-workspace\maven.1651254062461\BuzzerBeaters\BuzzerBeaters-ejb\src\main\java\negocioEjb\GestionUsuarios.java
+C:\Users\cgper\eclipse-workspace\maven.1651254062461\BuzzerBeaters\BuzzerBeaters-ejb\src\main\java\negocioEjb\Empresas.java
+C:\Users\cgper\eclipse-workspace\maven.1651254062461\BuzzerBeaters\BuzzerBeaters-ejb\src\main\java\negocioEjb\GestionPersonasAutorizadas.java
+C:\Users\cgper\eclipse-workspace\maven.1651254062461\BuzzerBeaters\BuzzerBeaters-ejb\src\main\java\negocioEjb\GestionCuentas.java
+C:\Users\cgper\eclipse-workspace\maven.1651254062461\BuzzerBeaters\BuzzerBeaters-ejb\src\main\java\negocioEjb\UsuariosEJB.java
+C:\Users\cgper\eclipse-workspace\maven.1651254062461\BuzzerBeaters\BuzzerBeaters-ejb\src\main\java\negocioEjb\Individuales.java
 C:\Users\cgper\eclipse-workspace\maven.1651254062461\BuzzerBeaters\BuzzerBeaters-ejb\src\main\java\negocioEJBexcepcion\UsuarioException.java
 C:\Users\cgper\eclipse-workspace\maven.1651254062461\BuzzerBeaters\BuzzerBeaters-ejb\src\main\java\negocioEJBexcepcion\CuentaException.java

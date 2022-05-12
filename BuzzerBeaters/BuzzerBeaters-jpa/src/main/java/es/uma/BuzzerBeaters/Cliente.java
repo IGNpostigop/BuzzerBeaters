@@ -136,14 +136,7 @@ public class Cliente{
 		this.pais = pais;
 	}
 
-	public Usuario getUsuarioCliente() {
-		return usuarioCliente;
-	}
-
-	public void setUsuarioCliente(Usuario usuarioCliente) {
-		this.usuarioCliente = usuarioCliente;
-	}
-
+	
 	public List<CuentaFintech> getCuentasFintech() {
 		return cuentasFintech;
 	}
@@ -155,7 +148,7 @@ public class Cliente{
 	@Override
 	public int hashCode() {
 		return Objects.hash(ciudad, codigopostal, cuentasFintech, direccion, estado, fechaAlta, fechaBaja, id,
-				identification, pais, usuarioCliente);
+				identification, pais);
 	}
 
 	@Override
@@ -171,17 +164,15 @@ public class Cliente{
 				&& Objects.equals(cuentasFintech, other.cuentasFintech) && Objects.equals(direccion, other.direccion)
 				&& Objects.equals(estado, other.estado) && Objects.equals(fechaAlta, other.fechaAlta)
 				&& Objects.equals(fechaBaja, other.fechaBaja) && Objects.equals(id, other.id)
-				&& Objects.equals(identification, other.identification) && Objects.equals(pais, other.pais)
-				&& Objects.equals(usuarioCliente, other.usuarioCliente);
+				&& Objects.equals(identification, other.identification) && Objects.equals(pais, other.pais);
 	}
 
 	@Override
 	public String toString() {
 		return "Cliente [id=" + id + ", identification=" + identification + ", estado=" + estado + ", fechaAlta="
 				+ fechaAlta + ", fechaBaja=" + fechaBaja + ", direccion=" + direccion + ", ciudad=" + ciudad
-				+ ", codigopostal=" + codigopostal + ", pais=" + pais + ", usuarioCliente=" + usuarioCliente
-				+ ", cuentasFintech=" + cuentasFintech + "]";
+				+ ", codigopostal=" + codigopostal + ", pais=" + pais + ", cuentasFintech=" + cuentasFintech + "]";
 	}
 
-
+	
 }

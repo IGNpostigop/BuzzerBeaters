@@ -47,7 +47,7 @@ public class PersonaAutorizadaEJB {
 
 		List<Autorizacion> autList = new ArrayList<Autorizacion>();
 		Usuario user1 = new Usuario("ELFUL", "ANO", true);
-		PersonaAutorizada pa = new PersonaAutorizada(Long.valueOf(12345),"12345678A", "FULANITO","DE TAL","CALLE PITO", 
+		PersonaAutorizada pa = new PersonaAutorizada(Long.valueOf(12345),"12345678A", "Fulanito","DE TAL","CALLE PITO", 
 				d1, true, d2, d3, autList,user1);
 		
 		return pa;
