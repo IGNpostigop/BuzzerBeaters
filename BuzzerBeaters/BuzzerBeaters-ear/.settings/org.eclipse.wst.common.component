@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="BuzzerBeaters-ear-1.0.0-SNAPSHOT">
+        <wb-resource deploy-path="/" source-path="/target/m2e-wtp/ear-resources"/>
+        <wb-resource deploy-path="/" source-path="/src/main/application" tag="defaultRootSource"/>
+        <dependent-module archiveName="BuzzerBeaters-ejb-1.0.0-SNAPSHOT.jar" deploy-path="/" handle="module:/resource/BuzzerBeaters-ejb/BuzzerBeaters-ejb">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="BuzzerBeaters-war-1.0.0-SNAPSHOT.war" deploy-path="/" handle="module:/resource/BuzzerBeaters-war/BuzzerBeaters-war">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="BuzzerBeaters-jpa-1.0.0-SNAPSHOT.jar" deploy-path="/lib" handle="module:/resource/BuzzerBeaters-jpa/BuzzerBeaters-jpa">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="anotaciones-1.0.0.jar" deploy-path="/lib" handle="module:/classpath/var/M2_REPO/es/uma/informatica/sii/anotaciones/1.0.0/anotaciones-1.0.0.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+    </wb-module>
+</project-modules>
