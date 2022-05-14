@@ -1,12 +1,17 @@
 package es.uma.BuzzerBeaters;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 import javax.persistence.Embeddable;
 
 @Embeddable
-public class DepositadaEnID 
+public class DepositadaEnID implements Serializable
 {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String IBANreferenciada;
 	private String IBANpooled;
 	

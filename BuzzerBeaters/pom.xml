@@ -22,5 +22,8 @@
 <modules>  
 	<module>BuzzerBeaters-jpa</module>
 	<module>BuzzerBeaters-ejb</module>
+	<module>BuzzerBeaters-war</module>
+	<module>BuzzerBeaters-ear</module>
+	<module>BuzzerBeaters-tests</module>
   </modules>
 </project>
