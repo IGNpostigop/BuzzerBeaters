@@ -5,7 +5,12 @@ import java.util.List;
 import javax.ejb.Local;
 
 import es.uma.BuzzerBeaters.Cliente;
+import es.uma.BuzzerBeaters.Empresa;
+import es.uma.BuzzerBeaters.Individual;
 import es.uma.BuzzerBeaters.Usuario;
+import negocioEJBexcepcion.ClienteDeBajaException;
+import negocioEJBexcepcion.ClienteNoEncontradoException;
+import negocioEJBexcepcion.CuentaException;
 import negocioEJBexcepcion.UsuarioException;
 
 @Local
@@ -18,9 +23,13 @@ public interface GestionClientes {
 	 * user, password y administrador no pueden ser nulos.
 	 * @throws UsuarioException 
 	 **/
-
-	public void crearCliente(Cliente cliente) throws UsuarioException;
+	public void crearClienteIndividual(Usuario admin, Cliente individual)
+			throws UsuarioException;
+	/*
+	 * Lo mismo que anterriormente pero para empresas
+	 */
 	
+	public void crearClienteEmpresa(Usuario admin, Cliente individual) throws UsuarioException;
 //	/**
 //	 * Este método debe permitir modificar la identificación de un cliente
 //	 * Debe comprobar que el cliente existe. En caso contrario debe lanzar una excepción
@@ -42,15 +51,44 @@ public interface GestionClientes {
 	 * Debe comprobar que el cliente existe. En caso contrario debe lanzar una excepción
 	 * @throws UsuarioException 
 	 */
-	public void bajaCliente (Cliente cliente) throws UsuarioException;
+	public void bajaCliente (Usuario admin, String idCliente) throws UsuarioException, ClienteNoEncontradoException, 
+			ClienteDeBajaException, CuentaException;
+	
+	/**
+	 * @param admin
+	 * @param idCliente
+	 * @throws UsuarioException
+	 * @throws ClienteNoEncontradoException
+	 * @throws ClienteDeBajaException
+	 * Este método activará un cliente anteriormente de baja
+	 */
+	
+	public void activaCliente(Usuario admin, String idCliente) throws UsuarioException, ClienteNoEncontradoException, 
+		ClienteDeBajaException;
 	
 	/**
 	 * Este método debe permitir modificar los atributos de un cliente
+	 * @throws ClienteNoEncontradoException 
 	 */
 
-	public Cliente modificarCliente(Cliente cliente, String identificacion, Boolean estado, String direccion, String ciudad,
-			Integer codigoPostal, String pais) throws UsuarioException;
+	public void modificarClienteIndividual(Usuario admin, String idCliente, Individual individual) throws UsuarioException,
+			ClienteNoEncontradoException ;
+	
+	/**
+	 * Igual que el anterior pero para clientes empresas
+	 * @param admin
+	 * @param idCliente
+	 * @param empresa
+	 * @throws UsuarioException
+	 * @throws ClienteNoEncontradoException
+	 */
+	
+	
+	public void modificarClienteEmpresal(Usuario admin, String idCliente, Empresa empresa) throws UsuarioException, 
+			ClienteNoEncontradoException;
 
 	public List<Cliente> getClientes();
+
+	
 
 }

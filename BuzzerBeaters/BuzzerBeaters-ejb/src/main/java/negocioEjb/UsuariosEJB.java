@@ -11,6 +11,7 @@ import javax.persistence.Query;
 import es.uma.BuzzerBeaters.PersonaAutorizada;
 import es.uma.BuzzerBeaters.Usuario;
 import negocioEJBexcepcion.UsuarioException;
+import negocioEJBexcepcion.WrongPasswordException;
 
 @Stateless
 public class UsuariosEJB implements GestionUsuarios{
@@ -22,17 +23,14 @@ public class UsuariosEJB implements GestionUsuarios{
 	
 
 	@Override
-	public void insertarUsuario(String user, String password, boolean administrador) throws UsuarioException{
-		Usuario usuarioEntity = em.find(Usuario.class, user);
+	public void insertarUsuario(Usuario usuario) throws UsuarioException{
+		Usuario usuarioEntity = em.find(Usuario.class, usuario));
 		if (usuarioEntity != null) {
 			throw new UsuarioException("El usuario ya existe");
 		}
 		else {
-			Usuario nuevo = new Usuario();
-			nuevo.setPassword(password);
-			nuevo.setUser(user);
-			nuevo.setAdministrador(administrador);
-			em.persist(nuevo);	
+			;
+			em.persist(usuario);	
 		}		
 	}
 
@@ -66,5 +64,21 @@ public class UsuariosEJB implements GestionUsuarios{
 		List<Usuario> Usuarios = query.getResultList();
 		return Usuarios;
 	}
+
+	@Override
+	public Usuario Login(String userName, String password) throws UsuarioException, WrongPasswordException {
+		Usuario usuarioEntity = em.find(Usuario.class, userName);
+		
+		if(usuarioEntity == null) {
+			throw new UsuarioException("El usuario no existe");
+		}else if (!usuarioEntity.getPassword().equals(password)) {
+			throw new WrongPasswordException("Contraseña incorrecta");			
+		}else if (usuarioEntity.getIndividual().getFechaBaja() != null) {
+			throw new UsuarioException("Cliente de baja");
+		}
+
+		return usuarioEntity;
+	}
+
 
 }

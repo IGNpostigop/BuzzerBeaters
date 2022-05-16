@@ -6,6 +6,7 @@ import javax.ejb.Local;
 
 import es.uma.BuzzerBeaters.Usuario;
 import negocioEJBexcepcion.UsuarioException;
+import negocioEJBexcepcion.WrongPasswordException;
 
 @Local
 
@@ -19,7 +20,7 @@ public interface GestionUsuarios {
 	 * @throws UsuarioException 
 	 **/
 	
-	public void insertarUsuario (String user, String password, boolean administrador) throws UsuarioException;
+	public void insertarUsuario (Usuario user) throws UsuarioException;
 	
 	/**
 	 * Este metodo debe eliminar el usuario que de pase por el campo user.
@@ -39,5 +40,6 @@ public interface GestionUsuarios {
 
 	public List<Usuario> getUsuarios();
 	
+	public Usuario Login(String userName, String password) throws UsuarioException, WrongPasswordException;
 
 }

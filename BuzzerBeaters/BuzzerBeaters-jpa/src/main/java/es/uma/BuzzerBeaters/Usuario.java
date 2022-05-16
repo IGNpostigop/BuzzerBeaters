@@ -39,6 +39,27 @@ public class Usuario {
 		this.password = password;
 		this.administrador = administrador;
 	}
+	
+	public Individual getIndividual() {
+		return individual;
+	}
+
+
+	public void setIndividual(Individual individual) {
+		this.individual = individual;
+	}
+
+
+	public PersonaAutorizada getPersonaAutorizada() {
+		return personaAutorizada;
+	}
+
+
+	public void setPersonaAutorizada(PersonaAutorizada personaAutorizada) {
+		this.personaAutorizada = personaAutorizada;
+	}
+
+
 	public String getUser() {
 		return user;
 	}

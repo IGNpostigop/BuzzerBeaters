@@ -13,8 +13,14 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import es.uma.BuzzerBeaters.Cliente;
+import es.uma.BuzzerBeaters.CuentaFintech;
+import es.uma.BuzzerBeaters.Empresa;
+import es.uma.BuzzerBeaters.Individual;
 import es.uma.BuzzerBeaters.PersonaAutorizada;
 import es.uma.BuzzerBeaters.Usuario;
+import negocioEJBexcepcion.ClienteDeBajaException;
+import negocioEJBexcepcion.ClienteNoEncontradoException;
+import negocioEJBexcepcion.CuentaException;
 import negocioEJBexcepcion.UsuarioException;
 
 @Stateless
@@ -27,15 +33,51 @@ public class ClientesEJB implements GestionClientes {
 		
 
 	@Override
-	public void crearCliente(Cliente cliente) throws UsuarioException {
+	public void crearClienteIndividual(Usuario admin, Cliente individual)
+			throws UsuarioException {
 
-		Cliente clienteEntity = em.find(Cliente.class, cliente.getId());
-		if(clienteEntity != null) {
-			throw new UsuarioException("El cliente ya existe\n");
-		}else {	
-			em.persist(cliente);
+		Individual clienteIndividualEntity = em.find(Individual.class, individual.getIdentification());
+
+		Usuario administrador = em.find(Usuario.class, admin.getUser());
+
+		if (administrador == null) { 
+			throw new UsuarioException("El usuario no exsite");
 		}
-		
+
+		if (!administrador.isAdministrador()) {
+			throw new UsuarioException("El usuario no tiene los privilegios suficientes para la operación");
+		}
+
+		if (clienteIndividualEntity != null) {
+			throw new UsuarioException("El cliente individual ya existe");
+		}
+
+		em.persist(individual);
+
+	}
+	
+	@Override
+	public void crearClienteEmpresa(Usuario admin, Cliente empresa)
+			throws UsuarioException {
+
+		Empresa clienteEmpresaEntity = em.find(Empresa.class, empresa.getIdentification());
+
+		Usuario administrador = em.find(Usuario.class, admin.getUser());
+
+		if (administrador == null) { 
+			throw new UsuarioException("El usuario no exsite");
+		}
+
+		if (!administrador.isAdministrador()) {
+			throw new UsuarioException("El usuario no tiene los privilegios suficientes para la operación");
+		}
+
+		if (clienteEmpresaEntity != null) {
+			throw new UsuarioException("El cliente empresa ya existe");
+		}
+
+		em.persist(empresa);
+
 	}
 	@Override
 	public List<Cliente> getClientes() 
@@ -47,57 +89,111 @@ public class ClientesEJB implements GestionClientes {
 	}
 	
 	@Override
-	public void bajaCliente(Cliente cliente) throws UsuarioException {
+	public void bajaCliente(Usuario admin, String idCliente) throws UsuarioException, ClienteNoEncontradoException, 
+			ClienteDeBajaException, CuentaException {
 		// TODO Auto-generated method stub
-		Cliente clienteEntity = em.find(Cliente.class, cliente.getId());
-		if(clienteEntity == null) {
-			throw new UsuarioException("El cliente no existe\n");
-		}else {	
-			clienteEntity.setEstado(false);
+		Usuario administrador = em.find(Usuario.class, admin.getUser());
+		
+		if (administrador == null) { 
+			throw new UsuarioException("El usuario no exsite");
 		}
-		//em.persist(clienteEntity);	
+
+		if (!administrador.isAdministrador()) {
+			throw new UsuarioException("El usuario no tiene los privilegios suficientes para la operación");
+		}
+		
+		
+		Cliente clienteEntity = em.find(Cliente.class, idCliente);
+		
+		if(clienteEntity == null) {
+			throw new ClienteNoEncontradoException("El cliente no existe\n");
+		}else if(!clienteEntity.getEstado()) {
+			throw new ClienteDeBajaException("El cliente ya está de baja");
+		}else {
+			List<CuentaFintech> cuentas = clienteEntity.getCuentasFintech();
+			for(CuentaFintech cuentaFintech: cuentas) {
+			
+				if(cuentaFintech.getEstado()) {
+					throw new CuentaException("cuenta "+ cuentaFintech.getIban() + " aun abierta");
+				}
+			}
+			clienteEntity.setEstado(false);	
+		}	
 	}
 	
 	@Override
-	public Cliente modificarCliente(Cliente cliente, String identificacion, Boolean estado, String direccion, 
-			String ciudad, Integer codigoPostal, String pais) throws UsuarioException {
-		Cliente clienteEntity = em.find(Cliente.class, cliente.getId());
-		if(clienteEntity == null) {
-			throw new UsuarioException("El cliente no existe\n");
-		}else {	
-		clienteEntity.setIdentification(identificacion);
-		clienteEntity.setEstado(estado);
-		clienteEntity.setDireccion(direccion);
-		clienteEntity.setCiudad(ciudad);
-		clienteEntity.setCodigopostal(codigoPostal);
-		clienteEntity.setPais(pais);
-		
+	public void activaCliente(Usuario admin, String idCliente) throws UsuarioException, ClienteNoEncontradoException, 
+			ClienteDeBajaException {
 		// TODO Auto-generated method stub
+		Usuario administrador = em.find(Usuario.class, admin.getUser());
+		
+		if (administrador == null) { 
+			throw new UsuarioException("El usuario no exsite");
 		}
-		return clienteEntity;
+
+		if (!administrador.isAdministrador()) {
+			throw new UsuarioException("El usuario no tiene los privilegios suficientes para la operación");
+		}
+		
+		
+		Cliente clienteEntity = em.find(Cliente.class, idCliente);
+		
+		if(clienteEntity == null) {
+			throw new ClienteNoEncontradoException("El cliente no existe\n");
+		}else if(clienteEntity.getEstado()) {
+			throw new ClienteDeBajaException("El cliente ya está activo");
+		}else {	
+			clienteEntity.setEstado(true);
+		}
+
 	}
+	
+	@Override
+	public void modificarClienteIndividual(Usuario admin, String idCliente, Individual individual) throws UsuarioException, ClienteNoEncontradoException {
+		Usuario administrador = em.find(Usuario.class, admin.getUser());
+		
+		if (administrador == null) { 
+			throw new UsuarioException("El usuario no exsite");
+		}
+
+		if (!administrador.isAdministrador()) {
+			throw new UsuarioException("El usuario no tiene los privilegios suficientes para la operación");
+		}
+		
+		Individual clienteIndividualEntity = em.find(Individual.class,idCliente);
+		
+		if(clienteIndividualEntity == null) {
+			throw new ClienteNoEncontradoException("El cliente individual no existe");
+			
+			
+		}
+		em.merge(individual);
+		
+	}
+	
+	@Override
+	public void modificarClienteEmpresal(Usuario admin, String idCliente, Empresa empresa) throws UsuarioException, ClienteNoEncontradoException {
+		Usuario administrador = em.find(Usuario.class, admin.getUser());
+		
+		if (administrador == null) { 
+			throw new UsuarioException("El usuario no exsite");
+		}
+
+		if (!administrador.isAdministrador()) {
+			throw new UsuarioException("El usuario no tiene los privilegios suficientes para la operación");
+		}
+		
+		Empresa clienteEmpresaEntity = em.find(Empresa.class,idCliente);
+		
+		if(clienteEmpresaEntity == null) {
+			throw new ClienteNoEncontradoException("El cliente individual no existe");
+			
+			
+		}
+		em.merge(empresa);
+		
+	}
+
 }
 
-
-//	@Override
-//	public void setClienteIdentificacion(String cliente, String identificacion) throws UsuarioException {
-//		// TODO Auto-generated method stub
-//		Cliente clienteEntity = em.find(Cliente.class, cliente);
-//		if(clienteEntity == null) {
-//			throw new UsuarioException("El cliente no existe\n");
-//		}else {	
-//			clienteEntity.setIdentification(identificacion);
-//		}
-//	}
-//
-//	@Override
-//	public void setClienteDireccion(String cliente, String direccion, int codigoPostal, String pais, String ciudad) {
-//		// TODO Auto-generated method stub
-//		Cliente clienteEntity = em.find(Cliente.class, cliente);
-//		if(clienteEntity == null) {
-//			throw new UsuarioException("El cliente no existe\n");
-//		}else {	
-//			clienteEntity.setDireccion(direccion);
-//		}
-//		
 
