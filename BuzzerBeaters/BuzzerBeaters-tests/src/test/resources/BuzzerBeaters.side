@@ -1,0 +1,74 @@
+{
+  "id": "dcf54b76-be61-431e-94fa-5f4c1ca109cf",
+  "version": "2.0",
+  "name": "BuzzerBeatersIT",
+  "url": "http://localhost:8080//BuzzerBeaters-war",
+  "tests": [{
+    "id": "184c0a72-4746-464c-8974-751472771e62",
+    "name": "inicio",
+    "commands": [{
+      "id": "2b67c3b7-677f-49c0-b21a-805291cfb1c5",
+      "comment": "",
+      "command": "open",
+      "target": "/BuzzerBeaters-war/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "956a9ce7-e94d-4a2e-bca5-365c7f6f76ce",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1115x1380",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "318fa53c-71b0-4877-aca2-0d71946e1855",
+      "comment": "",
+      "command": "click",
+      "target": "id=saludo",
+      "targets": [
+        ["id=saludo", "id"],
+        ["css=#saludo", "css:finder"],
+        ["xpath=//span[@id='saludo']", "xpath:attributes"],
+        ["xpath=//span", "xpath:position"],
+        ["xpath=//span[contains(.,'Hola mundo')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "0e1fd95f-4862-4638-ab83-d4e6115b8dff",
+      "comment": "",
+      "command": "click",
+      "target": "id=saludo",
+      "targets": [
+        ["id=saludo", "id"],
+        ["css=#saludo", "css:finder"],
+        ["xpath=//span[@id='saludo']", "xpath:attributes"],
+        ["xpath=//span", "xpath:position"],
+        ["xpath=//span[contains(.,'Hola mundo')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "031c81d5-86db-48bb-b64f-7b03e1decdeb",
+      "comment": "",
+      "command": "assertText",
+      "target": "id=saludo",
+      "targets": [
+        ["id=saludo", "id"],
+        ["css=#saludo", "css:finder"],
+        ["xpath=//span[@id='saludo']", "xpath:attributes"],
+        ["xpath=//span", "xpath:position"],
+        ["xpath=//span[contains(.,'Hola mundo')]", "xpath:innerText"]
+      ],
+      "value": "Hola mundo"
+    }]
+  }],
+  "suites": [{
+    "id": "70b4f7cc-237a-4f93-8377-a823f16260c8",
+    "name": "BuzzerBeatersIT",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": ["184c0a72-4746-464c-8974-751472771e62"]
+  }],
+  "urls": ["http://localhost:8080/", "http://localhost:8080//BuzzerBeaters-war"],
+  "plugins": []
+}
