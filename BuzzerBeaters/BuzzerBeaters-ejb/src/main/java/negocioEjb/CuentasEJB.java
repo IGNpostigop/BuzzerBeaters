@@ -17,7 +17,7 @@ public class CuentasEJB implements GestionCuentas {
 	
 	private static final Logger LOG = Logger.getLogger(UsuariosEJB.class.getCanonicalName());
 	
-	@PersistenceContext(name="BuzzerBeaters")
+	@PersistenceContext(name="BuzzerBeaters_ejb")
 	private EntityManager em;
 	
 	

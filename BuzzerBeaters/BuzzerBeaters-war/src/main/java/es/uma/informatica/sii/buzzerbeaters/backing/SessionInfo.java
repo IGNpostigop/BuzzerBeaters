@@ -1,5 +1,7 @@
 package es.uma.informatica.sii.buzzerbeaters.backing;
 
+import java.io.Serializable;
+
 import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
@@ -8,7 +10,7 @@ import es.uma.BuzzerBeaters.Usuario;
 
 @Named (value = "SessionInfo")
 @SessionScoped
-public class SessionInfo {
+public class SessionInfo implements Serializable {
 	private Usuario usuario;
 	
 	public SessionInfo() {	}

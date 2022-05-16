@@ -1,5 +1,7 @@
 package es.uma.informatica.sii.buzzerbeaters.backing;
 
+import java.io.Serializable;
+
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
@@ -12,7 +14,7 @@ import negocioEjb.GestionUsuarios;
 
 @Named (value = "registro")
 @SessionScoped
-public class Registro {
+public class Registro implements Serializable{
 	@Inject
 	private GestionUsuarios gestionUsuario;
 	private Usuario usuario;
@@ -26,6 +28,7 @@ public class Registro {
 				
 			}
 			gestionUsuario.insertarUsuario(usuario);
+			
 		} catch (UsuarioException  e) {
 			FacesMessage fm = new FacesMessage("Ya existe el usuario");
 			FacesContext.getCurrentInstance().addMessage("registro:usuario", fm);

@@ -35,18 +35,21 @@ public class TUsuario {
 	@Requisitos({"RF1"})
 	@Test
 	public void testInsertarUsuario() throws UsuarioException {
-		final String nombre = "manolo";
-		final String clave = "claveManolo";
-		final boolean admin = false;
-		
+		final String nombre = "Fulanito";
+		final String clave = "pass";
+		final boolean admin = true;
+		Usuario nuevoUsuario = new Usuario();
+		nuevoUsuario.setUser(nombre);
+		nuevoUsuario.setPassword(clave);
+		nuevoUsuario.setAdministrador(admin);
 		
 		try {
-			gestionUsuarios.insertarUsuario(nombre, clave, admin);
+			gestionUsuarios.insertarUsuario(nuevoUsuario);
 		} catch (UsuarioException e) {
 			e.printStackTrace();
 		}
 		List<Usuario> usuarios = gestionUsuarios.getUsuarios();
-		Usuario bdUser = usuarios.get(1);
+		Usuario bdUser = usuarios.get(0);
 		assertEquals(nombre, bdUser.getUser());
 		assertEquals(clave, bdUser.getPassword());
 		assertEquals(admin, bdUser.isAdministrador());

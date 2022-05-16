@@ -1,5 +1,7 @@
 package es.uma.informatica.sii.buzzerbeaters.backing;
 
+import java.io.Serializable;
+
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
@@ -13,7 +15,7 @@ import negocioEjb.GestionUsuarios;
 
 @Named(value = "regularlogin")
 @SessionScoped
-public class RegularLogin {
+public class RegularLogin implements Serializable{
 	@Inject
 	private GestionUsuarios gestionUsuario;
 	private Usuario usuario;

@@ -172,7 +172,7 @@ public class ClientesEJB implements GestionClientes {
 	}
 	
 	@Override
-	public void modificarClienteEmpresal(Usuario admin, String idCliente, Empresa empresa) throws UsuarioException, ClienteNoEncontradoException {
+	public void modificarClienteEmpresa(Usuario admin, String idCliente, Empresa empresa) throws UsuarioException, ClienteNoEncontradoException {
 		Usuario administrador = em.find(Usuario.class, admin.getUser());
 		
 		if (administrador == null) { 

@@ -24,12 +24,11 @@ public class UsuariosEJB implements GestionUsuarios{
 
 	@Override
 	public void insertarUsuario(Usuario usuario) throws UsuarioException{
-		Usuario usuarioEntity = em.find(Usuario.class, usuario));
+		Usuario usuarioEntity = em.find(Usuario.class, usuario);
 		if (usuarioEntity != null) {
 			throw new UsuarioException("El usuario ya existe");
 		}
 		else {
-			;
 			em.persist(usuario);	
 		}		
 	}

@@ -84,7 +84,7 @@ public interface GestionClientes {
 	 */
 	
 	
-	public void modificarClienteEmpresal(Usuario admin, String idCliente, Empresa empresa) throws UsuarioException, 
+	public void modificarClienteEmpresa(Usuario admin, String idCliente, Empresa empresa) throws UsuarioException, 
 			ClienteNoEncontradoException;
 
 	public List<Cliente> getClientes();
