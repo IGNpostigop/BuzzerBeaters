@@ -22,7 +22,7 @@ import negocioEJBexcepcion.ClienteDeBajaException;
 import negocioEJBexcepcion.ClienteNoEncontradoException;
 import negocioEJBexcepcion.CuentaException;
 import negocioEJBexcepcion.UsuarioException;
-
+//Prueba
 @Stateless
 public class ClientesEJB implements GestionClientes {
 	
