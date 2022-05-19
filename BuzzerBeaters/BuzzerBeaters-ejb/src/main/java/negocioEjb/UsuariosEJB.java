@@ -10,6 +10,7 @@ import javax.persistence.Query;
 
 import es.uma.BuzzerBeaters.PersonaAutorizada;
 import es.uma.BuzzerBeaters.Usuario;
+import negocioEJBexcepcion.UserNotAdminException;
 import negocioEJBexcepcion.UsuarioException;
 import negocioEJBexcepcion.WrongPasswordException;
 
@@ -78,6 +79,22 @@ public class UsuariosEJB implements GestionUsuarios{
 
 		return usuarioEntity;
 	}
+	
+	@Override
+	public Usuario AdminLogin(String adminName, String password) throws UsuarioException, WrongPasswordException, UserNotAdminException {
+		Usuario adminEntity = em.find(Usuario.class, adminName);
+		
+		if(adminEntity == null) {
+			throw new UsuarioException("El usuario no existe");
+		}else if (!adminEntity.getPassword().equals(password)) {
+			throw new WrongPasswordException("Contraseña incorrecta");			
+		}else if (!adminEntity.isAdministrador()) {
+			throw new UserNotAdminException("Usuario no es administrativo");
+		}
+
+		return adminEntity;
+	}
+
 
 
 }

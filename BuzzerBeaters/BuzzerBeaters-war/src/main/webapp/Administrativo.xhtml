@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Lista de contactos</title>
+    </h:head>
+    <h:body>
+        <c:choose>
+            <c:when test="#{empty infoSesion.usuario}">
+                <p>No tiene autorización para ver esta página, debe autenticarse antes.</p>
+            </c:when>
+            <c:otherwise>
+            <h3><h:outputText id= "mensBienv" value ="Bienvenido #{loginAdmin.usuario.user}"/></h3>
+<!--                 <h:form id="contactos"> -->
+<!--                     <h:dataTable value="#{infoSesion.contactos}" var="c"> -->
+<!--                         <h:column> -->
+<!--                             <f:facet id="cabeceraNombre" name="header">Nombre</f:facet> -->
+<!--                             <h:outputText id="textoNombre" value="#{c.nombre}"/> -->
+<!--                         </h:column> -->
+                        
+<!--                         <h:column> -->
+<!--                             <f:facet id="cabeceraTelefono" name="header">Teléfono</f:facet> -->
+<!--                             <h:outputText id="textoTelefono" value="#{c.telefono}"/> -->
+<!--                         </h:column> -->
+                        
+<!--                         <h:column> -->
+<!--                             <f:facet id="cabeceraEmail" name="header">e-mail</f:facet> -->
+<!--                             <h:outputText id="textoEmail" value="#{c.email}"/> -->
+<!--                         </h:column> -->
+                        
+<!--                         <h:column> -->
+<!--                             <h:commandButton id="botonModificar" value="Modificar" action="#{contactos.modificar(c)}"/> -->
+<!--                         </h:column> -->
+                        
+<!--                         <h:column> -->
+<!--                             <h:commandButton id="botonEliminar" value="Eliminar" action="#{contactos.eliminar(c)}"/> -->
+<!--                         </h:column> -->
+<!--                     </h:dataTable> -->
+<!--                     <h:commandButton id="botonInsertar" value="Insertar" action="#{contactos.insertarContacto()}"/> -->
+<!--                     <h:commandButton id="botonRefrescar" value="Refrescar" action="#{contactos.refrescar}"/> -->
+<!--                     <p><h:commandLink id="enlaceLogout" action="#{infoSesion.invalidarSesion()}">Log out</h:commandLink></p> -->
+<!--                 </h:form> -->
+            </c:otherwise>
+        </c:choose>
+
+    </h:body>
+</html>

@@ -5,6 +5,7 @@ import java.util.List;
 import javax.ejb.Local;
 
 import es.uma.BuzzerBeaters.Usuario;
+import negocioEJBexcepcion.UserNotAdminException;
 import negocioEJBexcepcion.UsuarioException;
 import negocioEJBexcepcion.WrongPasswordException;
 
@@ -41,5 +42,7 @@ public interface GestionUsuarios {
 	public List<Usuario> getUsuarios();
 	
 	public Usuario Login(String userName, String password) throws UsuarioException, WrongPasswordException;
+	
+	public Usuario AdminLogin(String adminName, String password) throws UsuarioException, WrongPasswordException, UserNotAdminException;
 
 }
