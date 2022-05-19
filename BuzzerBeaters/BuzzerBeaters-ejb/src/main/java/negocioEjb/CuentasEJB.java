@@ -22,6 +22,7 @@ public class CuentasEJB implements GestionCuentas {
 	
 	
 	@Override
+	//RF5: Apertura de cuenta segregada
 	public void aperturaCtaSegregated(Segregada segregada) throws CuentaException {
 		Segregada segBd = em.find(Segregada.class, segregada.getIban());
 		if(segBd != null) {
@@ -32,6 +33,7 @@ public class CuentasEJB implements GestionCuentas {
 	}
 
 	@Override
+	//RF5: Apertura de cuenta pooled
 	public void aperturaCtaPooled(PooledAccount pooled) throws CuentaException{
 		PooledAccount pooledBd = em.find(PooledAccount.class, pooled.getIban());
 		if(pooledBd != null){
@@ -42,6 +44,7 @@ public class CuentasEJB implements GestionCuentas {
 	}
 
 	@Override
+	//RF9: Cerrar de cuenta segregada
 	public void cerrarCuenteSegregada(Segregada seg) throws CuentaException {
 		Segregada segregadaBd = em.find(Segregada.class, seg.getIban());
 		if(segregadaBd == null) {
@@ -57,6 +60,7 @@ public class CuentasEJB implements GestionCuentas {
 	}
 
 	@Override
+	//RF9: Cerrar de cuenta pooled
 	public void cerrarCuentaPooled(PooledAccount pooled) throws CuentaException {
 		PooledAccount pooledBd = em.find(PooledAccount.class, pooled.getIban());
 		boolean sinsaldo = true;

@@ -41,10 +41,12 @@ public class PersonasAutorizadasEJB implements GestionPersonasAutorizadas{
 	}
 
 
-	@Override//usar merge
+	@Override //usar merge
+	//RF7: Modificar persona Autorizada
 	public PersonaAutorizada modificarPersonaAutorizada(PersonaAutorizada persAut, String identificacion, 
 			String nombre, String apellidos,
 			Boolean estado, Date fechaNacimiento, Date fechaInicio, Date fechaFin) throws UsuarioException {
+		
 		// TODO Auto-generated method stub
 		
 		PersonaAutorizada PerAutEntity = em.find(PersonaAutorizada.class, persAut.getId());
@@ -65,6 +67,7 @@ public class PersonasAutorizadasEJB implements GestionPersonasAutorizadas{
 	
 
 	@Override
+	//RF8: Dar de baja persona Autorizada
 	public void eliminarAutorizadoEmpresa(PersonaAutorizada persAut, Autorizacion autorizacion) throws UsuarioException {
 		PersonaAutorizada PerAutEntity = em.find(PersonaAutorizada.class, persAut);
 		if(persAut == null) {
@@ -93,6 +96,7 @@ public class PersonasAutorizadasEJB implements GestionPersonasAutorizadas{
 	}
 	
 	@Override
+	//RF6: Añadir personas autorizadas a cuentas de tipo empresa
 	public void addAutorizadoEmpresa(PersonaAutorizada persAut, Autorizacion autorizacion) throws UsuarioException {
 		PersonaAutorizada PerAutEntity = em.find(PersonaAutorizada.class, persAut);
 		if(persAut == null) {

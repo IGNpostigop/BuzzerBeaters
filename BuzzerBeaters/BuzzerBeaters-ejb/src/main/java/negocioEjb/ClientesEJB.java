@@ -22,7 +22,7 @@ import negocioEJBexcepcion.ClienteDeBajaException;
 import negocioEJBexcepcion.ClienteNoEncontradoException;
 import negocioEJBexcepcion.CuentaException;
 import negocioEJBexcepcion.UsuarioException;
-//Prueba
+
 @Stateless
 public class ClientesEJB implements GestionClientes {
 	
@@ -33,6 +33,7 @@ public class ClientesEJB implements GestionClientes {
 		
 
 	@Override
+	//RF2: Dar de alta a un cliente individual
 	public void crearClienteIndividual(Usuario admin, Cliente individual)
 			throws UsuarioException {
 
@@ -57,6 +58,7 @@ public class ClientesEJB implements GestionClientes {
 	}
 	
 	@Override
+	//RF2: Dar de alta a un cliente empresa
 	public void crearClienteEmpresa(Usuario admin, Cliente empresa)
 			throws UsuarioException {
 
@@ -89,6 +91,7 @@ public class ClientesEJB implements GestionClientes {
 	}
 	
 	@Override
+	//RF4: Dar de baja a un cliente
 	public void bajaCliente(Usuario admin, String idCliente) throws UsuarioException, ClienteNoEncontradoException, 
 			ClienteDeBajaException, CuentaException {
 		// TODO Auto-generated method stub
@@ -149,6 +152,7 @@ public class ClientesEJB implements GestionClientes {
 	}
 	
 	@Override
+	//RF3: Modificar los datos de un cliente individual
 	public void modificarClienteIndividual(Usuario admin, String idCliente, Individual individual) throws UsuarioException, ClienteNoEncontradoException {
 		Usuario administrador = em.find(Usuario.class, admin.getUser());
 		
@@ -172,6 +176,7 @@ public class ClientesEJB implements GestionClientes {
 	}
 	
 	@Override
+	//RF3: Modificar los datos de un cliente empresa
 	public void modificarClienteEmpresa(Usuario admin, String idCliente, Empresa empresa) throws UsuarioException, ClienteNoEncontradoException {
 		Usuario administrador = em.find(Usuario.class, admin.getUser());
 		
