@@ -51,26 +51,26 @@ public class Cliente{
 	public Cliente() {
 	}
 	
-	public Cliente(Long id, String identificacion, Boolean estado, Date fechaAlta, Date fechaBaja, String direccion, String ciudad, Integer codigopostal, String pais) {
-		this.id = id;
-		this.identification = identificacion;
-		this.estado = estado;
-		this.fechaAlta = fechaAlta;
-		this.fechaBaja = fechaBaja;
-		this.direccion = direccion;
-		this.ciudad = ciudad;
-		this.codigopostal = codigopostal;
-		this.pais = pais;
-	}
-	
+//	public Cliente(Long id, String identificacion, Boolean estado, Date fechaAlta, Date fechaBaja, String direccion, String ciudad, Integer codigopostal, String pais) {
+//		this.id = id;
+//		this.identification = identificacion;
+//		this.estado = estado;
+//		this.fechaAlta = fechaAlta;
+//		this.fechaBaja = fechaBaja;
+//		this.direccion = direccion;
+//		this.ciudad = ciudad;
+//		this.codigopostal = codigopostal;
+//		this.pais = pais;
+//	}
+//	
 	
 	public Long getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+	/*
+	 * public void setId(Long id) { this.id = id; }
+	 */
 
 	public String getIdentification() {
 		return identification;

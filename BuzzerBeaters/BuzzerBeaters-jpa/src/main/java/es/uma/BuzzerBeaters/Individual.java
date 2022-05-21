@@ -35,6 +35,18 @@ public class Individual extends Cliente implements Serializable {
 
 
 
+	public Usuario getUsuarioIndividual() {
+		return usuarioIndividual;
+	}
+
+
+
+	public void setUsuarioIndividual(Usuario usuarioIndividual) {
+		this.usuarioIndividual = usuarioIndividual;
+	}
+
+
+
 	public String getName() {
 		return name;
 	}

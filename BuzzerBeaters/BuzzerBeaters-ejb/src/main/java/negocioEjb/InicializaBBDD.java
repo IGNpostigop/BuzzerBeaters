@@ -63,22 +63,29 @@ public class InicializaBBDD {
 			
 			//inicializacion de individual
 		
-			/*
-			 * Individual individual = new Individual(); String apellido = "DeTal"; String
-			 * identificacion = "11111111F"; Boolean estado = true; Date fechaAlta =
-			 * Date.valueOf("2012-03-20"); Date fechaNacimiento =Date.valueOf("2000-03-20");
-			 * String direccion = "C/ Pito, 23"; String ciudad = "Malaga"; Integer
-			 * codigoPostal = 29000; String pais = "España";
-			 * 
-			 * individual.setApellido(apellido); individual.setCiudad(ciudad);
-			 * individual.setCodigopostal(codigoPostal); individual.setDireccion(direccion);
-			 * individual.setEstado(estado);
-			 * individual.setFecha_nacimiento(fechaNacimiento);
-			 * individual.setFechaAlta(fechaAlta); individual.setId(Long.valueOf(1));
-			 * individual.setDireccion(direccion); individual.setPais(pais);
-			 * 
-			 * em.persist(individual);
-			 */
+			
+			  Individual individual = new Individual(); String apellido = "DeTal"; String
+			  identificacion = "11111111F"; Boolean estado = true; Date fechaAlta =
+			  Date.valueOf("2012-03-20"); Date fechaNacimiento =Date.valueOf("2000-03-20");
+			  String direccion = "C/ Pito, 23"; String ciudad = "Malaga"; Integer
+			  codigoPostal = 29000; String pais = "España";
+			  
+			  individual.setName(usuario2.getUser());
+			  individual.setIdentification(identificacion);
+			  individual.setApellido(apellido); 
+			  individual.setCiudad(ciudad);
+			  individual.setCodigopostal(codigoPostal);
+			  individual.setDireccion(direccion);
+			  individual.setEstado(estado);
+			  individual.setFecha_nacimiento(fechaNacimiento);
+			  individual.setFechaAlta(fechaAlta);
+			  individual.setDireccion(direccion); 
+			  individual.setPais(pais);
+			  individual.setUsuarioIndividual(usuario2);
+			 
+			  
+			  em.persist(individual);
+			 
 			//fin inicilizacion de individual.
 		}
 		
