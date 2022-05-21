@@ -19,15 +19,15 @@
         	
         		<h:panelGrid columns ="3">
         			<h:outputText value = "Nombre de usuario Administrativo"/>
-        			<h:inputText id="user" required = "true" value="#{loginAdmin.usuario.user}" class="controls"/>
+        			<h:inputText id="user" required = "true" value="#{adminLogin.usuario.user}" class="controls"/>
         			<h:message id="userMessage" for="user"/>
         			
         			<h:outputText value="Contraseña:"/>
-                    <h:inputSecret id="pass" required="true" value="#{loginAdmin.usuario.password}" class="controls"/>
+                    <h:inputSecret id="pass" required="true" value="#{adminLogin.usuario.password}" class="controls"/>
                     <h:message id="passwordMessage" for="pass"/>
 
-                    <h:commandButton id="botonLogin" value="Entrar" action="#{loginAdmin.login()}" class="buttons"/>
-        			</h:panelGrid>
+                    <h:commandButton id="botonLogin" value="Entrar" action="#{adminLogin.login()}" class="buttons"/>
+        		</h:panelGrid>
 
 
 

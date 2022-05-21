@@ -13,20 +13,20 @@ import negocioEJBexcepcion.UsuarioException;
 import negocioEJBexcepcion.WrongPasswordException;
 import negocioEjb.GestionUsuarios;
 
-@Named(value = "loginAdmin")
+@Named(value = "adminLogin")
 @RequestScoped
 
-public class LoginAdmin {
+public class AdminLogin {
 	
 	@Inject
 	private  GestionUsuarios usuarioEjb;
 	
 	@Inject
-	private InfoSesion infoSesion;
+	private InfoSesion sesion;
 	
 	private Usuario usuario;
 	
-	public LoginAdmin() {
+	public AdminLogin() {
 		usuario = new Usuario();
 	}
 	
@@ -42,6 +42,8 @@ public class LoginAdmin {
 		
 		try {
 			usuarioEjb.AdminLogin(usuario.getUser(), usuario.getPassword());
+			sesion.setUsuario(usuario);
+			return "Ädministrativo.xhml";
 		}catch(UsuarioException e) {
 			FacesMessage fm = new FacesMessage("La cuenta no existe");
 			FacesContext.getCurrentInstance().addMessage("login:user", fm);

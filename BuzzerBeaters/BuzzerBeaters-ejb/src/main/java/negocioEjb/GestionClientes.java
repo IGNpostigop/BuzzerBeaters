@@ -9,8 +9,10 @@ import es.uma.BuzzerBeaters.Empresa;
 import es.uma.BuzzerBeaters.Individual;
 import es.uma.BuzzerBeaters.Usuario;
 import negocioEJBexcepcion.ClienteDeBajaException;
+import negocioEJBexcepcion.ClienteExistenteException;
 import negocioEJBexcepcion.ClienteNoEncontradoException;
 import negocioEJBexcepcion.CuentaException;
+import negocioEJBexcepcion.UserNotAdminException;
 import negocioEJBexcepcion.UsuarioException;
 
 @Local
@@ -24,12 +26,13 @@ public interface GestionClientes {
 	 * @throws UsuarioException 
 	 **/
 	public void crearClienteIndividual(Usuario admin, Cliente individual)
-			throws UsuarioException;
+			throws UsuarioException, UserNotAdminException, ClienteExistenteException;
 	/*
 	 * Lo mismo que anterriormente pero para empresas
 	 */
 	
-	public void crearClienteEmpresa(Usuario admin, Cliente individual) throws UsuarioException;
+	public void crearClienteEmpresa(Usuario admin, Cliente empresa)
+			throws UsuarioException, UserNotAdminException, ClienteExistenteException;
 //	/**
 //	 * Este método debe permitir modificar la identificación de un cliente
 //	 * Debe comprobar que el cliente existe. En caso contrario debe lanzar una excepción
@@ -51,8 +54,8 @@ public interface GestionClientes {
 	 * Debe comprobar que el cliente existe. En caso contrario debe lanzar una excepción
 	 * @throws UsuarioException 
 	 */
-	public void bajaCliente (Usuario admin, String idCliente) throws UsuarioException, ClienteNoEncontradoException, 
-			ClienteDeBajaException, CuentaException;
+	public void bajaCliente (Usuario admin, Cliente cliente) throws UsuarioException, ClienteNoEncontradoException, 
+			ClienteDeBajaException, CuentaException, UserNotAdminException;
 	
 	/**
 	 * @param admin
@@ -63,16 +66,15 @@ public interface GestionClientes {
 	 * Este método activará un cliente anteriormente de baja
 	 */
 	
-	public void activaCliente(Usuario admin, String idCliente) throws UsuarioException, ClienteNoEncontradoException, 
-		ClienteDeBajaException;
+	public void activaCliente(Usuario admin, Cliente cliente) throws UsuarioException, ClienteNoEncontradoException, 
+	ClienteDeBajaException, UserNotAdminException ;
 	
 	/**
 	 * Este método debe permitir modificar los atributos de un cliente
 	 * @throws ClienteNoEncontradoException 
 	 */
 
-	public void modificarClienteIndividual(Usuario admin, String idCliente, Individual individual) throws UsuarioException,
-			ClienteNoEncontradoException ;
+	public void modificarClienteIndividual(Usuario admin, String idCliente, Individual individual) throws UsuarioException, ClienteNoEncontradoException, UserNotAdminException;
 	
 	/**
 	 * Igual que el anterior pero para clientes empresas
@@ -84,8 +86,7 @@ public interface GestionClientes {
 	 */
 	
 	
-	public void modificarClienteEmpresa(Usuario admin, String idCliente, Empresa empresa) throws UsuarioException, 
-			ClienteNoEncontradoException;
+	public void modificarClienteEmpresa(Usuario admin, String idCliente, Empresa empresa) throws UsuarioException, ClienteNoEncontradoException, UserNotAdminException ;
 
 	public List<Cliente> getClientes();
 

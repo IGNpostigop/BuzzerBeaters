@@ -19,8 +19,10 @@ import es.uma.BuzzerBeaters.Individual;
 import es.uma.BuzzerBeaters.PersonaAutorizada;
 import es.uma.BuzzerBeaters.Usuario;
 import negocioEJBexcepcion.ClienteDeBajaException;
+import negocioEJBexcepcion.ClienteExistenteException;
 import negocioEJBexcepcion.ClienteNoEncontradoException;
 import negocioEJBexcepcion.CuentaException;
+import negocioEJBexcepcion.UserNotAdminException;
 import negocioEJBexcepcion.UsuarioException;
 
 @Stateless
@@ -35,7 +37,7 @@ public class ClientesEJB implements GestionClientes {
 	@Override
 	//RF2: Dar de alta a un cliente individual
 	public void crearClienteIndividual(Usuario admin, Cliente individual)
-			throws UsuarioException {
+			throws UsuarioException, UserNotAdminException, ClienteExistenteException {
 
 		Individual clienteIndividualEntity = em.find(Individual.class, individual.getIdentification());
 
@@ -46,11 +48,11 @@ public class ClientesEJB implements GestionClientes {
 		}
 
 		if (!administrador.isAdministrador()) {
-			throw new UsuarioException("El usuario no tiene los privilegios suficientes para la operación");
+			throw new UserNotAdminException("El usuario no tiene los privilegios suficientes para la operación");
 		}
 
 		if (clienteIndividualEntity != null) {
-			throw new UsuarioException("El cliente individual ya existe");
+			throw new ClienteExistenteException("El cliente individual ya existe");
 		}
 
 		em.persist(individual);
@@ -60,7 +62,7 @@ public class ClientesEJB implements GestionClientes {
 	@Override
 	//RF2: Dar de alta a un cliente empresa
 	public void crearClienteEmpresa(Usuario admin, Cliente empresa)
-			throws UsuarioException {
+			throws UsuarioException, UserNotAdminException, ClienteExistenteException  {
 
 		Empresa clienteEmpresaEntity = em.find(Empresa.class, empresa.getIdentification());
 
@@ -71,11 +73,11 @@ public class ClientesEJB implements GestionClientes {
 		}
 
 		if (!administrador.isAdministrador()) {
-			throw new UsuarioException("El usuario no tiene los privilegios suficientes para la operación");
+			throw new UserNotAdminException("El usuario no tiene los privilegios suficientes para la operación");
 		}
 
 		if (clienteEmpresaEntity != null) {
-			throw new UsuarioException("El cliente empresa ya existe");
+			throw new ClienteExistenteException("El cliente empresa ya existe");
 		}
 
 		em.persist(empresa);
@@ -92,8 +94,8 @@ public class ClientesEJB implements GestionClientes {
 	
 	@Override
 	//RF4: Dar de baja a un cliente
-	public void bajaCliente(Usuario admin, String idCliente) throws UsuarioException, ClienteNoEncontradoException, 
-			ClienteDeBajaException, CuentaException {
+	public void bajaCliente(Usuario admin, Cliente cliente) throws UsuarioException, ClienteNoEncontradoException, 
+			ClienteDeBajaException, CuentaException, UserNotAdminException {
 		// TODO Auto-generated method stub
 		Usuario administrador = em.find(Usuario.class, admin.getUser());
 		
@@ -102,11 +104,11 @@ public class ClientesEJB implements GestionClientes {
 		}
 
 		if (!administrador.isAdministrador()) {
-			throw new UsuarioException("El usuario no tiene los privilegios suficientes para la operación");
+			throw new UserNotAdminException("El usuario no tiene los privilegios suficientes para la operación");
 		}
 		
 		
-		Cliente clienteEntity = em.find(Cliente.class, idCliente);
+		Cliente clienteEntity = em.find(Cliente.class, cliente);
 		
 		if(clienteEntity == null) {
 			throw new ClienteNoEncontradoException("El cliente no existe\n");
@@ -125,8 +127,8 @@ public class ClientesEJB implements GestionClientes {
 	}
 	
 	@Override
-	public void activaCliente(Usuario admin, String idCliente) throws UsuarioException, ClienteNoEncontradoException, 
-			ClienteDeBajaException {
+	public void activaCliente(Usuario admin, Cliente cliente) throws UsuarioException, ClienteNoEncontradoException, 
+			ClienteDeBajaException, UserNotAdminException {
 		// TODO Auto-generated method stub
 		Usuario administrador = em.find(Usuario.class, admin.getUser());
 		
@@ -135,11 +137,11 @@ public class ClientesEJB implements GestionClientes {
 		}
 
 		if (!administrador.isAdministrador()) {
-			throw new UsuarioException("El usuario no tiene los privilegios suficientes para la operación");
+			throw new UserNotAdminException("El usuario no tiene los privilegios suficientes para la operación");
 		}
 		
 		
-		Cliente clienteEntity = em.find(Cliente.class, idCliente);
+		Cliente clienteEntity = em.find(Cliente.class, cliente);
 		
 		if(clienteEntity == null) {
 			throw new ClienteNoEncontradoException("El cliente no existe\n");
@@ -153,7 +155,7 @@ public class ClientesEJB implements GestionClientes {
 	
 	@Override
 	//RF3: Modificar los datos de un cliente individual
-	public void modificarClienteIndividual(Usuario admin, String idCliente, Individual individual) throws UsuarioException, ClienteNoEncontradoException {
+	public void modificarClienteIndividual(Usuario admin, String idCliente, Individual individual) throws UsuarioException, ClienteNoEncontradoException, UserNotAdminException {
 		Usuario administrador = em.find(Usuario.class, admin.getUser());
 		
 		if (administrador == null) { 
@@ -161,7 +163,7 @@ public class ClientesEJB implements GestionClientes {
 		}
 
 		if (!administrador.isAdministrador()) {
-			throw new UsuarioException("El usuario no tiene los privilegios suficientes para la operación");
+			throw new  UserNotAdminException("El usuario no tiene los privilegios suficientes para la operación");
 		}
 		
 		Individual clienteIndividualEntity = em.find(Individual.class,idCliente);
@@ -177,7 +179,7 @@ public class ClientesEJB implements GestionClientes {
 	
 	@Override
 	//RF3: Modificar los datos de un cliente empresa
-	public void modificarClienteEmpresa(Usuario admin, String idCliente, Empresa empresa) throws UsuarioException, ClienteNoEncontradoException {
+	public void modificarClienteEmpresa(Usuario admin, String idCliente, Empresa empresa) throws UsuarioException, ClienteNoEncontradoException, UserNotAdminException {
 		Usuario administrador = em.find(Usuario.class, admin.getUser());
 		
 		if (administrador == null) { 
@@ -185,7 +187,7 @@ public class ClientesEJB implements GestionClientes {
 		}
 
 		if (!administrador.isAdministrador()) {
-			throw new UsuarioException("El usuario no tiene los privilegios suficientes para la operación");
+			throw new UserNotAdminException("El usuario no tiene los privilegios suficientes para la operación");
 		}
 		
 		Empresa clienteEmpresaEntity = em.find(Empresa.class,idCliente);
