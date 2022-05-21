@@ -22,7 +22,7 @@ public class LoginAdmin {
 	private  GestionUsuarios usuarioEjb;
 	
 	@Inject
-	private SessionInfo infoSesion;
+	private InfoSesion infoSesion;
 	
 	private Usuario usuario;
 	
