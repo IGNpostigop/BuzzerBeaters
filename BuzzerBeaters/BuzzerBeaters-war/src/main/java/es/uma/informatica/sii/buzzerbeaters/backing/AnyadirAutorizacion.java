@@ -8,8 +8,10 @@ import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import es.uma.BuzzerBeaters.CuentaFintech;
 import es.uma.BuzzerBeaters.PersonaAutorizada;
 import es.uma.BuzzerBeaters.Usuario;
+import negocioEJBexcepcion.PersonaAutorizadaSinAdmin;
 import negocioEJBexcepcion.UsuarioException;
 import negocioEjb.GestionPersonasAutorizadas;
 
@@ -24,6 +26,7 @@ public class AnyadirAutorizacion
 	
 	private Usuario user;
 	private PersonaAutorizada pa;
+	private CuentaFintech cf;
 	private List<PersonaAutorizada> listaAutorizaciones;
 	
 	AnyadirAutorizacion()
@@ -48,6 +51,14 @@ public class AnyadirAutorizacion
 		this.pa = pa;
 	}
 
+	public CuentaFintech getCf() {
+		return cf;
+	}
+
+	public void setCf(CuentaFintech cf) {
+		this.cf = cf;
+	}
+
 	public List<PersonaAutorizada> getListaAutorizaciones() {
 		return listaAutorizaciones;
 	}
@@ -61,12 +72,17 @@ public class AnyadirAutorizacion
 		try {
 			
 			user = sesion.getUsuario();
-			gestionPA.crearPersonaAutorizada(pa);
-			return "paginaprincipalAdmin.xhtml";
+			gestionPA.crearPersonaAutorizada(user,listaAutorizaciones,cf);
+			return "paginaadmin.xhtml";
 			
-		}catch(UsuarioException e) {//Revisar si esto esta correcto antes de entregar
+		}catch(UsuarioException e) {
 			
-			FacesMessage fm = new FacesMessage("La persona ya estaba autorizada");
+			FacesMessage fm = new FacesMessage("El usuario existe");
+			FacesContext.getCurrentInstance().addMessage("anyadirAutorizacion", fm);
+			
+		}catch(PersonaAutorizadaSinAdmin e) {
+			
+			FacesMessage fm = new FacesMessage("El cliente no es administrativo");
 			FacesContext.getCurrentInstance().addMessage("anyadirAutorizacion", fm);
 			
 		}
