@@ -14,7 +14,26 @@
             </c:when>
             <c:otherwise>
             <h3><h:outputText id= "mensBienv" value ="Bienvenido #{infoSesion.usuario.user}"/></h3>
-
+             </h:outputFormat>
+					<div id="selectorAdmin">
+						<br/>
+						
+						<br>
+							<h:button outcome="altaClienteIndividual.xhtml" id="botonAltaIndividual" value="Alta de un cliente Individual" class="buttons"/>
+						</br>
+						
+						<br>
+							<h:button outcome="altaClienteEmpresa.xhtml" id="botonAltaEmpresa" value="Alta de un cliente Empresa" class="buttons"/>
+						</br>
+						
+						<br>
+							<h:button outcome="altaClienteEmpresa.xhtml" id="botonAltaEmpresa" value="Alta de un cliente Empresa" class="buttons"/>
+						</br>
+						<br>
+							<h:button outcome="anadirAut.xhtml" id="botonAnadirAut" value="Añade persona autorizada" class="buttons"/>
+						</br>
+				</div>
+					
             </c:otherwise>
         </c:choose>
 
