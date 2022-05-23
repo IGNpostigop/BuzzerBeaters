@@ -23,7 +23,7 @@
                         <h:message id="passwordMessage" for="pass"/>
                         
                         <h:outputText value="Nombre:"/>
-                        <h:inputText id="nombre" required="true" value="#{altaCIndividual.individual.nombre}" class="controls"/>
+                        <h:inputText id="nombre" required="true" value="#{altaCIndividual.individual.name}" class="controls"/>
                         <h:message id="nombreMessage" for="nombre"/>
                         
                         <h:outputText value="Apellido:"/>
@@ -31,27 +31,20 @@
                         <h:message id="apellidoMessage" for="apellido"/>
 
                         <h:outputText value="Fecha de Nacimiento"/>
-                        <h:inputText id="fechaNacimiento" required="true" value="#{altaCIndividual.individual.fechaNacimiento}" class="controls"/>
+                        <h:inputText id="fechaNacimiento" required="false" value="#{altaCIndividual.individual.fecha_nacimiento}" class="controls"/>
                         <h:message id="fechaNacimientoMessage" for="fechaNacimiento"/>
                         
                         <h:outputText value="Identificacion"/>
                         <h:inputText id="identificacion" required="true" value="#{altaCIndividual.individual.identificacion}" class="controls"/>
                         <h:message id="identificacionMessage" for="identificacion"/>
                         
-                        <h:outputText value="Tipo de Usuario:"/>
-                        <h:inputText id="typeUsuario" required="true" value="#{altaCIndividual.usuario.tipo}" class="controls"/>
-                        <h:message id="typeUserMessage" for="typeUsuario"/>
-                        
-                        <h:outputText value="Tipo de Cliente:"/>
-                        <h:inputText id="typeClient" required="true" value="#{altaCIndividual.individual.tipoCliente}" class="controls"/>
-                        <h:message id="typeClientMessage" for="typeClient"/>
                         
                         <h:outputText value="Estado:"/>
                         <h:inputText id="state" required="true" value="#{altaCIndividual.individual.estado}" class="controls"/>
                         <h:message id="stateMessage" for="state"/>
                         
                         <h:outputText value="Fecha de alta:"/>
-                        <h:inputText id="fechaAlta" required="true" value="#{altaCIndividual.individual.fechaAlta}" class="controls"/>
+                        <h:inputText id="fechaAlta" required="false" value="#{altaCIndividual.individual.fechaAlta}" class="controls"/>
                         <h:message id="fechaAltaMessage" for="fechaAlta"/>
                         
                         <h:outputText value="Fecha de baja:"/>
