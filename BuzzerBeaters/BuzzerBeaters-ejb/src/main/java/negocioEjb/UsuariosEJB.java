@@ -94,7 +94,25 @@ public class UsuariosEJB implements GestionUsuarios{
 
 		return adminEntity;
 	}
+	
+    @Override
+    public void compruebaLogin(Usuario u) throws UsuarioException, WrongPasswordException {
+    	Usuario user = em.find(Usuario.class, u);
+        if (user == null) {
+            throw new UsuarioException();
+        }
 
+        if (!user.getPassword().equals(u.getPassword())) {
+            throw new WrongPasswordException();
+        }
 
+    }
 
+	@Override
+    public Usuario refrescarUsuario(Usuario u) throws UsuarioException, WrongPasswordException {
+    	compruebaLogin(u);
+        Usuario user = em.find(Usuario.class, u);
+        em.refresh(user);
+        return user;
+    }
 }

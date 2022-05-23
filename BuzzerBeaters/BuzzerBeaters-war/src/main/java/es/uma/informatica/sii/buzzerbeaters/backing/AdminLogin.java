@@ -2,6 +2,7 @@ package es.uma.informatica.sii.buzzerbeaters.backing;
 
 
 import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
@@ -43,18 +44,18 @@ public class AdminLogin {
 		try {
 			usuarioEjb.AdminLogin(usuario.getUser(), usuario.getPassword());
 			sesion.setUsuario(usuario);
-			return "Ädministrativo.xhml";
+			return "paginaadmin.xhtml";
 		}catch(UsuarioException e) {
 			FacesMessage fm = new FacesMessage("La cuenta no existe");
-			FacesContext.getCurrentInstance().addMessage("login:user", fm);
+			FacesContext.getCurrentInstance().addMessage("adminLogin:user", fm);
 		}catch(WrongPasswordException e) {
 			FacesMessage fm = new FacesMessage("Password incorrecto");
-			FacesContext.getCurrentInstance().addMessage("login:pass", fm);		
+			FacesContext.getCurrentInstance().addMessage("adminLogin:pass", fm);		
 		}catch(UserNotAdminException e) {
 			FacesMessage fm = new FacesMessage("El usuario no es administrativo");
-			FacesContext.getCurrentInstance().addMessage("login:tipo", fm);		
+			FacesContext.getCurrentInstance().addMessage("adminLogin:botonLogin", fm);		
 		}
-		return null;
+		return "AdminLogin.xhtml";
 	}
 
 }

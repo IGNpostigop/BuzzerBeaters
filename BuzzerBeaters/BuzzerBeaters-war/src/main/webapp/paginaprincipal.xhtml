@@ -5,15 +5,18 @@
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-        <title>Lista de contactos</title>
+        <title>Pagina Principal de Cliente</title>
     </h:head>
     <h:body>
         <c:choose>
             <c:when test="#{empty infoSesion.usuario}">
                 <p>No tiene autorización para ver esta página, debe autenticarse antes.</p>
+                <div>
+              	<p>Vuelve <h:link outcome="index.xhtml">entrada</h:link></p>
+            	</div>
             </c:when>
             <c:otherwise>
-            <h3><h:outputText id= "mensBienv" value ="Bienvenido #{loginAdmin.usuario.user}"/></h3>
+            <h3><h:outputText id= "mensBienv" value ="Bienvenido #{RegularLogin.usuario.user} a la Página principal de clientes"/></h3>
 <!--                 <h:form id="contactos"> -->
 <!--                     <h:dataTable value="#{infoSesion.contactos}" var="c"> -->
 <!--                         <h:column> -->

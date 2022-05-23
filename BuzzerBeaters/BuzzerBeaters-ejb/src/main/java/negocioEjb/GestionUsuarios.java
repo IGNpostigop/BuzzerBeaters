@@ -44,5 +44,14 @@ public interface GestionUsuarios {
 	public Usuario Login(String userName, String password) throws UsuarioException, WrongPasswordException;
 	
 	public Usuario AdminLogin(String adminName, String password) throws UsuarioException, WrongPasswordException, UserNotAdminException;
+	
 
-}
+    public Usuario refrescarUsuario(Usuario u) throws UsuarioException, WrongPasswordException;
+    
+    
+    public void compruebaLogin(Usuario u) throws UsuarioException, WrongPasswordException;
+    
+
+    }
+
+

@@ -16,8 +16,16 @@ import negocioEjb.GestionUsuarios;
 @Named(value = "regularlogin")
 @SessionScoped
 public class RegularLogin implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Inject
-	private GestionUsuarios gestionUsuario;
+	private GestionUsuarios usuarioEjb;
+	
+	@Inject
+	private InfoSesion sesion;
 	private Usuario usuario;
 	
 	public RegularLogin () {
@@ -34,18 +42,21 @@ public class RegularLogin implements Serializable{
 	
 	public String login()  {
 		try {
-			gestionUsuario.Login(usuario.getUser(), usuario.getPassword());			
+			usuarioEjb.Login(usuario.getUser(), usuario.getPassword());	
+			sesion.setUsuario(usuario);
+			return "paginaprincipal.xhtml";
 			}
 		catch (UsuarioException e) {
 			FacesMessage fm = new FacesMessage("La cuenta no existe");
 			FacesContext.getCurrentInstance().addMessage("login:usuario", fm);
-			e.printStackTrace();
-			// TODO: handle exception
+		
+
 		} catch (WrongPasswordException e) {
 			FacesMessage fm = new FacesMessage("La contraseña no es correcta");
 			FacesContext.getCurrentInstance().addMessage("login:usuario", fm);
-			e.printStackTrace();
+
 		}
-		return "paginaprincipal.xhtml";
+		return "index.xhtml";
+		
 	}
 }
