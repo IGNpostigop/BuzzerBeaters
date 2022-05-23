@@ -32,19 +32,23 @@ public class AltaCIndividual
 		ind = new Individual();
 	}
 
-	public Usuario getUser() {
+	public Usuario getUser() 
+	{
 		return user;
 	}
 
-	public void setUser(Usuario user) {
+	public void setUser(Usuario user) 
+	{
 		this.user = user;
 	}
 
-	public Individual getInd() {
+	public Individual getInd() 
+	{
 		return ind;
 	}
 
-	public void setInd(Individual ind) {
+	public void setInd(Individual ind) 
+	{
 		this.ind = ind;
 	}
 	
