@@ -8,6 +8,7 @@ import es.uma.BuzzerBeaters.Cliente;
 import es.uma.BuzzerBeaters.Empresa;
 import es.uma.BuzzerBeaters.Individual;
 import es.uma.BuzzerBeaters.Usuario;
+import es.uma.proyecto.ejb.exceptions.ClienteNoExistenteException;
 import negocioEJBexcepcion.ClienteDeBajaException;
 import negocioEJBexcepcion.ClienteExistenteException;
 import negocioEJBexcepcion.ClienteNoEncontradoException;
@@ -89,6 +90,8 @@ public interface GestionClientes {
 	public void modificarClienteEmpresa(Usuario admin, String idCliente, Empresa empresa) throws UsuarioException, ClienteNoEncontradoException, UserNotAdminException ;
 
 	public List<Cliente> getClientes();
+	
+	public Cliente getCliente(String identificacion) throws ClienteExistenteException;
 
 	
 
