@@ -8,7 +8,7 @@ import javax.inject.Named;
 
 import es.uma.BuzzerBeaters.Usuario;
 
-@Named (value = "InfoSesion")
+@Named (value = "infoSesion")
 @SessionScoped
 public class InfoSesion implements Serializable {
 	private Usuario usuario;

@@ -44,7 +44,6 @@ public class BaseDatos {
 		individual.setEstado(true);
 		individual.setFecha_nacimiento(fechaNacimiento);
 		individual.setFechaAlta(fechaAlta);
-		individual.setId(Long.valueOf(1));
 		individual.setIdentification(identificacion);
 		individual.setName(nombre);
 		individual.setPais(pais);

@@ -56,7 +56,7 @@ public class RegularLogin implements Serializable{
 			FacesContext.getCurrentInstance().addMessage("login:pass", fm);
 
 		}
-		return "index.xhtml";
+		return null;
 		
 	}
 }
