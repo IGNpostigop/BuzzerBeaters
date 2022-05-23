@@ -11,6 +11,7 @@ import es.uma.BuzzerBeaters.Cuenta;
 import es.uma.BuzzerBeaters.CuentaReferencia;
 import es.uma.BuzzerBeaters.PooledAccount;
 import es.uma.BuzzerBeaters.Segregada;
+import es.uma.proyecto.ejb.exceptions.CuentaReferenciaNoExistenteException;
 import negocioEJBexcepcion.CuentaException;
 
 @Local
@@ -35,5 +36,5 @@ public interface GestionCuentas {
 	
 	public void cerrarCuentaPooled (PooledAccount pooled) throws CuentaException;
 
-
+	public CuentaReferencia getCuentaReferencia(String iban) throws CuentaException;
 }
