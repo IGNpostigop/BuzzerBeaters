@@ -1,6 +1,8 @@
 package negocioEjb;
 
 import java.io.Closeable;
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -56,6 +58,8 @@ public class ClientesEJB implements GestionClientes {
 			throw new ClienteExistenteException("El cliente individual ya existe");
 		}
 
+		individual.setFechaAlta(Date.valueOf(LocalDate.now()));
+		individual.setEstado(true);
 		em.persist(individual);
 
 	}
@@ -123,6 +127,7 @@ public class ClientesEJB implements GestionClientes {
 					throw new CuentaException("cuenta "+ cuentaFintech.getIban() + " aun abierta");
 				}
 			}
+			clienteEntity.setFechaBaja(Date.valueOf(LocalDate.now()));
 			clienteEntity.setEstado(false);	
 		}	
 	}

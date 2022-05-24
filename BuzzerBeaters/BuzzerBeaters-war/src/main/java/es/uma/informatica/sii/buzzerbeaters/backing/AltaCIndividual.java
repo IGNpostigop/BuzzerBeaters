@@ -11,7 +11,6 @@ import es.uma.BuzzerBeaters.Usuario;
 import negocioEJBexcepcion.ClienteExistenteException;
 import negocioEJBexcepcion.UserNotAdminException;
 import negocioEJBexcepcion.UsuarioException;
-import negocioEjb.ClientesEJB;
 import negocioEjb.GestionClientes;
 
 @Named(value = "altaCIndividual")
