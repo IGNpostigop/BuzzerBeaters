@@ -21,6 +21,7 @@ import es.uma.BuzzerBeaters.Usuario;
 import negocioEJBexcepcion.ClienteExistenteException;
 import negocioEJBexcepcion.ClienteNoEncontradoException;
 import negocioEJBexcepcion.CuentaException;
+import negocioEJBexcepcion.UserNotAdminException;
 import negocioEJBexcepcion.UsuarioException;
 import negocioEjb.GestionClientes;
 import negocioEjb.GestionCuentas;
@@ -161,11 +162,20 @@ public class AbrirCuentaPooled {
 			//----------//
 			
 			try {
-				cuentas.aperturaCtaPooled(poolAcc);
-				
-			} catch (CuentaException e) {
-				
+				cuentas.aperturaCtaPooled(user, poolAcc);
+			} catch (UsuarioException e) {
+				FacesMessage fm = new FacesMessage("El usuario no existe");
+				FacesContext.getCurrentInstance().addMessage("abrirSegregada:usuario", fm);	
 			}
+			 catch (UserNotAdminException e) {
+				FacesMessage fm = new FacesMessage("El usuario no tiene los privilegios suficientes");
+				FacesContext.getCurrentInstance().addMessage("abrirSegregada:usuario", fm);	
+						
+			} catch (CuentaException e) {
+				FacesMessage fm = new FacesMessage("La cuenta ya existe");
+				FacesContext.getCurrentInstance().addMessage("abrirSegregada:boton", fm);	
+			}
+			
 			return "paginaadmin.xhtml";
 			
 		} catch (ClienteNoEncontradoException e) {
@@ -174,16 +184,14 @@ public class AbrirCuentaPooled {
 		} catch (CuentaException e) {
 			FacesMessage fm = new FacesMessage("La cuenta referencia no existe");
 			FacesContext.getCurrentInstance().addMessage("abrirSegregada:ibanReferencia", fm);
-		} catch (UsuarioException e) {
-			FacesMessage fm = new FacesMessage("No es administrativo");
-			FacesContext.getCurrentInstance().addMessage("abrirSegregada:boton", fm);
-		}
+
 		
 		return null;
 		
 		}
+		return "paginaadmin.xhtml";
 	}
+}
 	
 	
 
-}

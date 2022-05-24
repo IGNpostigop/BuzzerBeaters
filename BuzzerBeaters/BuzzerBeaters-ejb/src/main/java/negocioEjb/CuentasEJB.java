@@ -12,7 +12,10 @@ import es.uma.BuzzerBeaters.CuentaReferencia;
 import es.uma.BuzzerBeaters.DepositadaEn;
 import es.uma.BuzzerBeaters.PooledAccount;
 import es.uma.BuzzerBeaters.Segregada;
+import es.uma.BuzzerBeaters.Usuario;
 import negocioEJBexcepcion.CuentaException;
+import negocioEJBexcepcion.UserNotAdminException;
+import negocioEJBexcepcion.UsuarioException;
 
 @Stateless
 public class CuentasEJB implements GestionCuentas {
@@ -36,8 +39,19 @@ public class CuentasEJB implements GestionCuentas {
 
 	@Override
 	//RF5: Apertura de cuenta pooled
-	public void aperturaCtaPooled(PooledAccount pooled) throws CuentaException{
+	public void aperturaCtaPooled(Usuario admin, PooledAccount pooled) throws CuentaException, UsuarioException, UserNotAdminException{
 		PooledAccount pooledBd = em.find(PooledAccount.class, pooled.getIban());
+		
+		Usuario administrador = em.find(Usuario.class, admin.getUser());
+
+		if (administrador == null) { 
+			throw new UsuarioException("El usuario no exsite");
+		}
+
+		if (!administrador.isAdministrador()) {
+			throw new UserNotAdminException("El usuario no tiene los privilegios suficientes para la operación");
+		}
+
 		if(pooledBd != null){
 			throw new CuentaException("La cuenta ya existe"); 
 		}else {
