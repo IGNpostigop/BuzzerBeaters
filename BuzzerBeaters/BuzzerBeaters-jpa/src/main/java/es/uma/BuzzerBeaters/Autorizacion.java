@@ -57,6 +57,9 @@ public class Autorizacion {
 		this.id = id;
 	}
 
+	
+	//Los que son de tipo "A" solo pueden ver las cuentas y datos asociados (como transacciones)
+	//Los que son de tipo "B" pueden hacer lo que tipo A + pueden realizar operaciones (transacciones y cambios de divisa).
 	public String getTipo() {
 		return tipo;
 	}

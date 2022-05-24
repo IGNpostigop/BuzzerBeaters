@@ -11,7 +11,12 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import es.uma.BuzzerBeaters.Autorizacion;
+import es.uma.BuzzerBeaters.AutorizacionID;
+import es.uma.BuzzerBeaters.CuentaFintech;
+import es.uma.BuzzerBeaters.Empresa;
 import es.uma.BuzzerBeaters.PersonaAutorizada;
+import es.uma.BuzzerBeaters.Usuario;
+import negocioEJBexcepcion.PersonaAutorizadaSinAdmin;
 import negocioEJBexcepcion.UsuarioException;
 
 @Stateless
@@ -24,10 +29,42 @@ public class PersonasAutorizadasEJB implements GestionPersonasAutorizadas{
 	private EntityManager em;
 	
 	@Override
-	public void crearPersonaAutorizada(PersonaAutorizada pAutorizada) {
+	public void crearPersonaAutorizada(Usuario user, List<PersonaAutorizada> listapa, CuentaFintech cf) throws PersonaAutorizadaSinAdmin, UsuarioException {
 		// TODO
 
-		em.persist(pAutorizada);
+		Usuario admin = em.find(Usuario.class, user.getUser());
+		
+		if (user == null) { 
+			throw new UsuarioException("El usuario no existe");
+		}
+		
+		if (!user.isAdministrador()) { 
+			throw new PersonaAutorizadaSinAdmin("El usuario no es administrativo");
+		}
+		
+		Empresa emp = em.find(Empresa.class, cf.getCliente().getIdentification());
+
+		List<Autorizacion> autorizaciones = emp.getAutorizacion();
+		
+		
+		for (PersonaAutorizada pa : listapa) {
+
+			Autorizacion aut = new Autorizacion();
+			aut.setTipo(null); //Se modificara despues cuando se elija el tipo
+
+			AutorizacionID idAut = new AutorizacionID();
+			idAut.setIdCliente(emp.getId());
+			idAut.setIdPersonaAutorizada(pa.getId());
+			
+			aut.setEmpresa(emp);
+			aut.setId(idAut);
+			aut.setPersonaAutorizada(pa);
+			em.persist(aut);
+			autorizaciones.add(aut);
+		}
+
+		em.merge(emp);
+		
 
 	}
 	
