@@ -8,7 +8,6 @@ import es.uma.BuzzerBeaters.Cliente;
 import es.uma.BuzzerBeaters.Empresa;
 import es.uma.BuzzerBeaters.Individual;
 import es.uma.BuzzerBeaters.Usuario;
-import es.uma.proyecto.ejb.exceptions.ClienteNoExistenteException;
 import negocioEJBexcepcion.ClienteDeBajaException;
 import negocioEJBexcepcion.ClienteExistenteException;
 import negocioEJBexcepcion.ClienteNoEncontradoException;

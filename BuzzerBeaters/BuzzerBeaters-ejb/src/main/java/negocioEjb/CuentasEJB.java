@@ -87,9 +87,9 @@ public class CuentasEJB implements GestionCuentas {
 	}
 	
 	
-	/*public CuentaReferencia getCuentaReferencia(String iban) throws CuentaException{
-		TypedQuery<CuentaReferencia> query = em.createQuery("SELECT c FROM CuentaReferencia c where c.iban = :fiban", CuentaReferencia.class);
-		query.setParameter("fiban", iban);
+	public CuentaReferencia getCuentaReferencia(String iban) throws CuentaException{
+		TypedQuery<CuentaReferencia> query = em.createQuery("SELECT c FROM CuentaReferencia c where c.iban = :ibanR", CuentaReferencia.class);
+		query.setParameter("ibanR", iban);
 		CuentaReferencia cuenta = query.getSingleResult();
 		
 		if(cuenta == null) {
@@ -98,7 +98,7 @@ public class CuentasEJB implements GestionCuentas {
 		}
 		
 		return cuenta;
-	}*/
+	}
 	
 
 }

@@ -1,6 +1,7 @@
 package es.uma.informatica.sii.buzzerbeaters.backing;
 
-import java.time.LocalDateTime;
+import java.sql.Date;
+import java.time.LocalDate;
 
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
@@ -14,7 +15,6 @@ import es.uma.BuzzerBeaters.Segregada;
 import es.uma.BuzzerBeaters.Usuario;
 import negocioEJBexcepcion.ClienteNoEncontradoException;
 import negocioEJBexcepcion.CuentaException;
-import negocioEJBexcepcion.UsuarioException;
 import negocioEjb.GestionClientes;
 import negocioEjb.GestionCuentas;
 
@@ -141,7 +141,7 @@ public String abrirSegregada() {
 			cuenta.setIban(this.getIban());
 			cuenta.setSwift(this.getSwift());
 			cuenta.setEstado(true);
-			cuenta.setFecha_apertura(LocalDateTime.now()); //DATE
+			cuenta.setFecha_apertura(Date.valueOf(LocalDate.now())); //DATE
 			cuenta.setFecha_cierre(null);
 			cuenta.setClasificacion("Segregada");
 			cuenta.setComision(this.getComision());
@@ -158,9 +158,6 @@ public String abrirSegregada() {
 		} catch (CuentaException e) {
 			FacesMessage fm = new FacesMessage("La cuenta referencia no existe");
 			FacesContext.getCurrentInstance().addMessage("abrirSegregada:ibanReferencia", fm);
-		} catch (UsuarioException e) {
-			FacesMessage fm = new FacesMessage("No es administrativo");
-			FacesContext.getCurrentInstance().addMessage("abrirSegregada:boton", fm);
 		}
 		
 		return null;

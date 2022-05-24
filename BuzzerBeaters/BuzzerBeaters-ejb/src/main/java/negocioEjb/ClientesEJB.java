@@ -19,7 +19,6 @@ import es.uma.BuzzerBeaters.Empresa;
 import es.uma.BuzzerBeaters.Individual;
 import es.uma.BuzzerBeaters.PersonaAutorizada;
 import es.uma.BuzzerBeaters.Usuario;
-import es.uma.proyecto.ejb.exceptions.ClienteNoExistenteException;
 import negocioEJBexcepcion.ClienteDeBajaException;
 import negocioEJBexcepcion.ClienteExistenteException;
 import negocioEJBexcepcion.ClienteNoEncontradoException;
@@ -203,7 +202,7 @@ public class ClientesEJB implements GestionClientes {
 		
 	}
 
-	/*@Override
+	@Override
 	public Cliente getCliente(String identificacion) throws ClienteNoEncontradoException{
 		TypedQuery<Individual> query = em.createQuery("SELECT i FROM Individual i where i.identificacion = :fiden", Individual.class);
 		query.setParameter("fiden", identificacion);
@@ -214,7 +213,7 @@ public class ClientesEJB implements GestionClientes {
 		}
 		
 		return cliente;
-	}*/
+	}
 }
 
 

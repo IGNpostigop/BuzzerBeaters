@@ -11,7 +11,6 @@ import es.uma.BuzzerBeaters.Cuenta;
 import es.uma.BuzzerBeaters.CuentaReferencia;
 import es.uma.BuzzerBeaters.PooledAccount;
 import es.uma.BuzzerBeaters.Segregada;
-import es.uma.proyecto.ejb.exceptions.CuentaReferenciaNoExistenteException;
 import negocioEJBexcepcion.CuentaException;
 
 @Local

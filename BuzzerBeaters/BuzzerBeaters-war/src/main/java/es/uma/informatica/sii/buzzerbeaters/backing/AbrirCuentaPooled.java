@@ -1,5 +1,7 @@
 package es.uma.informatica.sii.buzzerbeaters.backing;
 
+import java.sql.Date;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -131,7 +133,7 @@ public class AbrirCuentaPooled {
 			
 			poolAcc.setEstado(true);
 			
-			poolAcc.setFecha_apertura(LocalDateTime.now()); //DATE
+			poolAcc.setFecha_apertura(Date.valueOf(LocalDate.now())); //DATE
 			
 			poolAcc.setFecha_cierre(null);
 			
