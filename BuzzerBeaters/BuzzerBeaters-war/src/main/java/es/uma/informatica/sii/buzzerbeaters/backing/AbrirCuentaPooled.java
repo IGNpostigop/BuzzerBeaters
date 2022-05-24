@@ -2,7 +2,6 @@ package es.uma.informatica.sii.buzzerbeaters.backing;
 
 import java.sql.Date;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,7 +17,6 @@ import es.uma.BuzzerBeaters.DepositadaEn;
 import es.uma.BuzzerBeaters.DepositadaEnID;
 import es.uma.BuzzerBeaters.PooledAccount;
 import es.uma.BuzzerBeaters.Usuario;
-import negocioEJBexcepcion.ClienteExistenteException;
 import negocioEJBexcepcion.ClienteNoEncontradoException;
 import negocioEJBexcepcion.CuentaException;
 import negocioEJBexcepcion.UserNotAdminException;
@@ -40,6 +38,7 @@ public class AbrirCuentaPooled {
 	@Inject
 	GestionClientes clientes; //ejb 
 	
+	private Long id;
 	private PooledAccount poolAcc; 
 	private Usuario user; 
 	private String identificacion; 
@@ -80,6 +79,12 @@ public class AbrirCuentaPooled {
 	}
 	public void setUser(Usuario user) {
 		this.user = user;
+	}
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
 	}
 	public String getIdentificacion() {
 		return identificacion;
@@ -124,7 +129,7 @@ public class AbrirCuentaPooled {
 		
 		try {
 			
-			Cliente client = clientes.getCliente(this.getIdentificacion());
+			Cliente client = clientes.getCliente(this.id);
 			
 			PooledAccount poAc = new PooledAccount();
 			
@@ -162,28 +167,28 @@ public class AbrirCuentaPooled {
 			//----------//
 			
 			try {
-				cuentas.aperturaCtaPooled(user, poAc);
+				cuentas.aperturaCtaPooled(user, poAc, client, depositos);
 			} catch (UsuarioException e) {
 				FacesMessage fm = new FacesMessage("El usuario no existe");
-				FacesContext.getCurrentInstance().addMessage("abrirPooled:usuario", fm);	
+				FacesContext.getCurrentInstance().addMessage("abrirCuentaPooled:abrirCuenta", fm);	
 			}
 			 catch (UserNotAdminException e) {
 				FacesMessage fm = new FacesMessage("El usuario no tiene los privilegios suficientes");
-				FacesContext.getCurrentInstance().addMessage("abrirPooled:usuario", fm);	
+				FacesContext.getCurrentInstance().addMessage("abrirCuentaPooled:abrirCuenta", fm);	
 						
 			} catch (CuentaException e) {
 				FacesMessage fm = new FacesMessage("La cuenta ya existe");
-				FacesContext.getCurrentInstance().addMessage("abrirPooled:boton", fm);	
+				FacesContext.getCurrentInstance().addMessage("abrirCuentaPooled:abrirCuenta", fm);	
 			}
 			
 			return "paginaadmin.xhtml";
 			
 		} catch (ClienteNoEncontradoException e) {
 			FacesMessage fm = new FacesMessage("El cliente no existe");
-			FacesContext.getCurrentInstance().addMessage("abrirPooled:cliente", fm);
+			FacesContext.getCurrentInstance().addMessage("abrirCuentaPooled:abrirCuenta", fm);
 		} catch (CuentaException e) {
 			FacesMessage fm = new FacesMessage("La cuenta referencia no existe");
-			FacesContext.getCurrentInstance().addMessage("abrirPooled:ibanReferencia", fm);
+			FacesContext.getCurrentInstance().addMessage("abrirCuentaPooled:abrirCuenta", fm);
 
 		
 		return null;

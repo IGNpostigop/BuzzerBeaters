@@ -90,7 +90,7 @@ public interface GestionClientes {
 
 	public List<Cliente> getClientes();
 	
-	public Cliente getCliente(String identificacion) throws ClienteNoEncontradoException;
+	public Cliente getCliente(Long id) throws ClienteNoEncontradoException;
 
 	
 

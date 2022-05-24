@@ -1,5 +1,6 @@
 package es.uma.BuzzerBeaters;
 import javax.persistence.InheritanceType;
+import javax.persistence.NamedQuery;
 
 import java.util.List;
 import java.util.Objects;
@@ -14,6 +15,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="Cuenta")
+@NamedQuery(name="Cuenta.findAll", query="SELECT c FROM Cuenta c")
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class Cuenta {
 	

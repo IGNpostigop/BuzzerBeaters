@@ -9,6 +9,7 @@ import javax.ejb.Local;
 import es.uma.BuzzerBeaters.Cliente;
 import es.uma.BuzzerBeaters.Cuenta;
 import es.uma.BuzzerBeaters.CuentaReferencia;
+import es.uma.BuzzerBeaters.DepositadaEn;
 import es.uma.BuzzerBeaters.PooledAccount;
 import es.uma.BuzzerBeaters.Segregada;
 import es.uma.BuzzerBeaters.Usuario;
@@ -31,7 +32,7 @@ public interface GestionCuentas {
 	 */
 
 
-	public void aperturaCtaPooled(Usuario admin, PooledAccount pooled) throws CuentaException, UsuarioException, UserNotAdminException ;
+	public PooledAccount aperturaCtaPooled(Usuario admin, PooledAccount pooled, Cliente cliente, List<DepositadaEn> den) throws CuentaException, UsuarioException, UserNotAdminException ;
 	
 	public void cerrarCuenteSegregada (Segregada seg) throws CuentaException;
 	

@@ -8,6 +8,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
+import es.uma.BuzzerBeaters.Cliente;
 import es.uma.BuzzerBeaters.CuentaReferencia;
 import es.uma.BuzzerBeaters.DepositadaEn;
 import es.uma.BuzzerBeaters.PooledAccount;
@@ -51,7 +52,7 @@ public class CuentasEJB implements GestionCuentas {
 
 	@Override
 	//RF5: Apertura de cuenta pooled
-	public void aperturaCtaPooled(Usuario admin, PooledAccount pooled) throws CuentaException, UsuarioException, UserNotAdminException{
+	public PooledAccount aperturaCtaPooled(Usuario admin, PooledAccount pooled, Cliente cliente, List<DepositadaEn> den) throws CuentaException, UsuarioException, UserNotAdminException{
 		PooledAccount pooledBd = em.find(PooledAccount.class, pooled.getIban());
 		
 		Usuario administrador = em.find(Usuario.class, admin.getUser());
@@ -67,7 +68,10 @@ public class CuentasEJB implements GestionCuentas {
 		if(pooledBd != null){
 			throw new CuentaException("La cuenta ya existe"); 
 		}else {
-			em.persist(pooled);
+			pooled.setCliente(cliente);
+			pooled.setPooledDepositadaEn(den);
+			em.merge(pooled);
+			return pooled;
 		}
 	}
 
@@ -113,17 +117,30 @@ public class CuentasEJB implements GestionCuentas {
 	
 	
 	public CuentaReferencia getCuentaReferencia(String iban) throws CuentaException{
-		TypedQuery<CuentaReferencia> query = em.createQuery("SELECT c FROM CuentaReferencia c where c.iban = :ibanR", CuentaReferencia.class);
-		query.setParameter("ibanR", iban);
-		CuentaReferencia cuenta = query.getSingleResult();
-		
-		if(cuenta == null) {
+		{
+			CuentaReferencia cuenta = em.find(CuentaReferencia.class, iban);
 			
-			throw new CuentaException();
+			if(cuenta == null) {
+				
+				throw new CuentaException();
+			}
+			
+			return cuenta;
 		}
-		
-		return cuenta;
 	}
+	
+//	public CuentaReferencia getCuentaReferencia(String iban) throws CuentaException{
+//		TypedQuery<CuentaReferencia> query = em.createQuery("SELECT c FROM CuentaReferencia c where c.iban = :ibanR", CuentaReferencia.class);
+//		query.setParameter("ibanR", iban);
+//		CuentaReferencia cuenta = query.getSingleResult();
+//		
+//		if(cuenta == null) {
+//			
+//			throw new CuentaException();
+//		}
+//		
+//		return cuenta;
+//	}
 	
 
 }
