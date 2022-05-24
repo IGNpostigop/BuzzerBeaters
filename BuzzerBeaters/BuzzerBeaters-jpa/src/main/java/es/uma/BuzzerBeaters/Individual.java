@@ -6,12 +6,13 @@ import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-
+@NamedQuery(name="Individual.findAll", query="SELECT i FROM Cuenta i")
 
 public class Individual extends Cliente implements Serializable {
 	

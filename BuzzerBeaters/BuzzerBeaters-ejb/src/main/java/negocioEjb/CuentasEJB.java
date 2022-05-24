@@ -6,11 +6,16 @@ import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 
+import es.uma.BuzzerBeaters.CuentaReferencia;
 import es.uma.BuzzerBeaters.DepositadaEn;
 import es.uma.BuzzerBeaters.PooledAccount;
 import es.uma.BuzzerBeaters.Segregada;
+import es.uma.BuzzerBeaters.Usuario;
 import negocioEJBexcepcion.CuentaException;
+import negocioEJBexcepcion.UserNotAdminException;
+import negocioEJBexcepcion.UsuarioException;
 
 @Stateless
 public class CuentasEJB implements GestionCuentas {
@@ -23,8 +28,20 @@ public class CuentasEJB implements GestionCuentas {
 	
 	@Override
 	//RF5: Apertura de cuenta segregada
-	public void aperturaCtaSegregated(Segregada segregada) throws CuentaException {
+	public void aperturaCtaSegregated(Usuario admin, Segregada segregada) throws CuentaException, UsuarioException, UserNotAdminException {
 		Segregada segBd = em.find(Segregada.class, segregada.getIban());
+		
+		Usuario administrador = em.find(Usuario.class, admin.getUser());
+
+		if (administrador == null) { 
+			throw new UsuarioException("El usuario no exsite");
+		}
+
+		if (!administrador.isAdministrador()) {
+			throw new UserNotAdminException("El usuario no tiene los privilegios suficientes para la operación");
+		}
+		
+		
 		if(segBd != null) {
 			throw new CuentaException("La cuenta ya existe");
 		}else {
@@ -34,8 +51,19 @@ public class CuentasEJB implements GestionCuentas {
 
 	@Override
 	//RF5: Apertura de cuenta pooled
-	public void aperturaCtaPooled(PooledAccount pooled) throws CuentaException{
+	public void aperturaCtaPooled(Usuario admin, PooledAccount pooled) throws CuentaException, UsuarioException, UserNotAdminException{
 		PooledAccount pooledBd = em.find(PooledAccount.class, pooled.getIban());
+		
+		Usuario administrador = em.find(Usuario.class, admin.getUser());
+
+		if (administrador == null) { 
+			throw new UsuarioException("El usuario no exsite");
+		}
+
+		if (!administrador.isAdministrador()) {
+			throw new UserNotAdminException("El usuario no tiene los privilegios suficientes para la operación");
+		}
+
 		if(pooledBd != null){
 			throw new CuentaException("La cuenta ya existe"); 
 		}else {
@@ -82,5 +110,20 @@ public class CuentasEJB implements GestionCuentas {
 	}
 		
 	}
+	
+	
+	public CuentaReferencia getCuentaReferencia(String iban) throws CuentaException{
+		TypedQuery<CuentaReferencia> query = em.createQuery("SELECT c FROM CuentaReferencia c where c.iban = :ibanR", CuentaReferencia.class);
+		query.setParameter("ibanR", iban);
+		CuentaReferencia cuenta = query.getSingleResult();
+		
+		if(cuenta == null) {
+			
+			throw new CuentaException();
+		}
+		
+		return cuenta;
+	}
+	
 
 }

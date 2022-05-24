@@ -14,7 +14,32 @@
             </c:when>
             <c:otherwise>
             <h3><h:outputText id= "mensBienv" value ="Bienvenido #{infoSesion.usuario.user}"/></h3>
-
+				<div id="selectorAdmin">
+			
+						<br>
+							<h:button outcome="altaCIndividual.xhtml" id="botonAltaIndividual" value="Alta de un cliente Individual" class="buttons"/>
+						</br>
+						
+						<br>
+							<h:button outcome="altaCEmpresa.xhtml" id="botonAltaEmpresa" value="Alta de un cliente Empresa" class="buttons"/>
+						</br>
+						<br>
+							<h:button outcome="bajaCliente.xhtml" id="botonBajaCliente" value="Baja Cliente" class="buttons"/>
+						</br>
+						
+						<br>
+							<h:button outcome="anyadirAut.xhtml" id="botonAnyadirAut" value="Añade persona autorizada" class="buttons"/>
+						</br>
+						<br>
+							<h:button outcome="quitarAut.xhtml" id="botonQuitarAut" value="Quita persona autorizada" class="buttons"/>
+						</br>
+						<br>
+							<h:button outcome="abrePooled.xhtml" id="abrePooled" value="Apertura Cuenta Pooled" class="buttons"/>
+						</br>
+						<br>
+							<h:button outcome="abreSegregada.xhtml" id="abreSegregada" value="Apertura Cuenta Segregada" class="buttons"/>
+						</br>
+				</div>
             </c:otherwise>
         </c:choose>
 

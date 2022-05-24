@@ -11,6 +11,7 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 
 import es.uma.BuzzerBeaters.Cliente;
 import es.uma.BuzzerBeaters.CuentaFintech;
@@ -201,6 +202,18 @@ public class ClientesEJB implements GestionClientes {
 		
 	}
 
+	@Override
+	public Cliente getCliente(String identificacion) throws ClienteNoEncontradoException{
+		TypedQuery<Individual> query = em.createQuery("SELECT i FROM Individual i where i.identificacion = :fiden", Individual.class);
+		query.setParameter("fiden", identificacion);
+		Individual cliente= query.getSingleResult();
+		
+		if(cliente == null) {
+			throw new ClienteNoEncontradoException();
+		}
+		
+		return cliente;
+	}
 }
 
 

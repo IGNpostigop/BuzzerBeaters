@@ -1,0 +1,80 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+       xmlns:h="http://xmlns.jcp.org/jsf/html"
+       xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<h:head>(s)
+       <title>Alta de Cliente Individual</title>
+</h:head>
+
+<h:body>
+       
+       <h2><h:outputText value="Alta de Cliente individual"/></h2>
+        <h:panelGrid columns="3">
+                        <h:outputText value="Nombre de usuario:"/>
+                        <h:inputText id="user" required="true" value="#{altaCIndividual.usuario.user}" class="controls"/>
+                        <h:message id="userMessage" for="user"/>
+
+                        <h:outputText value="Contraseña:"/>
+                        <h:inputSecret id="pass" required="true" value="#{altaCIndividual.usuario.password}" class="controls"/>
+                        <h:message id="passwordMessage" for="pass"/>
+                        
+                        <h:outputText value="Nombre:"/>
+                        <h:inputText id="nombre" required="true" value="#{altaCIndividual.individual.name}" class="controls"/>
+                        <h:message id="nombreMessage" for="nombre"/>
+                        
+                        <h:outputText value="Apellido:"/>
+                        <h:inputText id="apellido" required="true" value="#{altaCIndividual.individual.apellido}" class="controls"/>
+                        <h:message id="apellidoMessage" for="apellido"/>
+
+                        <h:outputText value="Fecha de Nacimiento"/>
+                        <h:inputText id="fechaNacimiento" required="false" value="#{altaCIndividual.individual.fecha_nacimiento}" class="controls"/>
+                        <h:message id="fechaNacimientoMessage" for="fechaNacimiento"/>
+                        
+                        <h:outputText value="Identificacion"/>
+                        <h:inputText id="identificacion" required="true" value="#{altaCIndividual.individual.identificacion}" class="controls"/>
+                        <h:message id="identificacionMessage" for="identificacion"/>
+                        
+                        
+                        <h:outputText value="Estado:"/>
+                        <h:inputText id="state" required="true" value="#{altaCIndividual.individual.estado}" class="controls"/>
+                        <h:message id="stateMessage" for="state"/>
+                        
+                        <h:outputText value="Fecha de alta:"/>
+                        <h:inputText id="fechaAlta" required="false" value="#{altaCIndividual.individual.fechaAlta}" class="controls"/>
+                        <h:message id="fechaAltaMessage" for="fechaAlta"/>
+                        
+                        <h:outputText value="Fecha de baja:"/>
+                        <h:inputText id="fechaBaja" required="false" value="#{altaCIndividual.individual.fechaBaja}" class="controls"/>
+                        <h:message id="fechaBajaMessage" for="fechaBaja"/>
+                        
+                        <h:outputText value="Direccion:"/>
+                        <h:inputText id="direccion" required="true" value="#{altaCIndividual.individual.direccion}" class="controls"/>
+                        <h:message id="direccionMessage" for="direccion"/>
+                        
+                        <h:outputText value="Ciudad:"/>
+                        <h:inputText id="ciudad" required="true" value="#{altaCIndividual.individual.ciudad}" class="controls"/>
+                        <h:message id="ciudadMessage" for="ciudad"/>
+                        
+                        <h:outputText value="Codigo Postal:"/>
+                        <h:inputText id="cp" required="true" value="#{altaCIndividual.individual.codigopostal}" class="controls"/>
+                        <h:message id="cpMessage" for="cp"/>
+
+                        <h:commandButton id="botonAltaIndividual" value="Alta" action="#{altaCIndividual.altaCIndividual()}" class="buttons"/>
+						<h:message id="AltaCException" for="botonAltaCIndiv"/>
+                    </h:panelGrid>
+       
+       
+      
+			<div>
+               <p>Vuelve al menú administrador en <h:link outcome="paginaadmin.xhtml">Menu Administrativo</h:link></p>
+            </div>
+            
+                        
+    
+</h:body>
+
+</html> 
