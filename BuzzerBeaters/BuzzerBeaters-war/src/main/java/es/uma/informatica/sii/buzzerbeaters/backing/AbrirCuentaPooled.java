@@ -165,25 +165,25 @@ public class AbrirCuentaPooled {
 				cuentas.aperturaCtaPooled(user, poAc);
 			} catch (UsuarioException e) {
 				FacesMessage fm = new FacesMessage("El usuario no existe");
-				FacesContext.getCurrentInstance().addMessage("abrirPooled:usuario", fm);	
+				FacesContext.getCurrentInstance().addMessage("abrePooled:usuario", fm);	
 			}
 			 catch (UserNotAdminException e) {
 				FacesMessage fm = new FacesMessage("El usuario no tiene los privilegios suficientes");
-				FacesContext.getCurrentInstance().addMessage("abrirPooled:usuario", fm);	
+				FacesContext.getCurrentInstance().addMessage("abrePooled:usuario", fm);	
 						
 			} catch (CuentaException e) {
 				FacesMessage fm = new FacesMessage("La cuenta ya existe");
-				FacesContext.getCurrentInstance().addMessage("abrirPooled:boton", fm);	
+				FacesContext.getCurrentInstance().addMessage("abrePooled:boton", fm);	
 			}
 			
 			return "paginaadmin.xhtml";
 			
 		} catch (ClienteNoEncontradoException e) {
 			FacesMessage fm = new FacesMessage("El cliente no existe");
-			FacesContext.getCurrentInstance().addMessage("abrirPooled:cliente", fm);
+			FacesContext.getCurrentInstance().addMessage("abrePooled:cliente", fm);
 		} catch (CuentaException e) {
 			FacesMessage fm = new FacesMessage("La cuenta referencia no existe");
-			FacesContext.getCurrentInstance().addMessage("abrirPooled:ibanReferencia", fm);
+			FacesContext.getCurrentInstance().addMessage("abrePooled:ibanReferencia", fm);
 
 		
 		return null;
