@@ -61,7 +61,6 @@ public class PersonasAutorizadasEJB implements GestionPersonasAutorizadas{
 			aut.setPersonaAutorizada(pa);
 			em.persist(aut);
 			autorizaciones.add(aut);
-
 		}
 
 		em.merge(emp);
