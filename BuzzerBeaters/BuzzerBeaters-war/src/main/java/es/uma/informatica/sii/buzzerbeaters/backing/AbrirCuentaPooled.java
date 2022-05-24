@@ -126,19 +126,19 @@ public class AbrirCuentaPooled {
 			
 			Cliente client = clientes.getCliente(this.getIdentificacion());
 			
-			PooledAccount pa = new PooledAccount();
+			PooledAccount poAc = new PooledAccount();
 			
-			poolAcc.setIban(this.getIban());
+			poAc.setIban(this.getIban());
 			
-			poolAcc.setSwift(this.getSwift());
+			poAc.setSwift(this.getSwift());
 			
-			poolAcc.setEstado(true);
+			poAc.setEstado(true);
 			
-			poolAcc.setFecha_apertura(Date.valueOf(LocalDate.now())); //DATE
+			poAc.setFecha_apertura(Date.valueOf(LocalDate.now())); //DATE
 			
-			poolAcc.setFecha_cierre(null);
+			poAc.setFecha_cierre(null);
 			
-			poolAcc.setClasificacion("Pooled");
+			poAc.setClasificacion("Pooled");
 			
 			CuentaReferencia c  = cuentas.getCuentaReferencia(iban);
 			
@@ -162,28 +162,28 @@ public class AbrirCuentaPooled {
 			//----------//
 			
 			try {
-				cuentas.aperturaCtaPooled(user, poolAcc);
+				cuentas.aperturaCtaPooled(user, poAc);
 			} catch (UsuarioException e) {
 				FacesMessage fm = new FacesMessage("El usuario no existe");
-				FacesContext.getCurrentInstance().addMessage("abrirSegregada:usuario", fm);	
+				FacesContext.getCurrentInstance().addMessage("abrirPooled:usuario", fm);	
 			}
 			 catch (UserNotAdminException e) {
 				FacesMessage fm = new FacesMessage("El usuario no tiene los privilegios suficientes");
-				FacesContext.getCurrentInstance().addMessage("abrirSegregada:usuario", fm);	
+				FacesContext.getCurrentInstance().addMessage("abrirPooled:usuario", fm);	
 						
 			} catch (CuentaException e) {
 				FacesMessage fm = new FacesMessage("La cuenta ya existe");
-				FacesContext.getCurrentInstance().addMessage("abrirSegregada:boton", fm);	
+				FacesContext.getCurrentInstance().addMessage("abrirPooled:boton", fm);	
 			}
 			
 			return "paginaadmin.xhtml";
 			
 		} catch (ClienteNoEncontradoException e) {
 			FacesMessage fm = new FacesMessage("El cliente no existe");
-			FacesContext.getCurrentInstance().addMessage("abrirSegregada:cliente", fm);
+			FacesContext.getCurrentInstance().addMessage("abrirPooled:cliente", fm);
 		} catch (CuentaException e) {
 			FacesMessage fm = new FacesMessage("La cuenta referencia no existe");
-			FacesContext.getCurrentInstance().addMessage("abrirSegregada:ibanReferencia", fm);
+			FacesContext.getCurrentInstance().addMessage("abrirPooled:ibanReferencia", fm);
 
 		
 		return null;

@@ -15,6 +15,8 @@ import es.uma.BuzzerBeaters.Segregada;
 import es.uma.BuzzerBeaters.Usuario;
 import negocioEJBexcepcion.ClienteNoEncontradoException;
 import negocioEJBexcepcion.CuentaException;
+import negocioEJBexcepcion.UserNotAdminException;
+import negocioEJBexcepcion.UsuarioException;
 import negocioEjb.GestionClientes;
 import negocioEjb.GestionCuentas;
 
@@ -148,7 +150,20 @@ public String abrirSegregada() {
 			
 			CuentaReferencia c  = cuentas.getCuentaReferencia(iban);
 			
-			cuentas.aperturaCtaSegregated(cuenta);
+			try {
+				cuentas.aperturaCtaSegregated(usuario, cuenta);
+			} catch (UsuarioException e) {
+				FacesMessage fm = new FacesMessage("El usuario no existe");
+				FacesContext.getCurrentInstance().addMessage("abrirSegregada:usuario", fm);	
+			}
+			 catch (UserNotAdminException e) {
+				FacesMessage fm = new FacesMessage("El usuario no tiene los privilegios suficientes");
+				FacesContext.getCurrentInstance().addMessage("abrirSegregada:usuario", fm);	
+						
+			} catch (CuentaException e) {
+				FacesMessage fm = new FacesMessage("La cuenta ya existe");
+				FacesContext.getCurrentInstance().addMessage("abrirSegregada:boton", fm);	
+			}
 			
 			return "paginaadmin.xhtml";
 			
