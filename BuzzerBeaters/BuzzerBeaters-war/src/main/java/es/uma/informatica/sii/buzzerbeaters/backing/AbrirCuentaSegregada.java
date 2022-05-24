@@ -1,8 +1,6 @@
 package es.uma.informatica.sii.buzzerbeaters.backing;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
@@ -12,21 +10,18 @@ import javax.inject.Named;
 
 import es.uma.BuzzerBeaters.Cliente;
 import es.uma.BuzzerBeaters.CuentaReferencia;
-import es.uma.BuzzerBeaters.DepositadaEn;
-import es.uma.BuzzerBeaters.DepositadaEnID;
-import es.uma.BuzzerBeaters.PooledAccount;
+import es.uma.BuzzerBeaters.Segregada;
 import es.uma.BuzzerBeaters.Usuario;
-import negocioEJBexcepcion.ClienteExistenteException;
 import negocioEJBexcepcion.ClienteNoEncontradoException;
 import negocioEJBexcepcion.CuentaException;
 import negocioEJBexcepcion.UsuarioException;
 import negocioEjb.GestionClientes;
 import negocioEjb.GestionCuentas;
 
-@Named(value = "abrirCuentaPooled")
+@Named(value = "abrirCuentaSegregada")
 @RequestScoped
 
-public class AbrirCuentaPooled {
+public class AbrirCuentaSegregada {
 	
 	@Inject
 	InfoSesion sesion; 
@@ -37,133 +32,124 @@ public class AbrirCuentaPooled {
 	@Inject
 	GestionClientes clientes; //ejb 
 	
-	private PooledAccount poolAcc; 
-	private Usuario user; 
-	private String identificacion; 
-	private String iban;
-	private String ibanRefer; 
-	private String swift;
-	private List<DepositadaEn> depositos; 
-	private Double saldo;
+	private Segregada cuenta;
 	
+	private Usuario usuario;
+	
+	private String identificacion;
+	
+	private String iban;
+	
+	private String ibanRefer;
+	
+	private String swift;
+	
+	private String comision;
+
 	// setters y getters
 	
 	public InfoSesion getSesion() {
 		return sesion;
 	}
+
 	public void setSesion(InfoSesion sesion) {
 		this.sesion = sesion;
 	}
+
 	public GestionCuentas getCuentas() {
 		return cuentas;
 	}
+
 	public void setCuentas(GestionCuentas cuentas) {
 		this.cuentas = cuentas;
 	}
+
 	public GestionClientes getClientes() {
 		return clientes;
 	}
+
 	public void setClientes(GestionClientes clientes) {
 		this.clientes = clientes;
 	}
-	public PooledAccount getPoolAcc() {
-		return poolAcc;
+
+	public Segregada getCuenta() {
+		return cuenta;
 	}
-	public void setPoolAcc(PooledAccount poolAcc) {
-		this.poolAcc = poolAcc;
+
+	public void setCuenta(Segregada cuenta) {
+		this.cuenta = cuenta;
 	}
-	public Usuario getUser() {
-		return user;
+
+	public Usuario getUsuario() {
+		return usuario;
 	}
-	public void setUser(Usuario user) {
-		this.user = user;
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
+
 	public String getIdentificacion() {
 		return identificacion;
 	}
+
 	public void setIdentificacion(String identificacion) {
 		this.identificacion = identificacion;
 	}
+
 	public String getIban() {
 		return iban;
 	}
+
 	public void setIban(String iban) {
 		this.iban = iban;
 	}
+
 	public String getIbanRefer() {
 		return ibanRefer;
 	}
+
 	public void setIbanRefer(String ibanRefer) {
 		this.ibanRefer = ibanRefer;
 	}
+
 	public String getSwift() {
 		return swift;
 	}
+
 	public void setSwift(String swift) {
 		this.swift = swift;
 	}
-	public List<DepositadaEn> getDepositos() {
-		return depositos;
+
+	public String getComision() {
+		return comision;
 	}
-	public void setDepositos(List<DepositadaEn> depositos) {
-		this.depositos = depositos;
-	}
-	public Double getSaldo() {
-		return saldo;
-	}
-	public void setSaldo(Double saldo) {
-		this.saldo = saldo;
+
+	public void setComision(String comision) {
+		this.comision = comision;
 	}
 	
-	//-------------------------------//
-	public String cuentaPooled() {
-		Usuario user = sesion.getUsuario(); 
+public String abrirSegregada() {
+		
+		Usuario usuario = sesion.getUsuario();
 		
 		try {
 			
-			Cliente client = clientes.getCliente(this.getIdentificacion());
+			Cliente cliente = clientes.getCliente(this.getIdentificacion());
 			
-			PooledAccount pa = new PooledAccount();
+			cuenta = new Segregada();
 			
-			poolAcc.setIban(this.getIban());
-			
-			poolAcc.setSwift(this.getSwift());
-			
-			poolAcc.setEstado(true);
-			
-			poolAcc.setFecha_apertura(LocalDateTime.now()); //DATE
-			
-			poolAcc.setFecha_cierre(null);
-			
-			poolAcc.setClasificacion("Pooled");
+			cuenta.setIban(this.getIban());
+			cuenta.setSwift(this.getSwift());
+			cuenta.setEstado(true);
+			cuenta.setFecha_apertura(LocalDateTime.now()); //DATE
+			cuenta.setFecha_cierre(null);
+			cuenta.setClasificacion("Segregada");
+			cuenta.setComision(this.getComision());
 			
 			CuentaReferencia c  = cuentas.getCuentaReferencia(iban);
 			
-			//----------------//
-			depositos = new ArrayList<>();
+			cuentas.aperturaCtaSegregated(cuenta);
 			
-			DepositadaEn deposito = new DepositadaEn();
-			
-			DepositadaEnID depositoId = new DepositadaEnID();
-			
-			depositoId.setIBANpooled(this.getIban());
-			
-			depositoId.setIBANreferenciada(this.getIbanRefer());
-			
-			deposito.setId(depositoId);
-			
-			deposito.setSaldo(this.getSaldo());
-			
-			depositos.add(deposito);
-			
-			//----------//
-			
-			try {
-				cuentas.aperturaCtaPooled(poolAcc);
-				
-			} catch (CuentaException e) {
-				
-			}
 			return "paginaadmin.xhtml";
 			
 		} catch (ClienteNoEncontradoException e) {
@@ -180,8 +166,6 @@ public class AbrirCuentaPooled {
 		return null;
 		
 		}
-	}
-	
 	
 
 }
