@@ -9,11 +9,12 @@ import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 @Entity
-
+@NamedQuery(name="CuentaReferencia.findAll", query="SELECT c FROM CuentaReferencia c")
 public class CuentaReferencia extends Cuenta implements Serializable{
 	/**
 	 * 

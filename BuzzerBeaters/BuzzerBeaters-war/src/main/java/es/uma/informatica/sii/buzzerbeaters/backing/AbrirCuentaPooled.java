@@ -17,6 +17,7 @@ import es.uma.BuzzerBeaters.DepositadaEnID;
 import es.uma.BuzzerBeaters.PooledAccount;
 import es.uma.BuzzerBeaters.Usuario;
 import negocioEJBexcepcion.ClienteExistenteException;
+import negocioEJBexcepcion.ClienteNoEncontradoException;
 import negocioEJBexcepcion.CuentaException;
 import negocioEJBexcepcion.UsuarioException;
 import negocioEjb.GestionClientes;
@@ -165,7 +166,7 @@ public class AbrirCuentaPooled {
 			}
 			return "paginaadmin.xhtml";
 			
-		} catch (ClienteExistenteException e) {
+		} catch (ClienteNoEncontradoException e) {
 			FacesMessage fm = new FacesMessage("El cliente no existe");
 			FacesContext.getCurrentInstance().addMessage("abrirSegregada:cliente", fm);
 		} catch (CuentaException e) {

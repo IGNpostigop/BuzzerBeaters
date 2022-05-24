@@ -91,7 +91,7 @@ public interface GestionClientes {
 
 	public List<Cliente> getClientes();
 	
-	public Cliente getCliente(String identificacion) throws ClienteExistenteException;
+	public Cliente getCliente(String identificacion) throws ClienteNoEncontradoException;
 
 	
 

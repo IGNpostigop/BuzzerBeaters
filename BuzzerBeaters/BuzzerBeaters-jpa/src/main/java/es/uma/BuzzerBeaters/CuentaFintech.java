@@ -10,6 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -17,6 +18,7 @@ import javax.persistence.TemporalType;
 
 @Entity
 @Table(name="Cuenta_fintech")
+@NamedQuery(name="CuentaFintech.findAll", query="SELECT c FROM CuentaFintech c")
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class CuentaFintech extends Cuenta implements Serializable{
 

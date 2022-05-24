@@ -6,10 +6,13 @@ import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 
+import es.uma.BuzzerBeaters.CuentaReferencia;
 import es.uma.BuzzerBeaters.DepositadaEn;
 import es.uma.BuzzerBeaters.PooledAccount;
 import es.uma.BuzzerBeaters.Segregada;
+import es.uma.proyecto.ejb.exceptions.CuentaReferenciaNoExistenteException;
 import negocioEJBexcepcion.CuentaException;
 
 @Stateless
@@ -82,5 +85,20 @@ public class CuentasEJB implements GestionCuentas {
 	}
 		
 	}
+	
+	
+	/*public CuentaReferencia getCuentaReferencia(String iban) throws CuentaException{
+		TypedQuery<CuentaReferencia> query = em.createQuery("SELECT c FROM CuentaReferencia c where c.iban = :fiban", CuentaReferencia.class);
+		query.setParameter("fiban", iban);
+		CuentaReferencia cuenta = query.getSingleResult();
+		
+		if(cuenta == null) {
+			
+			throw new CuentaException();
+		}
+		
+		return cuenta;
+	}*/
+	
 
 }
