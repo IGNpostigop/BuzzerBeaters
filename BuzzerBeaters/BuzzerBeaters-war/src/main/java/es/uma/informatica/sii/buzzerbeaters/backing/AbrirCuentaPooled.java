@@ -16,13 +16,6 @@ import es.uma.BuzzerBeaters.DepositadaEn;
 import es.uma.BuzzerBeaters.DepositadaEnID;
 import es.uma.BuzzerBeaters.PooledAccount;
 import es.uma.BuzzerBeaters.Usuario;
-import es.uma.proyecto.CuentaReferencia;
-import es.uma.proyecto.DepositaEn;
-import es.uma.proyecto.DepositaEnPK;
-import es.uma.proyecto.ejb.exceptions.ClienteNoExistenteException;
-import es.uma.proyecto.ejb.exceptions.CuentaReferenciaNoExistenteException;
-import es.uma.proyecto.ejb.exceptions.PooledAccountConSolo1CuentaExternaException;
-import es.uma.proyecto.ejb.exceptions.UsuarioNoEsAdministrativoException;
 import negocioEJBexcepcion.ClienteExistenteException;
 import negocioEJBexcepcion.CuentaException;
 import negocioEJBexcepcion.UsuarioException;
@@ -176,10 +169,10 @@ public class AbrirCuentaPooled {
 			FacesMessage fm = new FacesMessage("El cliente no existe");
 			FacesContext.getCurrentInstance().addMessage("abrirSegregada:cliente", fm);
 		} catch (CuentaException e) {
-			FacesMessage fm = new FacesMessage("La cuenta de referencia no existe");
+			FacesMessage fm = new FacesMessage("La cuenta referencia no existe");
 			FacesContext.getCurrentInstance().addMessage("abrirSegregada:ibanReferencia", fm);
 		} catch (UsuarioException e) {
-			FacesMessage fm = new FacesMessage("El usuario no es administrativo");
+			FacesMessage fm = new FacesMessage("No es administrativo");
 			FacesContext.getCurrentInstance().addMessage("abrirSegregada:boton", fm);
 		}
 		
