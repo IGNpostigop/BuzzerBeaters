@@ -35,21 +35,8 @@
                         <h:message id="fechaNacimientoMessage" for="fechaNacimiento"/>
                         
                         <h:outputText value="Identificacion"/>
-                        <h:inputText id="identificacion" required="true" value="#{altaCIndividual.ind.identificacion}" class="controls"/>
+                        <h:inputText id="identificacion" required="true" value="#{altaCIndividual.ind.identification}" class="controls"/>
                         <h:message id="identificacionMessage" for="identificacion"/>
-                        
-                        
-                        <h:outputText value="Estado:"/>
-                        <h:inputText id="state" required="true" value="#{altaCIndividual.ind.estado}" class="controls"/>
-                        <h:message id="stateMessage" for="state"/>
-                        
-                        <h:outputText value="Fecha de alta:"/>
-                        <h:inputText id="fechaAlta" required="false" value="#{altaCIndividual.ind.fechaAlta}" class="controls"/>
-                        <h:message id="fechaAltaMessage" for="fechaAlta"/>
-                        
-                        <h:outputText value="Fecha de baja:"/>
-                        <h:inputText id="fechaBaja" required="false" value="#{altaCIndividual.ind.fechaBaja}" class="controls"/>
-                        <h:message id="fechaBajaMessage" for="fechaBaja"/>
                         
                         <h:outputText value="Direccion:"/>
                         <h:inputText id="direccion" required="true" value="#{altaCIndividual.ind.direccion}" class="controls"/>
