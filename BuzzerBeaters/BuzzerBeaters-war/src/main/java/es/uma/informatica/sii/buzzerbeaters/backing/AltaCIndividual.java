@@ -61,13 +61,13 @@ public class AltaCIndividual
 			
 		}catch (ClienteExistenteException e) {
 			FacesMessage fm = new FacesMessage("El cliente que se intenta crear ya existe");
-			FacesContext.getCurrentInstance().addMessage("altaCIndividual", fm);
+			FacesContext.getCurrentInstance().addMessage("altaCIndividual:botonAltaCIndiv", fm);
 		}catch(UserNotAdminException e) {
 			FacesMessage fm = new FacesMessage("El usuario no tienee permisos de administrativo");
-			FacesContext.getCurrentInstance().addMessage("altaCIndividual", fm);
+			FacesContext.getCurrentInstance().addMessage("altaCIndividual:botonAltaCIndiv", fm);
 		}catch(UsuarioException e) {
 			FacesMessage fm = new FacesMessage("No se ha encontrado el usuario");
-			FacesContext.getCurrentInstance().addMessage("altaCIndividual", fm);
+			FacesContext.getCurrentInstance().addMessage("altaCIndividual:botonAltaCIndiv", fm);
 		}
 		
 		return null;
