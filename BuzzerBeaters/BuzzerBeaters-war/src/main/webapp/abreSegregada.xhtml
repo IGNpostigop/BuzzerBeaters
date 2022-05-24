@@ -7,15 +7,37 @@
        xmlns:f="http://xmlns.jcp.org/jsf/core">
 
 <h:head>(s)
-       <title>Página de ejemplo y login de inicio</title>
+       <title>Abrir cuenta Segregada</title>
 </h:head>
 
 <h:body>
        
        <h2><h:outputText value="Alta de Cliente correcta"/></h2>
+       
+       <h:form id="abreSegregada">
+			<h:outputLabel value="Identificación del cliente : "></h:outputLabel>
+			<h:inputText id="cliente" value="#{abreCuentaSegregada.identificacion}"></h:inputText>
+			<h:message id="clienteMessage" for="cliente"/>
+			<br/>
+			<h:outputLabel value="Iban: "></h:outputLabel>
+			<h:inputText id="iban" value="#{abreCuentaSegregada.iban}"></h:inputText>
+			<br/> 
+			<h:outputLabel value="Swift: "></h:outputLabel>
+			<h:inputText id="swift" value="#{abreCuentaSegregada.swift}"></h:inputText>
+			<br/>
+			<h:outputLabel value="Comision: "></h:outputLabel>
+			<h:inputText id="comision" value="#{abreCuentaSegregada.comision}"></h:inputText>
+			<br/>
+			<h:outputLabel value="Iban Cuenta Referenciada: "></h:outputLabel>
+			<h:inputText id="ibanReferencia" value="#{abreCuentaSegregada.iban_referencia}"></h:inputText>
+			<h:message id="cuenta" for="ibanReferencia"/>
+			<br/>
+			<h:commandButton id="boton" value="Abrir Cuenta" action="#{abreCuentaSegregada.abrirSegregada}"></h:commandButton>
+			<h:message id = "usuario" for="boton"></h:message>		
+		</h:form>
       
 			<div>
-               <p>Vuelve al menú administrador en <h:link outcome="Administrativo.xhtml">Menu Administrativo</h:link></p>
+               <p>Vuelve al menú administrador en <h:link outcome="paginaadmin.xhtml">Menu Administrativo</h:link></p>
             </div>
             
                         

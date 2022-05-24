@@ -2,7 +2,6 @@ package es.uma.informatica.sii.buzzerbeaters.backing;
 
 import java.sql.Date;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,7 +17,6 @@ import es.uma.BuzzerBeaters.DepositadaEn;
 import es.uma.BuzzerBeaters.DepositadaEnID;
 import es.uma.BuzzerBeaters.PooledAccount;
 import es.uma.BuzzerBeaters.Usuario;
-import negocioEJBexcepcion.ClienteExistenteException;
 import negocioEJBexcepcion.ClienteNoEncontradoException;
 import negocioEJBexcepcion.CuentaException;
 import negocioEJBexcepcion.UserNotAdminException;
