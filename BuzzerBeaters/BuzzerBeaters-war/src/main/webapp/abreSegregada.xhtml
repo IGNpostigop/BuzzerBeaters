@@ -16,27 +16,27 @@
        
        <h:form id="abreSegregada">
 			<h:outputLabel value="Id del cliente : "></h:outputLabel>
-			<h:inputText id="clienteid" value="#{abreCuentaSegregada.id}"></h:inputText>
+			<h:inputText id="clienteid" value="#{abrirCuentaSegregada.id}"></h:inputText>
 			<h:message id="id" for="cliente"/>
 			<br/>
 			<h:outputLabel value="Identificación del cliente : "></h:outputLabel>
-			<h:inputText id="cliente" value="#{abreCuentaSegregada.identificacion}"></h:inputText>
+			<h:inputText id="cliente" value="#{abrirCuentaSegregada.identificacion}"></h:inputText>
 			<h:message id="clienteMessage" for="cliente"/>
 			<br/>
 			<h:outputLabel value="Iban: "></h:outputLabel>
-			<h:inputText id="iban" value="#{abreCuentaSegregada.iban}"></h:inputText>
+			<h:inputText id="iban" value="#{abrirCuentaSegregada.iban}"></h:inputText>
 			<br/> 
 			<h:outputLabel value="Swift: "></h:outputLabel>
-			<h:inputText id="swift" value="#{abreCuentaSegregada.swift}"></h:inputText>
+			<h:inputText id="swift" value="#{abrirCuentaSegregada.swift}"></h:inputText>
 			<br/>
 			<h:outputLabel value="Comision: "></h:outputLabel>
-			<h:inputText id="comision" value="#{abreCuentaSegregada.comision}"></h:inputText>
+			<h:inputText id="comision" value="#{abrirCuentaSegregada.comision}"></h:inputText>
 			<br/>
 			<h:outputLabel value="Iban Cuenta Referenciada: "></h:outputLabel>
-			<h:inputText id="ibanReferencia" value="#{abreCuentaSegregada.iban_referencia}"></h:inputText>
+			<h:inputText id="ibanReferencia" value="#{abrirCuentaSegregada.iban_referencia}"></h:inputText>
 			<h:message id="cuenta" for="ibanReferencia"/>
 			<br/>
-			<h:commandButton id="boton" value="Abrir Cuenta" action="#{abreCuentaSegregada.abrirSegregada}"></h:commandButton>
+			<h:commandButton id="boton" value="Abrir Cuenta" action="#{abrirCuentaSegregada.abrirSegregada}"></h:commandButton>
 			<h:message id = "usuario" for="boton"></h:message>		
 		</h:form>
       
