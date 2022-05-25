@@ -42,7 +42,7 @@ public class ClientesEJB implements GestionClientes {
 	public void crearClienteIndividual(Usuario admin, Individual individual)
 			throws UsuarioException, UserNotAdminException, ClienteExistenteException {
 
-		Individual indEntity = em.find(Individual.class, individual.getId());
+		Individual indEntity = em.find(Individual.class, individual);
 
 		Usuario administrador = em.find(Usuario.class, admin.getUser());
 
