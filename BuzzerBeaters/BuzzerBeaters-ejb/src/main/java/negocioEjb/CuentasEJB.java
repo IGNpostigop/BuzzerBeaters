@@ -13,9 +13,11 @@ import javax.persistence.TypedQuery;
 import es.uma.BuzzerBeaters.Cliente;
 import es.uma.BuzzerBeaters.CuentaReferencia;
 import es.uma.BuzzerBeaters.DepositadaEn;
+import es.uma.BuzzerBeaters.Individual;
 import es.uma.BuzzerBeaters.PooledAccount;
 import es.uma.BuzzerBeaters.Segregada;
 import es.uma.BuzzerBeaters.Usuario;
+import negocioEJBexcepcion.ClienteNoEncontradoException;
 import negocioEJBexcepcion.CuentaConSaldo;
 import negocioEJBexcepcion.CuentaException;
 import negocioEJBexcepcion.UserNotAdminException;
@@ -32,12 +34,12 @@ public class CuentasEJB implements GestionCuentas {
 	
 	@Override
 	//RF5: Apertura de cuenta segregada
-	public void aperturaCtaSegregated(Usuario admin, Segregada segregada, Cliente client, CuentaReferencia cr) throws CuentaException, UsuarioException, UserNotAdminException {
+	public  Segregada aperturaCtaSegregated(Usuario admin, Segregada segregada, Cliente client, CuentaReferencia cr) throws CuentaException, UsuarioException, UserNotAdminException {
 		
 		Segregada segBd = em.find(Segregada.class, segregada.getIban());
 		
 		Usuario administrador = em.find(Usuario.class, admin.getUser());
-
+		
 		if (administrador == null) { 
 			throw new UsuarioException("El usuario no exsite");
 		}
@@ -53,6 +55,7 @@ public class CuentasEJB implements GestionCuentas {
 			segregada.setCliente(client);
 			segregada.setCuenta_referencia(cr);
 			em.persist(segregada);
+			return segregada;
 		}
 	}
 
@@ -151,6 +154,7 @@ public class CuentasEJB implements GestionCuentas {
 		
 	}
 	
+	
 	@Override
 	public CuentaReferencia getCuentaReferencia(String iban) throws CuentaException{
 		{
@@ -165,18 +169,7 @@ public class CuentasEJB implements GestionCuentas {
 		}
 	}
 	
-//	public CuentaReferencia getCuentaReferencia(String iban) throws CuentaException{
-//		TypedQuery<CuentaReferencia> query = em.createQuery("SELECT c FROM CuentaReferencia c where c.iban = :ibanR", CuentaReferencia.class);
-//		query.setParameter("ibanR", iban);
-//		CuentaReferencia cuenta = query.getSingleResult();
-//		
-//		if(cuenta == null) {
-//			
-//			throw new CuentaException();
-//		}
-//		
-//		return cuenta;
-//	}
+
 	
 
 }
