@@ -123,7 +123,7 @@ public class AbrirCuentaPooled {
 		this.saldo = saldo;
 	}
 	
-	//-------------------------------//
+	//-------------------------------//----
 	public String cuentaPooled() {
 		Usuario user = sesion.getUsuario(); 
 		
