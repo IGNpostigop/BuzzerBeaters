@@ -6,7 +6,7 @@
        xmlns:h="http://xmlns.jcp.org/jsf/html"
        xmlns:f="http://xmlns.jcp.org/jsf/core">
 
-<h:head>(s)
+<h:head>
        <title>Abrir cuenta Segregada</title>
 </h:head>
 
@@ -15,6 +15,10 @@
        <h2><h:outputText value="Alta de Cliente correcta"/></h2>
        
        <h:form id="abreSegregada">
+			<h:outputLabel value="Id del cliente : "></h:outputLabel>
+			<h:inputText id="clienteid" value="#{abreCuentaSegregada.id}"></h:inputText>
+			<h:message id="id" for="cliente"/>
+			<br/>
 			<h:outputLabel value="Identificación del cliente : "></h:outputLabel>
 			<h:inputText id="cliente" value="#{abreCuentaSegregada.identificacion}"></h:inputText>
 			<h:message id="clienteMessage" for="cliente"/>
