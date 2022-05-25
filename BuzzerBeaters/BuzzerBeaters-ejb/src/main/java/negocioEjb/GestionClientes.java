@@ -25,7 +25,7 @@ public interface GestionClientes {
 	 * user, password y administrador no pueden ser nulos.
 	 * @throws UsuarioException 
 	 **/
-	public void crearClienteIndividual(Usuario admin, Cliente individual)
+	public void crearClienteIndividual(Usuario admin, Individual individual)
 			throws UsuarioException, UserNotAdminException, ClienteExistenteException;
 	/*
 	 * Lo mismo que anterriormente pero para empresas

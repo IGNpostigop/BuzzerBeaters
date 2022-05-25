@@ -30,13 +30,17 @@
                         <h:inputText id="apellido" required="true" value="#{altaCIndividual.ind.apellido}" class="controls"/>
                         <h:message id="apellidoMessage" for="apellido"/>
 
-                        <h:outputText value="Fecha de Nacimiento"/>
+                       <!--  <h:outputText value="Fecha de Nacimiento"/>
                         <h:inputText id="fechaNacimiento" required="false" value="#{altaCIndividual.ind.fecha_nacimiento}" class="controls"/>
-                        <h:message id="fechaNacimientoMessage" for="fechaNacimiento"/>
+                        <h:message id="fechaNacimientoMessage" for="fechaNacimiento"/> -->
                         
                         <h:outputText value="Identificacion"/>
                         <h:inputText id="identificacion" required="true" value="#{altaCIndividual.ind.identification}" class="controls"/>
                         <h:message id="identificacionMessage" for="identificacion"/>
+                        
+                        <h:outputText value="Id"/>
+                        <h:inputText id="id" required="true" value="#{altaCIndividual.ind.id}" class="controls"/>
+                        <h:message id="idMessage" for="id"/>
                         
                         <h:outputText value="Direccion:"/>
                         <h:inputText id="direccion" required="true" value="#{altaCIndividual.ind.direccion}" class="controls"/>

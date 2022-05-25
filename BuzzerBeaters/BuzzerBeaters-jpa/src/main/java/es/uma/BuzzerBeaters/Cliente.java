@@ -5,6 +5,7 @@ import java.sql.Date;
 import java.util.List;
 import java.util.Objects;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -45,7 +46,7 @@ public class Cliente{
 	
 
 
-	@OneToMany(mappedBy="cliente")
+	@OneToMany(mappedBy="cliente", cascade = CascadeType.PERSIST)
 	private List<CuentaFintech> cuentasFintech;
 
 	public Cliente() {
@@ -63,14 +64,6 @@ public class Cliente{
 //		this.pais = pais;
 //	}
 //	
-	
-	public Long getId() {
-		return id;
-	}
-
-	/*
-	 * public void setId(Long id) { this.id = id; }
-	 */
 
 	public String getIdentification() {
 		return identification;
@@ -136,6 +129,13 @@ public class Cliente{
 		this.pais = pais;
 	}
 
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
 	
 	public List<CuentaFintech> getCuentasFintech() {
 		return cuentasFintech;
