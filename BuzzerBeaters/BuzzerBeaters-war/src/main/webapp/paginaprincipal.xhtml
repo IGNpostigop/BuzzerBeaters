@@ -17,6 +17,11 @@
             </c:when>
             <c:otherwise>
             <h3><h:outputText id= "mensBienv" value ="Bienvenido #{RegularLogin.usuario.user} a la Página principal de clientes"/></h3>
+            
+            <p>
+				Vuelva a la pagina inicial
+				<h:link outcome="index.xhtml">INICIO</h:link>
+			</p>
 
             </c:otherwise>
         </c:choose>
