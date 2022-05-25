@@ -24,15 +24,9 @@ public class CerrarPooled {
 	@Inject
 	GestionCuentas cerrarPAejb;
 	
-	Usuario user;
 	
-	public CerrarPooled(InfoSesion sesion) 
-	{
-		user  = new Usuario();
-	}
-
 	private String iban;
-
+	
 	public String getIban() {
 		return iban;
 	}
@@ -43,6 +37,7 @@ public class CerrarPooled {
 	
 	public String cerrarPooled() {
 		
+		Usuario user = new Usuario();
 		user = sesion.getUsuario();
 		
 		try {
@@ -55,18 +50,19 @@ public class CerrarPooled {
 			
 		} catch (CuentaException e) {
 			FacesMessage fm = new FacesMessage("La cuenta no existe");
-			FacesContext.getCurrentInstance().addMessage("cerrarPooled:botonCerrarpa", fm);
+			FacesContext.getCurrentInstance().addMessage("cerrarPooled:botonCerrar", fm);
 		} catch (UsuarioException e){
 			FacesMessage fm = new FacesMessage("El usuario no exsite");
-			FacesContext.getCurrentInstance().addMessage("cerrarPooled:botonCerrarpa", fm);
+			FacesContext.getCurrentInstance().addMessage("cerrarPooled:botonCerrar", fm);
 		}catch (UserNotAdminException e){
 			FacesMessage fm = new FacesMessage("El usuario no es administrativo");
-			FacesContext.getCurrentInstance().addMessage("cerrarPooled:botonCerrarpa", fm);
+			FacesContext.getCurrentInstance().addMessage("cerrarPooled:botonCerrar", fm);
 		}catch (CuentaConSaldo e){
 			FacesMessage fm = new FacesMessage("La cuenta tiene saldo asociado");
-			FacesContext.getCurrentInstance().addMessage("cerrarPooled:botonCerrarpa", fm);
+			FacesContext.getCurrentInstance().addMessage("cerrarPooled:botonCerrar", fm);
 		}
 		return null;
+	
 	}
 
 }
