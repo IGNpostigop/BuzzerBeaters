@@ -13,7 +13,7 @@
 <h:body>
        
        <h2><h:outputText value="Alta de Cliente individual"/></h2>
-        <h:panelGrid columns="3">
+        <h:form columns="3">
                         <h:outputText value="Nombre de usuario:"/>
                         <h:inputText id="user" required="true" value="#{altaCIndividual.user.user}" class="controls"/>
                         <h:message id="userMessage" for="user"/>
@@ -50,14 +50,14 @@
                         <h:inputText id="cp" required="true" value="#{altaCIndividual.ind.codigopostal}" class="controls"/>
                         <h:message id="cpMessage" for="cp"/>
 
-                        <h:commandButton id="botonAltaIndividual" value="Alta" action="#{altaCIndividual.altaCIndividual()}" class="buttons"/>
+                        <h:commandButton id="botonAltaCIndiv" value="Alta" action="#{altaCIndividual.altaCIndividual()}" class="buttons"/>
 						<h:message id="AltaCException" for="botonAltaCIndiv"/>
-                    </h:panelGrid>
+                    </h:form>
        
        
       
 			<div>
-               <p>Vuelve al menú administrador en <h:link outcome="paginaadmin.xhtml">Menu Administrativo</h:link></p>
+               <p>Vuelve a la pagina de admin<h:link outcome="paginaadmin.xhtml">Menu Administrativo</h:link></p>
             </div>
             
                         
