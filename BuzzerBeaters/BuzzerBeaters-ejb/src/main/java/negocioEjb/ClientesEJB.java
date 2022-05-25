@@ -103,7 +103,7 @@ public class ClientesEJB implements GestionClientes {
 	
 	@Override
 	//RF4: Dar de baja a un cliente
-	public void bajaCliente(Usuario admin, Cliente cliente) throws UsuarioException, ClienteNoEncontradoException, 
+	public void bajaCliente(Usuario admin, Long clienteId) throws UsuarioException, ClienteNoEncontradoException, 
 			ClienteDeBajaException, CuentaException, UserNotAdminException {
 		// TODO Auto-generated method stub
 		Usuario administrador = em.find(Usuario.class, admin.getUser());
@@ -117,7 +117,7 @@ public class ClientesEJB implements GestionClientes {
 		}
 		
 		
-		Cliente clienteEntity = em.find(Cliente.class, cliente);
+		Cliente clienteEntity = em.find(Cliente.class, clienteId);
 		
 		if(clienteEntity == null) {
 			throw new ClienteNoEncontradoException("El cliente no existe\n");
@@ -137,7 +137,7 @@ public class ClientesEJB implements GestionClientes {
 	}
 	
 	@Override
-	public void activaCliente(Usuario admin, Cliente cliente) throws UsuarioException, ClienteNoEncontradoException, 
+	public void activaCliente(Usuario admin, Long clienteId) throws UsuarioException, ClienteNoEncontradoException, 
 			ClienteDeBajaException, UserNotAdminException {
 		// TODO Auto-generated method stub
 		Usuario administrador = em.find(Usuario.class, admin.getUser());
@@ -151,7 +151,7 @@ public class ClientesEJB implements GestionClientes {
 		}
 		
 		
-		Cliente clienteEntity = em.find(Cliente.class, cliente);
+		Cliente clienteEntity = em.find(Cliente.class, clienteId);
 		
 		if(clienteEntity == null) {
 			throw new ClienteNoEncontradoException("El cliente no existe\n");

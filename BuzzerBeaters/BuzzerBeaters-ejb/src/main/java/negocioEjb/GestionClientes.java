@@ -54,7 +54,7 @@ public interface GestionClientes {
 	 * Debe comprobar que el cliente existe. En caso contrario debe lanzar una excepción
 	 * @throws UsuarioException 
 	 */
-	public void bajaCliente (Usuario admin, Cliente cliente) throws UsuarioException, ClienteNoEncontradoException, 
+	public void bajaCliente (Usuario admin, Long clienteId) throws UsuarioException, ClienteNoEncontradoException, 
 			ClienteDeBajaException, CuentaException, UserNotAdminException;
 	
 	/**
@@ -66,8 +66,8 @@ public interface GestionClientes {
 	 * Este método activará un cliente anteriormente de baja
 	 */
 	
-	public void activaCliente(Usuario admin, Cliente cliente) throws UsuarioException, ClienteNoEncontradoException, 
-	ClienteDeBajaException, UserNotAdminException ;
+	void activaCliente(Usuario admin, Long clienteId)
+			throws UsuarioException, ClienteNoEncontradoException, ClienteDeBajaException, UserNotAdminException;
 	
 	/**
 	 * Este método debe permitir modificar los atributos de un cliente
@@ -91,6 +91,8 @@ public interface GestionClientes {
 	public List<Cliente> getClientes();
 	
 	public Cliente getCliente(Long id) throws ClienteNoEncontradoException;
+
+
 
 	
 
