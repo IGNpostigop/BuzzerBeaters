@@ -1,16 +1,13 @@
 package es.uma.informatica.sii.buzzerbeaters.backing;
 
-import java.util.Date;
+
 
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
-import javax.persistence.Column;
-import javax.persistence.OneToOne;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+
 
 import es.uma.BuzzerBeaters.Individual;
 import es.uma.BuzzerBeaters.Usuario;
@@ -28,18 +25,29 @@ public class AltaCIndividual
 	@Inject
 	private GestionClientes clienteInd;
 	
-	private Usuario user;
+	private Usuario admin;
+	
+	private Usuario userCliente;
 	private Individual ind;
+	
+	private String nombreUsuario;
+	private String pass;
 	
 	private String name;
 	private String apellido;
-	private Long id;
-	private String identification;
+	private String identificacion;
 	private String direccion;
 	private String ciudad;
 	private Integer codigopostal;
 	private String pais;
 
+
+	public AltaCIndividual() 
+	{
+		userCliente = new Usuario();
+		ind = new Individual();
+	}
+	
 	public String getName() {
 		return name;
 	}
@@ -52,24 +60,24 @@ public class AltaCIndividual
 		return apellido;
 	}
 
+	public String getPass() {
+		return pass;
+	}
+
+	public void setPass(String pass) {
+		this.pass = pass;
+	}
+
 	public void setApellido(String apellido) {
 		this.apellido = apellido;
 	}
 
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
 	public String getIdentification() {
-		return identification;
+		return identificacion;
 	}
 
 	public void setIdentification(String identification) {
-		this.identification = identification;
+		this.identificacion = identification;
 	}
 
 	public String getDireccion() {
@@ -104,20 +112,21 @@ public class AltaCIndividual
 		this.pais = pais;
 	}
 
-	public AltaCIndividual() 
-	{
-		user = new Usuario();
-		ind = new Individual();
+
+	public String getNombreUsuario() {
+		return nombreUsuario;
 	}
 
-	public Usuario getUser() 
-	{
-		return user;
+	public void setNombreUsuario(String nombreUsuario) {
+		this.nombreUsuario = nombreUsuario;
 	}
 
-	public void setUser(Usuario user) 
-	{
-		this.user = user;
+	public String getIdentificacion() {
+		return identificacion;
+	}
+
+	public void setIdentificacion(String identificacion) {
+		this.identificacion = identificacion;
 	}
 
 	public Individual getInd() 
@@ -134,19 +143,28 @@ public class AltaCIndividual
 	public String altaCIndividual() {
 		try {
 			
-			user = sesion.getUsuario();
+			admin = sesion.getUsuario();
 			
 			ind.setApellido(this.getApellido());
 			ind.setCiudad(this.getCiudad());
 			ind.setCodigopostal(this.getCodigopostal());
 			ind.setDireccion(this.getDireccion());
 			ind.setIdentification(this.getIdentification());
-			ind.setId(this.getId());
 			ind.setName(this.getName());
 			ind.setPais(this.getPais());
-			ind.setUsuarioIndividual(user);
 			
-			clienteInd.crearClienteIndividual(user, ind);
+		
+			userCliente.setUser(nombreUsuario);
+			userCliente.setPassword(pass);
+			userCliente.setAdministrador(false);
+			
+			//Relacion
+			ind.setUsuarioIndividual(userCliente);
+			userCliente.setIndividual(ind);
+			
+			
+			
+			clienteInd.crearClienteIndividual(admin, ind);
 			return "paginaadmin.xhtml";
 			
 		}catch (ClienteExistenteException e) {

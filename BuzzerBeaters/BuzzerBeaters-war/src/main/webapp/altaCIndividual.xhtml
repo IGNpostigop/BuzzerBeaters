@@ -13,50 +13,51 @@
 <h:body>
        
        <h2><h:outputText value="Alta de Cliente individual"/></h2>
-        <h:form columns="3">
-                        <h:outputText value="Nombre de usuario:"/>
-                        <h:inputText id="user" required="true" value="#{altaCIndividual.user.user}" class="controls"/>
-                        <h:message id="userMessage" for="user"/>
+       
+        <h:form id="altaCIndividual">
+                        <h:outputLabel value="Nombre de usuario:"></h:outputLabel>
+                        <h:inputText id="username" required="true" value="#{altaCIndividual.nombreUsuario}" class="controls"></h:inputText>
+                        <h:message id="userNameMessage" for="userName"/>
 
-                        <h:outputText value="Contraseña:"/>
-                        <h:inputSecret id="pass" required="true" value="#{altaCIndividual.user.password}" class="controls"/>
+                        <h:outputLabel value="Contraseña:"></h:outputLabel>
+                        <h:inputSecret id="pass" required="true" value="#{altaCIndividual.pass}" class="controls"></h:inputSecret>
                         <h:message id="passwordMessage" for="pass"/>
                         
-                        <h:outputText value="Nombre:"/>
-                        <h:inputText id="nombre" required="true" value="#{altaCIndividual.ind.name}" class="controls"/>
+                        <h:outputLabel value="Nombre:"></h:outputLabel>
+                        <h:inputText id="nombre" required="true" value="#{altaCIndividual.name}" class="controls"></h:inputText>
                         <h:message id="nombreMessage" for="nombre"/>
                         
-                        <h:outputText value="Apellido:"/>
-                        <h:inputText id="apellido" required="true" value="#{altaCIndividual.ind.apellido}" class="controls"/>
+                        <h:outputLabel value="Apellido:"></h:outputLabel>
+                        <h:inputText id="apellido" required="true" value="#{altaCIndividual.apellido}" class="controls"></h:inputText>
                         <h:message id="apellidoMessage" for="apellido"/>
 
                        <!--  <h:outputText value="Fecha de Nacimiento"/>
                         <h:inputText id="fechaNacimiento" required="false" value="#{altaCIndividual.ind.fecha_nacimiento}" class="controls"/>
                         <h:message id="fechaNacimientoMessage" for="fechaNacimiento"/> -->
                         
-                        <h:outputText value="Identificacion"/>
-                        <h:inputText id="identificacion" required="true" value="#{altaCIndividual.ind.identification}" class="controls"/>
+                        <h:outputLabel value="Identificacion"></h:outputLabel>
+                        <h:inputText id="identificacion" required="true" value="#{altaCIndividual.identification}" class="controls"></h:inputText>
                         <h:message id="identificacionMessage" for="identificacion"/>
                         
-                        <h:outputText value="Id"/>
-                        <h:inputText id="id" required="true" value="#{altaCIndividual.ind.id}" class="controls"/>
-                        <h:message id="idMessage" for="id"/>
-                        
-                        <h:outputText value="Direccion:"/>
-                        <h:inputText id="direccion" required="true" value="#{altaCIndividual.ind.direccion}" class="controls"/>
+                        <h:outputLabel value="Direccion:"></h:outputLabel>
+                        <h:inputText id="direccion" required="true" value="#{altaCIndividual.direccion}" class="controls"></h:inputText>
                         <h:message id="direccionMessage" for="direccion"/>
                         
-                        <h:outputText value="Ciudad:"/>
-                        <h:inputText id="ciudad" required="true" value="#{altaCIndividual.ind.ciudad}" class="controls"/>
+                        <h:outputLabel value="Ciudad:"></h:outputLabel>
+                        <h:inputText id="ciudad" required="true" value="#{altaCIndividual.ciudad}" class="controls"></h:inputText>
                         <h:message id="ciudadMessage" for="ciudad"/>
                         
-                        <h:outputText value="Codigo Postal:"/>
-                        <h:inputText id="cp" required="true" value="#{altaCIndividual.ind.codigopostal}" class="controls"/>
+                        <h:outputLabel value="Pais:"></h:outputLabel>
+                        <h:inputText id="pais" required="true" value="#{altaCIndividual.pais}" class="controls"></h:inputText>
+                        <h:message id="paisMessage" for="pais"/>
+                        
+                        <h:outputLabel value="Codigo Postal:"></h:outputLabel>
+                        <h:inputText id="cp" required="true" value="#{altaCIndividual.codigopostal}" class="controls"></h:inputText>
                         <h:message id="cpMessage" for="cp"/>
 
-                        <h:commandButton id="botonAltaCIndiv" value="Alta" action="#{altaCIndividual.altaCIndividual()}" class="buttons"/>
-						<h:message id="AltaCException" for="botonAltaCIndiv"/>
-                    </h:form>
+                        <h:commandButton id="botonAltaCIndiv" value="AltaIndividual" action="#{altaCIndividual.altaCIndividual()}"></h:commandButton>
+						<h:message id="boton" for="botonAltaCIndiv"/>
+          </h:form>
        
        
       

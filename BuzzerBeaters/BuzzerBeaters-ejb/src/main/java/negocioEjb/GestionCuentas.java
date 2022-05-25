@@ -13,6 +13,7 @@ import es.uma.BuzzerBeaters.DepositadaEn;
 import es.uma.BuzzerBeaters.PooledAccount;
 import es.uma.BuzzerBeaters.Segregada;
 import es.uma.BuzzerBeaters.Usuario;
+import negocioEJBexcepcion.CuentaConSaldo;
 import negocioEJBexcepcion.CuentaException;
 import negocioEJBexcepcion.UserNotAdminException;
 import negocioEJBexcepcion.UsuarioException;
@@ -36,7 +37,9 @@ public interface GestionCuentas {
 	
 	public void cerrarCuenteSegregada (Segregada seg) throws CuentaException;
 	
-	public void cerrarCuentaPooled (PooledAccount pooled) throws CuentaException;
+	public void cerrarCuentaPooled (Usuario usuario, PooledAccount pooled) throws CuentaException, UsuarioException, UserNotAdminException, CuentaConSaldo;
 
 	public CuentaReferencia getCuentaReferencia(String iban) throws CuentaException;
+	
+	public PooledAccount buscarPooled(String iban) throws CuentaException;
 }

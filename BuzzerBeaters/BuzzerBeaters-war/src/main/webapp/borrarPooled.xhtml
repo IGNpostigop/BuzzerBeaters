@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+       xmlns:h="http://xmlns.jcp.org/jsf/html"
+       xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<h:head>
+       <title>Cerrar PooledAccount</title>
+</h:head>
+
+<h:body>
+       <h1>
+		<h:outputText value="Cerrar PooledAccount" />
+		</h1>
+		<h:form id="cerrarPooled">
+			<h:outputLabel value="Iban: "></h:outputLabel>
+			<h:inputText id="iban" value="#{cerrarPooled.iban}"></h:inputText>
+			<h:message id="ibanMessage" for="iban"/>
+			<br/>
+			<h:commandButton id="boton" value="botonCerrarpa" action="#{cerrarPooled.cerrarPooled}"></h:commandButton>
+			<h:message id = "usuario" for="boton"></h:message>	
+		</h:form>
+		
+		<div>
+             <p>Vuelve a la pagina de admin<h:link outcome="paginaadmin.xhtml">Menu Administrativo</h:link></p>
+        </div>
+            
+            
+</h:body>
+</html>
