@@ -53,24 +53,24 @@ public class BajaCliente {
 			usuario = sesion.getUsuario();
 			clientesEjb.bajaCliente(usuario, id );	
 			FacesMessage fm = new FacesMessage("Cliente correctamente dado de baja");
-			FacesContext.getCurrentInstance().addMessage("bajaCliente:botonbaja", fm);		
+			FacesContext.getCurrentInstance().addMessage("bajaCliente:boton", fm);		
 			return null;
 			
 		}catch (UsuarioException e){
 			FacesMessage fm = new FacesMessage("El usuario no existe");
-			FacesContext.getCurrentInstance().addMessage("bajaCliente:ident", fm);	
+			FacesContext.getCurrentInstance().addMessage("bajaCliente:boton", fm);	
 		}catch (UserNotAdminException e){
 			FacesMessage fm = new FacesMessage("El usuario no tiene privilegios");
-			FacesContext.getCurrentInstance().addMessage("bajaCliente:ident", fm);	
+			FacesContext.getCurrentInstance().addMessage("bajaCliente:boton", fm);	
 		}catch (ClienteNoEncontradoException e) {
 			FacesMessage fm = new FacesMessage("Cliente no encontrado");
-			FacesContext.getCurrentInstance().addMessage("bajaCliente:ident", fm);	
+			FacesContext.getCurrentInstance().addMessage("bajaCliente:boton", fm);	
 		}catch (ClienteDeBajaException e) {
 			FacesMessage fm = new FacesMessage("El cliente ya se encuentra de baja");
-			FacesContext.getCurrentInstance().addMessage("bajaCliente:ident", fm);	
+			FacesContext.getCurrentInstance().addMessage("bajaCliente:boton", fm);	
 		}catch (CuentaException e) {
 			FacesMessage fm = new FacesMessage("Cliente con cuentas abiertas");
-			FacesContext.getCurrentInstance().addMessage("bajaCliente:ident", fm);	
+			FacesContext.getCurrentInstance().addMessage("bajaCliente:boton", fm);	
 		}
 		return null;
 		
