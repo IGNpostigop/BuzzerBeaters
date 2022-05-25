@@ -61,7 +61,7 @@ public class ClientesEJB implements GestionClientes {
 		{
 			individual.setFechaAlta(Date.valueOf(LocalDate.now()));
 			individual.setEstado(true);
-			em.persist(individual);
+			em.persist(individual); 
 		}
 
 		
