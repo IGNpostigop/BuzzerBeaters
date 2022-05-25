@@ -146,7 +146,7 @@ public String abrirSegregada() {
 		
 		try {
 			
-			Cliente cliente = clientes.getCliente(this.getId());
+			Cliente cliente = clientes.getCliente(this.id);
 			
 			cuenta = new Segregada();
 			
@@ -158,10 +158,10 @@ public String abrirSegregada() {
 			cuenta.setClasificacion("Segregada");
 			cuenta.setComision(this.getComision());
 			
-			CuentaReferencia c  = cuentas.getCuentaReferencia(iban);
+			CuentaReferencia cr  = cuentas.getCuentaReferencia(iban);
 			
 			try {
-				cuentas.aperturaCtaSegregated(usuario, cuenta);
+				cuentas.aperturaCtaSegregated(usuario, cuenta, cliente, cr);
 			} catch (UsuarioException e) {
 				FacesMessage fm = new FacesMessage("El usuario no existe");
 				FacesContext.getCurrentInstance().addMessage("abreSegregada:usuario", fm);	

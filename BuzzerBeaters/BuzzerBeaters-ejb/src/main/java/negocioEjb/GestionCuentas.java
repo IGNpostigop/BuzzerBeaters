@@ -24,7 +24,7 @@ public interface GestionCuentas {
 	 * Este método debe permitir la apertura de una cuenta segregada.
 	 * @throws CuentaException 
 	 */
-	void aperturaCtaSegregated(Usuario admin, Segregada segregada) throws CuentaException, UsuarioException, UserNotAdminException;
+	void aperturaCtaSegregated(Usuario admin, Segregada segregada, Cliente client, CuentaReferencia cr) throws CuentaException, UsuarioException, UserNotAdminException;
 
 	
 	/**

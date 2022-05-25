@@ -29,7 +29,8 @@ public class CuentasEJB implements GestionCuentas {
 	
 	@Override
 	//RF5: Apertura de cuenta segregada
-	public void aperturaCtaSegregated(Usuario admin, Segregada segregada) throws CuentaException, UsuarioException, UserNotAdminException {
+	public void aperturaCtaSegregated(Usuario admin, Segregada segregada, Cliente client, CuentaReferencia cr) throws CuentaException, UsuarioException, UserNotAdminException {
+		
 		Segregada segBd = em.find(Segregada.class, segregada.getIban());
 		
 		Usuario administrador = em.find(Usuario.class, admin.getUser());
@@ -46,6 +47,8 @@ public class CuentasEJB implements GestionCuentas {
 		if(segBd != null) {
 			throw new CuentaException("La cuenta ya existe");
 		}else {
+			segregada.setCliente(client);
+			segregada.setCuenta_referencia(cr);
 			em.persist(segregada);
 		}
 	}
