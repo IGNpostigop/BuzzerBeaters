@@ -43,7 +43,6 @@ public class AbrirCuentaPooled {
 	private Usuario user; 
 	private String identificacion; 
 	private String iban;
-	private String ibanRefer; 
 	private String swift;
 	private List<DepositadaEn> depositos; 
 	private Double saldo;
@@ -98,12 +97,6 @@ public class AbrirCuentaPooled {
 	public void setIban(String iban) {
 		this.iban = iban;
 	}
-	public String getIbanRefer() {
-		return ibanRefer;
-	}
-	public void setIbanRefer(String ibanRefer) {
-		this.ibanRefer = ibanRefer;
-	}
 	public String getSwift() {
 		return swift;
 	}
@@ -145,7 +138,6 @@ public class AbrirCuentaPooled {
 			
 			poAc.setClasificacion("Pooled");
 			
-			CuentaReferencia c  = cuentas.getCuentaReferencia(iban);
 			
 			//----------------//
 			depositos = new ArrayList<>();
@@ -156,7 +148,7 @@ public class AbrirCuentaPooled {
 			
 			depositoId.setIBANpooled(this.getIban());
 			
-			depositoId.setIBANreferenciada(this.getIbanRefer());
+			depositoId.setIBANreferenciada(null);
 			
 			deposito.setId(depositoId);
 			
@@ -186,15 +178,10 @@ public class AbrirCuentaPooled {
 		} catch (ClienteNoEncontradoException e) {
 			FacesMessage fm = new FacesMessage("El cliente no existe");
 			FacesContext.getCurrentInstance().addMessage("abrirCuentaPooled:abrirCuenta", fm);
-		} catch (CuentaException e) {
-			FacesMessage fm = new FacesMessage("La cuenta referencia no existe");
-			FacesContext.getCurrentInstance().addMessage("abrirCuentaPooled:abrirCuenta", fm);
-
+		}
 		
 		return null;
 		
-		}
-		return "paginaadmin.xhtml";
 	}
 }
 	

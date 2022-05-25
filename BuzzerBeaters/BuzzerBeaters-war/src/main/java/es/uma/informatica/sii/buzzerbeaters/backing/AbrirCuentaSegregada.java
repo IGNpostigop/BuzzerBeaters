@@ -38,6 +38,8 @@ public class AbrirCuentaSegregada {
 	
 	private Usuario usuario;
 	
+	private Long id;
+	
 	private String identificacion;
 	
 	private String iban;
@@ -105,6 +107,14 @@ public class AbrirCuentaSegregada {
 	public void setIban(String iban) {
 		this.iban = iban;
 	}
+	
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
 
 	public String getIbanRefer() {
 		return ibanRefer;
@@ -136,7 +146,7 @@ public String abrirSegregada() {
 		
 		try {
 			
-			Cliente cliente = clientes.getCliente(this.getIdentificacion());
+			Cliente cliente = clientes.getCliente(this.getId());
 			
 			cuenta = new Segregada();
 			

@@ -32,10 +32,6 @@
 				<h:outputLabel value="Deposito de Saldo Inicial: "></h:outputLabel>
 				<h:inputText id="comision" value="#{abrirCuentaPooled.saldo}"></h:inputText>
 				<br/>
-				<h:outputLabel value="Iban Cuenta Referenciada: "></h:outputLabel>
-				<h:inputText id="ibanReferencia" value="#{abrirCuentaPooled.ibanRefer}"></h:inputText>
-				<h:message id="cuenta" for="ibanReferencia"/>
-				<br/>
 				<h:commandButton id="boton" value="abrirCuenta" action="#{abrirCuentaPooled.cuentaPooled()}"></h:commandButton>
 				<h:message id = "usuario" for="boton"></h:message>		
 		</h:form>

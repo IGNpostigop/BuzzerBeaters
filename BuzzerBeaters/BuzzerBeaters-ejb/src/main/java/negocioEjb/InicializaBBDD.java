@@ -1,6 +1,8 @@
 package negocioEjb;
 
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.Singleton;
@@ -8,8 +10,11 @@ import javax.ejb.Startup;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import es.uma.BuzzerBeaters.CuentaReferencia;
+import es.uma.BuzzerBeaters.Divisa;
 import es.uma.BuzzerBeaters.Individual;
 import es.uma.BuzzerBeaters.PersonaAutorizada;
+import es.uma.BuzzerBeaters.PooledAccount;
 import es.uma.BuzzerBeaters.Usuario;
 
 @Singleton
@@ -86,6 +91,55 @@ public class InicializaBBDD {
 			  
 			  em.persist(individual);
 			 
+			  
+			  Divisa div = new Divisa();
+			  div.setAbreviatura("EUR");
+			  div.setCambioEuro(1.0);
+			  div.setNombre("Euro");
+			  div.setSimbolo('€');
+			  div.setCuenta_referencia(null);
+			  
+//			  List<Divisa> divisas = new ArrayList<>();
+//			  divisas.add(div);
+			  
+			  
+			  CuentaReferencia cf = new CuentaReferencia();
+			  cf.setDivisa(div);
+			  cf.setEstado(true);
+			  cf.setFecha_apertura(Date.valueOf("2013-10-5"));
+			  cf.setIban("iban1234");
+			  cf.setNombreBanco("uma");
+			  cf.setPais("espana");
+			  cf.setSaldo(0.0);
+			  cf.setSucursal("sucur");
+			  cf.setSwift("swiftseg");
+			  cf.setReferenciadaDepositadaEn(null);
+			  cf.setSegregada(null);
+			  cf.setTransaccionesDestino(null);
+			  cf.setTransaccionesOrigen(null);
+			  
+			  List<CuentaReferencia> referencias = new ArrayList<>();
+			  referencias.add(cf);
+			  
+			  em.persist(cf);
+			  
+			  div.setCuenta_referencia(referencias);
+			  em.persist(div);
+			  
+			  
+			  PooledAccount pool = new PooledAccount();
+			  pool.setClasificacion("Abierta");
+			  pool.setCliente(individual);
+			  pool.setEstado(true);
+			  pool.setFecha_apertura(Date.valueOf("2001-02-13"));
+			  pool.setFecha_cierre(null);
+			  pool.setIban("iban");
+			  pool.setPooledDepositadaEn(null);
+			  pool.setSwift("switfff");
+			  pool.setTransaccionesDestino(null);
+			  pool.setTransaccionesOrigen(null);
+			  
+			  em.persist(pool);
 			//fin inicilizacion de individual.
 		}
 		

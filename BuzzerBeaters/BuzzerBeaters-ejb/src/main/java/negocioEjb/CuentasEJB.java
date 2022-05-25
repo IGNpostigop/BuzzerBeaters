@@ -53,6 +53,7 @@ public class CuentasEJB implements GestionCuentas {
 	@Override
 	//RF5: Apertura de cuenta pooled
 	public PooledAccount aperturaCtaPooled(Usuario admin, PooledAccount pooled, Cliente cliente, List<DepositadaEn> den) throws CuentaException, UsuarioException, UserNotAdminException{
+		
 		PooledAccount pooledBd = em.find(PooledAccount.class, pooled.getIban());
 		
 		Usuario administrador = em.find(Usuario.class, admin.getUser());
@@ -70,7 +71,7 @@ public class CuentasEJB implements GestionCuentas {
 		}else {
 			pooled.setCliente(cliente);
 			pooled.setPooledDepositadaEn(den);
-			em.merge(pooled);
+			em.persist(pooled);
 			return pooled;
 		}
 	}
