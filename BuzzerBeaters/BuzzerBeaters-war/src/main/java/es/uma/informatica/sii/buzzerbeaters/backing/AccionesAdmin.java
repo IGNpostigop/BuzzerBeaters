@@ -112,31 +112,31 @@ public class AccionesAdmin {
 		
 	}
 	
-	public String bajaCliente () {
-		try {
-			clientesEjb.bajaCliente(usuario, cliente);
-			return "bajaCliente.xhtml";
-		}catch (UsuarioException e) {
-			FacesMessage fm = new FacesMessage("El usuario no existe");
-			FacesContext.getCurrentInstance().addMessage("bajaCliente", fm);
-		}catch (UserNotAdminException e) {
-			FacesMessage fm = new FacesMessage("El usuario no tiene privilegios de administrador");
-			FacesContext.getCurrentInstance().addMessage("bajaCliente", fm);
-		}catch (ClienteNoEncontradoException e) {
-			FacesMessage fm = new FacesMessage("El cliente que se pretende dar de baja no existe");
-			FacesContext.getCurrentInstance().addMessage("bajaCliente", fm);
-		}catch (ClienteDeBajaException e) {
-			FacesMessage fm = new FacesMessage("El cliente ya de baja");
-			FacesContext.getCurrentInstance().addMessage("bajaCliente", fm);
-		}catch (CuentaException e) {
-			FacesMessage fm = new FacesMessage("El cliente tiene alguna cuenta abierta");
-			FacesContext.getCurrentInstance().addMessage("bajaCliente", fm);
-		}
-		
-
-		return null;
-		
-	}
+//	public String bajaCliente () {
+//		try {
+//			clientesEjb.bajaCliente(usuario, cliente);
+//			return "bajaCliente.xhtml";
+//		}catch (UsuarioException e) {
+//			FacesMessage fm = new FacesMessage("El usuario no existe");
+//			FacesContext.getCurrentInstance().addMessage("bajaCliente", fm);
+//		}catch (UserNotAdminException e) {
+//			FacesMessage fm = new FacesMessage("El usuario no tiene privilegios de administrador");
+//			FacesContext.getCurrentInstance().addMessage("bajaCliente", fm);
+//		}catch (ClienteNoEncontradoException e) {
+//			FacesMessage fm = new FacesMessage("El cliente que se pretende dar de baja no existe");
+//			FacesContext.getCurrentInstance().addMessage("bajaCliente", fm);
+//		}catch (ClienteDeBajaException e) {
+//			FacesMessage fm = new FacesMessage("El cliente ya de baja");
+//			FacesContext.getCurrentInstance().addMessage("bajaCliente", fm);
+//		}catch (CuentaException e) {
+//			FacesMessage fm = new FacesMessage("El cliente tiene alguna cuenta abierta");
+//			FacesContext.getCurrentInstance().addMessage("bajaCliente", fm);
+//		}
+//		
+//
+//		return null;
+//		
+//	}
 	
 	
 		
