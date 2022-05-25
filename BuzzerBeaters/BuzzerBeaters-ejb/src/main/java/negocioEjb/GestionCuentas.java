@@ -15,6 +15,7 @@ import es.uma.BuzzerBeaters.Segregada;
 import es.uma.BuzzerBeaters.Usuario;
 import negocioEJBexcepcion.CuentaConSaldo;
 import negocioEJBexcepcion.CuentaException;
+import negocioEJBexcepcion.SegregadaSinReferencia;
 import negocioEJBexcepcion.UserNotAdminException;
 import negocioEJBexcepcion.UsuarioException;
 
@@ -25,7 +26,7 @@ public interface GestionCuentas {
 	 * Este método debe permitir la apertura de una cuenta segregada.
 	 * @throws CuentaException 
 	 */
-	public Segregada aperturaCtaSegregated(Usuario admin, Segregada segregada, Cliente client, CuentaReferencia cr) throws CuentaException, UsuarioException, UserNotAdminException;
+	public void aperturaCtaSegregated(Usuario admin, Segregada segregada, Cliente client, CuentaReferencia cr) throws UsuarioException, UserNotAdminException, SegregadaSinReferencia;
 
 	
 	/**

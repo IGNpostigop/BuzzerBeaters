@@ -18,19 +18,19 @@
                         <h:outputLabel value="Nombre de usuario:"></h:outputLabel>
                         <h:inputText id="username" required="true" value="#{altaCIndividual.nombreUsuario}" class="controls"></h:inputText>
                         <h:message id="userNameMessage" for="userName"/>
-
+						<br></br>
                         <h:outputLabel value="Contraseña:"></h:outputLabel>
                         <h:inputSecret id="pass" required="true" value="#{altaCIndividual.pass}" class="controls"></h:inputSecret>
                         <h:message id="passwordMessage" for="pass"/>
-                        
+                        <br></br>
                         <h:outputLabel value="Nombre:"></h:outputLabel>
                         <h:inputText id="nombre" required="true" value="#{altaCIndividual.name}" class="controls"></h:inputText>
                         <h:message id="nombreMessage" for="nombre"/>
-                        
+                        <br></br>
                         <h:outputLabel value="Apellido:"></h:outputLabel>
                         <h:inputText id="apellido" required="true" value="#{altaCIndividual.apellido}" class="controls"></h:inputText>
                         <h:message id="apellidoMessage" for="apellido"/>
-
+						<br></br>
                        <!--  <h:outputText value="Fecha de Nacimiento"/>
                         <h:inputText id="fechaNacimiento" required="false" value="#{altaCIndividual.ind.fecha_nacimiento}" class="controls"/>
                         <h:message id="fechaNacimientoMessage" for="fechaNacimiento"/> -->
@@ -38,28 +38,28 @@
                         <h:outputLabel value="Identificacion"></h:outputLabel>
                         <h:inputText id="identificacion" required="true" value="#{altaCIndividual.identification}" class="controls"></h:inputText>
                         <h:message id="identificacionMessage" for="identificacion"/>
-                        
+                        <br></br>
                         <h:outputLabel value="Direccion:"></h:outputLabel>
                         <h:inputText id="direccion" required="true" value="#{altaCIndividual.direccion}" class="controls"></h:inputText>
                         <h:message id="direccionMessage" for="direccion"/>
-                        
+                        <br></br>
                         <h:outputLabel value="Ciudad:"></h:outputLabel>
                         <h:inputText id="ciudad" required="true" value="#{altaCIndividual.ciudad}" class="controls"></h:inputText>
                         <h:message id="ciudadMessage" for="ciudad"/>
-                        
+                        <br></br>
                         <h:outputLabel value="Pais:"></h:outputLabel>
                         <h:inputText id="pais" required="true" value="#{altaCIndividual.pais}" class="controls"></h:inputText>
                         <h:message id="paisMessage" for="pais"/>
-                        
+                        <br></br>
                         <h:outputLabel value="Codigo Postal:"></h:outputLabel>
                         <h:inputText id="cp" required="true" value="#{altaCIndividual.codigopostal}" class="controls"></h:inputText>
                         <h:message id="cpMessage" for="cp"/>
-
+						<br></br>
                         <h:commandButton id="botonAltaCIndiv" value="AltaIndividual" action="#{altaCIndividual.altaCIndividualFun()}"></h:commandButton>
 						<h:message id="boton" for="botonAltaCIndiv"/>
           </h:form>
        
-       
+       <br></br>
       
 			<div>
                <p>Vuelve a la pagina de admin<h:link outcome="paginaadmin.xhtml">Menu Administrativo</h:link></p>

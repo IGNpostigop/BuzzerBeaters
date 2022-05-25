@@ -15,6 +15,7 @@ import es.uma.BuzzerBeaters.Segregada;
 import es.uma.BuzzerBeaters.Usuario;
 import negocioEJBexcepcion.ClienteNoEncontradoException;
 import negocioEJBexcepcion.CuentaException;
+import negocioEJBexcepcion.SegregadaSinReferencia;
 import negocioEJBexcepcion.UserNotAdminException;
 import negocioEJBexcepcion.UsuarioException;
 import negocioEjb.GestionClientes;
@@ -140,54 +141,54 @@ public class AbrirCuentaSegregada {
 		this.comision = comision;
 	}
 	
-public String abrirSegregada() {
-		
+	public String abrirSegregada() {
+
 		Usuario usuario = sesion.getUsuario();
-		
+
 		try {
-			
-			Cliente cliente = clientes.getCliente(this.id);
-			
-			cuenta = new Segregada();
-			
+		
+		Cliente cliente = clientes.getCliente(this.id);
+		cuenta = new Segregada();
+		
+
+	
 			cuenta.setIban(this.getIban());
 			cuenta.setSwift(this.getSwift());
 			cuenta.setEstado(true);
-			cuenta.setFecha_apertura(Date.valueOf(LocalDate.now())); //DATE
-			cuenta.setFecha_cierre(null);
+			cuenta.setFecha_apertura(Date.valueOf(LocalDate.now())); // DATE
 			cuenta.setClasificacion("Segregada");
-			cuenta.setComision(this.getComision());
+			cuenta.setComision(this.getComision());		
 			
-			CuentaReferencia cr  = cuentas.getCuentaReferencia(iban);
-			
-			try {
-				cuentas.aperturaCtaSegregated(usuario, cuenta, cliente, cr);
-			} catch (UsuarioException e) {
-				FacesMessage fm = new FacesMessage("El usuario no existe");
-				FacesContext.getCurrentInstance().addMessage("abreSegregada:boton", fm);	
-			}
-			 catch (UserNotAdminException e) {
-				FacesMessage fm = new FacesMessage("El usuario no tiene los privilegios suficientes");
-				FacesContext.getCurrentInstance().addMessage("abreSegregada:boton", fm);	
-						
-			} catch (CuentaException e) {
-				FacesMessage fm = new FacesMessage("La cuenta ya existe");
-				FacesContext.getCurrentInstance().addMessage("abreSegregada:boton", fm);	
-			}
-			
+			CuentaReferencia cr = cuentas.getCuentaReferencia(this.getIbanRefer());
+
+			cuentas.aperturaCtaSegregated(usuario, cuenta, cliente ,cr);
 			return "paginaadmin.xhtml";
 			
-		} catch (ClienteNoEncontradoException e) {
-			FacesMessage fm = new FacesMessage("El cliente no existe");
-			FacesContext.getCurrentInstance().addMessage("abreSegregada:boton", fm);
-		} catch (CuentaException e) {
-			FacesMessage fm = new FacesMessage("La cuenta referencia no existe");
-			FacesContext.getCurrentInstance().addMessage("abreSegregada:boton", fm);
-		}
+				} catch (UsuarioException e) {
+					FacesMessage fm = new FacesMessage("El usuario no existe");
+					FacesContext.getCurrentInstance().addMessage("abreSegregada:boton", fm);
+				} catch (UserNotAdminException e) {
+					FacesMessage fm = new FacesMessage("El usuario no tiene permisos de administracion");
+					FacesContext.getCurrentInstance().addMessage("abreSegregada:boton", fm);
+				} catch (SegregadaSinReferencia e) {
+					FacesMessage fm = new FacesMessage("El iban introoducido no coincide con la referencia asociada");
+					FacesContext.getCurrentInstance().addMessage("abreSegregada:boton", fm);
+				}catch (ClienteNoEncontradoException e) {
+					FacesMessage fm = new FacesMessage("El cliente no existe");
+					FacesContext.getCurrentInstance().addMessage("abreSegregada:boton", fm);
+				}
+				catch (CuentaException e) {
+					FacesMessage fm = new FacesMessage("No existe la cuenta referencia");
+					FacesContext.getCurrentInstance().addMessage("abreSegregada:boton", fm);
+				}
 		
 		return null;
-		
-		}
-	
 
-}
+		}
+	}
+
+
+
+
+
+

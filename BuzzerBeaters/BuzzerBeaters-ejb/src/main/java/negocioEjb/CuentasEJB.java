@@ -20,6 +20,7 @@ import es.uma.BuzzerBeaters.Usuario;
 import negocioEJBexcepcion.ClienteNoEncontradoException;
 import negocioEJBexcepcion.CuentaConSaldo;
 import negocioEJBexcepcion.CuentaException;
+import negocioEJBexcepcion.SegregadaSinReferencia;
 import negocioEJBexcepcion.UserNotAdminException;
 import negocioEJBexcepcion.UsuarioException;
 
@@ -34,11 +35,11 @@ public class CuentasEJB implements GestionCuentas {
 	
 	@Override
 	//RF5: Apertura de cuenta segregada
-	public  Segregada aperturaCtaSegregated(Usuario admin, Segregada segregada, Cliente client, CuentaReferencia cr) throws CuentaException, UsuarioException, UserNotAdminException {
-		
-		Segregada segBd = em.find(Segregada.class, segregada.getIban());
+	public  void aperturaCtaSegregated(Usuario admin, Segregada segregada, Cliente client, CuentaReferencia cr) throws UsuarioException, UserNotAdminException, SegregadaSinReferencia {
 		
 		Usuario administrador = em.find(Usuario.class, admin.getUser());
+		
+		CuentaReferencia cuentaRef = em.find(CuentaReferencia.class, cr.getIban());
 		
 		if (administrador == null) { 
 			throw new UsuarioException("El usuario no exsite");
@@ -48,15 +49,12 @@ public class CuentasEJB implements GestionCuentas {
 			throw new UserNotAdminException("El usuario no tiene los privilegios suficientes para la operación");
 		}
 		
-		
-		if(segBd != null) {
-			throw new CuentaException("La cuenta ya existe");
-		}else {
-			segregada.setCliente(client);
-			segregada.setCuenta_referencia(cr);
-			em.persist(segregada);
-			return segregada;
+		if (cuentaRef==null) { 
+			throw new SegregadaSinReferencia("La cuenta de referencia no existe");
 		}
+			segregada.setCliente(client);
+			segregada.setCuenta_referencia(cuentaRef);
+			em.persist(segregada);
 	}
 
 	@Override
