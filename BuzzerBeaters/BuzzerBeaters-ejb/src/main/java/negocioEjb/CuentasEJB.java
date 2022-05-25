@@ -34,7 +34,7 @@ public class CuentasEJB implements GestionCuentas {
 	
 	@Override
 	//RF5: Apertura de cuenta segregada
-	public Segregada aperturaCtaSegregated(Usuario admin, Segregada segregada, Cliente client, CuentaReferencia cr) throws CuentaException, UsuarioException, UserNotAdminException {
+	public  Segregada aperturaCtaSegregated(Usuario admin, Segregada segregada, Cliente client, CuentaReferencia cr) throws CuentaException, UsuarioException, UserNotAdminException {
 		
 		Segregada segBd = em.find(Segregada.class, segregada.getIban());
 		

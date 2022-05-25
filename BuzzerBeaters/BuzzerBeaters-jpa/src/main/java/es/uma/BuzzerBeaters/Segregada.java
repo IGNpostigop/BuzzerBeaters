@@ -34,7 +34,7 @@ public class Segregada extends CuentaFintech implements Serializable {
 	}
 
 	public static long getSerialversionuid() {
-		return serialVersionUID;
+		return  serialVersionUID;
 	}
 
 	@Override
