@@ -70,7 +70,7 @@ public class AltaCIndividual
 			FacesContext.getCurrentInstance().addMessage("altaCIndividual:botonAltaCIndiv", fm);
 		}
 		
-		return null;
+		return "paginaadmin.xhtml";
 		
 	}
 	
