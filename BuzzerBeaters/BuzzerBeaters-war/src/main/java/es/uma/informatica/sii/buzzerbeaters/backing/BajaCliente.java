@@ -54,7 +54,7 @@ public class BajaCliente {
 			clientesEjb.bajaCliente(usuario, id );	
 			FacesMessage fm = new FacesMessage("Cliente correctamente dado de baja");
 			FacesContext.getCurrentInstance().addMessage("bajaCliente:botonbaja", fm);		
-			return "bajaCliente.xhtml";
+			return null;
 			
 		}catch (UsuarioException e){
 			FacesMessage fm = new FacesMessage("El usuario no existe");
