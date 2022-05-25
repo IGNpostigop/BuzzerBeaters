@@ -36,7 +36,7 @@
 			<h:inputText id="ibanReferencia" value="#{abrirCuentaSegregada.iban_referencia}"></h:inputText>
 			<h:message id="cuenta" for="ibanReferencia"/>
 			<br/>
-			<h:commandButton id="boton" value="Abrir Cuenta" action="#{abrirCuentaSegregada.abrirSegregada}"></h:commandButton>
+			<h:commandButton id="boton" value="Abrir Cuenta" action="#{abrirCuentaSegregada.abrirSegregada()}"></h:commandButton>
 			<h:message id = "usuario" for="boton"></h:message>		
 		</h:form>
       

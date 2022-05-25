@@ -164,25 +164,25 @@ public String abrirSegregada() {
 				cuentas.aperturaCtaSegregated(usuario, cuenta, cliente, cr);
 			} catch (UsuarioException e) {
 				FacesMessage fm = new FacesMessage("El usuario no existe");
-				FacesContext.getCurrentInstance().addMessage("abreSegregada:abrirCuenta", fm);	
+				FacesContext.getCurrentInstance().addMessage("abreSegregada:boton", fm);	
 			}
 			 catch (UserNotAdminException e) {
 				FacesMessage fm = new FacesMessage("El usuario no tiene los privilegios suficientes");
-				FacesContext.getCurrentInstance().addMessage("abreSegregada:abrirCuenta", fm);	
+				FacesContext.getCurrentInstance().addMessage("abreSegregada:boton", fm);	
 						
 			} catch (CuentaException e) {
 				FacesMessage fm = new FacesMessage("La cuenta ya existe");
-				FacesContext.getCurrentInstance().addMessage("abreSegregada:abrirCuenta", fm);	
+				FacesContext.getCurrentInstance().addMessage("abreSegregada:boton", fm);	
 			}
 			
 			return "paginaadmin.xhtml";
 			
 		} catch (ClienteNoEncontradoException e) {
 			FacesMessage fm = new FacesMessage("El cliente no existe");
-			FacesContext.getCurrentInstance().addMessage("abreSegregada:abrirCuenta", fm);
+			FacesContext.getCurrentInstance().addMessage("abreSegregada:boton", fm);
 		} catch (CuentaException e) {
 			FacesMessage fm = new FacesMessage("La cuenta referencia no existe");
-			FacesContext.getCurrentInstance().addMessage("abreSegregada:abrirCuenta", fm);
+			FacesContext.getCurrentInstance().addMessage("abreSegregada:boton", fm);
 		}
 		
 		return null;

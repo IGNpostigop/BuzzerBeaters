@@ -162,22 +162,22 @@ public class AbrirCuentaPooled {
 				cuentas.aperturaCtaPooled(user, poAc, client, depositos);
 			} catch (UsuarioException e) {
 				FacesMessage fm = new FacesMessage("El usuario no existe");
-				FacesContext.getCurrentInstance().addMessage("abrirCuentaPooled:abrirCuenta", fm);	
+				FacesContext.getCurrentInstance().addMessage("abrirCuentaPooled:boton", fm);	
 			}
 			 catch (UserNotAdminException e) {
 				FacesMessage fm = new FacesMessage("El usuario no tiene los privilegios suficientes");
-				FacesContext.getCurrentInstance().addMessage("abrirCuentaPooled:abrirCuenta", fm);	
+				FacesContext.getCurrentInstance().addMessage("abrirCuentaPooled:boton", fm);	
 						
 			} catch (CuentaException e) {
 				FacesMessage fm = new FacesMessage("La cuenta ya existe");
-				FacesContext.getCurrentInstance().addMessage("abrirCuentaPooled:abrirCuenta", fm);	
+				FacesContext.getCurrentInstance().addMessage("abrirCuentaPooled:boton", fm);	
 			}
 			
 			return "paginaadmin.xhtml";
 			
 		} catch (ClienteNoEncontradoException e) {
 			FacesMessage fm = new FacesMessage("El cliente no existe");
-			FacesContext.getCurrentInstance().addMessage("abrirCuentaPooled:abrirCuenta", fm);
+			FacesContext.getCurrentInstance().addMessage("abrirCuentaPooled:boton", fm);
 		}
 		
 		return null;
