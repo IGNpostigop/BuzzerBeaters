@@ -44,7 +44,7 @@ public class CuentasEJB implements GestionCuentas {
 			throw new UsuarioException("El usuario no exsite");
 		}
 
-		if (!administrador.isAdministrador()) {
+		if (!administrador.isAdministrador()) { 
 			throw new UserNotAdminException("El usuario no tiene los privilegios suficientes para la operación");
 		}
 		
