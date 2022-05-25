@@ -14,6 +14,7 @@ import es.uma.BuzzerBeaters.DepositadaEn;
 import es.uma.BuzzerBeaters.PooledAccount;
 import es.uma.BuzzerBeaters.Segregada;
 import es.uma.BuzzerBeaters.Usuario;
+import negocioEJBexcepcion.CuentaConSaldo;
 import negocioEJBexcepcion.CuentaException;
 import negocioEJBexcepcion.UserNotAdminException;
 import negocioEJBexcepcion.UsuarioException;
@@ -96,10 +97,38 @@ public class CuentasEJB implements GestionCuentas {
 	}
 
 	@Override
+	public PooledAccount buscarPooled(String iban) throws CuentaException {
+	
+		PooledAccount pooled = em.find(PooledAccount.class, iban);
+		
+		if(pooled == null) {
+			
+			throw new CuentaException();
+		}
+		
+		return pooled;
+	}
+	
+	
+	@Override
 	//RF9: Cerrar de cuenta pooled
-	public void cerrarCuentaPooled(PooledAccount pooled) throws CuentaException {
+	public void cerrarCuentaPooled(Usuario admin, PooledAccount pooled) throws CuentaException, UsuarioException, UserNotAdminException, CuentaConSaldo {
+		
+		Usuario administrador = em.find(Usuario.class, admin.getUser());
+
+		if (administrador == null) { 
+			throw new UsuarioException("El usuario no exsite");
+		}
+
+		if (!administrador.isAdministrador()) {
+			throw new UserNotAdminException("El usuario no tiene los privilegios suficientes para la operación");
+		}
+
+		
 		PooledAccount pooledBd = em.find(PooledAccount.class, pooled.getIban());
+		
 		boolean sinsaldo = true;
+		
 		if(pooledBd == null){
 			throw new CuentaException("La cuenta no existe"); 
 		}else {
@@ -113,13 +142,13 @@ public class CuentasEJB implements GestionCuentas {
 			if(sinsaldo) {
 				pooledBd.setEstado(false);
 			}else {
-				throw new CuentaException("Algun depósito con saldo");
+				throw new CuentaConSaldo("Algun depósito con saldo");
 		}
 	}
 		
 	}
 	
-	
+	@Override
 	public CuentaReferencia getCuentaReferencia(String iban) throws CuentaException{
 		{
 			CuentaReferencia cuenta = em.find(CuentaReferencia.class, iban);
