@@ -10,16 +10,38 @@
        <title>Bajas de clientes</title>
 </h:head>
 
+<<<<<<< HEAD
+<h:body>
+       <h1>
+		<h:outputText value="Baja cliente" />
+		</h1>
+		<h:form id="bajaCliente">
+			<h:outputLabel value="ID cliente: "></h:outputLabel>
+			<h:inputText id="id" required="true" value="#{bajaCliente.id}" class="controls"></h:inputText>
+			<h:message id="idMessage" for="ident"/>
+			<br></br>
+			<h:commandButton id="botonBaja" value="Baja cliente" action="#{bajaCliente.baja()}"></h:commandButton>
+			<h:message id="botonMessage" for="botonbaja"/>
+		</h:form>
+		
+		<div>
+             <p>Vuelve a la pagina de admin<h:link outcome="paginaadmin.xhtml">Menu Administrativo</h:link></p>
+        </div>
+            
+            
+</h:body>
+</html>
+=======
 	<h:body>
 		<h:form id="bajaCliente" class="bajaC-form">
 			<h3><h:outputText value ="Baja de cliente"/></h3>
 				<h:outputText value="Id cliente a dar de baja"/>
                  <h:inputSecret id="id" required="true" value="#{bajaCliente.id}" class="controls"/>
                  <h:message id="bajaCliente" for="ident"/>
-               <br>
+               <br></br>
                  <h:commandButton id="botonBaja" value="Entrar" action="#{bajaCliente.baja()}" class="buttons"/>
                  <h:message id="bajaCliente" for="botonbaja"/>
-   			</br>
+   				
       	 <h2><h:outputText value="Baja de cliente correcta"/></h2>
       
 			<div>
@@ -30,3 +52,4 @@
 	</h:body>
 
 </html> 
+>>>>>>> refs/remotes/origin/main
