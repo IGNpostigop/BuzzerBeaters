@@ -62,7 +62,7 @@ public class CerrarPooled {
 			FacesContext.getCurrentInstance().addMessage("cerrarPooled:botonCerrar", fm);
 		}
 		return null;
-	
+	 
 	}
 
 }
