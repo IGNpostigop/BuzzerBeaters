@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.NamedQuery;
@@ -28,7 +29,7 @@ public class Individual extends Cliente implements Serializable {
 	@Column(name="fecha_nacimiento")
 	private Date fecha_nacimiento;
 	
-	@OneToOne
+	@OneToOne(cascade = CascadeType.PERSIST)
 	private Usuario usuarioIndividual;
 	
 	

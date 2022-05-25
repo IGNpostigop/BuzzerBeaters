@@ -140,7 +140,7 @@ public class AltaCIndividual
 	}
 	
 	
-	public String altaCIndividual() {
+	public String altaCIndividualFun() {
 		try {
 			
 			admin = sesion.getUsuario();

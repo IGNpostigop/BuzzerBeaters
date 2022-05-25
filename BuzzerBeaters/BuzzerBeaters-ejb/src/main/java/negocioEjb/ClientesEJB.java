@@ -42,8 +42,6 @@ public class ClientesEJB implements GestionClientes {
 	public void crearClienteIndividual(Usuario admin, Individual individual)
 			throws UsuarioException, UserNotAdminException, ClienteExistenteException {
 
-		Individual indEntity = em.find(Individual.class, individual.getId());
-
 		Usuario administrador = em.find(Usuario.class, admin.getUser());
 
 		if (administrador == null) { 
@@ -54,17 +52,9 @@ public class ClientesEJB implements GestionClientes {
 			throw new UserNotAdminException("El usuario no tiene los privilegios suficientes para la operación");
 		}
 
-		if (indEntity != null) {
-			throw new ClienteExistenteException("El cliente individual ya existe");
-		}
-		else
-		{
 			individual.setFechaAlta(Date.valueOf(LocalDate.now()));
 			individual.setEstado(true);
 			em.persist(individual); 
-		}
-
-		
 
 	}
 	
