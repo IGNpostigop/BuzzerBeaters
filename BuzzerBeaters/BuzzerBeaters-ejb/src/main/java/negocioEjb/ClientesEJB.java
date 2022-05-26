@@ -215,18 +215,7 @@ public class ClientesEJB implements GestionClientes {
 		return cliente;
 	}
 	
-//	@Override
-//	public Cliente getCliente(String identificacion) throws ClienteNoEncontradoException{
-//		TypedQuery<Individual> query = em.createQuery("SELECT i FROM Individual i where i.identification = :fiden", Individual.class);
-//		query.setParameter("finden", identificacion);
-//		Individual cliente= query.getSingleResult();
-//		
-//		if(cliente == null) {
-//			throw new ClienteNoEncontradoException();
-//		}
-//		
-//		return cliente;
-//	}
+
 	
 }
 
