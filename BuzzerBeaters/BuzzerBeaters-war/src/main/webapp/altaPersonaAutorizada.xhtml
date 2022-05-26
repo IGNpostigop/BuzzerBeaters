@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+       xmlns:h="http://xmlns.jcp.org/jsf/html"
+       xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<h:head>
+       <title>Abrir cuenta Pooled</title>
+</h:head>
+
+<h:body>
+       
+       <h2><h:outputText value="Añadir una Persona Autorizada"/></h2>
+       
+       <h:form id="anyadirAutorizacion">
+       			<h:outputLabel value="Nombre de usuario:"></h:outputLabel>
+                        <h:inputText id="username" required="true" value="#{anyadirAutorizacion.nombreUsuario}" class="controls"></h:inputText>
+                        <h:message id="userNameMessage" for="userName"/>
+						<br></br>
+                        <h:outputLabel value="Contraseña:"></h:outputLabel>
+                        <h:inputSecret id="pass" required="true" value="#{anyadirAutorizacion.pass}" class="controls"></h:inputSecret>
+                        <h:message id="passwordMessage" for="pass"/>
+                        <br></br>
+                        <h:outputLabel value="Nombre:"></h:outputLabel>
+                        <h:inputText id="nombre" required="true" value="#{anyadirAutorizacion.nombre}" class="controls"></h:inputText>
+                        <h:message id="nombreMessage" for="nombre"/>
+                        <br></br>
+                        <h:outputLabel value="Apellido:"></h:outputLabel>
+                        <h:inputText id="apellido" required="true" value="#{anyadirAutorizacion.apellido}" class="controls"></h:inputText>
+                        <h:message id="apellidoMessage" for="apellido"/>
+						<br></br>
+                        <h:outputLabel value="Identificacion"></h:outputLabel>
+                        <h:inputText id="identificacion" required="true" value="#{anyadirAutorizacion.identification}" class="controls"></h:inputText>
+                        <h:message id="identificacionMessage" for="identificacion"/>
+                        <br></br>
+                        <h:outputLabel value="Direccion:"></h:outputLabel>
+                        <h:inputText id="direccion" required="true" value="#{anyadirAutorizacion.direccion}" class="controls"></h:inputText>
+                        <h:message id="direccionMessage" for="direccion"/>
+                        <br></br>
+                        <h:outputLabel value="Fecha de nacimiento:"></h:outputLabel>
+                        <h:inputText id="fn" required="true" value="#{anyadirAutorizacio.fn}" class="controls"></h:inputText>
+                        <h:message id="fnMessage" for="fn"/>
+						<br></br>
+						<h:outputLabel value="Fecha de inicio:"></h:outputLabel>
+                        <h:inputText id="fi" required="true" value="#{anyadirAutorizacio.fi}" class="controls"></h:inputText>
+                        <h:message id="fiMessage" for="fi"/>
+						<br></br>
+                        <h:commandButton id="botonPA" value="AltaIndividual" action="#{anyadirAutorizacio.anyadirAutorizacion()}"></h:commandButton>
+						<h:message id="boton" for="botonPA"/>	
+		</h:form>
+      
+			<div>
+               <p>Vuelve a la pagina de admin<h:link outcome="paginaadmin.xhtml">Menu Administrativo</h:link></p>
+            </div>
+            
+                        
+    
+</h:body>
+
+</html> 
