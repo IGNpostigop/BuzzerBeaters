@@ -24,9 +24,9 @@ public class AltaCEmpresa
 	
 	private Usuario admin;
 	private Empresa emp;
-	private Usuario userEmpresa;
+	//private Usuario userEmpresa;
 	private String nombreUsuario;
-	private String pass;
+	//private String pass;
 	
 	private String razonSocial;
 	private String identificacion;
@@ -38,24 +38,24 @@ public class AltaCEmpresa
 	
 	public AltaCEmpresa()
 	{
-		userEmpresa = new Usuario();
+		//userEmpresa = new Usuario();
 		emp = new Empresa();
 	}
 
 
 
-	public InfoSesion getSesion() {
-		return sesion;
-	}
-
-
-
-
-
-
-	public void setSesion(InfoSesion sesion) {
-		this.sesion = sesion;
-	}
+//	public InfoSesion getSesion() {
+//		return sesion;
+//	}
+//
+//
+//
+//
+//
+//
+//	public void setSesion(InfoSesion sesion) {
+//		this.sesion = sesion;
+//	}
 
 
 
@@ -116,18 +116,18 @@ public class AltaCEmpresa
 
 
 
-	public Usuario getUserEmpresa() {
-		return userEmpresa;
-	}
-
-
-
-
-
-
-	public void setUserEmpresa(Usuario userEmpresa) {
-		this.userEmpresa = userEmpresa;
-	}
+//	public Usuario getUserEmpresa() {
+//		return userEmpresa;
+//	}
+//
+//
+//
+//
+//
+//
+//	public void setUserEmpresa(Usuario userEmpresa) {
+//		this.userEmpresa = userEmpresa;
+//	}
 
 
 
@@ -152,18 +152,18 @@ public class AltaCEmpresa
 
 
 
-	public String getPass() {
-		return pass;
-	}
-
-
-
-
-
-
-	public void setPass(String pass) {
-		this.pass = pass;
-	}
+//	public String getPass() {
+//		return pass;
+//	}
+//
+//
+//
+//
+//
+//
+//	public void setPass(String pass) {
+//		this.pass = pass;
+//	}
 
 
 
@@ -290,9 +290,9 @@ public class AltaCEmpresa
 			emp.setIdentification(identificacion);
 			emp.setPais(pais);
 			
-			userEmpresa.setUser(nombreUsuario);
-			userEmpresa.setPassword(pass);
-			userEmpresa.setAdministrador(false);
+//			userEmpresa.setUser(nombreUsuario);
+//			userEmpresa.setPassword(pass);
+//			userEmpresa.setAdministrador(false);
 			
 			
 			clienteEmp.crearClienteEmpresa(admin, emp);

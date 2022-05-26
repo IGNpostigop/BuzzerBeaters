@@ -63,8 +63,6 @@ public class ClientesEJB implements GestionClientes {
 	public void crearClienteEmpresa(Usuario admin, Cliente empresa)
 			throws UsuarioException, UserNotAdminException, ClienteExistenteException  {
 
-		Empresa clienteEmpresaEntity = em.find(Empresa.class, empresa.getIdentification());
-
 		Usuario administrador = em.find(Usuario.class, admin.getUser());
 
 		if (administrador == null) { 
@@ -73,10 +71,6 @@ public class ClientesEJB implements GestionClientes {
 
 		if (!administrador.isAdministrador()) {
 			throw new UserNotAdminException("El usuario no tiene los privilegios suficientes para la operación");
-		}
-
-		if (clienteEmpresaEntity != null) {
-			throw new ClienteExistenteException("El cliente empresa ya existe");
 		}
 
 		em.persist(empresa);
