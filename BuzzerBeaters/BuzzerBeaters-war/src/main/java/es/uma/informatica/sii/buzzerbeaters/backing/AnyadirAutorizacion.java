@@ -1,5 +1,7 @@
 package es.uma.informatica.sii.buzzerbeaters.backing;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.enterprise.context.RequestScoped;
@@ -24,15 +26,32 @@ public class AnyadirAutorizacion
 	@Inject
 	private GestionPersonasAutorizadas gestionPA;
 	
-	private Usuario user;
+	private Usuario admin;
 	private PersonaAutorizada pa;
+	
 	private CuentaFintech cf;
 	private List<PersonaAutorizada> listaAutorizaciones;
 	
+	private Usuario userPA;
+	private String nombreUsuario;
+	private String pass;
+	
+	//private Long id; 
+	private String identificacion; 
+	private String nombre; 
+	private String apellidos; 
+	private String direccion; 
+	private String fn; 
+	private String fi; 
+	//private String estado; 
+	
+	private SimpleDateFormat date; 
+	
 	AnyadirAutorizacion()
 	{
-		user = new Usuario();
+		admin = new Usuario();
 		pa = new PersonaAutorizada();
+		date = new SimpleDateFormat("dd-MMM-yyyy")
 	}
 
 	public Usuario getUser() {
@@ -71,19 +90,37 @@ public class AnyadirAutorizacion
 		
 		try {
 			
-			user = sesion.getUsuario();
-			gestionPA.crearPersonaAutorizada(user,listaAutorizaciones,cf);
+			admin = sesion.getUsuario();
+			
+			userPA.setUser(nombreUsuario);
+			userPA.setPassword(pass);
+			userPA.setAdministrador(false);
+			
+			pa.setIdentification(identificacion);
+			pa.setNombre(nombre);
+			pa.setApellidos(apellidos);
+			pa.setDireccion(direccion);
+			
+			Date fechNa = date.parse(fn); 
+			pa.setFecha_nacimiento(fechNa); //Hay que importar java.util.Date en el jpa de persoAutorizada para que funcione
+			
+			Date fechIn = date.parse(fi); 
+			pa.setFechaInicio(fechIn); //Hay que importar java.util.Date en el jpa de persoAutorizada para que funcione
+			
+			//pa.setEstado(true);
+			
+			gestionPA.crearPersonaAutorizada(admin,listaAutorizaciones,cf);
 			return "paginaadmin.xhtml";
 			
 		}catch(UsuarioException e) {
 			
 			FacesMessage fm = new FacesMessage("El usuario existe");
-			FacesContext.getCurrentInstance().addMessage("anyadirAutorizacion", fm);
+			FacesContext.getCurrentInstance().addMessage("anyadirAutorizacion:botonPA", fm);
 			
 		}catch(PersonaAutorizadaSinAdmin e) {
 			
-			FacesMessage fm = new FacesMessage("El cliente no es administrativo");
-			FacesContext.getCurrentInstance().addMessage("anyadirAutorizacion", fm);
+			FacesMessage fm = new FacesMessage("El cliente no es administrativo:botonPA");
+			FacesContext.getCurrentInstance().addMessage("anyadirAutorizacion:botonPA", fm);
 			
 		}
 		

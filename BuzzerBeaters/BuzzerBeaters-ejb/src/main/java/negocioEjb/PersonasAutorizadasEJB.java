@@ -34,10 +34,6 @@ public class PersonasAutorizadasEJB implements GestionPersonasAutorizadas{
 
 		Usuario admin = em.find(Usuario.class, user.getUser());
 		
-		if (user == null) { 
-			throw new UsuarioException("El usuario no existe");
-		}
-		
 		if (!user.isAdministrador()) { 
 			throw new PersonaAutorizadaSinAdmin("El usuario no es administrativo");
 		}
@@ -45,7 +41,6 @@ public class PersonasAutorizadasEJB implements GestionPersonasAutorizadas{
 		Empresa emp = em.find(Empresa.class, cf.getCliente().getIdentification());
 
 		List<Autorizacion> autorizaciones = emp.getAutorizacion();
-		
 		
 		for (PersonaAutorizada pa : listapa) {
 
