@@ -278,7 +278,7 @@ public class AltaCEmpresa
 
 
 
-	public String altaCEmpresa() {
+	public String altaCEmpresaFun() {
 		try {
 			
 			admin = sesion.getUsuario();
@@ -300,13 +300,13 @@ public class AltaCEmpresa
 			
 		}catch (ClienteExistenteException e) {
 			FacesMessage fm = new FacesMessage("La empresa que se intenta crear ya existe");
-			FacesContext.getCurrentInstance().addMessage("altaCEmpresa", fm);
+			FacesContext.getCurrentInstance().addMessage("altaCEmpresa:botonEmpresa", fm);
 		}catch(UserNotAdminException e) {
 			FacesMessage fm = new FacesMessage("El usuario no tiene permisos de administrativo");
-			FacesContext.getCurrentInstance().addMessage("altaCEmpresa", fm);
+			FacesContext.getCurrentInstance().addMessage("altaCEmpresa:botonEmpresa", fm);
 		}catch(UsuarioException e) {
 			FacesMessage fm = new FacesMessage("No se ha encontrado el usuario de empresa");
-			FacesContext.getCurrentInstance().addMessage("altaCEmpresa", fm);
+			FacesContext.getCurrentInstance().addMessage("altaCEmpresa:botonEmpresa", fm);
 		}
 		
 		return null;

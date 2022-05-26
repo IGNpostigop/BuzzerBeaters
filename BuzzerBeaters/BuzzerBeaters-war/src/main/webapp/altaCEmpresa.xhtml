@@ -12,10 +12,49 @@
 
 <h:body>
        
-       <h2><h:outputText value="Alta de Cliente correcta"/></h2>
+       <h2><h:outputText value="Alta de Cliente individual"/></h2>
+       
+        <h:form id="altaCEmpresa">
+                        <h:outputLabel value="Nombre de usuario:"></h:outputLabel>
+                        <h:inputText id="username" required="true" value="#{altaCEmpresa.nombreUsuario}" class="controls"></h:inputText>
+                        <h:message id="userNameMessage" for="userName"/>
+						<br></br>
+                        <h:outputLabel value="Contraseña:"></h:outputLabel>
+                        <h:inputSecret id="pass" required="true" value="#{altaCEmpresa.pass}" class="controls"></h:inputSecret>
+                        <h:message id="passwordMessage" for="pass"/>
+                        <br></br>
+                        <h:outputLabel value="Razón Social:"></h:outputLabel>
+                        <h:inputText id="razonSocial" required="true" value="#{altaCEmpresa.razonSocial}" class="controls"></h:inputText>
+                        <h:message id="razonSocialMessage" for="razonSocial"/>
+                        <br></br>
+                        <h:outputLabel value="Identificacion"></h:outputLabel>
+                        <h:inputText id="identificacion" required="true" value="#{altaCEmpresa.identificacion}" class="controls"></h:inputText>
+                        <h:message id="identificacionMessage" for="identificacion"/>
+                        <br></br>
+                        <h:outputLabel value="Direccion:"></h:outputLabel>
+                        <h:inputText id="direccion" required="true" value="#{altaCEmpresa.direccion}" class="controls"></h:inputText>
+                        <h:message id="direccionMessage" for="direccion"/>
+                        <br></br>
+                        <h:outputLabel value="Ciudad:"></h:outputLabel>
+                        <h:inputText id="ciudad" required="true" value="#{altaCEmpresa.ciudad}" class="controls"></h:inputText>
+                        <h:message id="ciudadMessage" for="ciudad"/>
+                        <br></br>
+                        <h:outputLabel value="Pais:"></h:outputLabel>
+                        <h:inputText id="pais" required="true" value="#{altaCEmpresal.pais}" class="controls"></h:inputText>
+                        <h:message id="paisMessage" for="pais"/>
+                        <br></br>
+                        <h:outputLabel value="Codigo Postal:"></h:outputLabel>
+                        <h:inputText id="cp" required="true" value="#{altaCEmpresa.codigopostal}" class="controls"></h:inputText>
+                        <h:message id="cpMessage" for="cp"/>
+						<br></br>
+                        <h:commandButton id="botonAltaCIndiv" value="AltaIndividual" action="#{altaCEmpresa.altaCEmpresaFun()}"></h:commandButton>
+						<h:message id="boton" for="botonEmpresa"/>
+          </h:form>
+       
+       <br></br>
       
 			<div>
-               <p>Vuelve al menú administrador en <h:link outcome="Administrativo.xhtml">Menu Administrativo</h:link></p>
+               <p>Vuelve a la pagina de admin<h:link outcome="paginaadmin.xhtml">Menu Administrativo</h:link></p>
             </div>
             
                         
