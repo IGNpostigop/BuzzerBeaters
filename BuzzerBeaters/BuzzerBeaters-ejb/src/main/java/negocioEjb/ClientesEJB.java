@@ -73,6 +73,8 @@ public class ClientesEJB implements GestionClientes {
 			throw new UserNotAdminException("El usuario no tiene los privilegios suficientes para la operación");
 		}
 
+		empresa.setFechaAlta(Date.valueOf(LocalDate.now()));
+		empresa.setEstado(true);
 		em.persist(empresa);
 
 	}
