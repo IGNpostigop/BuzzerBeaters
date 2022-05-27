@@ -1,7 +1,7 @@
 package negocioEjb;
 
-//import java.sql.Date;
-import java.util.Date;
+
+import java.sql.Date;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.logging.Logger;
@@ -145,7 +145,7 @@ public class CuentasEJB implements GestionCuentas {
 			}
 			if(sinsaldo) {
 				pooledBd.setEstado(false);
-				pooledBd.setFecha_cierre(new Date());
+				pooledBd.setFecha_cierre(Date.valueOf(LocalDate.now()));
 				//pooledBd.setFecha_cierre(Date.valueOf(LocalDate.now()));
 			}else {
 				throw new CuentaConSaldo("Algun depósito con saldo");
