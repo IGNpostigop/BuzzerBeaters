@@ -32,6 +32,7 @@ public class Cliente{
 	private Boolean estado;
 
 	@Column(name="Fecha_Alta")
+	@Temporal(value = TemporalType.DATE)
 	private Date fechaAlta;
 
 	@Column(name="Fecha_Baja")

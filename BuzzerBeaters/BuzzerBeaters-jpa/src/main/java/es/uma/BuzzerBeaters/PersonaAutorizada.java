@@ -12,6 +12,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 
@@ -32,9 +34,11 @@ public class PersonaAutorizada {
 	private Date fecha_nacimiento;
 	@Column(name="Estado")
 	private Boolean estado;
+	@Temporal(value = TemporalType.DATE)
 	@Column(name="FechaInicio")
 	private Date fechaInicio;
 	@Column(name="FechaFin")
+	@Temporal(value = TemporalType.DATE)
 	private Date fechaFin;
 
 	@OneToMany(mappedBy="personaAutorizada")

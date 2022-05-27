@@ -13,6 +13,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 @NamedQuery(name="CuentaReferencia.findAll", query="SELECT c FROM CuentaReferencia c")
@@ -28,7 +30,7 @@ public class CuentaReferencia extends Cuenta implements Serializable{
 	private String Pais;
 	@Column (nullable = false)
 	private Double Saldo;
-
+	@Temporal(value = TemporalType.DATE)
 	private Date fecha_apertura;
 	private Boolean Estado;
 	
