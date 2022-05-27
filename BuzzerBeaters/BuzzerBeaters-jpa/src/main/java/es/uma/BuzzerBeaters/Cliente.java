@@ -34,7 +34,7 @@ public class Cliente{
 	@Column(name="Fecha_Alta")
 	@Temporal(value = TemporalType.DATE)
 	private Date fechaAlta;
-
+	@Temporal(value = TemporalType.DATE)
 	@Column(name="Fecha_Baja")
 	private Date fechaBaja;
 	@Column(name = "Direccion",nullable = false)
