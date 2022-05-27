@@ -74,13 +74,13 @@ try {
 			
 		} catch (CuentaException e) {
 			FacesMessage fm = new FacesMessage("La cuenta no existe");
-			FacesContext.getCurrentInstance().addMessage("cerrarPooled:botonCerrar", fm);
+			FacesContext.getCurrentInstance().addMessage("cerrarSegregada:botonCerrar", fm);
 		} catch (UsuarioException e){
 			FacesMessage fm = new FacesMessage("El usuario no exsite");
-			FacesContext.getCurrentInstance().addMessage("cerrarPooled:botonCerrar", fm);
+			FacesContext.getCurrentInstance().addMessage("cerrarSegregada:botonCerrar", fm);
 		}catch (UserNotAdminException e){
 			FacesMessage fm = new FacesMessage("El usuario no es administrativo");
-			FacesContext.getCurrentInstance().addMessage("cerrarPooled:botonCerrar", fm);
+			FacesContext.getCurrentInstance().addMessage("cerrarSegregada:botonCerrar", fm);
 		}
 		return null;
 	 
