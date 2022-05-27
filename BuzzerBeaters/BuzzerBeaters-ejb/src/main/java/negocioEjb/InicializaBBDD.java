@@ -2,7 +2,7 @@ package negocioEjb;
 
 //import java.sql.Date;
 import java.util.ArrayList;
-import java.util.Date;
+import java.sql.Date;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -72,7 +72,7 @@ public class InicializaBBDD {
 			
 			  Individual individual = new Individual(); String apellido = "DeTal"; String
 			  identificacion = "11111111F"; Boolean estado = true; Date fechaAlta =
-			  Date.valueOf("2012-03-20"); Date fechaNacimiento =Date.valueOf("2000-03-20");
+			  Date.valueOf("2012-03-20"); Date fechaNacimiento = Date.valueOf("2000-03-20");
 			  String direccion = "C/ Pito, 23"; String ciudad = "Malaga"; Integer
 			  codigoPostal = 29000; String pais = "España";
 			  
