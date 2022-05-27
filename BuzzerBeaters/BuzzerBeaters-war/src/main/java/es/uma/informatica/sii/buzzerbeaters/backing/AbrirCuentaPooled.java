@@ -1,6 +1,8 @@
 package es.uma.informatica.sii.buzzerbeaters.backing;
 
-import java.sql.Date;
+//import java.sql.Date;
+import java.util.Date;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,6 +17,7 @@ import es.uma.BuzzerBeaters.Cliente;
 import es.uma.BuzzerBeaters.CuentaReferencia;
 import es.uma.BuzzerBeaters.DepositadaEn;
 import es.uma.BuzzerBeaters.DepositadaEnID;
+import es.uma.BuzzerBeaters.PersonaAutorizada;
 import es.uma.BuzzerBeaters.PooledAccount;
 import es.uma.BuzzerBeaters.Usuario;
 import negocioEJBexcepcion.ClienteNoEncontradoException;
@@ -46,6 +49,14 @@ public class AbrirCuentaPooled {
 	private String swift;
 	private List<DepositadaEn> depositos; 
 	private Double saldo;
+	
+	private Date fa; 
+	//private SimpleDateFormat date;
+	
+	AbrirCuentaPooled()
+	{
+		fa = new Date(); // En teoría esta variable guarda la fecha actual
+	}
 	
 	// setters y getters
 	
@@ -132,7 +143,9 @@ public class AbrirCuentaPooled {
 			
 			poAc.setEstado(true);
 			
-			poAc.setFecha_apertura(Date.valueOf(LocalDate.now())); //DATE
+			poAc.setFecha_apertura(fa);
+			
+			//poAc.setFecha_apertura(Date.valueOf(LocalDate.now())); //DATE
 			
 			poAc.setFecha_cierre(null);
 			

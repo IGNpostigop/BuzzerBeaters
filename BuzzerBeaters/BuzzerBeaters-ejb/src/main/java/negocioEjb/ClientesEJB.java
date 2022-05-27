@@ -1,7 +1,8 @@
 package negocioEjb;
 
 import java.io.Closeable;
-import java.sql.Date;
+//import java.sql.Date;
+import java.util.Date;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.logging.Logger;

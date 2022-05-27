@@ -1,7 +1,8 @@
 package es.uma.BuzzerBeaters;
 
 
-import java.sql.Date;
+import java.util.Date;
+//import java.sql.Date;
 import java.util.List;
 import java.util.Objects;
 

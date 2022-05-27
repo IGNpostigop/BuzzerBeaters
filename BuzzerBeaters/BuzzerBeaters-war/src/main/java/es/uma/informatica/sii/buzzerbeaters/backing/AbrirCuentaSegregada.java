@@ -1,6 +1,6 @@
 package es.uma.informatica.sii.buzzerbeaters.backing;
 
-import java.sql.Date;
+import java.util.Date;
 import java.time.LocalDate;
 
 import javax.enterprise.context.RequestScoped;
@@ -50,7 +50,14 @@ public class AbrirCuentaSegregada {
 	private String swift;
 	
 	private String comision;
+	
+	private Date fa; 
 
+	AbrirCuentaSegregada()
+	{
+		fa = new Date(); // En teoría esta variable guarda la fecha actual
+	}
+	
 	// setters y getters
 	
 	public InfoSesion getSesion() {
@@ -155,7 +162,8 @@ public class AbrirCuentaSegregada {
 			cuenta.setIban(this.getIban());
 			cuenta.setSwift(this.getSwift());
 			cuenta.setEstado(true);
-			cuenta.setFecha_apertura(Date.valueOf(LocalDate.now())); // DATE
+			cuenta.setFecha_apertura(fa);
+			//cuenta.setFecha_apertura(Date.valueOf(LocalDate.now())); // DATE
 			cuenta.setClasificacion("Segregada");
 			cuenta.setComision(this.getComision());		
 			
