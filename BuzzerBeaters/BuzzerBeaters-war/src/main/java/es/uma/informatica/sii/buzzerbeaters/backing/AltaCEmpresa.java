@@ -283,12 +283,12 @@ public class AltaCEmpresa
 			
 			admin = sesion.getUsuario();
 			
-			emp.setRazon_social(razonSocial);
-			emp.setCiudad(ciudad);
-			emp.setCodigopostal(codigopostal);
-			emp.setDireccion(direccion);
-			emp.setIdentification(identificacion);
-			emp.setPais(pais);
+			emp.setRazon_social(this.getRazonSocial());
+			emp.setCiudad(this.getCiudad());
+			emp.setCodigopostal(this.getCodigopostal());
+			emp.setDireccion(this.getDireccion());
+			emp.setIdentification(this.getIdentificacion());
+			emp.setPais(this.getPais());
 			
 //			userEmpresa.setUser(nombreUsuario);
 //			userEmpresa.setPassword(pass);
