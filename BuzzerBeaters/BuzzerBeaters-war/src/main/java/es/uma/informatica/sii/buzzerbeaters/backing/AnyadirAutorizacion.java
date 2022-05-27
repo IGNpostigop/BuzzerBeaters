@@ -45,15 +45,12 @@ public class AnyadirAutorizacion
 	private String direccion; 
 	private String fn; 
 	private String fi; 
-	//private String estado; 
+	private String estado; 
 	
-	private SimpleDateFormat date; 
 	
 	AnyadirAutorizacion()
 	{
-		admin = new Usuario();
-		pa = new PersonaAutorizada();
-		date = new SimpleDateFormat("dd-MMM-yyyy"); //Formato en el que se deben de meter las fechas
+		
 	}
 
 
@@ -205,16 +202,16 @@ public class AnyadirAutorizacion
 	public void setFi(String fi) {
 		this.fi = fi;
 	}
-
-
-	public SimpleDateFormat getDate() {
-		return date;
+	
+	public String Estado() {
+		return estado;
 	}
 
 
-	public void setDate(SimpleDateFormat date) {
-		this.date = date;
+	public void Estado(String estado) {
+		this.estado = estado;
 	}
+
 
 
 	public String anyadirAutorizacion() {
@@ -231,6 +228,7 @@ public class AnyadirAutorizacion
 			pa.setNombre(nombre);
 			pa.setApellidos(apellidos);
 			pa.setDireccion(direccion);
+			pa.setEstado(true);
 			
 			pa.setFecha_nacimiento(Date.valueOf(this.getFn()));
 			

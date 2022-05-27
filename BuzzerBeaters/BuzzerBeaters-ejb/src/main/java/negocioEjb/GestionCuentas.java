@@ -36,11 +36,14 @@ public interface GestionCuentas {
 
 	public PooledAccount aperturaCtaPooled(Usuario admin, PooledAccount pooled, Cliente cliente, List<DepositadaEn> den) throws CuentaException, UsuarioException, UserNotAdminException ;
 	
-	public void cerrarCuenteSegregada (Segregada seg) throws CuentaException;
+	public void cerrarCuenteSegregada (Usuario admin, Segregada seg) throws CuentaException, UsuarioException, UserNotAdminException;
 	
 	public void cerrarCuentaPooled (Usuario usuario, PooledAccount pooled) throws CuentaException, UsuarioException, UserNotAdminException, CuentaConSaldo;
 
 	public CuentaReferencia getCuentaReferencia(String iban) throws CuentaException;
 	
 	public PooledAccount buscarPooled(String iban) throws CuentaException;
+
+
+	Segregada buscarSegregada(String iban) throws CuentaException;
 }

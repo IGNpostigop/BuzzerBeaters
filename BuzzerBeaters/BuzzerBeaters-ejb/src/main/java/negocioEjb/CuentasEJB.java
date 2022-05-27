@@ -86,12 +86,25 @@ public class CuentasEJB implements GestionCuentas {
 
 	@Override
 	//RF9: Cerrar de cuenta segregada
-	public void cerrarCuenteSegregada(Segregada seg) throws CuentaException {
+	public void cerrarCuenteSegregada(Usuario admin, Segregada seg) throws CuentaException, UsuarioException, UserNotAdminException {
+		Usuario administrador = em.find(Usuario.class, admin.getUser());
+
+		if (administrador == null) { 
+			throw new UsuarioException("El usuario no exsite");
+		}
+
+		if (!administrador.isAdministrador()) {
+			throw new UserNotAdminException("El usuario no tiene los privilegios suficientes para la operación");
+		}
+
 		Segregada segregadaBd = em.find(Segregada.class, seg.getIban());
+		
+
+		
 		if(segregadaBd == null) {
 			throw new CuentaException("La cuenta no existe"); 
 		}else {
-			if(segregadaBd.getCuenta_referencia().getSaldo()==0) {
+			if(segregadaBd.getCuenta_referencia().getSaldo() == 0) {
 				segregadaBd.setEstado(false);
 			}else {
 				throw new CuentaException("Cuenta con saldo");
@@ -111,6 +124,16 @@ public class CuentasEJB implements GestionCuentas {
 		}
 		
 		return pooled;
+	}
+	
+	@Override
+	public Segregada buscarSegregada(String iban) throws CuentaException{
+		Segregada seg = em.find(Segregada.class, iban);
+		
+		if(seg == null) {
+			throw new CuentaException();
+		}
+		return seg; 
 	}
 	
 	
