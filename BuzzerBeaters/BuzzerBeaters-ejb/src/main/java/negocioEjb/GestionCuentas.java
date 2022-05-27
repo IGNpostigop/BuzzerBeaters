@@ -44,6 +44,7 @@ public interface GestionCuentas {
 	
 	public PooledAccount buscarPooled(String iban) throws CuentaException;
 
-
-	Segregada buscarSegregada(String iban) throws CuentaException;
+	public Segregada buscarSegregada(String iban) throws CuentaException;
+	
+	public void añadirCuentaReferencia(Usuario admin, CuentaReferencia referencia) throws CuentaException, UserNotAdminException, UsuarioException; 
 }

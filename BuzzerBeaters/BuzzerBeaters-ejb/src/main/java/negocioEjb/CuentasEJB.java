@@ -177,7 +177,6 @@ public class CuentasEJB implements GestionCuentas {
 		
 	}
 	
-	
 	@Override
 	public CuentaReferencia getCuentaReferencia(String iban) throws CuentaException{
 		{
@@ -189,6 +188,28 @@ public class CuentasEJB implements GestionCuentas {
 			}
 			
 			return cuenta;
+		}
+	}
+	
+	public void añadirCuentaReferencia(Usuario admin, CuentaReferencia referencia) throws CuentaException, UserNotAdminException, UsuarioException{
+
+		CuentaReferencia refer = em.find(CuentaReferencia.class, referencia.getIban());
+		
+		Usuario administrador = em.find(Usuario.class, admin.getUser());
+
+		if (administrador == null) { 
+			throw new UsuarioException("El usuario no exsite");
+		}
+
+		if (!administrador.isAdministrador()) {
+			throw new UserNotAdminException("El usuario no tiene los privilegios suficientes para la operación");
+		}
+
+		if(refer != null){
+			throw new CuentaException("La cuenta ya existe"); 
+		}else {
+			
+			em.persist(referencia);
 		}
 	}
 	
