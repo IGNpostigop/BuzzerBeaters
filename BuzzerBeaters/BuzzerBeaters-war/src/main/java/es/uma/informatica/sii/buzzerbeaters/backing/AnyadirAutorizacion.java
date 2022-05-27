@@ -1,5 +1,6 @@
 package es.uma.informatica.sii.buzzerbeaters.backing;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -215,7 +216,7 @@ public class AnyadirAutorizacion
 	}
 
 
-	public String anyadirAutorizacion() {
+	public String anyadirAutorizacion() throws ParseException {
 		
 		try {
 			
@@ -230,12 +231,12 @@ public class AnyadirAutorizacion
 			pa.setApellidos(apellidos);
 			pa.setDireccion(direccion);
 			
-			/*Date fechNa = date.parse(fn); 
+			Date fechNa = date.parse(fn); 
 			pa.setFecha_nacimiento(fechNa); //Hay que importar java.util.Date en el jpa de persoAutorizada para que funcione
 			
 			Date fechIn = date.parse(fi); 
 			pa.setFechaInicio(fechIn); //Hay que importar java.util.Date en el jpa de persoAutorizada para que funcione
-			*/
+			
 			//pa.setEstado(true);
 			
 			gestionPA.crearPersonaAutorizada(admin,listaAutorizaciones,cf);
