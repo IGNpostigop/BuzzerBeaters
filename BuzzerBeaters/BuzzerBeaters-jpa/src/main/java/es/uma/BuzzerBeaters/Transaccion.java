@@ -1,7 +1,6 @@
 package es.uma.BuzzerBeaters;
 
-import java.util.Date;
-import java.util.List;
+import java.sql.Date;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -19,11 +18,9 @@ public class Transaccion  {
 	@Id @GeneratedValue
 	private Long id;
 	@Column (nullable = false)
-	@Temporal(TemporalType.DATE)
 	private Date fechaInstruccion;
 	@Column (nullable = false)
 	private Double cantidad;
-	@Temporal(TemporalType.DATE)
 	private Date fechaEjecucion;
 	@Column (nullable = false)
 	private String tipo;

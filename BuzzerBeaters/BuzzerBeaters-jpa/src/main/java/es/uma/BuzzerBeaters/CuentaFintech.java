@@ -2,7 +2,7 @@ package es.uma.BuzzerBeaters;
 
 
 import java.io.Serializable;
-import java.util.Date;
+import java.sql.Date;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -30,9 +30,7 @@ public class CuentaFintech extends Cuenta implements Serializable{
     @Column(nullable = false)
     private Boolean estado;
     @Column(nullable = false)
-    @Temporal(TemporalType.DATE)
     private Date fecha_apertura;
-    @Temporal(TemporalType.DATE)
     private Date fecha_cierre;
     
     @ManyToOne

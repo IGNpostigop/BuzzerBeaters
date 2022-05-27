@@ -1,7 +1,7 @@
 package es.uma.BuzzerBeaters;
 
-import java.util.Date;
-//import java.sql.Date;
+//import java.util.Date;
+import java.sql.Date;
 import java.util.List;
 import java.util.Objects;
 
@@ -34,11 +34,9 @@ public class PersonaAutorizada {
 	private Date fecha_nacimiento;
 	@Column(name="Estado")
 	private Boolean estado;
-	@Temporal(value = TemporalType.DATE)
 	@Column(name="FechaInicio")
 	private Date fechaInicio;
 	@Column(name="FechaFin")
-	@Temporal(value = TemporalType.DATE)
 	private Date fechaFin;
 
 	@OneToMany(mappedBy="personaAutorizada")

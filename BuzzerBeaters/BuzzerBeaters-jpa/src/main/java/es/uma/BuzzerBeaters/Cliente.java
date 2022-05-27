@@ -1,8 +1,8 @@
 package es.uma.BuzzerBeaters;
 
 
-import java.util.Date;
-//import java.sql.Date;
+//import java.util.Date;
+import java.sql.Date;
 import java.util.List;
 import java.util.Objects;
 
@@ -32,9 +32,7 @@ public class Cliente{
 	private Boolean estado;
 
 	@Column(name="Fecha_Alta")
-	@Temporal(value = TemporalType.DATE)
 	private Date fechaAlta;
-	@Temporal(value = TemporalType.DATE)
 	@Column(name="Fecha_Baja")
 	private Date fechaBaja;
 	@Column(name = "Direccion",nullable = false)
