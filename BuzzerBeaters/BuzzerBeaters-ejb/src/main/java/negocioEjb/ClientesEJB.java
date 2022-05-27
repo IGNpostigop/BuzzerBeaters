@@ -1,8 +1,7 @@
 package negocioEjb;
 
 import java.io.Closeable;
-//import java.sql.Date;
-import java.util.Date;
+import java.sql.Date;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.logging.Logger;
@@ -53,8 +52,7 @@ public class ClientesEJB implements GestionClientes {
 			throw new UserNotAdminException("El usuario no tiene los privilegios suficientes para la operación");
 		}
 
-			//individual.setFechaAlta(Date.valueOf(LocalDate.now()));
-			individual.setFechaAlta(new Date());
+			individual.setFechaAlta(Date.valueOf(LocalDate.now()));
 			individual.setEstado(true);
 			em.persist(individual); 
 
@@ -76,7 +74,7 @@ public class ClientesEJB implements GestionClientes {
 		}
 
 		//empresa.setFechaAlta(Date.valueOf(LocalDate.now()));
-		empresa.setFechaAlta(new Date());
+		empresa.setFechaAlta(Date.valueOf(LocalDate.now()));
 		empresa.setEstado(true);
 		em.persist(empresa);
 
@@ -121,7 +119,7 @@ public class ClientesEJB implements GestionClientes {
 				}
 			}
 			//clienteEntity.setFechaBaja(Date.valueOf(LocalDate.now()));
-			clienteEntity.setFechaBaja(new Date());
+			clienteEntity.setFechaAlta(Date.valueOf(LocalDate.now()));
 			clienteEntity.setEstado(false);	
 		}	
 	}

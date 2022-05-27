@@ -2,6 +2,9 @@ package es.uma.informatica.sii.buzzerbeaters.backing;
 
 
 
+import java.text.ParseException;
+import java.sql.Date;
+
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
@@ -40,7 +43,16 @@ public class AltaCIndividual
 	private String ciudad;
 	private Integer codigopostal;
 	private String pais;
+	private String fecha_nacimiento;
 
+
+	public String getFecha_nacimiento() {
+		return fecha_nacimiento;
+	}
+
+	public void setFecha_nacimiento(String fecha_nacimiento) {
+		this.fecha_nacimiento = fecha_nacimiento;
+	}
 
 	public AltaCIndividual() 
 	{
@@ -152,6 +164,7 @@ public class AltaCIndividual
 			ind.setIdentification(this.getIdentification());
 			ind.setName(this.getName());
 			ind.setPais(this.getPais());
+			ind.setFecha_nacimiento(Date.valueOf(this.getFecha_nacimiento()));
 			
 		
 			userCliente.setUser(nombreUsuario);

@@ -1,7 +1,7 @@
 package es.uma.BuzzerBeaters;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.sql.Date;
 import java.util.Objects;
 
 import javax.persistence.CascadeType;
@@ -25,7 +25,6 @@ public class Individual extends Cliente implements Serializable {
 	private String name;
 	@Column (nullable = false)
 	private String apellido;
-	@Temporal(TemporalType.DATE)
 	@Column(name="fecha_nacimiento")
 	private Date fecha_nacimiento;
 	

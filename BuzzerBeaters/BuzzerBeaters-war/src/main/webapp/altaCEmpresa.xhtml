@@ -7,12 +7,12 @@
        xmlns:f="http://xmlns.jcp.org/jsf/core">
 
 <h:head>
-       <title>Página de ejemplo y login de inicio</title>
+       <title>Añadir un cliente empresa</title>
 </h:head>
 
 <h:body>
        
-       <h2><h:outputText value="Alta de Cliente individual"/></h2>
+       <h2><h:outputText value="Alta de Cliente empresa"/></h2>
        
         <h:form id="altaCEmpresa">
                         
@@ -40,7 +40,7 @@
                         <h:inputText id="cp" required="true" value="#{altaCEmpresa.codigopostal}" class="controls"></h:inputText>
                         <h:message id="cpMessage" for="cp"/>
 						<br></br>
-                        <h:commandButton id="botonAltaCIndiv" value="AltaIndividual" action="#{altaCEmpresa.altaCEmpresaFun()}"></h:commandButton>
+                        <h:commandButton id="botonAltaCEmpresa" value="AltaCEmpresa" action="#{altaCEmpresa.altaCEmpresaFun()}"></h:commandButton>
 						<h:message id="boton" for="botonEmpresa"/>
           </h:form>
        
