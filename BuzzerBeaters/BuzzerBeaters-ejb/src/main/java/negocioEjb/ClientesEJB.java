@@ -58,7 +58,7 @@ public class ClientesEJB implements GestionClientes {
 
 	}
 	
-	@Override
+	@Override 
 	//RF2: Dar de alta a un cliente empresa
 	public void crearClienteEmpresa(Usuario admin, Cliente empresa)
 			throws UsuarioException, UserNotAdminException, ClienteExistenteException  {
