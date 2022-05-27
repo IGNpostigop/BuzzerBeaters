@@ -53,7 +53,8 @@ public class ClientesEJB implements GestionClientes {
 			throw new UserNotAdminException("El usuario no tiene los privilegios suficientes para la operación");
 		}
 
-			individual.setFechaAlta(Date.valueOf(LocalDate.now()));
+			//individual.setFechaAlta(Date.valueOf(LocalDate.now()));
+			individual.setFechaAlta(new Date());
 			individual.setEstado(true);
 			em.persist(individual); 
 
@@ -74,7 +75,8 @@ public class ClientesEJB implements GestionClientes {
 			throw new UserNotAdminException("El usuario no tiene los privilegios suficientes para la operación");
 		}
 
-		empresa.setFechaAlta(Date.valueOf(LocalDate.now()));
+		//empresa.setFechaAlta(Date.valueOf(LocalDate.now()));
+		empresa.setFechaAlta(new Date());
 		empresa.setEstado(true);
 		em.persist(empresa);
 
@@ -118,7 +120,8 @@ public class ClientesEJB implements GestionClientes {
 					throw new CuentaException("cuenta "+ cuentaFintech.getIban() + " aun abierta");
 				}
 			}
-			clienteEntity.setFechaBaja(Date.valueOf(LocalDate.now()));
+			//clienteEntity.setFechaBaja(Date.valueOf(LocalDate.now()));
+			clienteEntity.setFechaBaja(new Date());
 			clienteEntity.setEstado(false);	
 		}	
 	}
