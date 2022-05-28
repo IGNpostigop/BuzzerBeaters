@@ -50,7 +50,8 @@ public interface GestionPersonasAutorizadas {
 	 * Este metodo permitira la eliminacion de autorizados de una cuenta.
 	 */
 	
-	public void eliminarAutorizadoEmpresa(PersonaAutorizada persAut, Autorizacion autorizacion)throws UsuarioException;
+	public void eliminarAutorizadoEmpresa(Usuario user, Long idPa, Long idEmpresa, String tipo) throws UsuarioException, UserNotAdminException, 
+	PersonaAutorizadaException, ClienteDeBajaException, AutorizacionExistenteException, ClienteNoEncontradoException;
 
 	public boolean consultarPersonaAutorizada(PersonaAutorizada aut)throws UsuarioException;
 

@@ -14,6 +14,11 @@ import es.uma.BuzzerBeaters.PersonaAutorizada;
 import es.uma.BuzzerBeaters.AutorizacionID;
 import es.uma.BuzzerBeaters.DepositadaEn;
 import es.uma.BuzzerBeaters.Usuario;
+import negocioEJBexcepcion.AutorizacionExistenteException;
+import negocioEJBexcepcion.ClienteDeBajaException;
+import negocioEJBexcepcion.ClienteNoEncontradoException;
+import negocioEJBexcepcion.PersonaAutorizadaException;
+import negocioEJBexcepcion.UserNotAdminException;
 import negocioEJBexcepcion.UsuarioException;
 import negocioEjb.GestionPersonasAutorizadas;
 
@@ -33,8 +38,6 @@ public class EliminarAutorizados {
 	
 	private String tipo;
 	
-	
-	private List<PersonaAutorizada> auts; 
 
 	public InfoSesion getSesion() {
 		return sesion;
@@ -87,20 +90,40 @@ public class EliminarAutorizados {
 	public String eliminarAutorizado() {
 		
 		try {
-		Autorizacion auto = new Autorizacion();
-		AutorizacionID autoId = new AutorizacionID();
-		autoId.setIdCliente(idPA);
 		
-		PersonaAutorizada pa = new PersonaAutorizada();
-		
-		pa.setId(idPA); 
 		
 		admin = sesion.getUsuario();
-		gestPA.eliminarAutorizadoEmpresa(pa, auto);
-	}
-	catch(UsuarioException e) {
-		FacesMessage fm = new FacesMessage("El usuario existe");
-		FacesContext.getCurrentInstance().addMessage("addAut:botonAut", fm);		
+		gestPA.eliminarAutorizadoEmpresa(admin, idPA, idEmpresa, tipo);
+		FacesMessage fm = new FacesMessage("Baja Correcta");
+		FacesContext.getCurrentInstance().addMessage("addAut:botonAut", fm);
+		return null;
+		
+		}
+		catch(UsuarioException e) {
+			FacesMessage fm = new FacesMessage("El usuario no existe");
+			FacesContext.getCurrentInstance().addMessage("addAut:botonAut", fm);		
+		}
+		catch(UserNotAdminException e) {			
+			FacesMessage fm = new FacesMessage("El cliente no es administrativo");
+			FacesContext.getCurrentInstance().addMessage("addAut:botonAut", fm);		
+		}
+		catch(PersonaAutorizadaException e) {			
+			FacesMessage fm = new FacesMessage("Persona autorizada inexistente");
+			FacesContext.getCurrentInstance().addMessage("addAut:botonAut", fm);		
+		}
+		catch(ClienteDeBajaException e) {			
+			FacesMessage fm = new FacesMessage("Empresa de baja");
+			FacesContext.getCurrentInstance().addMessage("addAut:botonAut", fm);		
+		}
+		catch(AutorizacionExistenteException e) {			
+			FacesMessage fm = new FacesMessage("La no autorización existe");
+			FacesContext.getCurrentInstance().addMessage("addAut:botonAut", fm);		
+		}
+		catch(ClienteNoEncontradoException e) {			
+			FacesMessage fm = new FacesMessage("Empresas no existe");
+			FacesContext.getCurrentInstance().addMessage("addAut:botonAut", fm);		
+		}
+		return null;
 	}
 
 }
