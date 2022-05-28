@@ -177,6 +177,7 @@ public class PersonasAutorizadasEJB implements GestionPersonasAutorizadas{
 			List <Autorizacion> autorizaciones = empEntity.getAutorizacion();
 			autorizaciones.add(aut);
 			empEntity.setAutorizacion(autorizaciones);
+			em.persist(aut);
 		}
 
 		

@@ -6,17 +6,13 @@ import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import es.uma.BuzzerBeaters.Empresa;
-import es.uma.BuzzerBeaters.PersonaAutorizada;
 import es.uma.BuzzerBeaters.Usuario;
 import negocioEJBexcepcion.AutorizacionExistenteException;
 import negocioEJBexcepcion.ClienteDeBajaException;
 import negocioEJBexcepcion.ClienteNoEncontradoException;
 import negocioEJBexcepcion.PersonaAutorizadaException;
-import negocioEJBexcepcion.PersonaAutorizadaSinAdmin;
 import negocioEJBexcepcion.UserNotAdminException;
 import negocioEJBexcepcion.UsuarioException;
-import negocioEjb.GestionClientes;
 import negocioEjb.GestionPersonasAutorizadas;
 
 @Named (value = "anyadirAutorizacion")
@@ -27,8 +23,7 @@ public class AnyadirAutorizacion {
 	private InfoSesion sesion;
 	@Inject
 	private GestionPersonasAutorizadas gestPA;
-	@Inject 
-	private GestionClientes gestCli;
+
 	
 	private Usuario admin;
 	
@@ -82,33 +77,33 @@ public class AnyadirAutorizacion {
 		try {
 			admin = sesion.getUsuario();
 			gestPA.addAutorizadoEmpresa(admin, idPA, idEmpresa, tipo);
-			FacesMessage fm = new FacesMessage("\tAlta Correcta");
-			FacesContext.getCurrentInstance().addMessage("anyadirAutorizacion:botonAut", fm);
+			FacesMessage fm = new FacesMessage("Alta Correcta");
+			FacesContext.getCurrentInstance().addMessage("addAut:botonAut", fm);
 			return null;
 		}
 		catch(UsuarioException e) {
-			FacesMessage fm = new FacesMessage("\tEl usuario existe");
-			FacesContext.getCurrentInstance().addMessage("anyadirAutorizacion:botonAut", fm);		
+			FacesMessage fm = new FacesMessage("El usuario existe");
+			FacesContext.getCurrentInstance().addMessage("addAut:botonAut", fm);		
 		}
 		catch(UserNotAdminException e) {			
-			FacesMessage fm = new FacesMessage("\tEl cliente no es administrativo");
-			FacesContext.getCurrentInstance().addMessage("anyadirAutorizacion:botonAut", fm);		
+			FacesMessage fm = new FacesMessage("El cliente no es administrativo");
+			FacesContext.getCurrentInstance().addMessage("addAut:botonAut", fm);		
 		}
 		catch(PersonaAutorizadaException e) {			
-			FacesMessage fm = new FacesMessage("\tPersona autorizada inexistente");
-			FacesContext.getCurrentInstance().addMessage("anyadirAutorizacion:botonAut", fm);		
+			FacesMessage fm = new FacesMessage("Persona autorizada inexistente");
+			FacesContext.getCurrentInstance().addMessage("addAut:botonAut", fm);		
 		}
 		catch(ClienteDeBajaException e) {			
-			FacesMessage fm = new FacesMessage("\tEmpresa de baja");
-			FacesContext.getCurrentInstance().addMessage("anyadirAutorizacion:botonAut", fm);		
+			FacesMessage fm = new FacesMessage("Empresa de baja");
+			FacesContext.getCurrentInstance().addMessage("addAut:botonAut", fm);		
 		}
 		catch(AutorizacionExistenteException e) {			
-			FacesMessage fm = new FacesMessage("\tLa autorización ya existe");
-			FacesContext.getCurrentInstance().addMessage("anyadirAutorizacion:botonAut", fm);		
+			FacesMessage fm = new FacesMessage("La autorización ya existe");
+			FacesContext.getCurrentInstance().addMessage("addAut:botonAut", fm);		
 		}
 		catch(ClienteNoEncontradoException e) {			
-			FacesMessage fm = new FacesMessage("\tEmpresas no existe");
-			FacesContext.getCurrentInstance().addMessage("anyadirAutorizacion:botonAut", fm);		
+			FacesMessage fm = new FacesMessage("Empresas no existe");
+			FacesContext.getCurrentInstance().addMessage("addAut:botonAut", fm);		
 		}
 		
 	

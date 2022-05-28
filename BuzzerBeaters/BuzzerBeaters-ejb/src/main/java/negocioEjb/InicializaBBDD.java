@@ -13,6 +13,7 @@ import javax.persistence.PersistenceContext;
 
 import es.uma.BuzzerBeaters.CuentaReferencia;
 import es.uma.BuzzerBeaters.Divisa;
+import es.uma.BuzzerBeaters.Empresa;
 import es.uma.BuzzerBeaters.Individual;
 import es.uma.BuzzerBeaters.PersonaAutorizada;
 import es.uma.BuzzerBeaters.PooledAccount;
@@ -37,6 +38,8 @@ public class InicializaBBDD {
 			Usuario usuario1 = new Usuario();
 			Usuario usuario2 = new Usuario();
 			Usuario usuario3 = new Usuario();
+			Usuario usuario4 = new Usuario();
+			
 			usuario1.setUser("Fulanito");
 			usuario1.setPassword("pass");
 			usuario1.setAdministrador(true);
@@ -48,6 +51,10 @@ public class InicializaBBDD {
 			usuario3.setUser("Paquito");
 			usuario3.setPassword("pass");
 			usuario3.setAdministrador(true);
+			
+			usuario4.setUser("Abraham");
+			usuario4.setPassword("pass");
+			usuario4.setAdministrador(false);
 			
 			em.persist(usuario1);
 			em.persist(usuario2);
@@ -91,7 +98,7 @@ public class InicializaBBDD {
 			 
 			  
 			  em.persist(individual);
-			 
+			//fin inicilizacion de individual.
 			  
 			  Divisa div = new Divisa();
 			  div.setAbreviatura("EUR");
@@ -141,7 +148,33 @@ public class InicializaBBDD {
 			  pool.setTransaccionesOrigen(null);
 			  
 			  em.persist(pool);
-			//fin inicilizacion de individual.
+			  
+			  //inicializacion de Persona Autorizada
+			  
+			  PersonaAutorizada pa = new PersonaAutorizada();
+			  pa.setIdentification("22222222");
+			  pa.setNombre("Abraham");
+			  pa.setApellidos("Lincon");
+			  pa.setDireccion("Casa Blanca");
+			  pa.setFecha_nacimiento(Date.valueOf("1800-02-03"));
+			  pa.setEstado(true);
+			  pa.setFechaInicio(Date.valueOf("1818-10-12"));
+			  pa.setUsuarioPA(usuario4);
+			  
+			  em.persist(pa);
+			  
+			  //inicializacion Empresa
+			  Empresa emp = new Empresa();
+			  emp.setCiudad("Malaga");
+			  emp.setCodigopostal(29018);
+			  emp.setDireccion("C/ Pito");
+			  emp.setEstado(true);
+			  emp.setFechaAlta(Date.valueOf("1976-02-19"));
+			  emp.setIdentification("B29000000");
+			  emp.setPais("España");
+			  emp.setRazon_social("BuzzerBeater SL");
+			  
+			  em.persist(emp);
 		}
 		
 	}
