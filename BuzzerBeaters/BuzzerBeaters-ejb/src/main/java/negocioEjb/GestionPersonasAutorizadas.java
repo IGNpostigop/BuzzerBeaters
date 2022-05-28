@@ -30,7 +30,7 @@ public interface GestionPersonasAutorizadas {
 	
 
 
-	public void crearPersonaAutorizada(Usuario usuario, List<PersonaAutorizada> listapa, CuentaFintech cf) throws UsuarioException, PersonaAutorizadaSinAdmin;
+	public void crearPersonaAutorizada(Usuario usuario, PersonaAutorizada pa) throws UsuarioException, PersonaAutorizadaSinAdmin;
 	
 	/**
 	 * Este metodo permitira modificar los datos de una persona autorizada

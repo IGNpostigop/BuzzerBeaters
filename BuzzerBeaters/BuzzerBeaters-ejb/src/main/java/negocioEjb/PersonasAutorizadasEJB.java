@@ -2,6 +2,7 @@ package negocioEjb;
 
 //import java.util.Date;
 import java.sql.Date;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -30,36 +31,40 @@ public class PersonasAutorizadasEJB implements GestionPersonasAutorizadas{
 	private EntityManager em;
 	
 	@Override
-	public void crearPersonaAutorizada(Usuario user, List<PersonaAutorizada> listapa, CuentaFintech cf) throws PersonaAutorizadaSinAdmin, UsuarioException {
+	public void crearPersonaAutorizada(Usuario user,PersonaAutorizada pa) throws PersonaAutorizadaSinAdmin, UsuarioException {
 		// TODO
 
 		Usuario admin = em.find(Usuario.class, user.getUser());
 		
-		if (!user.isAdministrador()) { 
+		if (!admin.isAdministrador()) { 
 			throw new PersonaAutorizadaSinAdmin("El usuario no es administrativo");
 		}
 		
-		Empresa emp = em.find(Empresa.class, cf.getCliente().getIdentification());
-
-		List<Autorizacion> autorizaciones = emp.getAutorizacion();
+		pa.setFechaInicio((Date.valueOf(LocalDate.now())));
+		pa.setEstado(true);
+		em.persist(pa);
 		
-		for (PersonaAutorizada pa : listapa) {
-
-			Autorizacion aut = new Autorizacion();
-			aut.setTipo(null); //Se modificara despues cuando se elija el tipo
-
-			AutorizacionID idAut = new AutorizacionID();
-			idAut.setIdCliente(emp.getId());
-			idAut.setIdPersonaAutorizada(pa.getId());
-			
-			aut.setEmpresa(emp);
-			aut.setId(idAut);
-			aut.setPersonaAutorizada(pa);
-			em.persist(aut);
-			autorizaciones.add(aut);
-		}
-
-		em.merge(emp);
+//		Empresa emp = em.find(Empresa.class, cf.getCliente().getIdentification());
+//
+//		List<Autorizacion> autorizaciones = emp.getAutorizacion();
+//		
+//		for (PersonaAutorizada pa : listapa) {
+//
+//			Autorizacion aut = new Autorizacion();
+//			aut.setTipo(null); //Se modificara despues cuando se elija el tipo
+//
+//			AutorizacionID idAut = new AutorizacionID();
+//			idAut.setIdCliente(emp.getId());
+//			idAut.setIdPersonaAutorizada(pa.getId());
+//			
+//			aut.setEmpresa(emp);
+//			aut.setId(idAut);
+//			aut.setPersonaAutorizada(pa);
+//			em.persist(aut);
+//			autorizaciones.add(aut);
+//		}
+//
+//		em.merge(emp);
 		
 
 	}

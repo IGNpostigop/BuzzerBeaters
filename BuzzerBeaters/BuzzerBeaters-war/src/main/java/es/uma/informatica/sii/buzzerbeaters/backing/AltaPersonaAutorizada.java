@@ -39,7 +39,7 @@ public class AltaPersonaAutorizada
 	private String pass;
 	
 	//private Long id; 
-	private String identificacion; 
+	private String identification; 
 	private String nombre; 
 	private String apellidos; 
 	private String direccion; 
@@ -50,6 +50,8 @@ public class AltaPersonaAutorizada
 	
 	AltaPersonaAutorizada()
 	{
+		userPA = new Usuario();
+		pa = new PersonaAutorizada();
 		
 	}
 
@@ -145,12 +147,12 @@ public class AltaPersonaAutorizada
 
 
 	public String getIdentificacion() {
-		return identificacion;
+		return identification;
 	}
 
 
 	public void setIdentificacion(String identificacion) {
-		this.identificacion = identificacion;
+		this.identification = identificacion;
 	}
 
 
@@ -220,12 +222,8 @@ public class AltaPersonaAutorizada
 			
 			admin = sesion.getUsuario();
 			
-			userPA.setUser(nombreUsuario);
-			userPA.setPassword(pass);
-			userPA.setAdministrador(false);
-			
-			pa.setIdentification(identificacion);
 			pa.setNombre(nombre);
+			pa.setIdentification(identification);
 			pa.setApellidos(apellidos);
 			pa.setDireccion(direccion);
 			pa.setEstado(true);
@@ -234,17 +232,26 @@ public class AltaPersonaAutorizada
 			
 			pa.setFechaInicio(Date.valueOf(LocalDate.now()));
 			
-			gestionPA.crearPersonaAutorizada(admin,listaAutorizaciones,cf);
-			return "paginaadmin.xhtml";
+			userPA.setUser(nombreUsuario);
+			userPA.setPassword(pass);
+			userPA.setAdministrador(false);
+
+			pa.setUsuarioPA(userPA);
+			userPA.setPersonaAutorizada(pa);
+			
+			gestionPA.crearPersonaAutorizada(admin, pa);
+			FacesMessage fm = new FacesMessage("\tAlta correccta");
+			FacesContext.getCurrentInstance().addMessage("altaPersonaAutorizada:botonPA", fm);
+			return null;
 			
 		}catch(UsuarioException e) {
 			
-			FacesMessage fm = new FacesMessage("El usuario existe");
+			FacesMessage fm = new FacesMessage("\tEl usuario existe");
 			FacesContext.getCurrentInstance().addMessage("altaPersonaAutorizada:botonPA", fm);
 			
 		}catch(PersonaAutorizadaSinAdmin e) {
 			
-			FacesMessage fm = new FacesMessage("El cliente no es administrativo:botonPA");
+			FacesMessage fm = new FacesMessage("\tEl cliente no es administrativo");
 			FacesContext.getCurrentInstance().addMessage("altaPersonaAutorizada:botonPA", fm);
 			
 		}

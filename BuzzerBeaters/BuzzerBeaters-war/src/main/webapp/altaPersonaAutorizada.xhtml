@@ -7,12 +7,12 @@
        xmlns:f="http://xmlns.jcp.org/jsf/core">
 
 <h:head>
-       <title>Abrir cuenta Pooled</title>
+       <title>Alta Persona Autorizada</title>
 </h:head>
 
 <h:body>
        
-       <h2><h:outputText value="Añadir una Persona Autorizada"/></h2>
+       <h2><h:outputText value="Alta Persona Autorizada"/></h2>
        
        <h:form id="altaPersonaAutorizada">
        			<h:outputLabel value="Nombre de usuario:"></h:outputLabel>
@@ -40,7 +40,7 @@
                         <h:message id="direccionMessage" for="direccion"/>
                         <br></br>
                         <h:outputLabel value="Fecha de nacimiento:"></h:outputLabel>
-                        <h:inputText id="fn" required="true" value="#{altaPersonaAutorizada.fn}" class="controls"></h:inputText>
+                        <h:inputText id="fn" required="false" value="#{altaPersonaAutorizada.fn}" class="controls"></h:inputText>
                         <h:message id="fnMessage" for="fn"/>
 						<br></br>
                         <h:commandButton id="botonPA" value="AltaIndividual" action="#{altaPersonaAutorizada.altaPA()}"></h:commandButton>
