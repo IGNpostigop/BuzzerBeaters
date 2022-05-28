@@ -9,10 +9,6 @@ import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import es.uma.BuzzerBeaters.Autorizacion;
-import es.uma.BuzzerBeaters.PersonaAutorizada;
-import es.uma.BuzzerBeaters.AutorizacionID;
-import es.uma.BuzzerBeaters.DepositadaEn;
 import es.uma.BuzzerBeaters.Usuario;
 import negocioEJBexcepcion.AutorizacionExistenteException;
 import negocioEJBexcepcion.ClienteDeBajaException;
@@ -101,27 +97,27 @@ public class EliminarAutorizados {
 		}
 		catch(UsuarioException e) {
 			FacesMessage fm = new FacesMessage("El usuario no existe");
-			FacesContext.getCurrentInstance().addMessage("addAut:botonAut", fm);		
+			FacesContext.getCurrentInstance().addMessage("removeAut:botonAut", fm);		
 		}
 		catch(UserNotAdminException e) {			
 			FacesMessage fm = new FacesMessage("El cliente no es administrativo");
-			FacesContext.getCurrentInstance().addMessage("addAut:botonAut", fm);		
+			FacesContext.getCurrentInstance().addMessage("removeAut:botonAut", fm);		
 		}
 		catch(PersonaAutorizadaException e) {			
 			FacesMessage fm = new FacesMessage("Persona autorizada inexistente");
-			FacesContext.getCurrentInstance().addMessage("addAut:botonAut", fm);		
+			FacesContext.getCurrentInstance().addMessage("removeAut:botonAut", fm);		
 		}
 		catch(ClienteDeBajaException e) {			
 			FacesMessage fm = new FacesMessage("Empresa de baja");
-			FacesContext.getCurrentInstance().addMessage("addAut:botonAut", fm);		
+			FacesContext.getCurrentInstance().addMessage("removeAut:botonAut", fm);		
 		}
 		catch(AutorizacionExistenteException e) {			
 			FacesMessage fm = new FacesMessage("La no autorización existe");
-			FacesContext.getCurrentInstance().addMessage("addAut:botonAut", fm);		
+			FacesContext.getCurrentInstance().addMessage("removeAut:botonAut", fm);		
 		}
 		catch(ClienteNoEncontradoException e) {			
 			FacesMessage fm = new FacesMessage("Empresas no existe");
-			FacesContext.getCurrentInstance().addMessage("addAut:botonAut", fm);		
+			FacesContext.getCurrentInstance().addMessage("removeAut:botonAut", fm);		
 		}
 		return null;
 	}

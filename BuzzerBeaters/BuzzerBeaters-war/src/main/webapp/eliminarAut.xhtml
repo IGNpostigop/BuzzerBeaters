@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+       xmlns:h="http://xmlns.jcp.org/jsf/html"
+       xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<h:head>
+       <title>Anadir Autorizacion</title>
+</h:head>
+
+<h:body>
+       
+       <h2><h:outputText value="Eliminar Autorizacion"/></h2>
+       
+        <h:form id="removeAut">
+                        <h:outputLabel value="id de Persona Autorizada:"></h:outputLabel>
+                        <h:inputText id="idPersAut" required="true" value="#{eliminarAutorizados.idPA}" class="controls"></h:inputText>
+                        <h:message id="idPAMessage" for="persAut"/>
+						<br></br>
+                        <h:outputLabel value="id de Empresa"></h:outputLabel>
+                        <h:inputText id="idEmpresa" required="true" value="#{eliminarAutorizados.idEmpresa}" class="controls"></h:inputText>
+                        <h:message id="idEmpresaMessage" for="empresa"/>
+                        <br></br>
+                        <h:outputLabel value="Tipo:"></h:outputLabel>
+                        <h:inputText id="tipoAutorizacion" required="true" value="#{eliminarAutorizados.tipo}" class="controls"></h:inputText>
+                        <h:message id="tipoAutorizacionMessage" for="tipo"/>
+                        <br></br>
+                        
+
+                        <h:commandButton id="botoneliminarAutorizacion" value="BajaAutorizacion" action="#{eliminarAutorizados.eliminarAutorizado()}"></h:commandButton>
+						<h:message id="botonMessage" for="botonAut"/>
+          </h:form>
+          
+                        <div>
+               				<p>Vuelve a la pagina de admin<h:link outcome="paginaadmin.xhtml">Menu Administrativo</h:link></p>
+            			</div>
+    
+</h:body>
+
+</html> 
