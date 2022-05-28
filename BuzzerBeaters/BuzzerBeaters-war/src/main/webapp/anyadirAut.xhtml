@@ -7,18 +7,35 @@
        xmlns:f="http://xmlns.jcp.org/jsf/core">
 
 <h:head>
-       <title>Página de ejemplo y login de inicio</title>
+       <title>Anadir Autorizacion</title>
 </h:head>
 
 <h:body>
        
-       <h2><h:outputText value="Alta de Cliente correcta"/></h2>
-      
-			<div>
-               <p>Vuelve al menú administrador en <h:link outcome="Administrativo.xhtml">Menu Administrativo</h:link></p>
-            </div>
-            
+       <h2><h:outputText value="Añadir Autorizacion"/></h2>
+       
+        <h:form id="addAut">
+                        <h:outputLabel value="id de Persona Autorizada:"></h:outputLabel>
+                        <h:inputText id="idPersAut" required="true" value="#{anyadirAutorizacion.idPA}" class="controls"></h:inputText>
+                        <h:message id="idPAMessage" for="persAut"/>
+						<br></br>
+                        <h:outputLabel value="id de Empresa"></h:outputLabel>
+                        <h:inputText id="idEmpresa" required="true" value="#{anyadirAutorizacion.idEmpresa}" class="controls"></h:inputText>
+                        <h:message id="idEmpresaMessage" for="empresa"/>
+                        <br></br>
+                        <h:outputLabel value="Tipo:"></h:outputLabel>
+                        <h:inputText id="tipoAutorizacion" required="true" value="#{anyadirAutorizacion.tipo}" class="controls"></h:inputText>
+                        <h:message id="tipoAutorizacionMessage" for="tipo"/>
+                        <br></br>
                         
+
+                        <h:commandButton id="botonanyadirAutorizacion" value="AltaAutorizacion" action="#{anyadirAutorizacion.addAutorizacion()}"></h:commandButton>
+						<h:message id="botonMessage" for="botonAut"/>
+          </h:form>
+          
+                        <div>
+               				<p>Vuelve a la pagina de admin<h:link outcome="paginaadmin.xhtml">Menu Administrativo</h:link></p>
+            			</div>
     
 </h:body>
 
