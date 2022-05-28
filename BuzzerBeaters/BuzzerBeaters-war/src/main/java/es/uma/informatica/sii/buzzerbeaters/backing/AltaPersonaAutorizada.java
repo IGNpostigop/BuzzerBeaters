@@ -19,9 +19,9 @@ import negocioEJBexcepcion.PersonaAutorizadaSinAdmin;
 import negocioEJBexcepcion.UsuarioException;
 import negocioEjb.GestionPersonasAutorizadas;
 
-@Named(value = "anyadirAutorizacion")
+@Named(value = "altaPersonaAutorizada")
 @RequestScoped
-public class AnyadirAutorizacion 
+public class AltaPersonaAutorizada 
 {
 	@Inject
 	private InfoSesion sesion;
@@ -48,7 +48,7 @@ public class AnyadirAutorizacion
 	private String estado; 
 	
 	
-	AnyadirAutorizacion()
+	AltaPersonaAutorizada()
 	{
 		
 	}
@@ -214,7 +214,7 @@ public class AnyadirAutorizacion
 
 
 
-	public String anyadirAutorizacion() {
+	public String altaPA() {
 		
 		try {
 			
@@ -240,12 +240,12 @@ public class AnyadirAutorizacion
 		}catch(UsuarioException e) {
 			
 			FacesMessage fm = new FacesMessage("El usuario existe");
-			FacesContext.getCurrentInstance().addMessage("anyadirAutorizacion:botonPA", fm);
+			FacesContext.getCurrentInstance().addMessage("altaPersonaAutorizada:botonPA", fm);
 			
 		}catch(PersonaAutorizadaSinAdmin e) {
 			
 			FacesMessage fm = new FacesMessage("El cliente no es administrativo:botonPA");
-			FacesContext.getCurrentInstance().addMessage("anyadirAutorizacion:botonPA", fm);
+			FacesContext.getCurrentInstance().addMessage("altaPersonaAutorizada:botonPA", fm);
 			
 		}
 		

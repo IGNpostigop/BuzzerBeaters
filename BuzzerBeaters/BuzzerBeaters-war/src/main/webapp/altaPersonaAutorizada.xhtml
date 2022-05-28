@@ -14,36 +14,36 @@
        
        <h2><h:outputText value="Añadir una Persona Autorizada"/></h2>
        
-       <h:form id="anyadirAutorizacion">
+       <h:form id="altaPersonaAutorizada">
        			<h:outputLabel value="Nombre de usuario:"></h:outputLabel>
-                        <h:inputText id="username" required="true" value="#{anyadirAutorizacion.nombreUsuario}" class="controls"></h:inputText>
+                        <h:inputText id="username" required="true" value="#{altaPersonaAutorizada.nombreUsuario}" class="controls"></h:inputText>
                         <h:message id="userNameMessage" for="userName"/>
 						<br></br>
                         <h:outputLabel value="Contraseña:"></h:outputLabel>
-                        <h:inputSecret id="pass" required="true" value="#{anyadirAutorizacion.pass}" class="controls"></h:inputSecret>
+                        <h:inputSecret id="pass" required="true" value="#{altaPersonaAutorizada.pass}" class="controls"></h:inputSecret>
                         <h:message id="passwordMessage" for="pass"/>
                         <br></br>
                         <h:outputLabel value="Nombre:"></h:outputLabel>
-                        <h:inputText id="nombre" required="true" value="#{anyadirAutorizacion.nombre}" class="controls"></h:inputText>
+                        <h:inputText id="nombre" required="true" value="#{altaPersonaAutorizada.nombre}" class="controls"></h:inputText>
                         <h:message id="nombreMessage" for="nombre"/>
                         <br></br>
                         <h:outputLabel value="Apellidos:"></h:outputLabel>
-                        <h:inputText id="apellido" required="true" value="#{anyadirAutorizacion.apellidos}" class="controls"></h:inputText>
+                        <h:inputText id="apellido" required="true" value="#{altaPersonaAutorizada.apellidos}" class="controls"></h:inputText>
                         <h:message id="apellidoMessage" for="apellido"/>
 						<br></br>
                         <h:outputLabel value="Identificacion"></h:outputLabel>
-                        <h:inputText id="identificacion" required="true" value="#{anyadirAutorizacion.identificacion}" class="controls"></h:inputText>
+                        <h:inputText id="identificacion" required="true" value="#{altaPersonaAutorizada.identificacion}" class="controls"></h:inputText>
                         <h:message id="identificacionMessage" for="identificacion"/>
                         <br></br>
                         <h:outputLabel value="Direccion:"></h:outputLabel>
-                        <h:inputText id="direccion" required="true" value="#{anyadirAutorizacion.direccion}" class="controls"></h:inputText>
+                        <h:inputText id="direccion" required="true" value="#{altaPersonaAutorizada.direccion}" class="controls"></h:inputText>
                         <h:message id="direccionMessage" for="direccion"/>
                         <br></br>
                         <h:outputLabel value="Fecha de nacimiento:"></h:outputLabel>
-                        <h:inputText id="fn" required="true" value="#{anyadirAutorizacio.fn}" class="controls"></h:inputText>
+                        <h:inputText id="fn" required="true" value="#{altaPersonaAutorizada.fn}" class="controls"></h:inputText>
                         <h:message id="fnMessage" for="fn"/>
 						<br></br>
-                        <h:commandButton id="botonPA" value="AltaIndividual" action="#{anyadirAutorizacio.anyadirAutorizacion()}"></h:commandButton>
+                        <h:commandButton id="botonPA" value="AltaIndividual" action="#{altaPersonaAutorizada.altaPA()}"></h:commandButton>
 						<h:message id="boton" for="botonPA"/>	
 		</h:form>
       
