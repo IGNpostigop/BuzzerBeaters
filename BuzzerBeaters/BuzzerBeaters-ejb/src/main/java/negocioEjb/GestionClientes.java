@@ -94,6 +94,8 @@ public interface GestionClientes {
 	
 	public Individual getClienteInd(Long id) throws ClienteNoEncontradoException;
 	
+	public Empresa getClienteEmp(Long id) throws ClienteNoEncontradoException;
+	
 
 
 

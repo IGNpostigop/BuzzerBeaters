@@ -8,16 +8,16 @@ import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import es.uma.BuzzerBeaters.Individual;
+import es.uma.BuzzerBeaters.Empresa;
 import es.uma.BuzzerBeaters.Usuario;
 import negocioEJBexcepcion.ClienteNoEncontradoException;
 import negocioEJBexcepcion.UserNotAdminException;
 import negocioEJBexcepcion.UsuarioException;
 import negocioEjb.GestionClientes;
 
-@Named(value = "modificarCIndividual")
+@Named(value = "modificarCEmpresa")
 @RequestScoped
-public class ModificarCIndividual {
+public class ModificarCEmpresa {
 	
 	@Inject
 	private GestionClientes modificarEJB;
@@ -25,11 +25,9 @@ public class ModificarCIndividual {
 	private InfoSesion sesion;
 
 	private Usuario user;
-	private Individual ind;
-	private String fecha_nacimiento;
+	private Empresa emp;
+	private String razon_social;
 	private Long id;
-	private String nombre;
-	private String apellido;
 	private String identification;
 	private String direccion;
 	private String ciudad;
@@ -37,10 +35,10 @@ public class ModificarCIndividual {
 	private String pais;
 	
 	
-	public ModificarCIndividual() 
+	public ModificarCEmpresa() 
 	{
 		user = new Usuario();
-		ind = new Individual();
+		emp = new Empresa();
 	}
 
 	public Usuario getUser() {
@@ -51,45 +49,20 @@ public class ModificarCIndividual {
 		this.user = user;
 	}
 
-	public Individual getInd() {
-		return ind;
+	public Empresa getemp() {
+		return emp;
 	}
 
-	public void setInd(Individual ind) {
-		this.ind = ind;
+	public void setemp(Empresa emp) {
+		this.emp = emp;
 	}
 	
-	public String getFecha_nacimiento() {
-		return fecha_nacimiento;
-	}
-
-	public void setFecha_nacimiento(String fecha_nacimiento) {
-		this.fecha_nacimiento = fecha_nacimiento;
-	}
-
 	public Long getId() {
 		return id;
 	}
 
 	public void setId(Long id) {
 		this.id = id;
-	}
-
-	public String getNombre() {
-		return nombre;
-	}
-
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
-	
-
-	public String getApellido() {
-		return apellido;
-	}
-
-	public void setApellido(String apellido) {
-		this.apellido = apellido;
 	}
 
 	public String getIdentification() {
@@ -131,6 +104,15 @@ public class ModificarCIndividual {
 	public void setPais(String pais) {
 		this.pais = pais;
 	}
+	
+
+	public String getRazon_social() {
+		return razon_social;
+	}
+
+	public void setRazon_social(String razon_social) {
+		this.razon_social = razon_social;
+	}
 
 	public String modCEmpresa() {
 		
@@ -139,36 +121,32 @@ public class ModificarCIndividual {
 			
 			try {
 				
-				ind = modificarEJB.getClienteInd(id);
-				
-					ind.setFecha_nacimiento(Date.valueOf(this.getFecha_nacimiento()));
+				emp = modificarEJB.getClienteEmp(id);
 
-					ind.setName(this.getNombre());
+					emp.setRazon_social(this.getRazon_social());
 
-					ind.setCiudad(this.getCiudad());
+					emp.setCiudad(this.getCiudad());
 
-					ind.setCodigopostal(this.getCodigopostal());
+					emp.setCodigopostal(this.getCodigopostal());
 
-					ind.setDireccion(this.getDireccion());
+					emp.setDireccion(this.getDireccion());
 
-					ind.setIdentification(this.getIdentification());
+					emp.setIdentification(this.getIdentification());
 
-					ind.setPais(this.getPais());
-
-					ind.setApellido(this.getApellido());
+					emp.setPais(this.getPais());
 				
 
-				modificarEJB.modificarClienteIndividual(user,ind);
+				modificarEJB.modificarClienteEmpresa(user,emp);
 				
 			} catch (UsuarioException e) {
 				FacesMessage fm = new FacesMessage("El usuario no existe");
-				FacesContext.getCurrentInstance().addMessage("modificarCIndividual:botonInd", fm);	
+				FacesContext.getCurrentInstance().addMessage("modificarCEmpresa:botonEmp", fm);	
 			} catch (ClienteNoEncontradoException e) {
 				FacesMessage fm = new FacesMessage("El cliente individual no existe");
-				FacesContext.getCurrentInstance().addMessage("modificarCIndividual:botonInd", fm);	
+				FacesContext.getCurrentInstance().addMessage("modificarCEmpresa:botonEmp", fm);	
 			} catch (UserNotAdminException e) {
 				FacesMessage fm = new FacesMessage("El usuario no tiene permisos de admin");
-				FacesContext.getCurrentInstance().addMessage("modificarCIndividual:botonInd", fm);	
+				FacesContext.getCurrentInstance().addMessage("modificarCEmpresa:botonEmp", fm);	
 			}
 			return "paginaadmin.xhtml";
 

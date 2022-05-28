@@ -198,6 +198,18 @@ public class ClientesEJB implements GestionClientes {
 		return cliente;
 	}
 	
+	@Override
+	public Empresa getClienteEmp(Long id) throws ClienteNoEncontradoException{
+		
+		Empresa cliente = em.find(Empresa.class, id);
+		
+		if(cliente == null) {
+			throw new ClienteNoEncontradoException();
+		}
+		
+		return cliente;
+	}
+	
 
 	@Override
 	public Cliente getCliente(Long id) throws ClienteNoEncontradoException{
