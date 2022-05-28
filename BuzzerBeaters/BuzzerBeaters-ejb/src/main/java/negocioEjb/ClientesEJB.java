@@ -170,6 +170,7 @@ public class ClientesEJB implements GestionClientes {
 	@Override
 	//RF3: Modificar los datos de un cliente empresa
 	public void modificarClienteEmpresa(Usuario admin, Empresa empresa) throws UsuarioException, ClienteNoEncontradoException, UserNotAdminException {
+		
 		Usuario administrador = em.find(Usuario.class, admin.getUser());
 		
 		if (administrador == null) { 
@@ -235,9 +236,9 @@ public class ClientesEJB implements GestionClientes {
 		}
 		
 		
-		
-		
 	}
+	
+	
 	
 }
 

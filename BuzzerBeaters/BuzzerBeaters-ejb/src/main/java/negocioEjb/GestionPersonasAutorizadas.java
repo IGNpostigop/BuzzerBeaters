@@ -42,8 +42,7 @@ public interface GestionPersonasAutorizadas {
 	 * @throws UsuarioException 
 	 */
 	
-	PersonaAutorizada modificarPersonaAutorizada(PersonaAutorizada persAut, String identificacion, String nombre, String apellidos, Boolean estado,
-			Date fechaNacimiento, Date fechaInicio, Date fechaFin) throws UsuarioException;
+	public void modificarPersonaAutorizada(Usuario user, PersonaAutorizada pa) throws PersonaAutorizadaException, UsuarioException;
 	
 	
 	/**
@@ -59,4 +58,6 @@ public interface GestionPersonasAutorizadas {
 
 	void addAutorizadoEmpresa(Usuario user, Long idPa, Long idEmpresa, String tipo) throws UsuarioException,UserNotAdminException, 
 		PersonaAutorizadaException, ClienteDeBajaException, AutorizacionExistenteException, ClienteNoEncontradoException;
+
+	PersonaAutorizada getPA(Long id) throws PersonaAutorizadaException;
 }

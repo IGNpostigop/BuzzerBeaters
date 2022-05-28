@@ -16,6 +16,7 @@ import es.uma.BuzzerBeaters.Autorizacion;
 import es.uma.BuzzerBeaters.AutorizacionID;
 import es.uma.BuzzerBeaters.CuentaFintech;
 import es.uma.BuzzerBeaters.Empresa;
+import es.uma.BuzzerBeaters.Individual;
 import es.uma.BuzzerBeaters.PersonaAutorizada;
 import es.uma.BuzzerBeaters.Usuario;
 import negocioEJBexcepcion.AutorizacionExistenteException;
@@ -85,7 +86,7 @@ public class PersonasAutorizadasEJB implements GestionPersonasAutorizadas{
 	}
 
 
-	@Override //usar merge
+	/*@Override //usar merge
 	//RF7: Modificar persona Autorizada
 	public PersonaAutorizada modificarPersonaAutorizada(PersonaAutorizada persAut, String identificacion, 
 			String nombre, String apellidos,
@@ -106,8 +107,26 @@ public class PersonasAutorizadasEJB implements GestionPersonasAutorizadas{
 			PerAutEntity.setFechaInicio(fechaInicio);
 		}		
 		return PerAutEntity;
-	}
+	}*/
 	
+	@Override
+	public void modificarPersonaAutorizada(Usuario user, PersonaAutorizada pa) throws PersonaAutorizadaException, UsuarioException {
+		Usuario admin = em.find(Usuario.class, user.getUser());
+		
+		if (!admin.isAdministrador()) { 
+			throw new PersonaAutorizadaException("El usuario no es administrativo");
+		}
+		
+		PersonaAutorizada PerAutEntity = em.find(PersonaAutorizada.class, pa.getId());
+		
+		if(PerAutEntity == null) {
+			throw new UsuarioException("La persona autorizada no existe en la base de datos");
+		}
+		
+		em.merge(pa);
+		
+		
+	}
 
 	@Override
 	public boolean consultarPersonaAutorizada(PersonaAutorizada aut) throws UsuarioException {
@@ -208,6 +227,21 @@ public class PersonasAutorizadasEJB implements GestionPersonasAutorizadas{
 			em.persist(aut);
 		}
 
+	}
+	
+	@Override
+	public PersonaAutorizada getPA(Long id) throws PersonaAutorizadaException{
+		
+		PersonaAutorizada perAutEntity = em.find(PersonaAutorizada.class, id);
+		
+		if(perAutEntity == null) {
+			throw new PersonaAutorizadaException("La persona autorizada no existe en la base de datos");
+		}else {
+			return perAutEntity;
+		}
+		
+		
+		
 	}
 
 
