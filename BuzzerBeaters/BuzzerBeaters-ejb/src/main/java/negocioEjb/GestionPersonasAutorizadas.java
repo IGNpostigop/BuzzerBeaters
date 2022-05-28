@@ -12,7 +12,12 @@ import es.uma.BuzzerBeaters.CuentaFintech;
 import es.uma.BuzzerBeaters.Empresa;
 import es.uma.BuzzerBeaters.PersonaAutorizada;
 import es.uma.BuzzerBeaters.Usuario;
+import negocioEJBexcepcion.AutorizacionExistenteException;
+import negocioEJBexcepcion.ClienteDeBajaException;
+import negocioEJBexcepcion.ClienteNoEncontradoException;
+import negocioEJBexcepcion.PersonaAutorizadaException;
 import negocioEJBexcepcion.PersonaAutorizadaSinAdmin;
+import negocioEJBexcepcion.UserNotAdminException;
 import negocioEJBexcepcion.UsuarioException;
 
 @Local
@@ -51,5 +56,6 @@ public interface GestionPersonasAutorizadas {
 
 	public List<PersonaAutorizada> getPersonasAutorizadas();
 
-	void addAutorizadoEmpresa(PersonaAutorizada persAut, Autorizacion autorizacion) throws UsuarioException;
+	void addAutorizadoEmpresa(Usuario user, Long idPa, Long idEmpresa, String tipo) throws UsuarioException,UserNotAdminException, 
+		PersonaAutorizadaException, ClienteDeBajaException, AutorizacionExistenteException, ClienteNoEncontradoException;
 }

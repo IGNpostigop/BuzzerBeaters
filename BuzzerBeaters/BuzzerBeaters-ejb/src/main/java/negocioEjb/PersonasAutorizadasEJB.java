@@ -18,7 +18,12 @@ import es.uma.BuzzerBeaters.CuentaFintech;
 import es.uma.BuzzerBeaters.Empresa;
 import es.uma.BuzzerBeaters.PersonaAutorizada;
 import es.uma.BuzzerBeaters.Usuario;
+import negocioEJBexcepcion.AutorizacionExistenteException;
+import negocioEJBexcepcion.ClienteDeBajaException;
+import negocioEJBexcepcion.ClienteNoEncontradoException;
+import negocioEJBexcepcion.PersonaAutorizadaException;
 import negocioEJBexcepcion.PersonaAutorizadaSinAdmin;
+import negocioEJBexcepcion.UserNotAdminException;
 import negocioEJBexcepcion.UsuarioException;
 
 @Stateless
@@ -135,17 +140,45 @@ public class PersonasAutorizadasEJB implements GestionPersonasAutorizadas{
 	
 	@Override
 	//RF6: Añadir personas autorizadas a cuentas de tipo empresa
-	public void addAutorizadoEmpresa(PersonaAutorizada persAut, Autorizacion autorizacion) throws UsuarioException {
-		PersonaAutorizada PerAutEntity = em.find(PersonaAutorizada.class, persAut);
-		if(persAut == null) {
-			throw new UsuarioException("La persona autorizada no existe en la base de datos");
-		}else {
-			if(PerAutEntity.getAutorizacion().contains(autorizacion)) {
-				throw new UsuarioException("La autorización ya existe en la base de datos");
-			}else {
-				PerAutEntity.getAutorizacion().add(autorizacion);
-			}
+	public void addAutorizadoEmpresa(Usuario user, Long idPa, Long idEmpresa, String tipo) throws UsuarioException, UserNotAdminException, 
+			PersonaAutorizadaException, ClienteDeBajaException, AutorizacionExistenteException, ClienteNoEncontradoException {
+		Usuario admin = em.find(Usuario.class, user.getUser());
+		if (admin == null) {
+			throw new UsuarioException();
 		}
+		if (!admin.isAdministrador()) {
+			throw new UserNotAdminException();
+		}
+
+		Autorizacion aut = new Autorizacion();
+		AutorizacionID autID = new AutorizacionID();
+		autID.setIdCliente(idEmpresa);
+		autID.setIdPersonaAutorizada(idPa);
+		
+		PersonaAutorizada perAutEntity = em.find(PersonaAutorizada.class, idPa);
+		Empresa empEntity = em.find(Empresa.class, idEmpresa);
+		aut.setEmpresa(empEntity);
+		aut.setId(autID);
+		aut.setPersonaAutorizada(perAutEntity);
+		aut.setTipo(tipo);
+		
+		if(perAutEntity == null) {
+			throw new PersonaAutorizadaException("La persona autorizada no existe en la base de datos");
+		}
+		else if(empEntity == null) {
+			throw new ClienteNoEncontradoException();
+		}
+		else if(!empEntity.getEstado()) {
+			throw new ClienteDeBajaException();
+		}
+		else if(perAutEntity.getAutorizacion().contains(aut)) {
+			throw new AutorizacionExistenteException();
+		}else {
+			List <Autorizacion> autorizaciones = empEntity.getAutorizacion();
+			autorizaciones.add(aut);
+			empEntity.setAutorizacion(autorizaciones);
+		}
+
 		
 		// TODO Auto-generated method stub
 		
