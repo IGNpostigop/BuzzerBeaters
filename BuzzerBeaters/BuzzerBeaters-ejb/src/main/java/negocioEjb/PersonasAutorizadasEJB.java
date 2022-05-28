@@ -76,6 +76,7 @@ public class PersonasAutorizadasEJB implements GestionPersonasAutorizadas{
 		Query query = em.createQuery("SELECT p FROM PersonaAutorizada p");
 		List<PersonaAutorizada> personasAutorizadas = query.getResultList();
 		return personasAutorizadas;
+		
 	}
 
 
@@ -98,8 +99,7 @@ public class PersonasAutorizadasEJB implements GestionPersonasAutorizadas{
 			PerAutEntity.setFecha_nacimiento(fechaNacimiento);
 			PerAutEntity.setFechaFin(fechaFin);
 			PerAutEntity.setFechaInicio(fechaInicio);
-		}
-		
+		}		
 		return PerAutEntity;
 	}
 	
