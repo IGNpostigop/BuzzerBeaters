@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+       xmlns:h="http://xmlns.jcp.org/jsf/html"
+       xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<h:head>
+       <title>Modificar individual</title>
+</h:head>
+
+<h:body>
+       
+       <h2><h:outputText value="Modificar individual"/></h2>
+       
+       <h:form id="modificarCIndividual">
+      			 <h:outputLabel value="ID cliente: "></h:outputLabel>
+				<h:inputText id="id" required="true" value="#{modificarCIndividual.id}" class="controls"></h:inputText>
+				<h:message id="idMessage" required="true" for="ident"/>
+				<br/>
+       			<h:outputLabel value="Nombre: "></h:outputLabel>
+				<h:inputText id="nombreInd" required="true" value="#{modificarCIndividual.nombre}"></h:inputText>
+				<h:message id="nombre" for="cliente"/>
+				<br/>
+				<h:outputText value="Fecha de Nacimiento"/>
+                        <h:inputText id="fechaNacimientoid" required="true" value="#{modificarCIndividual.fecha_nacimiento}" class="controls"/>
+                        <h:message id="fechaNacimiento" for="fechaNacimiento"/>
+                <br/>
+				<h:outputLabel value="Apellido: "></h:outputLabel>
+				<h:inputText id="apellidoInd" required="true" value="#{modificarCIndividual.apellido}"></h:inputText>
+				<h:message id="apellido" for="cliente"/>
+				<br/>
+				<h:outputLabel value="Identificacion: "></h:outputLabel>
+				<h:inputText id="identificacionInd" required="true" value="#{modificarCIndividual.identification}"></h:inputText>
+				<h:message id="identificacion" for="cliente"/>
+				<br/>
+				<h:outputLabel value="Direccion: "></h:outputLabel>
+				<h:inputText id="direccionInd" required="true" value="#{modificarCIndividual.direccion}"></h:inputText>
+				<h:message id="direccion" for="cliente"/>
+				<br/>
+				<h:outputLabel value="Ciudad: "></h:outputLabel>
+				<h:inputText id="ciudadInd" required="true" value="#{modificarCIndividual.ciudad}"></h:inputText>
+				<h:message id="ciudad" for="cliente"/>
+				<br/>
+				<h:outputLabel value="Codigo Postal: "></h:outputLabel>
+				<h:inputText id="cpInd" required="true" value="#{modificarCIndividual.codigopostal}"></h:inputText>
+				<h:message id="cp" for="cliente"/>
+				<br/>
+				<h:outputLabel value="Pais: "></h:outputLabel>
+				<h:inputText id="paisInd" required="true" value="#{modificarCIndividual.pais}"></h:inputText>
+				<h:message id="pais" for="cliente"/>
+				<br/>
+				<h:commandButton id="botonInd" value="Modificar" action="#{modificarCIndividual.modCIndividual()}"></h:commandButton>
+				<h:message id = "usuario" for="botonInd"></h:message>		
+		</h:form>
+      
+			<div>
+               <p>Vuelve a la pagina de admin<h:link outcome="paginaadmin.xhtml">Menu Administrativo</h:link></p>
+            </div>
+            
+                        
+    
+</h:body>
+
+</html> 

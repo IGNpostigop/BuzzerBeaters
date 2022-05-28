@@ -74,7 +74,7 @@ public interface GestionClientes {
 	 * @throws ClienteNoEncontradoException 
 	 */
 
-	public void modificarClienteIndividual(Usuario admin, String idCliente, Individual individual) throws UsuarioException, ClienteNoEncontradoException, UserNotAdminException;
+	public void modificarClienteIndividual(Usuario admin, Individual individual) throws UsuarioException, ClienteNoEncontradoException, UserNotAdminException;
 	
 	/**
 	 * Igual que el anterior pero para clientes empresas
@@ -86,11 +86,14 @@ public interface GestionClientes {
 	 */
 	
 	
-	public void modificarClienteEmpresa(Usuario admin, String idCliente, Empresa empresa) throws UsuarioException, ClienteNoEncontradoException, UserNotAdminException ;
+	public void modificarClienteEmpresa(Usuario admin, Empresa empresa) throws UsuarioException, ClienteNoEncontradoException, UserNotAdminException ;
 
 	public List<Cliente> getClientes();
 	
 	public Cliente getCliente(Long id) throws ClienteNoEncontradoException;
+	
+	public Individual getClienteInd(Long id) throws ClienteNoEncontradoException;
+	
 
 
 

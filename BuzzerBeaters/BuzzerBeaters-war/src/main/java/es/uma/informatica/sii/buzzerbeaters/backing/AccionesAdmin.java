@@ -34,6 +34,7 @@ public class AccionesAdmin {
 	private Cliente cliente;
 	private Individual individual;
 	private Empresa empresa;
+	private Long id;
 	
 	public AccionesAdmin() {
 	}
@@ -76,7 +77,7 @@ public class AccionesAdmin {
 	
 	public String modificarClienteIndividual () {
 		try {
-			clientesEjb.modificarClienteIndividual(usuario,  individual.getIdentification(), individual);
+			clientesEjb.modificarClienteIndividual(usuario,individual);
 			return "modificaCliente.xhtml";
 		}catch (UsuarioException e) {
 			FacesMessage fm = new FacesMessage("El usuario no existe");
@@ -95,7 +96,7 @@ public class AccionesAdmin {
 	
 	public String modificarClienteEmpresa () {
 		try {
-			clientesEjb.modificarClienteEmpresa(usuario,  empresa.getIdentification(), empresa);
+			clientesEjb.modificarClienteEmpresa(usuario,empresa);
 			return "modificaCliente.xhtml";
 		}catch (UsuarioException e) {
 			FacesMessage fm = new FacesMessage("El usuario no existe");

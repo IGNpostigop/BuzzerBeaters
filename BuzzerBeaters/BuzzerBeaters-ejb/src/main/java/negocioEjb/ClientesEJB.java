@@ -118,8 +118,7 @@ public class ClientesEJB implements GestionClientes {
 					throw new CuentaException("cuenta "+ cuentaFintech.getIban() + " aun abierta");
 				}
 			}
-			//clienteEntity.setFechaBaja(Date.valueOf(LocalDate.now()));
-			clienteEntity.setFechaAlta(Date.valueOf(LocalDate.now()));
+			clienteEntity.setFechaBaja(Date.valueOf(LocalDate.now()));
 			clienteEntity.setEstado(false);	
 		}	
 	}
@@ -153,7 +152,7 @@ public class ClientesEJB implements GestionClientes {
 	
 	@Override
 	//RF3: Modificar los datos de un cliente individual
-	public void modificarClienteIndividual(Usuario admin, String idCliente, Individual individual) throws UsuarioException, ClienteNoEncontradoException, UserNotAdminException {
+	public void modificarClienteIndividual(Usuario admin, Individual individual) throws UsuarioException, ClienteNoEncontradoException, UserNotAdminException {
 		Usuario administrador = em.find(Usuario.class, admin.getUser());
 		
 		if (administrador == null) { 
@@ -161,23 +160,16 @@ public class ClientesEJB implements GestionClientes {
 		}
 
 		if (!administrador.isAdministrador()) {
-			throw new  UserNotAdminException("El usuario no tiene los privilegios suficientes para la operación");
+			throw new  UserNotAdminException("El usuario no tiene permisos de admin");
 		}
-		
-		Individual clienteIndividualEntity = em.find(Individual.class,idCliente);
-		
-		if(clienteIndividualEntity == null) {
-			throw new ClienteNoEncontradoException("El cliente individual no existe");
-			
-			
-		}
+
 		em.merge(individual);
 		
 	}
 	
 	@Override
 	//RF3: Modificar los datos de un cliente empresa
-	public void modificarClienteEmpresa(Usuario admin, String idCliente, Empresa empresa) throws UsuarioException, ClienteNoEncontradoException, UserNotAdminException {
+	public void modificarClienteEmpresa(Usuario admin, Empresa empresa) throws UsuarioException, ClienteNoEncontradoException, UserNotAdminException {
 		Usuario administrador = em.find(Usuario.class, admin.getUser());
 		
 		if (administrador == null) { 
@@ -188,13 +180,6 @@ public class ClientesEJB implements GestionClientes {
 			throw new UserNotAdminException("El usuario no tiene los privilegios suficientes para la operación");
 		}
 		
-		Empresa clienteEmpresaEntity = em.find(Empresa.class,idCliente);
-		
-		if(clienteEmpresaEntity == null) {
-			throw new ClienteNoEncontradoException("El cliente individual no existe");
-			
-			
-		}
 		em.merge(empresa);
 		
 	}
@@ -202,7 +187,7 @@ public class ClientesEJB implements GestionClientes {
 	
 	
 	@Override
-	public Cliente getCliente(Long id) throws ClienteNoEncontradoException{
+	public Individual getClienteInd(Long id) throws ClienteNoEncontradoException{
 		
 		Individual cliente = em.find(Individual.class, id);
 		
@@ -214,6 +199,33 @@ public class ClientesEJB implements GestionClientes {
 	}
 	
 
+	@Override
+	public Cliente getCliente(Long id) throws ClienteNoEncontradoException{
+		
+		Individual clienteind = em.find(Individual.class, id);
+		Empresa clienteemp = em.find(Empresa.class, id);
+		
+		if(clienteind == null) 
+		{
+			
+			if(clienteemp == null) 
+			{
+				throw new ClienteNoEncontradoException();
+			}
+			else
+			{
+				return clienteemp;
+			}
+			
+		}else
+		{
+			return clienteind;
+		}
+		
+		
+		
+		
+	}
 	
 }
 

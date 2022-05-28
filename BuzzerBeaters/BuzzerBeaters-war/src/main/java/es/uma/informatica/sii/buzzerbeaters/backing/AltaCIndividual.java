@@ -191,7 +191,7 @@ public class AltaCIndividual
 			FacesContext.getCurrentInstance().addMessage("altaCIndividual:botonAltaCIndiv", fm);
 		}
 		
-		return "paginaadmin.xhtml";
+		return null;
 		
 	}
 	
