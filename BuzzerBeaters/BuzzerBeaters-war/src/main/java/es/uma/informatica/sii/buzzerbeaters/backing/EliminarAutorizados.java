@@ -1,7 +1,6 @@
 package es.uma.informatica.sii.buzzerbeaters.backing;
 
-import java.util.ArrayList;
-import java.util.List;
+
 
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
@@ -10,6 +9,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import es.uma.BuzzerBeaters.Usuario;
+import es.uma.BuzzerBeaters.PersonaAutorizada;
 import negocioEJBexcepcion.AutorizacionExistenteException;
 import negocioEJBexcepcion.ClienteDeBajaException;
 import negocioEJBexcepcion.ClienteNoEncontradoException;
@@ -87,9 +87,9 @@ public class EliminarAutorizados {
 		
 		try {
 		
-		
 		admin = sesion.getUsuario();
-		gestPA.eliminarAutorizadoEmpresa(admin, idPA, idEmpresa, tipo);
+		PersonaAutorizada pa = gestPA.getPA(idPA);
+		gestPA.eliminarAutorizadoEmpresa(admin, pa);
 		FacesMessage fm = new FacesMessage("Baja Correcta");
 		FacesContext.getCurrentInstance().addMessage("addAut:botoneliminarAutorizacion", fm);
 		return null;

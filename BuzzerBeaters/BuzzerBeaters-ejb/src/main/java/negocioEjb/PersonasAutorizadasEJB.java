@@ -140,7 +140,7 @@ public class PersonasAutorizadasEJB implements GestionPersonasAutorizadas{
 	
 	@Override
 	//RF8: Dar de baja persona Autorizada
-	public void eliminarAutorizadoEmpresa(Usuario user, Long idPa, Long idEmpresa, String tipo) throws UsuarioException, UserNotAdminException, 
+	public void eliminarAutorizadoEmpresa(Usuario user, PersonaAutorizada pa) throws UsuarioException, UserNotAdminException, 
 	PersonaAutorizadaException, ClienteDeBajaException, AutorizacionExistenteException, ClienteNoEncontradoException {
 		
 		Usuario admin = em.find(Usuario.class, user.getUser());
@@ -151,17 +151,11 @@ public class PersonasAutorizadasEJB implements GestionPersonasAutorizadas{
 			throw new UserNotAdminException();
 		}
 		
-		Autorizacion aut = new Autorizacion();
-		AutorizacionID autID = new AutorizacionID();
-		autID.setIdCliente(idEmpresa);
-		autID.setIdPersonaAutorizada(idPa);
 		
-		PersonaAutorizada perAutEntity = em.find(PersonaAutorizada.class, idPa);
-		Empresa empEntity = em.find(Empresa.class, idEmpresa);
-		aut.setEmpresa(empEntity);
-		aut.setId(autID);
-		aut.setPersonaAutorizada(perAutEntity);
-		aut.setTipo(tipo);
+		
+		PersonaAutorizada perAutEntity = em.find(PersonaAutorizada.class, pa.getId());
+		perAutEntity.setFechaFin(Date.valueOf(LocalDate.now()));
+		perAutEntity.setEstado(false);
 		
 		if(perAutEntity == null) {
 			throw new PersonaAutorizadaException("La persona autorizada no existe en la base de datos");
