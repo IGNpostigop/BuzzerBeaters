@@ -44,7 +44,7 @@ public class InicializaBBDD {
 			Usuario usuario3 = new Usuario();
 			Usuario usuario4 = new Usuario();
 			Usuario usuario5 = new Usuario();
-			
+			 
 			usuario1.setUser("Fulanito");
 			usuario1.setPassword("pass");
 			usuario1.setAdministrador(true);
