@@ -249,6 +249,7 @@ public class InicializaBBDD {
 			  seg.setEstado(true);
 			  seg.setFecha_apertura(Date.valueOf("2000-02-01"));
 			  seg.setIban("segiban");
+			  seg.setSwift("switfseg");
 		}
 		
 	}
