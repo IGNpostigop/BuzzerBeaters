@@ -44,7 +44,7 @@ public class InicializaBBDD {
 			Usuario usuario3 = new Usuario();
 			Usuario usuario4 = new Usuario();
 			Usuario usuario5 = new Usuario();
-
+			 
 			usuario1.setUser("Fulanito");
 			usuario1.setPassword("pass");
 			usuario1.setAdministrador(true);
@@ -250,8 +250,6 @@ public class InicializaBBDD {
 			  seg.setFecha_apertura(Date.valueOf("2000-02-01"));
 			  seg.setIban("segiban");
 			  seg.setSwift("switfseg");
-			  
-			  em.persist(seg);
 		}
 		
 	}
