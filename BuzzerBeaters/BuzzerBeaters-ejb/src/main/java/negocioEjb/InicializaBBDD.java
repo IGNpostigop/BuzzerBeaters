@@ -41,6 +41,7 @@ public class InicializaBBDD {
 			Usuario usuario2 = new Usuario();
 			Usuario usuario3 = new Usuario();
 			Usuario usuario4 = new Usuario();
+			Usuario usuario5 = new Usuario();
 			
 			usuario1.setUser("Fulanito");
 			usuario1.setPassword("pass");
@@ -57,6 +58,10 @@ public class InicializaBBDD {
 			usuario4.setUser("Abraham");
 			usuario4.setPassword("pass");
 			usuario4.setAdministrador(false);
+			
+			usuario5.setUser("testeos");
+			usuario5.setPassword("pass");
+			usuario5.setAdministrador(false);
 			
 			em.persist(usuario1);
 			em.persist(usuario2);
@@ -202,7 +207,7 @@ public class InicializaBBDD {
 			  pa2.setFecha_nacimiento(Date.valueOf("1920-02-03"));
 			  pa2.setEstado(true);
 			  pa2.setFechaInicio(Date.valueOf("1999-10-12"));
-			  pa2.setUsuarioPA(usuario4);
+			  pa2.setUsuarioPA(usuario5);
 			  
 			  em.persist(pa2);
 			  //inicializar una autorizacion
@@ -219,13 +224,13 @@ public class InicializaBBDD {
 			  aut.setTipo("A");
 			  aut.setPersonaAutorizada(pa2);
 			  		  
-			  List<Autorizacion> autorizaciones = new ArrayList<Autorizacion>();
-			  autorizaciones.add(aut);
-			  pa2.setAutorizacion(autorizaciones);
-			  emp2.setAutorizacion(autorizaciones);
-			  
-			  em.merge(pa2);
-			  em.merge(emp2);
+//			  List<Autorizacion> autorizaciones = new ArrayList<Autorizacion>();
+//			  autorizaciones.add(aut);
+//			  pa2.setAutorizacion(autorizaciones);
+//			  emp2.setAutorizacion(autorizaciones);
+//			  
+//			  em.merge(pa2);
+//			  em.merge(emp2);
 			  
 			  em.persist(aut);
 			  
