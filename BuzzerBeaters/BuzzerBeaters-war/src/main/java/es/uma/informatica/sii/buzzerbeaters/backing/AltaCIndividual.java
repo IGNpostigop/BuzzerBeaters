@@ -178,13 +178,15 @@ public class AltaCIndividual
 			
 			
 			clienteInd.crearClienteIndividual(admin, ind);
-			return "paginaadmin.xhtml";
+			FacesMessage fm = new FacesMessage("El cliente se ha dado de alta correctamente");
+			FacesContext.getCurrentInstance().addMessage("altaCIndividual:botonAltaCIndiv", fm);
+			return null;
 			
 		}catch (ClienteExistenteException e) {
 			FacesMessage fm = new FacesMessage("El cliente que se intenta crear ya existe");
 			FacesContext.getCurrentInstance().addMessage("altaCIndividual:botonAltaCIndiv", fm);
 		}catch(UserNotAdminException e) {
-			FacesMessage fm = new FacesMessage("El usuario no tienee permisos de administrativo");
+			FacesMessage fm = new FacesMessage("El usuario no tiene permisos de administrativo");
 			FacesContext.getCurrentInstance().addMessage("altaCIndividual:botonAltaCIndiv", fm);
 		}catch(UsuarioException e) {
 			FacesMessage fm = new FacesMessage("No se ha encontrado el usuario");

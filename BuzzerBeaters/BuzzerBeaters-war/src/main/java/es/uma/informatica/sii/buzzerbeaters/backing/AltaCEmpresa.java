@@ -296,7 +296,9 @@ public class AltaCEmpresa
 			
 			
 			clienteEmp.crearClienteEmpresa(admin, emp);
-			return "paginaadmin.xhtml";
+			FacesMessage fm = new FacesMessage("Empresa creada correctamente");
+			FacesContext.getCurrentInstance().addMessage("altaCEmpresa:botonEmpresa", fm);
+			return null;
 			
 		}catch (ClienteExistenteException e) {
 			FacesMessage fm = new FacesMessage("La empresa que se intenta crear ya existe");
