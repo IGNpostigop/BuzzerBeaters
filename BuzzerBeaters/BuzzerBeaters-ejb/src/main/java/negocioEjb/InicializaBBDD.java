@@ -11,6 +11,8 @@ import javax.ejb.Startup;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import es.uma.BuzzerBeaters.Autorizacion;
+import es.uma.BuzzerBeaters.AutorizacionID;
 import es.uma.BuzzerBeaters.CuentaReferencia;
 import es.uma.BuzzerBeaters.Divisa;
 import es.uma.BuzzerBeaters.Empresa;
@@ -149,21 +151,7 @@ public class InicializaBBDD {
 			  
 			  em.persist(pool);
 			  
-			  //inicializacion de Persona Autorizada
-			  
-			  PersonaAutorizada pa = new PersonaAutorizada();
-			  pa.setIdentification("22222222");
-			  pa.setNombre("Abraham");
-			  pa.setApellidos("Lincon");
-			  pa.setDireccion("Casa Blanca");
-			  pa.setFecha_nacimiento(Date.valueOf("1800-02-03"));
-			  pa.setEstado(true);
-			  pa.setFechaInicio(Date.valueOf("1818-10-12"));
-			  pa.setUsuarioPA(usuario4);
-			  
-			  em.persist(pa);
-			  
-			  //inicializacion Empresa
+			//inicializacion Empresa
 			  Empresa emp = new Empresa();
 			  emp.setCiudad("Malaga");
 			  emp.setCodigopostal(29018);
@@ -175,6 +163,77 @@ public class InicializaBBDD {
 			  emp.setRazon_social("BuzzerBeater SL");
 			  
 			  em.persist(emp);
+			  
+			  Empresa emp2 = new Empresa();
+			  emp2.setCiudad("empresa2");
+			  emp2.setCodigopostal(22345);
+			  emp2.setDireccion("C/ empresa2");
+			  emp2.setEstado(true);
+			  emp2.setFechaAlta(Date.valueOf("1986-02-19"));
+			  emp2.setIdentification("empresa22");
+			  emp2.setPais("empresa2España");
+			  emp2.setRazon_social("BuzzerBeater SL empresa2");
+			  
+			  em.persist(emp2);
+			  
+			  //inicializacion de Persona Autorizada
+			  
+			  PersonaAutorizada pa = new PersonaAutorizada();
+			  pa.setIdentification("22222222");
+			  pa.setNombre("Abraham");
+			  pa.setApellidos("Lincon");
+			  pa.setDireccion("Casa Blanca");
+			  pa.setFecha_nacimiento(Date.valueOf("1800-02-03"));
+			  pa.setEstado(true);
+			  pa.setFechaInicio(Date.valueOf("1818-10-12"));
+			  pa.setUsuarioPA(usuario4);
+		
+			  
+			  em.persist(pa);
+			
+			  
+			  
+			  PersonaAutorizada pa2 = new PersonaAutorizada();
+			  pa2.setIdentification("pa2");
+			  pa2.setNombre("pa2");
+			  pa2.setApellidos("pa2");
+			  pa2.setDireccion("pa2 Blanca");
+			  pa2.setFecha_nacimiento(Date.valueOf("1920-02-03"));
+			  pa2.setEstado(true);
+			  pa2.setFechaInicio(Date.valueOf("1999-10-12"));
+			  pa2.setUsuarioPA(usuario4);
+			  
+			  em.persist(pa2);
+			  //inicializar una autorizacion
+			  Autorizacion aut = new Autorizacion();
+			  
+			  
+//			  AutorizacionID autid = new AutorizacionID();
+////			  PersonaAutorizada paEntity = em.find(PersonaAutorizada.class, 5);
+////			  Empresa empEntity = em.find(Empresa.class, 3);
+////			  
+////			  autid.setIdCliente(empEntity.getId());
+////			  autid.setIdPersonaAutorizada(paEntity.getId());
+//			  
+//			  autid.setIdCliente(emp2.getId());
+//			  autid.setIdPersonaAutorizada(pa2.getId());
+//			  
+//			  aut.setId(autid);
+//			  aut.setEmpresa(emp2);
+//			  aut.setTipo("A");
+//			  aut.setPersonaAutorizada(pa2);
+//			  		  
+//			  List<Autorizacion> autorizaciones = new ArrayList<Autorizacion>();
+//			  autorizaciones.add(aut);
+//			  pa2.setAutorizacion(autorizaciones);
+//			  emp2.setAutorizacion(autorizaciones);
+//			  
+//			  em.merge(pa2);
+//			  em.merge(emp2);
+//			  
+//			  em.persist(aut);
+//			  
+			  
 		}
 		
 	}
