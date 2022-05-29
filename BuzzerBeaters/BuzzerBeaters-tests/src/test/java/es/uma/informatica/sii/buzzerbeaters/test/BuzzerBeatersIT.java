@@ -138,13 +138,14 @@ public class BuzzerBeatersIT {
     driver.findElement(By.linkText("Login para administradores")).click();
     driver.findElement(By.id("adminLogin:user")).click();
     driver.findElement(By.id("adminLogin:user")).sendKeys("Fulanito");
+    driver.findElement(By.id("adminLogin:pass")).click();
     driver.findElement(By.id("adminLogin:pass")).sendKeys("pass");
     driver.findElement(By.id("adminLogin:botonLogin")).click();
     driver.findElement(By.id("botonAnyadirAut")).click();
     driver.findElement(By.id("anyadirAutorizacion:idPersAut")).click();
-    driver.findElement(By.id("anyadirAutorizacion:idPersAut")).sendKeys("2");
+    driver.findElement(By.id("anyadirAutorizacion:idPersAut")).sendKeys("4");
     driver.findElement(By.id("anyadirAutorizacion:idEmpresa")).click();
-    driver.findElement(By.id("anyadirAutorizacion:idEmpresa")).sendKeys("3");
+    driver.findElement(By.id("anyadirAutorizacion:idEmpresa")).sendKeys("2");
     driver.findElement(By.id("anyadirAutorizacion:tipoAutorizacion")).click();
     driver.findElement(By.id("anyadirAutorizacion:tipoAutorizacion")).sendKeys("a");
     driver.findElement(By.id("anyadirAutorizacion:botonanyadirAutorizacion")).click();
@@ -198,5 +199,39 @@ public class BuzzerBeatersIT {
     driver.findElement(By.id("abrirCuentaPooled:boton")).click();
     driver.findElement(By.id("abrirCuentaPooled:usuario")).click();
     assertThat(driver.findElement(By.id("abrirCuentaPooled:usuario")).getText(), is("Cuenta pooled abierta correctamente."));
+  }
+  @Test
+  public void quitarPersonaAutorizada() {
+    driver.get("http://localhost:8080/BuzzerBeaters-war/");
+    driver.manage().window().setSize(new Dimension(876, 1040));
+    driver.findElement(By.linkText("Login para administradores")).click();
+    driver.findElement(By.id("adminLogin:user")).click();
+    driver.findElement(By.id("adminLogin:user")).sendKeys("Fulanito");
+    driver.findElement(By.id("adminLogin:pass")).click();
+    driver.findElement(By.id("adminLogin:pass")).sendKeys("pass");
+    driver.findElement(By.id("adminLogin:botonLogin")).click();
+    driver.findElement(By.id("botonQuitarAut")).click();
+    driver.findElement(By.id("eliminarAutorizados:idPersAut")).click();
+    driver.findElement(By.id("eliminarAutorizados:idPersAut")).sendKeys("5");
+    driver.findElement(By.id("eliminarAutorizados:botoneliminarAutorizacion")).click();
+    driver.findElement(By.id("eliminarAutorizados")).click();
+    assertThat(driver.findElement(By.id("eliminarAutorizados:botonMessage")).getText(), is("Baja Correcta"));
+  }
+  @Test
+  public void darDeBajaCliente() {
+    driver.get("http://localhost:8080/BuzzerBeaters-war/");
+    driver.manage().window().setSize(new Dimension(876, 1040));
+    driver.findElement(By.linkText("Login para administradores")).click();
+    driver.findElement(By.id("adminLogin:user")).click();
+    driver.findElement(By.id("adminLogin:user")).sendKeys("Fulanito");
+    driver.findElement(By.id("adminLogin:pass")).click();
+    driver.findElement(By.id("adminLogin:pass")).sendKeys("pass");
+    driver.findElement(By.id("adminLogin:botonLogin")).click();
+    driver.findElement(By.id("bajaCliente")).click();
+    driver.findElement(By.id("bajaCliente:id")).click();
+    driver.findElement(By.id("bajaCliente:id")).sendKeys("2");
+    driver.findElement(By.id("bajaCliente:boton")).click();
+    driver.findElement(By.id("bajaCliente")).click();
+    assertThat(driver.findElement(By.id("bajaCliente:botonMessage")).getText(), is("Cliente correctamente dado de baja"));
   }
 }

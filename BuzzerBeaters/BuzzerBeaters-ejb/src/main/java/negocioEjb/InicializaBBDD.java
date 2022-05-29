@@ -3,7 +3,6 @@ package negocioEjb;
 //import java.sql.Date;
 import java.util.ArrayList;
 import java.sql.Date;
-import java.time.LocalDate;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -20,7 +19,6 @@ import es.uma.BuzzerBeaters.Empresa;
 import es.uma.BuzzerBeaters.Individual;
 import es.uma.BuzzerBeaters.PersonaAutorizada;
 import es.uma.BuzzerBeaters.PooledAccount;
-import es.uma.BuzzerBeaters.Segregada;
 import es.uma.BuzzerBeaters.Usuario;
 
 @Singleton
@@ -44,7 +42,7 @@ public class InicializaBBDD {
 			Usuario usuario3 = new Usuario();
 			Usuario usuario4 = new Usuario();
 			Usuario usuario5 = new Usuario();
-			 
+	
 			usuario1.setUser("Fulanito");
 			usuario1.setPassword("pass");
 			usuario1.setAdministrador(true);
@@ -61,15 +59,9 @@ public class InicializaBBDD {
 			usuario4.setPassword("pass");
 			usuario4.setAdministrador(false);
 			
-			usuario5.setUser("testeos");
-			usuario5.setPassword("pass");
-			usuario5.setAdministrador(false);
-			
 			em.persist(usuario1);
 			em.persist(usuario2);
 			em.persist(usuario3);
-			em.persist(usuario4);
-			em.persist(usuario5);
 			//fin de inicializa usuarios
 	
 			//inicializacion de PersonaAutorizada
@@ -211,24 +203,23 @@ public class InicializaBBDD {
 			  pa2.setFecha_nacimiento(Date.valueOf("1920-02-03"));
 			  pa2.setEstado(true);
 			  pa2.setFechaInicio(Date.valueOf("1999-10-12"));
-			  pa2.setUsuarioPA(usuario5);
+			  pa2.setUsuarioPA(usuario4);
 			  
 			  em.persist(pa2);
-
-			  //inicializar una autorizacion
-			  Autorizacion aut = new Autorizacion();
-			  
-			  
-			  AutorizacionID autid = new AutorizacionID();
-			  
-			  autid.setIdCliente(emp2.getId());
-			  autid.setIdPersonaAutorizada(pa2.getId());
-			  
-			  aut.setId(autid);
-			  aut.setEmpresa(emp2);
-			  aut.setTipo("A");
-			  aut.setPersonaAutorizada(pa2);
-			  		  
+//			  //inicializar una autorizacion
+//			  Autorizacion aut = new Autorizacion();
+//			  
+//			  
+//			  AutorizacionID autid = new AutorizacionID();
+//			  
+//			  autid.setIdCliente(emp2.getId());
+//			  autid.setIdPersonaAutorizada(pa2.getId());
+//			  
+//			  aut.setId(autid);
+//			  aut.setEmpresa(emp2);
+//			  aut.setTipo("A");
+//			  aut.setPersonaAutorizada(pa2);
+//			  		  
 //			  List<Autorizacion> autorizaciones = new ArrayList<Autorizacion>();
 //			  autorizaciones.add(aut);
 //			  pa2.setAutorizacion(autorizaciones);
@@ -236,20 +227,10 @@ public class InicializaBBDD {
 //			  
 //			  em.merge(pa2);
 //			  em.merge(emp2);
-			  
-			  em.persist(aut);
-			  
+//			  
+//			  em.persist(aut);
+//			  
 
-			//abrir cuenta segregada
-			  Segregada seg = new Segregada();
-			  seg.setClasificacion("clasi");
-			  seg.setCliente(emp2);
-			  seg.setComision("4");
-			  seg.setCuenta_referencia(cf);
-			  seg.setEstado(true);
-			  seg.setFecha_apertura(Date.valueOf("2000-02-01"));
-			  seg.setIban("segiban");
-			  seg.setSwift("switfseg");
 		}
 		
 	}
