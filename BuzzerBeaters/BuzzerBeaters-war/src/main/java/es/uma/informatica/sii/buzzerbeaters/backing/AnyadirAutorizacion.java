@@ -78,32 +78,32 @@ public class AnyadirAutorizacion {
 			admin = sesion.getUsuario();
 			gestPA.addAutorizadoEmpresa(admin, idPA, idEmpresa, tipo);
 			FacesMessage fm = new FacesMessage("Alta Correcta");
-			FacesContext.getCurrentInstance().addMessage("addAut:persAut", fm);
+			FacesContext.getCurrentInstance().addMessage("anyadirAutorizacion:botonanyadirAutorizacion", fm);
 			return null;
 		}
 		catch(UsuarioException e) {
 			FacesMessage fm = new FacesMessage("El usuario existe");
-			FacesContext.getCurrentInstance().addMessage("addAut:botonAut", fm);		
+			FacesContext.getCurrentInstance().addMessage("anyadirAutorizacion:botonanyadirAutorizacion", fm);		
 		}
 		catch(UserNotAdminException e) {			
 			FacesMessage fm = new FacesMessage("El cliente no es administrativo");
-			FacesContext.getCurrentInstance().addMessage("addAut:botonAut", fm);		
+			FacesContext.getCurrentInstance().addMessage("anyadirAutorizacion:botonanyadirAutorizacion", fm);		
 		}
 		catch(PersonaAutorizadaException e) {			
 			FacesMessage fm = new FacesMessage("Persona autorizada inexistente");
-			FacesContext.getCurrentInstance().addMessage("addAut:botonAut", fm);		
+			FacesContext.getCurrentInstance().addMessage("anyadirAutorizacion:botonanyadirAutorizacion", fm);		
 		}
 		catch(ClienteDeBajaException e) {			
 			FacesMessage fm = new FacesMessage("Empresa de baja");
-			FacesContext.getCurrentInstance().addMessage("addAut:botonAut", fm);		
+			FacesContext.getCurrentInstance().addMessage("anyadirAutorizacion:botonanyadirAutorizacion", fm);		
 		}
 		catch(AutorizacionExistenteException e) {			
 			FacesMessage fm = new FacesMessage("La autorización ya existe");
-			FacesContext.getCurrentInstance().addMessage("addAut:botonAut", fm);		
+			FacesContext.getCurrentInstance().addMessage("anyadirAutorizacion:botonanyadirAutorizacion", fm);		
 		}
 		catch(ClienteNoEncontradoException e) {			
 			FacesMessage fm = new FacesMessage("Empresas no existe");
-			FacesContext.getCurrentInstance().addMessage("addAut:botonAut", fm);		
+			FacesContext.getCurrentInstance().addMessage("anyadirAutorizacion:botonanyadirAutorizacion", fm);		
 		}
 		
 	

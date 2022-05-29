@@ -14,7 +14,7 @@
        
        <h2><h:outputText value="Añadir Autorizacion"/></h2>
        
-        <h:form id="addAut">
+        <h:form id="anyadirAutorizacion">
                         <h:outputLabel value="id de Persona Autorizada:"></h:outputLabel>
                         <h:inputText id="idPersAut" required="true" value="#{anyadirAutorizacion.idPA}" class="controls"></h:inputText>
                         <h:message id="idPAMessage" for="persAut"/>
@@ -30,7 +30,7 @@
                         
 
                         <h:commandButton id="botonanyadirAutorizacion" value="Aagregar Autorizacion" action="#{anyadirAutorizacion.addAutorizacion()}"></h:commandButton>
-						<h:message id="botonMessage" for="botonAut"/>
+						<h:message id="botonAut" for="botonanyadirAutorizacion"/>
           </h:form>
           
                         <div>
