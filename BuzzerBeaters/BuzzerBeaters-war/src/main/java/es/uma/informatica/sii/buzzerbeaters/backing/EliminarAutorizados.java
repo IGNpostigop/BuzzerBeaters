@@ -91,33 +91,33 @@ public class EliminarAutorizados {
 		admin = sesion.getUsuario();
 		gestPA.eliminarAutorizadoEmpresa(admin, idPA, idEmpresa, tipo);
 		FacesMessage fm = new FacesMessage("Baja Correcta");
-		FacesContext.getCurrentInstance().addMessage("addAut:botonAut", fm);
+		FacesContext.getCurrentInstance().addMessage("addAut:botoneliminarAutorizacion", fm);
 		return null;
 		
 		}
 		catch(UsuarioException e) {
 			FacesMessage fm = new FacesMessage("El usuario no existe");
-			FacesContext.getCurrentInstance().addMessage("removeAut:botonAut", fm);		
+			FacesContext.getCurrentInstance().addMessage("removeAut:botoneliminarAutorizacion", fm);		
 		}
 		catch(UserNotAdminException e) {			
 			FacesMessage fm = new FacesMessage("El cliente no es administrativo");
-			FacesContext.getCurrentInstance().addMessage("removeAut:botonAut", fm);		
+			FacesContext.getCurrentInstance().addMessage("removeAut:botoneliminarAutorizacion", fm);		
 		}
 		catch(PersonaAutorizadaException e) {			
 			FacesMessage fm = new FacesMessage("Persona autorizada inexistente");
-			FacesContext.getCurrentInstance().addMessage("removeAut:botonAut", fm);		
+			FacesContext.getCurrentInstance().addMessage("removeAut:botoneliminarAutorizacion", fm);		
 		}
 		catch(ClienteDeBajaException e) {			
 			FacesMessage fm = new FacesMessage("Empresa de baja");
-			FacesContext.getCurrentInstance().addMessage("removeAut:botonAut", fm);		
+			FacesContext.getCurrentInstance().addMessage("removeAut:botoneliminarAutorizacion", fm);		
 		}
 		catch(AutorizacionExistenteException e) {			
 			FacesMessage fm = new FacesMessage("La no autorización existe");
-			FacesContext.getCurrentInstance().addMessage("removeAut:botonAut", fm);		
+			FacesContext.getCurrentInstance().addMessage("removeAut:botoneliminarAutorizacion", fm);		
 		}
 		catch(ClienteNoEncontradoException e) {			
 			FacesMessage fm = new FacesMessage("Empresas no existe");
-			FacesContext.getCurrentInstance().addMessage("removeAut:botonAut", fm);		
+			FacesContext.getCurrentInstance().addMessage("removeAut:botoneliminarAutorizacion", fm);		
 		}
 		return null;
 	}

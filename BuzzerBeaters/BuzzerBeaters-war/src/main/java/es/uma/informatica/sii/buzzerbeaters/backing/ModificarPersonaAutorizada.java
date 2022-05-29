@@ -48,18 +48,7 @@ public class ModificarPersonaAutorizada {
 	public void setSesion(InfoSesion sesion) {
 		this.sesion = sesion;
 	}
-	public GestionPersonasAutorizadas getPas() {
-		return pas;
-	}
-	public void setPas(GestionPersonasAutorizadas pas) {
-		this.pas = pas;
-	}
-	public Usuario getUser() {
-		return user;
-	}
-	public void setUser(Usuario user) {
-		this.user = user;
-	}
+	
 	public String getIdentificacion() {
 		return identificacion;
 	}
