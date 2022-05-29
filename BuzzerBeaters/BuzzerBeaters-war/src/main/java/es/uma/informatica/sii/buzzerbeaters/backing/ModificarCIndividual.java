@@ -132,7 +132,7 @@ public class ModificarCIndividual {
 		this.pais = pais;
 	}
 
-	public String modCEmpresa() {
+	public String modificarCIndividual() {
 		
 
 			user = sesion.getUsuario();

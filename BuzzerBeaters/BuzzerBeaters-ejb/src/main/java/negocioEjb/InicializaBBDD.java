@@ -3,6 +3,7 @@ package negocioEjb;
 //import java.sql.Date;
 import java.util.ArrayList;
 import java.sql.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -19,6 +20,7 @@ import es.uma.BuzzerBeaters.Empresa;
 import es.uma.BuzzerBeaters.Individual;
 import es.uma.BuzzerBeaters.PersonaAutorizada;
 import es.uma.BuzzerBeaters.PooledAccount;
+import es.uma.BuzzerBeaters.Segregada;
 import es.uma.BuzzerBeaters.Usuario;
 
 @Singleton
@@ -238,6 +240,15 @@ public class InicializaBBDD {
 			  em.persist(aut);
 			  
 
+			//abrir cuenta segregada
+			  Segregada seg = new Segregada();
+			  seg.setClasificacion("clasi");
+			  seg.setCliente(emp2);
+			  seg.setComision("4");
+			  seg.setCuenta_referencia(cf);
+			  seg.setEstado(true);
+			  seg.setFecha_apertura(Date.valueOf("2000-02-01"));
+			  seg.setIban("segiban");
 		}
 		
 	}

@@ -126,15 +126,15 @@ public class ModificarPersonaAutorizada {
 			
 			paEJB.modificarPersonaAutorizada(admin, pa);
 			FacesMessage fm = new FacesMessage("Persona autorizada modificada.");
-			FacesContext.getCurrentInstance().addMessage("modificarPA:boton", fm);
+			FacesContext.getCurrentInstance().addMessage("modificarPA:botonMODPA", fm);
 			return null;
 			
 		}catch (UsuarioException e) {
 			FacesMessage fm = new FacesMessage("El usuario no existe");
-			FacesContext.getCurrentInstance().addMessage("modificarPA:boton", fm);
+			FacesContext.getCurrentInstance().addMessage("modificarPA:botonMODPA", fm);
 		}catch(PersonaAutorizadaException e) {			
 			FacesMessage fm = new FacesMessage("Persona autorizada inexistente");
-			FacesContext.getCurrentInstance().addMessage("modificarPA:boton", fm);		
+			FacesContext.getCurrentInstance().addMessage("modificarPA:botonMODPA", fm);		
 		}
 		return "paginaadmin.xhtml";
 	}
