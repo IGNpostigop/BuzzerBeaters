@@ -17,6 +17,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import es.uma.informatica.sii.anotaciones.Requisitos;
+
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.Keys;
@@ -38,6 +41,7 @@ public class BuzzerBeatersIT {
     driver.quit();
   }
   @Test
+  @Requisitos({"RF1"})
   public void inicioAdmin() {
     driver.get("http://localhost:8080/BuzzerBeaters-war/");
     driver.manage().window().setSize(new Dimension(876, 1075));
@@ -50,6 +54,7 @@ public class BuzzerBeatersIT {
     assertThat(driver.findElement(By.id("mensBienv")).getText(), is("Bienvenido Fulanito"));
   }
   @Test
+  @Requisitos({"RF10"})
   public void loginnormal() {
     driver.get("http://localhost:8080/BuzzerBeaters-war/");
     driver.manage().window().setSize(new Dimension(876, 1040));
@@ -61,6 +66,7 @@ public class BuzzerBeatersIT {
     assertThat(driver.findElement(By.id("mensBienv")).getText(), is("Bienvenido a la Página principal de clientes"));
   }
   @Test
+  @Requisitos({"RF2"})
   public void altaClienteIndividual() {
     driver.get("http://localhost:8080/BuzzerBeaters-war/");
     driver.manage().window().setSize(new Dimension(876, 1040));
@@ -86,6 +92,7 @@ public class BuzzerBeatersIT {
     assertThat(driver.findElement(By.id("altaCIndividual:boton")).getText(), is("El cliente se ha dado de alta correctamente"));
   }
   @Test
+  @Requisitos({"RF2"})
   public void altaEmpresa() {
     driver.get("http://localhost:8080/BuzzerBeaters-war/");
     driver.manage().window().setSize(new Dimension(876, 1040));
@@ -108,6 +115,9 @@ public class BuzzerBeatersIT {
     driver.findElement(By.id("altaCEmpresa")).click();
     assertThat(driver.findElement(By.id("altaCEmpresa:botonEmpresa")).getText(), is("Empresa creada correctamente"));
   }
+  
+  //Este test no tiene relacion directa con ningun RF pero lo consideramos muy importante para el 
+  //funcionamiento sobre toodo de autorizaciones
   @Test
   public void altaPA() {
     driver.get("http://localhost:8080/BuzzerBeaters-war/");
@@ -131,7 +141,7 @@ public class BuzzerBeatersIT {
     driver.findElement(By.id("altaPersonaAutorizada")).click();
     assertThat(driver.findElement(By.id("altaPersonaAutorizada:boton")).getText(), is("Alta correccta"));
   }
-  @Test
+  @Test@Requisitos({"RF6"})
   public void anyadirAutorizacion() {
     driver.get("http://localhost:8080/BuzzerBeaters-war/");
     driver.manage().window().setSize(new Dimension(876, 1040));
@@ -153,6 +163,7 @@ public class BuzzerBeatersIT {
     assertThat(driver.findElement(By.id("anyadirAutorizacion:botonAut")).getText(), is("Alta Correcta"));
   }
   @Test
+  @Requisitos({"RF5"})
   public void abreCuentaSegregada() {
     driver.get("http://localhost:8080/BuzzerBeaters-war/");
     driver.manage().window().setSize(new Dimension(876, 1040));
@@ -180,6 +191,7 @@ public class BuzzerBeatersIT {
   }
   
   @Test
+  @Requisitos({"RF5"})
   public void abreCuentaPooled() {
     driver.get("http://localhost:8080/BuzzerBeaters-war/");
     driver.manage().window().setSize(new Dimension(876, 1040));
@@ -201,6 +213,7 @@ public class BuzzerBeatersIT {
     assertThat(driver.findElement(By.id("abrirCuentaPooled:usuario")).getText(), is("Cuenta pooled abierta correctamente."));
   }
   @Test
+  @Requisitos({"RF8"})
   public void quitarPersonaAutorizada() {
     driver.get("http://localhost:8080/BuzzerBeaters-war/");
     driver.manage().window().setSize(new Dimension(876, 1040));
@@ -218,6 +231,7 @@ public class BuzzerBeatersIT {
     assertThat(driver.findElement(By.id("eliminarAutorizados:botonMessage")).getText(), is("Baja Correcta"));
   }
   @Test
+  @Requisitos({"RF4"})
   public void darDeBajaCliente() {
     driver.get("http://localhost:8080/BuzzerBeaters-war/");
     driver.manage().window().setSize(new Dimension(876, 1040));
@@ -235,6 +249,7 @@ public class BuzzerBeatersIT {
     assertThat(driver.findElement(By.id("bajaCliente:botonMessage")).getText(), is("Cliente correctamente dado de baja"));
   }
   @Test
+  @Requisitos({"RF9"})
   public void cerrarPooledAccount() {
     driver.get("http://localhost:8080/BuzzerBeaters-war/");
     driver.manage().window().setSize(new Dimension(876, 1040));
@@ -252,6 +267,7 @@ public class BuzzerBeatersIT {
     assertThat(driver.findElement(By.id("cerrarPooled:usuario")).getText(), is("Cuenta pooled correctamente dada de baja"));
   }
   @Test
+  @Requisitos({"RF3"})
   public void modificarIndividual() {
     driver.get("http://localhost:8080/BuzzerBeaters-war/");
     driver.manage().window().setSize(new Dimension(876, 1040));
@@ -277,6 +293,7 @@ public class BuzzerBeatersIT {
     assertThat(driver.findElement(By.id("modificarCIndividual:usuario")).getText(), is("Cliente individual modificado."));
   }
   @Test
+  @Requisitos({"RF7"})
   public void modificarPA() {
     driver.get("http://localhost:8080/BuzzerBeaters-war/");
     driver.manage().window().setSize(new Dimension(876, 1040));
@@ -304,6 +321,7 @@ public class BuzzerBeatersIT {
     assertThat(driver.findElement(By.id("modificarPA:boton")).getText(), is("Persona autorizada modificada."));
   }
   @Test
+  @Requisitos({"RF3"})
   public void modificarEmpresa() {
     driver.get("http://localhost:8080/BuzzerBeaters-war/");
     driver.manage().window().setSize(new Dimension(876, 1040));
@@ -329,6 +347,7 @@ public class BuzzerBeatersIT {
     assertThat(driver.findElement(By.id("modificarCEmpresa:usuario")).getText(), is("Empresa modificada."));
   }
   @Test
+  @Requisitos({"RF9"})
   public void cerrarSegregada() {
     driver.get("http://localhost:8080/BuzzerBeaters-war/");
     driver.manage().window().setSize(new Dimension(876, 1040));
