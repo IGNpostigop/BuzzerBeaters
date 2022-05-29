@@ -7,7 +7,6 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
-
 import es.uma.BuzzerBeaters.PersonaAutorizada;
 import es.uma.BuzzerBeaters.Usuario;
 import negocioEJBexcepcion.PersonaAutorizadaException;
@@ -31,10 +30,8 @@ public class ModificarPersonaAutorizada {
 	private String identificacion; 
 	private String nombre; 
 	private String apellidos; 
-	private Boolean estado; 
-	private Date fn; 
-	private Date fi; 
-	private Date fin;
+	private String direccion; 
+	private String fn; 
 	
 	public ModificarPersonaAutorizada() 
 	{
@@ -67,45 +64,65 @@ public class ModificarPersonaAutorizada {
 	public void setApellidos(String apellidos) {
 		this.apellidos = apellidos;
 	}
-	public Boolean getEstado() {
-		return estado;
-	}
-	public void setEstado(Boolean estado) {
-		this.estado = estado;
-	}
-	public Date getFn() {
+	public String getFn() {
 		return fn;
 	}
-	public void setFn(Date fn) {
+	public void setFn(String fn) {
 		this.fn = fn;
 	}
-	public Date getFi() {
-		return fi;
-	}
-	public void setFi(Date fi) {
-		this.fi = fi;
-	}
-	public Date getFin() {
-		return fin;
-	}
-	public void setFin(Date fin) {
-		this.fin = fin;
-	} 
 	
-	public String modificaPA() {
+	
+	public GestionPersonasAutorizadas getPaEJB() {
+		return paEJB;
+	}
+
+	public void setPaEJB(GestionPersonasAutorizadas paEJB) {
+		this.paEJB = paEJB;
+	}
+
+	public PersonaAutorizada getPa() {
+		return pa;
+	}
+
+	public void setPa(PersonaAutorizada pa) {
+		this.pa = pa;
+	}
+
+	public Usuario getAdmin() {
+		return admin;
+	}
+
+	public void setAdmin(Usuario admin) {
+		this.admin = admin;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getDireccion() {
+		return direccion;
+	}
+
+	public void setDireccion(String direccion) {
+		this.direccion = direccion;
+	}
+
+	public String modificarPAaccion() {
 		
 		admin = sesion.getUsuario();
 		
 		try {
-			pa = paEJB.getPA(id); 
-			
-			pa.setIdentification(identificacion);
-			pa.setNombre(nombre);
-			pa.setApellidos(apellidos);
-			pa.setEstado(estado);
-			pa.setFecha_nacimiento(fn);
-			pa.setFechaInicio(fi);
-			pa.setFechaFin(fin);
+			pa = paEJB.getPA(this.getId()); 
+			pa.setIdentification(this.getIdentificacion());
+			pa.setNombre(this.getNombre());
+			pa.setApellidos(this.getApellidos());
+			pa.setDireccion(this.getDireccion());
+			pa.setFecha_nacimiento(Date.valueOf(this.getFn()));
 			
 			paEJB.modificarPersonaAutorizada(admin, pa);
 			

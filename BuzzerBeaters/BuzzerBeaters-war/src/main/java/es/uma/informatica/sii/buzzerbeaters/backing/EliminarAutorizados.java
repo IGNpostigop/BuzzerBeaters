@@ -35,61 +35,99 @@ public class EliminarAutorizados {
 	private String tipo;
 	
 
+
+	
 	public InfoSesion getSesion() {
 		return sesion;
 	}
+
+
+
 
 	public void setSesion(InfoSesion sesion) {
 		this.sesion = sesion;
 	}
 
+
+
+
 	public GestionPersonasAutorizadas getGestPA() {
 		return gestPA;
 	}
+
+
+
 
 	public void setGestPA(GestionPersonasAutorizadas gestPA) {
 		this.gestPA = gestPA;
 	}
 
+
+
+
 	public Usuario getAdmin() {
 		return admin;
 	}
+
+
+
 
 	public void setAdmin(Usuario admin) {
 		this.admin = admin;
 	}
 
+
+
+
 	public Long getIdPA() {
 		return idPA;
 	}
+
+
+
 
 	public void setIdPA(Long idPA) {
 		this.idPA = idPA;
 	}
 
+
+
+
 	public Long getIdEmpresa() {
 		return idEmpresa;
 	}
+
+
+
 
 	public void setIdEmpresa(Long idEmpresa) {
 		this.idEmpresa = idEmpresa;
 	}
 
+
+
+
 	public String getTipo() {
 		return tipo;
 	}
 
+
+
+
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
 	}
-	
+
+
+
+
 	public String eliminarAutorizado() {
 		
 		try {
 		
 		admin = sesion.getUsuario();
 		PersonaAutorizada pa = gestPA.getPA(idPA);
-		gestPA.eliminarAutorizadoEmpresa(admin, pa);
+		gestPA.eliminarPersonaAutorizada(admin, pa);
 		FacesMessage fm = new FacesMessage("Baja Correcta");
 		FacesContext.getCurrentInstance().addMessage("addAut:botoneliminarAutorizacion", fm);
 		return null;
@@ -105,18 +143,6 @@ public class EliminarAutorizados {
 		}
 		catch(PersonaAutorizadaException e) {			
 			FacesMessage fm = new FacesMessage("Persona autorizada inexistente");
-			FacesContext.getCurrentInstance().addMessage("removeAut:botoneliminarAutorizacion", fm);		
-		}
-		catch(ClienteDeBajaException e) {			
-			FacesMessage fm = new FacesMessage("Empresa de baja");
-			FacesContext.getCurrentInstance().addMessage("removeAut:botoneliminarAutorizacion", fm);		
-		}
-		catch(AutorizacionExistenteException e) {			
-			FacesMessage fm = new FacesMessage("La no autorización existe");
-			FacesContext.getCurrentInstance().addMessage("removeAut:botoneliminarAutorizacion", fm);		
-		}
-		catch(ClienteNoEncontradoException e) {			
-			FacesMessage fm = new FacesMessage("Empresas no existe");
 			FacesContext.getCurrentInstance().addMessage("removeAut:botoneliminarAutorizacion", fm);		
 		}
 		return null;

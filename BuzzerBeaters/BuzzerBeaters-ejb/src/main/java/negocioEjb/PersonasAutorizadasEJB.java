@@ -22,6 +22,7 @@ import es.uma.BuzzerBeaters.Usuario;
 import negocioEJBexcepcion.AutorizacionExistenteException;
 import negocioEJBexcepcion.ClienteDeBajaException;
 import negocioEJBexcepcion.ClienteNoEncontradoException;
+import negocioEJBexcepcion.CuentaException;
 import negocioEJBexcepcion.PersonaAutorizadaException;
 import negocioEJBexcepcion.PersonaAutorizadaSinAdmin;
 import negocioEJBexcepcion.UserNotAdminException;
@@ -140,42 +141,67 @@ public class PersonasAutorizadasEJB implements GestionPersonasAutorizadas{
 	
 	@Override
 	//RF8: Dar de baja persona Autorizada
-	public void eliminarAutorizadoEmpresa(Usuario user, PersonaAutorizada pa) throws UsuarioException, UserNotAdminException, 
-	PersonaAutorizadaException, ClienteDeBajaException, AutorizacionExistenteException, ClienteNoEncontradoException {
+	public void eliminarPersonaAutorizada(Usuario user, PersonaAutorizada pa) throws UsuarioException, UserNotAdminException
+	{
+		Usuario administrador = em.find(Usuario.class, user.getUser());
 		
-		Usuario admin = em.find(Usuario.class, user.getUser());
-		if (admin == null) {
-			throw new UsuarioException();
-		}
-		if (!admin.isAdministrador()) {
-			throw new UserNotAdminException();
-		}
-		
-		
-		
-		PersonaAutorizada perAutEntity = em.find(PersonaAutorizada.class, pa.getId());
-		perAutEntity.setFechaFin(Date.valueOf(LocalDate.now()));
-		perAutEntity.setEstado(false);
-		
-		if(perAutEntity == null) {
-			throw new PersonaAutorizadaException("La persona autorizada no existe en la base de datos");
-		}
-		else if(empEntity == null) {
-			throw new ClienteNoEncontradoException();
-		}
-		else if(!empEntity.getEstado()) {
-			throw new ClienteDeBajaException();
-		}
-		else if(!perAutEntity.getAutorizacion().contains(aut)) {
-			throw new AutorizacionExistenteException();
-		}else {
-			List <Autorizacion> autorizaciones = empEntity.getAutorizacion();
-			autorizaciones.remove(aut);
-			empEntity.setAutorizacion(autorizaciones);
-			em.remove(aut);
+		if (administrador == null) { 
+			throw new UsuarioException("El usuario no exsite");
 		}
 
+		if (!administrador.isAdministrador()) {
+			throw new UserNotAdminException("El usuario no tiene los privilegios suficientes para la operación");
+		}
+		
+		pa.setFechaFin(Date.valueOf(LocalDate.now()));
+		pa.setEstado(false);	
+		
+		em.merge(pa);
+	
+		
 	}
+	
+//	public void eliminarAutorizadoEmpresa(Usuario user, Long idPa, Long idEmpresa) throws UsuarioException, UserNotAdminException, 
+//	PersonaAutorizadaException, ClienteDeBajaException, AutorizacionExistenteException, ClienteNoEncontradoException {
+//		
+//		Usuario admin = em.find(Usuario.class, user.getUser());
+//		if (admin == null) {
+//			throw new UsuarioException();
+//		}
+//		if (!admin.isAdministrador()) {
+//			throw new UserNotAdminException();
+//		}
+//		
+//		Autorizacion aut = new Autorizacion();
+//		AutorizacionID autID = new AutorizacionID();
+//		autID.setIdCliente(idEmpresa);
+//		autID.setIdPersonaAutorizada(idPa);
+//		
+//		PersonaAutorizada perAutEntity = em.find(PersonaAutorizada.class, idPa);
+//		Empresa empEntity = em.find(Empresa.class, idEmpresa);
+//		aut.setEmpresa(empEntity);
+//		aut.setId(autID);
+//		aut.setPersonaAutorizada(perAutEntity);
+//		
+//		if(perAutEntity == null) {
+//			throw new PersonaAutorizadaException("La persona autorizada no existe en la base de datos");
+//		}
+//		else if(empEntity == null) {
+//			throw new ClienteNoEncontradoException();
+//		}
+//		else if(!empEntity.getEstado()) {
+//			throw new ClienteDeBajaException();
+//		}
+//		else if(!perAutEntity.getAutorizacion().contains(aut)) {
+//			throw new AutorizacionExistenteException();
+//		}else {
+//			List <Autorizacion> autorizaciones = empEntity.getAutorizacion();
+//			autorizaciones.remove(aut);
+//			empEntity.setAutorizacion(autorizaciones);
+//			em.remove(aut);
+//		}
+//
+//	}
 
 	
 	@Override

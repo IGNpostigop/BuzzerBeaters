@@ -7,27 +7,18 @@
        xmlns:f="http://xmlns.jcp.org/jsf/core">
 
 <h:head>
-       <title>Eliminar Autorizacion </title>
+       <title>Eliminar Persona Autorizada </title>
 </h:head>
 
 <h:body>
        
-       <h2><h:outputText value="Eliminar Autorizacion"/></h2>
+       <h2><h:outputText value="Eliminar Persona Autorizada"/></h2>
        
         <h:form id="removeAut">
                         <h:outputLabel value="id de Persona Autorizada:"></h:outputLabel>
                         <h:inputText id="idPersAut" required="true" value="#{eliminarAutorizados.idPA}" class="controls"></h:inputText>
                         <h:message id="idPAMessage" for="persAut"/>
 						<br></br>
-                        <h:outputLabel value="id de Empresa"></h:outputLabel>
-                        <h:inputText id="idEmpresa" required="true" value="#{eliminarAutorizados.idEmpresa}" class="controls"></h:inputText>
-                        <h:message id="idEmpresaMessage" for="empresa"/>
-                        <br></br>
-                        <h:outputLabel value="Tipo:"></h:outputLabel>
-                        <h:inputText id="tipoAutorizacion" required="true" value="#{eliminarAutorizados.tipo}" class="controls"></h:inputText>
-                        <h:message id="tipoAutorizacionMessage" for="tipo"/>
-                        <br></br>
-                        
 
                         <h:commandButton id="botoneliminarAutorizacion" value="BajaAutorizacion" action="#{eliminarAutorizados.eliminarAutorizado()}"></h:commandButton>
 						<h:message id="botonMessage" for="botonAut"/>
