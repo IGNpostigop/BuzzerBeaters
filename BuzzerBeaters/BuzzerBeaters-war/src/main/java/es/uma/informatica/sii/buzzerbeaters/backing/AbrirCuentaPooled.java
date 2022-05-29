@@ -171,6 +171,8 @@ public class AbrirCuentaPooled {
 			
 			try {
 				cuentas.aperturaCtaPooled(user, poAc, client, depositos);
+				FacesMessage fm = new FacesMessage("Cuenta pooled abierta correctamente.");
+				FacesContext.getCurrentInstance().addMessage("abrirCuentaPooled:boton", fm);
 			} catch (UsuarioException e) {
 				FacesMessage fm = new FacesMessage("El usuario no existe");
 				FacesContext.getCurrentInstance().addMessage("abrirCuentaPooled:boton", fm);	
@@ -184,7 +186,7 @@ public class AbrirCuentaPooled {
 				FacesContext.getCurrentInstance().addMessage("abrirCuentaPooled:boton", fm);	
 			}
 			
-			return "paginaadmin.xhtml";
+			return null;
 			
 		} catch (ClienteNoEncontradoException e) {
 			FacesMessage fm = new FacesMessage("El cliente no existe");

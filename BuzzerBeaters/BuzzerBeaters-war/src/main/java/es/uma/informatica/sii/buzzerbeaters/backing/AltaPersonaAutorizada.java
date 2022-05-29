@@ -240,7 +240,7 @@ public class AltaPersonaAutorizada
 			userPA.setPersonaAutorizada(pa);
 			
 			gestionPA.crearPersonaAutorizada(admin, pa);
-			FacesMessage fm = new FacesMessage("\tAlta correccta");
+			FacesMessage fm = new FacesMessage("Alta correccta");
 			FacesContext.getCurrentInstance().addMessage("altaPersonaAutorizada:botonPA", fm);
 			return null;
 			

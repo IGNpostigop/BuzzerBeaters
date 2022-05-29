@@ -159,6 +159,9 @@ public class ModificarCIndividual {
 				
 
 				modificarEJB.modificarClienteIndividual(user,ind);
+				FacesMessage fm = new FacesMessage("Cliente individual modificado.");
+				FacesContext.getCurrentInstance().addMessage("modificarCIndividual:botonInd", fm);
+				return null;
 				
 			} catch (UsuarioException e) {
 				FacesMessage fm = new FacesMessage("El usuario no existe");

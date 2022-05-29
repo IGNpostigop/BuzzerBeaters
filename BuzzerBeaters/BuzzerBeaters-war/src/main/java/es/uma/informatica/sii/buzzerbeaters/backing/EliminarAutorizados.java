@@ -129,7 +129,7 @@ public class EliminarAutorizados {
 		PersonaAutorizada pa = gestPA.getPA(idPA);
 		gestPA.eliminarPersonaAutorizada(admin, pa);
 		FacesMessage fm = new FacesMessage("Baja Correcta");
-		FacesContext.getCurrentInstance().addMessage("addAut:botoneliminarAutorizacion", fm);
+		FacesContext.getCurrentInstance().addMessage("removeAut:botoneliminarAutorizacion", fm);
 		return null;
 		
 		}

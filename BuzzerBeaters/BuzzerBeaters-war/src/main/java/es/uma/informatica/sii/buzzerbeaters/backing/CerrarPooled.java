@@ -46,7 +46,9 @@ public class CerrarPooled {
 			
 			cerrarPAejb.cerrarCuentaPooled(user, pa);
 			
-			return "paginaadmin.xhtml";
+			FacesMessage fm = new FacesMessage("Cuenta pooled correctamente dada de baja");
+			FacesContext.getCurrentInstance().addMessage("cerrarPooled:botonCerrar", fm);		
+			return null;
 			
 		} catch (CuentaException e) {
 			FacesMessage fm = new FacesMessage("La cuenta no existe");

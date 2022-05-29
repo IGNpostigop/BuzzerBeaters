@@ -70,7 +70,9 @@ try {
 			
 			cerrarSejb.cerrarCuenteSegregada(user, seg);
 			
-			return "paginaadmin.xhtml";
+			FacesMessage fm = new FacesMessage("Cuenta segregada correctamente dada de baja.");
+			FacesContext.getCurrentInstance().addMessage("cerrarSegregada:botonCerrar", fm);		
+			return null;
 			
 		} catch (CuentaException e) {
 			FacesMessage fm = new FacesMessage("La cuenta no existe");

@@ -168,7 +168,9 @@ public class AbrirCuentaSegregada {
 			CuentaReferencia cr = cuentas.getCuentaReferencia(this.getIbanRefer());
 
 			cuentas.aperturaCtaSegregated(usuario, cuenta, cliente ,cr);
-			return "paginaadmin.xhtml";
+			FacesMessage fm = new FacesMessage("Cuenta segregada abierta correctamente.");
+			FacesContext.getCurrentInstance().addMessage("abreSegregada:boton", fm);
+			return null;
 			
 				} catch (UsuarioException e) {
 					FacesMessage fm = new FacesMessage("El usuario no existe");
