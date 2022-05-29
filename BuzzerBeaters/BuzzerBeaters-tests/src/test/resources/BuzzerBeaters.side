@@ -1,74 +1,130 @@
 {
-  "id": "dcf54b76-be61-431e-94fa-5f4c1ca109cf",
+  "id": "e56881d1-6d44-4f7a-967f-cba38014e0cd",
   "version": "2.0",
-  "name": "BuzzerBeatersIT",
-  "url": "http://localhost:8080//BuzzerBeaters-war",
+  "name": "BuzzerBeaters",
+  "url": "http://localhost:8080/BuzzerBeaters-war",
   "tests": [{
-    "id": "184c0a72-4746-464c-8974-751472771e62",
-    "name": "inicio",
+    "id": "10f872d0-f322-40bf-ac87-ccb16efb888a",
+    "name": "InicioAdmin",
     "commands": [{
-      "id": "2b67c3b7-677f-49c0-b21a-805291cfb1c5",
+      "id": "98288aef-b50b-46c2-bb3a-ea3ad7b97bb2",
       "comment": "",
       "command": "open",
-      "target": "/BuzzerBeaters-war/",
+      "target": "http://localhost:8080/BuzzerBeaters-war/",
       "targets": [],
       "value": ""
     }, {
-      "id": "956a9ce7-e94d-4a2e-bca5-365c7f6f76ce",
+      "id": "ddb183c6-04cc-4fb5-9130-4aaa946d9377",
       "comment": "",
       "command": "setWindowSize",
-      "target": "1115x1380",
+      "target": "876x1075",
       "targets": [],
       "value": ""
     }, {
-      "id": "318fa53c-71b0-4877-aca2-0d71946e1855",
+      "id": "e7fa71fb-3721-4ee6-80f7-f62044d2562c",
       "comment": "",
       "command": "click",
-      "target": "id=saludo",
+      "target": "linkText=Login para administradores",
       "targets": [
-        ["id=saludo", "id"],
-        ["css=#saludo", "css:finder"],
-        ["xpath=//span[@id='saludo']", "xpath:attributes"],
-        ["xpath=//span", "xpath:position"],
-        ["xpath=//span[contains(.,'Hola mundo')]", "xpath:innerText"]
+        ["linkText=Login para administradores", "linkText"],
+        ["css=a", "css:finder"],
+        ["xpath=//a[contains(text(),'Login para administradores')]", "xpath:link"],
+        ["xpath=//form[@id='login']/div/p/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, '/BuzzerBeaters-war/AdminLogin.xhtml')]", "xpath:href"],
+        ["xpath=//a", "xpath:position"],
+        ["xpath=//a[contains(.,'Login para administradores')]", "xpath:innerText"]
       ],
       "value": ""
     }, {
-      "id": "0e1fd95f-4862-4638-ab83-d4e6115b8dff",
+      "id": "a42c7021-19d6-4daa-b989-267691467694",
       "comment": "",
       "command": "click",
-      "target": "id=saludo",
+      "target": "id=adminLogin:user",
       "targets": [
-        ["id=saludo", "id"],
-        ["css=#saludo", "css:finder"],
-        ["xpath=//span[@id='saludo']", "xpath:attributes"],
-        ["xpath=//span", "xpath:position"],
-        ["xpath=//span[contains(.,'Hola mundo')]", "xpath:innerText"]
+        ["id=adminLogin:user", "id"],
+        ["name=adminLogin:user", "name"],
+        ["css=#adminLogin\\3Auser", "css:finder"],
+        ["xpath=//input[@id='adminLogin:user']", "xpath:attributes"],
+        ["xpath=//form[@id='adminLogin']/table/tbody/tr/td[2]/input", "xpath:idRelative"],
+        ["xpath=//td[2]/input", "xpath:position"]
       ],
       "value": ""
     }, {
-      "id": "031c81d5-86db-48bb-b64f-7b03e1decdeb",
+      "id": "09ae81a7-6b7b-4c26-b63c-6a50b0c2e365",
+      "comment": "",
+      "command": "type",
+      "target": "id=adminLogin:user",
+      "targets": [
+        ["id=adminLogin:user", "id"],
+        ["name=adminLogin:user", "name"],
+        ["css=#adminLogin\\3Auser", "css:finder"],
+        ["xpath=//input[@id='adminLogin:user']", "xpath:attributes"],
+        ["xpath=//form[@id='adminLogin']/table/tbody/tr/td[2]/input", "xpath:idRelative"],
+        ["xpath=//td[2]/input", "xpath:position"]
+      ],
+      "value": "Fulanito"
+    }, {
+      "id": "fa4e68c2-1d92-46c4-8432-dbea6a96fca0",
+      "comment": "",
+      "command": "type",
+      "target": "id=adminLogin:pass",
+      "targets": [
+        ["id=adminLogin:pass", "id"],
+        ["name=adminLogin:pass", "name"],
+        ["css=#adminLogin\\3Apass", "css:finder"],
+        ["xpath=//input[@id='adminLogin:pass']", "xpath:attributes"],
+        ["xpath=//form[@id='adminLogin']/table/tbody/tr[2]/td[2]/input", "xpath:idRelative"],
+        ["xpath=//tr[2]/td[2]/input", "xpath:position"]
+      ],
+      "value": "pass"
+    }, {
+      "id": "75027cf0-bef5-432f-83bc-bb45d3650e8e",
+      "comment": "",
+      "command": "click",
+      "target": "id=adminLogin:botonLogin",
+      "targets": [
+        ["id=adminLogin:botonLogin", "id"],
+        ["name=adminLogin:botonLogin", "name"],
+        ["css=#adminLogin\\3A botonLogin", "css:finder"],
+        ["xpath=//input[@id='adminLogin:botonLogin']", "xpath:attributes"],
+        ["xpath=//form[@id='adminLogin']/table/tbody/tr[3]/td/input", "xpath:idRelative"],
+        ["xpath=//tr[3]/td/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "793bd72e-fc8f-49ab-9274-7cf3957bfc9e",
+      "comment": "",
+      "command": "click",
+      "target": "css=h3",
+      "targets": [
+        ["css=h3", "css:finder"],
+        ["xpath=//h3", "xpath:position"],
+        ["xpath=//h3[contains(.,'Bienvenido Fulanito')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "4192af7c-741b-4937-a6c4-28f86a0bdfae",
       "comment": "",
       "command": "assertText",
-      "target": "id=saludo",
+      "target": "id=mensBienv",
       "targets": [
-        ["id=saludo", "id"],
-        ["css=#saludo", "css:finder"],
-        ["xpath=//span[@id='saludo']", "xpath:attributes"],
+        ["id=mensBienv", "id"],
+        ["css=#mensBienv", "css:finder"],
+        ["xpath=//span[@id='mensBienv']", "xpath:attributes"],
         ["xpath=//span", "xpath:position"],
-        ["xpath=//span[contains(.,'Hola mundo')]", "xpath:innerText"]
+        ["xpath=//span[contains(.,'Bienvenido Fulanito')]", "xpath:innerText"]
       ],
-      "value": "Hola mundo"
+      "value": "Bienvenido Fulanito"
     }]
   }],
   "suites": [{
-    "id": "70b4f7cc-237a-4f93-8377-a823f16260c8",
+    "id": "93a8c7a1-e64c-429a-b540-0f78f1d95141",
     "name": "BuzzerBeatersIT",
     "persistSession": false,
     "parallel": false,
     "timeout": 300,
-    "tests": ["184c0a72-4746-464c-8974-751472771e62"]
+    "tests": ["10f872d0-f322-40bf-ac87-ccb16efb888a"]
   }],
-  "urls": ["http://localhost:8080/", "http://localhost:8080//BuzzerBeaters-war"],
+  "urls": [],
   "plugins": []
 }

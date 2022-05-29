@@ -78,7 +78,7 @@ public class AnyadirAutorizacion {
 			admin = sesion.getUsuario();
 			gestPA.addAutorizadoEmpresa(admin, idPA, idEmpresa, tipo);
 			FacesMessage fm = new FacesMessage("Alta Correcta");
-			FacesContext.getCurrentInstance().addMessage("addAut:botonAut", fm);
+			FacesContext.getCurrentInstance().addMessage("addAut:persAut", fm);
 			return null;
 		}
 		catch(UsuarioException e) {
