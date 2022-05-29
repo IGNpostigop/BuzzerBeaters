@@ -205,30 +205,30 @@ public class InicializaBBDD {
 			  pa2.setUsuarioPA(usuario4);
 			  
 			  em.persist(pa2);
-			  //inicializar una autorizacion
-			  Autorizacion aut = new Autorizacion();
-			  
-			  
-			  AutorizacionID autid = new AutorizacionID();
-			  
-			  autid.setIdCliente(emp2.getId());
-			  autid.setIdPersonaAutorizada(pa2.getId());
-			  
-			  aut.setId(autid);
-			  aut.setEmpresa(emp2);
-			  aut.setTipo("A");
-			  aut.setPersonaAutorizada(pa2);
-			  		  
-			  List<Autorizacion> autorizaciones = new ArrayList<Autorizacion>();
-			  autorizaciones.add(aut);
-			  pa2.setAutorizacion(autorizaciones);
-			  emp2.setAutorizacion(autorizaciones);
-			  
-			  em.merge(pa2);
-			  em.merge(emp2);
-			  
-			  em.persist(aut);
-			  
+//			  //inicializar una autorizacion
+//			  Autorizacion aut = new Autorizacion();
+//			  
+//			  
+//			  AutorizacionID autid = new AutorizacionID();
+//			  
+//			  autid.setIdCliente(emp2.getId());
+//			  autid.setIdPersonaAutorizada(pa2.getId());
+//			  
+//			  aut.setId(autid);
+//			  aut.setEmpresa(emp2);
+//			  aut.setTipo("A");
+//			  aut.setPersonaAutorizada(pa2);
+//			  		  
+//			  List<Autorizacion> autorizaciones = new ArrayList<Autorizacion>();
+//			  autorizaciones.add(aut);
+//			  pa2.setAutorizacion(autorizaciones);
+//			  emp2.setAutorizacion(autorizaciones);
+//			  
+//			  em.merge(pa2);
+//			  em.merge(emp2);
+//			  
+//			  em.persist(aut);
+//			  
 
 		}
 		
