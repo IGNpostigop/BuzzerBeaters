@@ -210,6 +210,7 @@ public class InicializaBBDD {
 			  pa2.setUsuarioPA(usuario5);
 			  
 			  em.persist(pa2);
+
 			  //inicializar una autorizacion
 			  Autorizacion aut = new Autorizacion();
 			  
