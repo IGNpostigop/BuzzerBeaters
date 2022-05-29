@@ -129,21 +129,21 @@ public class EliminarAutorizados {
 		PersonaAutorizada pa = gestPA.getPA(idPA);
 		gestPA.eliminarPersonaAutorizada(admin, pa);
 		FacesMessage fm = new FacesMessage("Baja Correcta");
-		FacesContext.getCurrentInstance().addMessage("removeAut:botoneliminarAutorizacion", fm);
+		FacesContext.getCurrentInstance().addMessage("eliminarAutorizados:botoneliminarAutorizacion", fm);
 		return null;
 		
 		}
 		catch(UsuarioException e) {
 			FacesMessage fm = new FacesMessage("El usuario no existe");
-			FacesContext.getCurrentInstance().addMessage("removeAut:botoneliminarAutorizacion", fm);		
+			FacesContext.getCurrentInstance().addMessage("eliminarAutorizados:botoneliminarAutorizacion", fm);		
 		}
 		catch(UserNotAdminException e) {			
 			FacesMessage fm = new FacesMessage("El cliente no es administrativo");
-			FacesContext.getCurrentInstance().addMessage("removeAut:botoneliminarAutorizacion", fm);		
+			FacesContext.getCurrentInstance().addMessage("eliminarAutorizados:botoneliminarAutorizacion", fm);		
 		}
 		catch(PersonaAutorizadaException e) {			
 			FacesMessage fm = new FacesMessage("Persona autorizada inexistente");
-			FacesContext.getCurrentInstance().addMessage("removeAut:botoneliminarAutorizacion", fm);		
+			FacesContext.getCurrentInstance().addMessage("eliminarAutorizados:botoneliminarAutorizacion", fm);		
 		}
 		return null;
 	}

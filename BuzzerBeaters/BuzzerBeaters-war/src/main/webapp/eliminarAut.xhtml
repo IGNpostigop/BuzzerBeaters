@@ -14,10 +14,10 @@
        
        <h2><h:outputText value="Eliminar Persona Autorizada"/></h2>
        
-        <h:form id="removeAut">
+        <h:form id="eliminarAutorizados">
                         <h:outputLabel value="id de Persona Autorizada:"></h:outputLabel>
                         <h:inputText id="idPersAut" required="true" value="#{eliminarAutorizados.idPA}" class="controls"></h:inputText>
-                        <h:message id="idPAMessage" for="persAut"/>
+                        <h:message id="idPAMessage" for="idPersAut"/>
 						<br></br>
 
                         <h:commandButton id="botoneliminarAutorizacion" value="BajaAutorizacion" action="#{eliminarAutorizados.eliminarAutorizado()}"></h:commandButton>
