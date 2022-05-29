@@ -49,4 +49,15 @@ public class BuzzerBeatersIT {
     driver.findElement(By.cssSelector("h3")).click();
     assertThat(driver.findElement(By.id("mensBienv")).getText(), is("Bienvenido Fulanito"));
   }
+  @Test
+  public void loginnormal() {
+    driver.get("http://localhost:8080/BuzzerBeaters-war/");
+    driver.manage().window().setSize(new Dimension(876, 1040));
+    driver.findElement(By.id("login:user")).click();
+    driver.findElement(By.id("login:user")).sendKeys("Menganito");
+    driver.findElement(By.id("login:pass")).sendKeys("pass");
+    driver.findElement(By.id("login:botonLogin")).click();
+    driver.findElement(By.cssSelector("html")).click();
+    assertThat(driver.findElement(By.id("mensBienv")).getText(), is("Bienvenido a la Página principal de clientes"));
+  }
 }
