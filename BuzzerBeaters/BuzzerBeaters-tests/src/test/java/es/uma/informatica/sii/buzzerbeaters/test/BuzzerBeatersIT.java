@@ -60,4 +60,52 @@ public class BuzzerBeatersIT {
     driver.findElement(By.cssSelector("html")).click();
     assertThat(driver.findElement(By.id("mensBienv")).getText(), is("Bienvenido a la Página principal de clientes"));
   }
+  @Test
+  public void altaClienteIndividual() {
+    driver.get("http://localhost:8080/BuzzerBeaters-war/");
+    driver.manage().window().setSize(new Dimension(876, 1040));
+    driver.findElement(By.linkText("Login para administradores")).click();
+    driver.findElement(By.id("adminLogin:user")).click();
+    driver.findElement(By.id("adminLogin:user")).sendKeys("Fulanito");
+    driver.findElement(By.id("adminLogin:pass")).sendKeys("pass");
+    driver.findElement(By.id("adminLogin:botonLogin")).click();
+    driver.findElement(By.id("botonAltaIndividual")).click();
+    driver.findElement(By.id("altaCIndividual:username")).click();
+    driver.findElement(By.id("altaCIndividual:username")).sendKeys("uno");
+    driver.findElement(By.id("altaCIndividual:pass")).sendKeys("pass");
+    driver.findElement(By.id("altaCIndividual:nombre")).sendKeys("unomismo");
+    driver.findElement(By.id("altaCIndividual:apellido")).sendKeys("apellido");
+    driver.findElement(By.id("altaCIndividual:fechaNacimiento")).sendKeys("1800-02-03");
+    driver.findElement(By.id("altaCIndividual:identificacion")).sendKeys("11111p");
+    driver.findElement(By.id("altaCIndividual:direccion")).sendKeys("calle pito");
+    driver.findElement(By.id("altaCIndividual:ciudad")).sendKeys("Malaga");
+    driver.findElement(By.id("altaCIndividual:pais")).sendKeys("España");
+    driver.findElement(By.id("altaCIndividual:cp")).sendKeys("29000");
+    driver.findElement(By.id("altaCIndividual:botonAltaCIndiv")).click();
+    driver.findElement(By.id("altaCIndividual")).click();
+    assertThat(driver.findElement(By.id("altaCIndividual:boton")).getText(), is("El cliente se ha dado de alta correctamente"));
+  }
+  @Test
+  public void altaEmpresa() {
+    driver.get("http://localhost:8080/BuzzerBeaters-war/");
+    driver.manage().window().setSize(new Dimension(876, 1040));
+    driver.findElement(By.linkText("Login para administradores")).click();
+    driver.findElement(By.id("adminLogin:user")).click();
+    driver.findElement(By.id("adminLogin:user")).sendKeys("Fulanito");
+    driver.findElement(By.id("adminLogin:pass")).sendKeys("pass");
+    driver.findElement(By.id("adminLogin:botonLogin")).click();
+    driver.findElement(By.id("botonAltaEmpresa")).click();
+    driver.findElement(By.id("altaCEmpresa:razonSocial")).click();
+    driver.findElement(By.id("altaCEmpresa:razonSocial")).sendKeys("empre");
+    driver.findElement(By.id("altaCEmpresa:identificacion")).click();
+    driver.findElement(By.id("altaCEmpresa:identificacion")).sendKeys("b290909090");
+    driver.findElement(By.id("altaCEmpresa:direccion")).click();
+    driver.findElement(By.id("altaCEmpresa:direccion")).sendKeys("calle industria");
+    driver.findElement(By.id("altaCEmpresa:ciudad")).sendKeys("Malaga");
+    driver.findElement(By.id("altaCEmpresa:pais")).sendKeys("España");
+    driver.findElement(By.id("altaCEmpresa:cp")).sendKeys("29018");
+    driver.findElement(By.id("altaCEmpresa:botonAltaCEmpresa")).click();
+    driver.findElement(By.id("altaCEmpresa")).click();
+    assertThat(driver.findElement(By.id("altaCEmpresa:botonEmpresa")).getText(), is("Empresa creada correctamente"));
+  }
 }

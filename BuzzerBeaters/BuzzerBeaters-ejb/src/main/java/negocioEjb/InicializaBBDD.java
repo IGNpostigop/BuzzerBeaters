@@ -175,6 +175,7 @@ public class InicializaBBDD {
 			  emp.setRazon_social("BuzzerBeater SL");
 			  
 			  em.persist(emp);
+			  
 		}
 		
 	}
