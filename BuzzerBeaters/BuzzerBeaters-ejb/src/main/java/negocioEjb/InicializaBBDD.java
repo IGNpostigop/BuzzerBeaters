@@ -66,6 +66,8 @@ public class InicializaBBDD {
 			em.persist(usuario1);
 			em.persist(usuario2);
 			em.persist(usuario3);
+			em.persist(usuario4);
+			em.persist(usuario5);
 			//fin de inicializa usuarios
 	
 			//inicializacion de PersonaAutorizada
