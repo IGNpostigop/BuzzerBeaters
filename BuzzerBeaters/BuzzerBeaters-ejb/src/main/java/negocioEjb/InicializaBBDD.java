@@ -164,6 +164,7 @@ public class InicializaBBDD {
 			  
 			  em.persist(emp);
 			  
+
 			  Empresa emp2 = new Empresa();
 			  emp2.setCiudad("empresa2");
 			  emp2.setCodigopostal(22345);
@@ -233,7 +234,7 @@ public class InicializaBBDD {
 //			  
 //			  em.persist(aut);
 //			  
-			  
+
 		}
 		
 	}
