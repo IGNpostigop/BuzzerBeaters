@@ -29,13 +29,14 @@ public interface GestionPersonasAutorizadas {
 	 * Si el usuario que se intenta introducir ya existe en la base de datos
 	 * debe lanzar una excepcion adecuada.
 	 * user, password y administrador no pueden ser nulos.
+	 * @return 
 	 * @throws UsuarioException 
 	 * @throws PersonaAutorizadaSinAdmin 
 	 **/
 	
 
 
-	public void crearPersonaAutorizada(Usuario usuario, PersonaAutorizada pa) throws UsuarioException, PersonaAutorizadaSinAdmin;
+	public Long crearPersonaAutorizada(Usuario usuario, PersonaAutorizada pa) throws UsuarioException, PersonaAutorizadaSinAdmin;
 	
 	/**
 	 * Este metodo permitira modificar los datos de una persona autorizada

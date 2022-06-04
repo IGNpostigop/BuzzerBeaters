@@ -171,7 +171,7 @@ public class AbrirCuentaPooled {
 			
 			try {
 				cuentas.aperturaCtaPooled(user, poAc, client, depositos);
-				FacesMessage fm = new FacesMessage("Cuenta pooled abierta correctamente.");
+				FacesMessage fm = new FacesMessage("Cuenta pooled abierta correctamente con iban "+poAc.getIban());
 				FacesContext.getCurrentInstance().addMessage("abrirCuentaPooled:boton", fm);
 			} catch (UsuarioException e) {
 				FacesMessage fm = new FacesMessage("El usuario no existe");

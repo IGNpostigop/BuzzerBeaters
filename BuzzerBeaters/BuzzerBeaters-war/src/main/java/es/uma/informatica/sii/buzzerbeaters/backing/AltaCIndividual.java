@@ -177,8 +177,8 @@ public class AltaCIndividual
 			
 			
 			
-			clienteInd.crearClienteIndividual(admin, ind);
-			FacesMessage fm = new FacesMessage("El cliente se ha dado de alta correctamente");
+			Long id = clienteInd.crearClienteIndividual(admin, ind);
+			FacesMessage fm = new FacesMessage("El cliente se ha dado de alta correctamente con id "+id);
 			FacesContext.getCurrentInstance().addMessage("altaCIndividual:botonAltaCIndiv", fm);
 			return null;
 			

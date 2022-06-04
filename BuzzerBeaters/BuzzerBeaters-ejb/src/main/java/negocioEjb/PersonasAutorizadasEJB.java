@@ -38,7 +38,7 @@ public class PersonasAutorizadasEJB implements GestionPersonasAutorizadas{
 	private EntityManager em;
 	
 	@Override
-	public void crearPersonaAutorizada(Usuario user,PersonaAutorizada pa) throws PersonaAutorizadaSinAdmin, UsuarioException {
+	public Long crearPersonaAutorizada(Usuario user,PersonaAutorizada pa) throws PersonaAutorizadaSinAdmin, UsuarioException {
 		// TODO
 
 		Usuario admin = em.find(Usuario.class, user.getUser());
@@ -50,6 +50,7 @@ public class PersonasAutorizadasEJB implements GestionPersonasAutorizadas{
 		pa.setFechaInicio((Date.valueOf(LocalDate.now())));
 		pa.setEstado(true);
 		em.persist(pa);
+		return pa.getId();
 		
 //		Empresa emp = em.find(Empresa.class, cf.getCliente().getIdentification());
 //

@@ -39,7 +39,7 @@ public class ClientesEJB implements GestionClientes {
 
 	@Override
 	//RF2: Dar de alta a un cliente individual
-	public void crearClienteIndividual(Usuario admin, Individual individual)
+	public Long crearClienteIndividual(Usuario admin, Individual individual)
 			throws UsuarioException, UserNotAdminException, ClienteExistenteException {
 
 		Usuario administrador = em.find(Usuario.class, admin.getUser());
@@ -55,12 +55,13 @@ public class ClientesEJB implements GestionClientes {
 			individual.setFechaAlta(Date.valueOf(LocalDate.now()));
 			individual.setEstado(true);
 			em.persist(individual); 
+			return individual.getId();
 
 	}
 	
 	@Override 
 	//RF2: Dar de alta a un cliente empresa
-	public void crearClienteEmpresa(Usuario admin, Cliente empresa)
+	public Long crearClienteEmpresa(Usuario admin, Cliente empresa)
 			throws UsuarioException, UserNotAdminException, ClienteExistenteException  {
 
 		Usuario administrador = em.find(Usuario.class, admin.getUser());
@@ -77,6 +78,7 @@ public class ClientesEJB implements GestionClientes {
 		empresa.setFechaAlta(Date.valueOf(LocalDate.now()));
 		empresa.setEstado(true);
 		em.persist(empresa);
+		return empresa.getId();
 
 	}
 	@Override

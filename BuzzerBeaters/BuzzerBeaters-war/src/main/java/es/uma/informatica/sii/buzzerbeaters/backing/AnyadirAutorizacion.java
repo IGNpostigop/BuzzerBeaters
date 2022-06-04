@@ -77,7 +77,7 @@ public class AnyadirAutorizacion {
 		try {
 			admin = sesion.getUsuario();
 			gestPA.addAutorizadoEmpresa(admin, idPA, idEmpresa, tipo);
-			FacesMessage fm = new FacesMessage("Alta Correcta");
+			FacesMessage fm = new FacesMessage("Alta Correcta de autorización para la persona autorizada "+idPA+" en empresa "+idEmpresa);
 			FacesContext.getCurrentInstance().addMessage("anyadirAutorizacion:botonanyadirAutorizacion", fm);
 			return null;
 		}

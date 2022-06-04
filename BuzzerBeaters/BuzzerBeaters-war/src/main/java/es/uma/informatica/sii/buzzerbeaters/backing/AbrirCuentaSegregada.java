@@ -158,19 +158,19 @@ public class AbrirCuentaSegregada {
 		
 
 	
-			cuenta.setIban(this.getIban());
-			cuenta.setSwift(this.getSwift());
-			cuenta.setEstado(true);
-			cuenta.setFecha_apertura(Date.valueOf(LocalDate.now())); // DATE
-			cuenta.setClasificacion("Segregada");
-			cuenta.setComision(this.getComision());		
-			
-			CuentaReferencia cr = cuentas.getCuentaReferencia(this.getIbanRefer());
+		cuenta.setIban(this.getIban());
+		cuenta.setSwift(this.getSwift());
+		cuenta.setEstado(true);
+		cuenta.setFecha_apertura(Date.valueOf(LocalDate.now())); // DATE
+		cuenta.setClasificacion("Segregada");
+		cuenta.setComision(this.getComision());		
+		
+		CuentaReferencia cr = cuentas.getCuentaReferencia(this.getIbanRefer());
 
-			cuentas.aperturaCtaSegregated(usuario, cuenta, cliente ,cr);
-			FacesMessage fm = new FacesMessage("Cuenta segregada abierta correctamente.");
-			FacesContext.getCurrentInstance().addMessage("abreSegregada:boton", fm);
-			return null;
+		cuentas.aperturaCtaSegregated(usuario, cuenta, cliente ,cr);
+		FacesMessage fm = new FacesMessage("Cuenta segregada abierta correctamente con iban "+cr.getIban());
+		FacesContext.getCurrentInstance().addMessage("abreSegregada:boton", fm);
+		return null;
 			
 				} catch (UsuarioException e) {
 					FacesMessage fm = new FacesMessage("El usuario no existe");

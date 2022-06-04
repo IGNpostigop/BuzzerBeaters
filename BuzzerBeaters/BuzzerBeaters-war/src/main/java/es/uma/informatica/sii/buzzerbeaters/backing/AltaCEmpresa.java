@@ -295,8 +295,8 @@ public class AltaCEmpresa
 //			userEmpresa.setAdministrador(false);
 			
 			
-			clienteEmp.crearClienteEmpresa(admin, emp);
-			FacesMessage fm = new FacesMessage("Empresa creada correctamente");
+			Long id = clienteEmp.crearClienteEmpresa(admin, emp);
+			FacesMessage fm = new FacesMessage("Empresa creada correctamente con id "+id);
 			FacesContext.getCurrentInstance().addMessage("altaCEmpresa:botonAltaCEmpresa", fm);
 			return null;
 			

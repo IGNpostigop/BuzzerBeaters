@@ -9,6 +9,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import es.uma.BuzzerBeaters.Usuario;
+import negocioEJBexcepcion.UserAdminException;
 import negocioEJBexcepcion.UsuarioException;
 import negocioEJBexcepcion.WrongPasswordException;
 import negocioEjb.GestionUsuarios;
@@ -55,6 +56,11 @@ public class RegularLogin implements Serializable{
 			FacesMessage fm = new FacesMessage("La contraseña no es correcta");
 			FacesContext.getCurrentInstance().addMessage("login:pass", fm);
 
+		}
+		catch (UserAdminException e) {
+			FacesMessage fm = new FacesMessage("Usuario Administrativo, entre por el login de administrativos");
+			FacesContext.getCurrentInstance().addMessage("login:pass", fm);
+			// TODO: handle exception
 		}
 		return null;
 		

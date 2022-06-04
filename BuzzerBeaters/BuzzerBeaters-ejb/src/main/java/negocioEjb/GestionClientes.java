@@ -23,15 +23,16 @@ public interface GestionClientes {
 	 * Si el usuario que se intenta introducir ya existe en la base de datos
 	 * debe lanzar una excepcion adecuada.
 	 * user, password y administrador no pueden ser nulos.
+	 * @return 
 	 * @throws UsuarioException 
 	 **/
-	public void crearClienteIndividual(Usuario admin, Individual individual)
+	public Long crearClienteIndividual(Usuario admin, Individual individual)
 			throws UsuarioException, UserNotAdminException, ClienteExistenteException;
 	/*
 	 * Lo mismo que anterriormente pero para empresas
 	 */
 	
-	public void crearClienteEmpresa(Usuario admin, Cliente empresa)
+	public Long crearClienteEmpresa(Usuario admin, Cliente empresa)
 			throws UsuarioException, UserNotAdminException, ClienteExistenteException;
 //	/**
 //	 * Este método debe permitir modificar la identificación de un cliente

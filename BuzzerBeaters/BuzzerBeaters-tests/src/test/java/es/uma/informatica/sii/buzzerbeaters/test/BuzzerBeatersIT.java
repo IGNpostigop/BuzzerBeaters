@@ -89,7 +89,7 @@ public class BuzzerBeatersIT {
     driver.findElement(By.id("altaCIndividual:cp")).sendKeys("29000");
     driver.findElement(By.id("altaCIndividual:botonAltaCIndiv")).click();
     driver.findElement(By.id("altaCIndividual")).click();
-    assertThat(driver.findElement(By.id("altaCIndividual:boton")).getText(), is("El cliente se ha dado de alta correctamente"));
+    assertThat(driver.findElement(By.id("altaCIndividual:boton")).getText(), is("El cliente se ha dado de alta correctamente con id 6"));
   }
   @Test
   @Requisitos({"RF2"})
@@ -113,7 +113,7 @@ public class BuzzerBeatersIT {
     driver.findElement(By.id("altaCEmpresa:cp")).sendKeys("29018");
     driver.findElement(By.id("altaCEmpresa:botonAltaCEmpresa")).click();
     driver.findElement(By.id("altaCEmpresa")).click();
-    assertThat(driver.findElement(By.id("altaCEmpresa:botonEmpresa")).getText(), is("Empresa creada correctamente"));
+    assertThat(driver.findElement(By.id("altaCEmpresa:botonEmpresa")).getText(), is("Empresa creada correctamente con id 8"));
   }
   
   //Este test no tiene relacion directa con ningun RF pero lo consideramos muy importante para el 
@@ -139,7 +139,7 @@ public class BuzzerBeatersIT {
     driver.findElement(By.id("altaPersonaAutorizada:fn")).sendKeys("2000-06-23");
     driver.findElement(By.id("altaPersonaAutorizada:botonPA")).click();
     driver.findElement(By.id("altaPersonaAutorizada")).click();
-    assertThat(driver.findElement(By.id("altaPersonaAutorizada:boton")).getText(), is("Alta correccta"));
+    assertThat(driver.findElement(By.id("altaPersonaAutorizada:boton")).getText(), is("Alta correcta con id 7"));
   }
   @Test@Requisitos({"RF6"})
   public void anyadirAutorizacion() {
@@ -160,7 +160,7 @@ public class BuzzerBeatersIT {
     driver.findElement(By.id("anyadirAutorizacion:tipoAutorizacion")).sendKeys("a");
     driver.findElement(By.id("anyadirAutorizacion:botonanyadirAutorizacion")).click();
     driver.findElement(By.id("anyadirAutorizacion")).click();
-    assertThat(driver.findElement(By.id("anyadirAutorizacion:botonAut")).getText(), is("Alta Correcta"));
+    assertThat(driver.findElement(By.id("anyadirAutorizacion:botonAut")).getText(), is("Alta Correcta de autorización para la persona autorizada 4 en empresa 2"));
   }
   @Test
   @Requisitos({"RF5"})
@@ -187,7 +187,7 @@ public class BuzzerBeatersIT {
     driver.findElement(By.id("abreSegregada:ibanReferencia")).sendKeys("iban1234");
     driver.findElement(By.id("abreSegregada:boton")).click();
     driver.findElement(By.id("abreSegregada:usuario")).click();
-    assertThat(driver.findElement(By.id("abreSegregada:usuario")).getText(), is("Cuenta segregada abierta correctamente."));
+    assertThat(driver.findElement(By.id("abreSegregada:usuario")).getText(), is("Cuenta segregada abierta correctamente con iban iban1234"));
   }
   
   @Test
@@ -205,12 +205,12 @@ public class BuzzerBeatersIT {
     driver.findElement(By.id("abrirCuentaPooled:idcliente")).click();
     driver.findElement(By.id("abrirCuentaPooled:idcliente")).sendKeys("1");
     driver.findElement(By.id("abrirCuentaPooled:cliente")).sendKeys("11111111F");
-    driver.findElement(By.id("abrirCuentaPooled:iban")).sendKeys("iban1234");
+    driver.findElement(By.id("abrirCuentaPooled:iban")).sendKeys("1234");
     driver.findElement(By.id("abrirCuentaPooled:swift")).sendKeys("este");
     driver.findElement(By.id("abrirCuentaPooled:comision")).sendKeys("12");
     driver.findElement(By.id("abrirCuentaPooled:boton")).click();
     driver.findElement(By.id("abrirCuentaPooled:usuario")).click();
-    assertThat(driver.findElement(By.id("abrirCuentaPooled:usuario")).getText(), is("Cuenta pooled abierta correctamente."));
+    assertThat(driver.findElement(By.id("abrirCuentaPooled:usuario")).getText(), is("Cuenta pooled abierta correctamente con iban 1234"));
   }
   @Test
   @Requisitos({"RF8"})
